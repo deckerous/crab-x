@@ -1,0 +1,227 @@
+[gd_scene load_steps=14 format=3 uid="uid://c1ibditage4cw"]
+
+[ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="1_0aveh"]
+[ext_resource type="Texture2D" uid="uid://byj7np463hg2s" path="res://Assets/Tilesets/pngs/underwater-sand-16x16.png" id="2_1qdh6"]
+[ext_resource type="Texture2D" uid="uid://dvafuwrwbdgqd" path="res://Assets/Tilesets/pngs/beach-sand-16x16.png" id="2_3on7y"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="2_bp8wp"]
+[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="5_4w7li"]
+[ext_resource type="Texture2D" uid="uid://dqsq5i5hw4h31" path="res://Assets/Crabs/png/crab-rpg.png" id="6_1uqcm"]
+[ext_resource type="Texture2D" uid="uid://b0gd15qmhkdsu" path="res://Assets/Crabs/png/crab-slingshot.png" id="7_pdq4f"]
+[ext_resource type="Texture2D" uid="uid://g17fv4dci4b8" path="res://Assets/Misc/png/coin.png" id="8_6j1ct"]
+[ext_resource type="Texture2D" uid="uid://ba866d5mhxgj7" path="res://Assets/Misc/png/drop-shadow-8x8.png" id="9_1nctw"]
+[ext_resource type="Texture2D" uid="uid://iktoga6ab2cw" path="res://Assets/Guns/png/glock-16x16.png" id="10_b6vh6"]
+[ext_resource type="Texture2D" uid="uid://bbdsa2xlexbcy" path="res://Assets/Guns/png/grenade-16x16.png" id="11_se41o"]
+[ext_resource type="Texture2D" uid="uid://t07nsyhgutoc" path="res://Assets/Guns/png/rpg-16x32.png" id="12_bx2kr"]
+[ext_resource type="Texture2D" uid="uid://wjar0tqie5od" path="res://Assets/Guns/png/slingshot-16x16.png" id="13_mea4h"]
+
+[node name="SpriteSizeTest" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 160.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3on7y")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_right = 320.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1qdh6")
+stretch_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Crab-16x16" type="Sprite2D" parent="."]
+position = Vector2(78, 154)
+texture = ExtResource("1_0aveh")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x16"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 3)
+
+[node name="Crab-16x17" type="Sprite2D" parent="."]
+position = Vector2(116, 146)
+texture = ExtResource("5_4w7li")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x17"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 11)
+
+[node name="Crab-16x18" type="Sprite2D" parent="."]
+position = Vector2(135, 146)
+texture = ExtResource("6_1uqcm")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x18"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 11)
+
+[node name="Crab-16x19" type="Sprite2D" parent="."]
+position = Vector2(97, 146)
+texture = ExtResource("7_pdq4f")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x19"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 11)
+
+[node name="Coin" type="Sprite2D" parent="."]
+position = Vector2(80, 72)
+texture = ExtResource("8_6j1ct")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Coin"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Coin2" type="Sprite2D" parent="."]
+position = Vector2(96, 72)
+texture = ExtResource("8_6j1ct")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Coin2"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Coin3" type="Sprite2D" parent="."]
+position = Vector2(88, 56)
+texture = ExtResource("8_6j1ct")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Coin3"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Glock-16x16" type="Sprite2D" parent="."]
+position = Vector2(48, 88)
+texture = ExtResource("10_b6vh6")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Glock-16x16"]
+position = Vector2(0, 8)
+texture = ExtResource("2_bp8wp")
+
+[node name="Grenade-16x16" type="Sprite2D" parent="."]
+position = Vector2(16, 112)
+texture = ExtResource("11_se41o")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Grenade-16x16"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Rpg-16x32" type="Sprite2D" parent="."]
+position = Vector2(32, 64)
+texture = ExtResource("12_bx2kr")
+
+[node name="Drop-shadow-18x17" type="Sprite2D" parent="Rpg-16x32"]
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 10)
+
+[node name="Slingshot-16x16" type="Sprite2D" parent="."]
+position = Vector2(16, 88)
+texture = ExtResource("13_mea4h")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Slingshot-16x16"]
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 10)
+
+[node name="Crab-16x20" type="Sprite2D" parent="."]
+position = Vector2(246, 158)
+texture = ExtResource("1_0aveh")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x20"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 3)
+
+[node name="Crab-16x21" type="Sprite2D" parent="."]
+position = Vector2(284, 150)
+texture = ExtResource("5_4w7li")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x21"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 11)
+
+[node name="Crab-16x22" type="Sprite2D" parent="."]
+position = Vector2(303, 150)
+texture = ExtResource("6_1uqcm")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x22"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 11)
+
+[node name="Crab-16x23" type="Sprite2D" parent="."]
+position = Vector2(265, 150)
+texture = ExtResource("7_pdq4f")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Crab-16x23"]
+z_index = -1
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 11)
+
+[node name="Coin4" type="Sprite2D" parent="."]
+position = Vector2(248, 76)
+texture = ExtResource("8_6j1ct")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Coin4"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Coin5" type="Sprite2D" parent="."]
+position = Vector2(264, 76)
+texture = ExtResource("8_6j1ct")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Coin5"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Coin6" type="Sprite2D" parent="."]
+position = Vector2(256, 60)
+texture = ExtResource("8_6j1ct")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Coin6"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Glock-16x17" type="Sprite2D" parent="."]
+position = Vector2(216, 92)
+texture = ExtResource("10_b6vh6")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Glock-16x17"]
+position = Vector2(0, 8)
+texture = ExtResource("2_bp8wp")
+
+[node name="Grenade-16x17" type="Sprite2D" parent="."]
+position = Vector2(184, 116)
+texture = ExtResource("11_se41o")
+
+[node name="Drop-shadow-8x8" type="Sprite2D" parent="Grenade-16x17"]
+texture = ExtResource("9_1nctw")
+offset = Vector2(0, 7)
+
+[node name="Rpg-16x33" type="Sprite2D" parent="."]
+position = Vector2(200, 68)
+texture = ExtResource("12_bx2kr")
+
+[node name="Drop-shadow-18x17" type="Sprite2D" parent="Rpg-16x33"]
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 10)
+
+[node name="Slingshot-16x17" type="Sprite2D" parent="."]
+position = Vector2(184, 92)
+texture = ExtResource("13_mea4h")
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="Slingshot-16x17"]
+texture = ExtResource("2_bp8wp")
+offset = Vector2(0, 10)
