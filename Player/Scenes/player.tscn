@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1u7abh3kwaiv"]
+
+[ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hjqw4"]
+[ext_resource type="Texture2D" uid="uid://61bofbo06ql0" path="res://icon.svg" id="1_t2eqf"]
+[ext_resource type="Script" path="res://Player/Scripts/placeholder_crab.gd" id="2_hgpx8"]
+[ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="3_j4mev"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1m4ya"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_syqll"]
+radius = 3.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_hjqw4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+
+[node name="CrabManager" type="Node2D" parent="."]
+
+[node name="PlaceholderCrab" type="CharacterBody2D" parent="CrabManager"]
+position = Vector2(12, 0)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_hgpx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab"]
+texture = ExtResource("3_j4mev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab"]
+shape = SubResource("CircleShape2D_1m4ya")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab"]
+path_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 7.0
+max_speed = 49.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="PlaceholderCrab2" type="CharacterBody2D" parent="CrabManager"]
+position = Vector2(-11, 0)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_hgpx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab2"]
+texture = ExtResource("3_j4mev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab2"]
+shape = SubResource("CircleShape2D_1m4ya")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab2"]
+path_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 7.0
+max_speed = 49.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="PlaceholderCrab3" type="CharacterBody2D" parent="CrabManager"]
+position = Vector2(0, -14)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_hgpx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab3"]
+texture = ExtResource("3_j4mev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab3"]
+shape = SubResource("CircleShape2D_1m4ya")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab3"]
+path_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 7.0
+max_speed = 49.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="PlaceholderCrab4" type="CharacterBody2D" parent="CrabManager"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_hgpx8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab4"]
+texture = ExtResource("3_j4mev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab4"]
+shape = SubResource("CircleShape2D_1m4ya")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab4"]
+path_desired_distance = 5.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 7.0
+max_speed = 49.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="RallyPoint" type="CharacterBody2D" parent="."]
+collision_layer = 4
+
+[node name="RallyPointGraphics" type="Sprite2D" parent="RallyPoint"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_t2eqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RallyPoint"]
+shape = SubResource("CircleShape2D_syqll")
+
+[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab/NavigationAgent2D" to="CrabManager/PlaceholderCrab" method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab2/NavigationAgent2D" to="CrabManager/PlaceholderCrab2" method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab3/NavigationAgent2D" to="CrabManager/PlaceholderCrab3" method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab4/NavigationAgent2D" to="CrabManager/PlaceholderCrab4" method="_on_navigation_agent_2d_velocity_computed"]
