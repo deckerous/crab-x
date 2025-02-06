@@ -1,15 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1u7abh3kwaiv"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hjqw4"]
-[ext_resource type="Texture2D" uid="uid://61bofbo06ql0" path="res://icon.svg" id="1_t2eqf"]
 [ext_resource type="Script" path="res://Player/Scripts/placeholder_crab.gd" id="2_hgpx8"]
 [ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="3_j4mev"]
+[ext_resource type="Texture2D" uid="uid://ba866d5mhxgj7" path="res://Assets/Misc/png/drop-shadow-8x8.png" id="4_x17ct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1m4ya"]
 radius = 6.08276
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_syqll"]
-radius = 3.0
+radius = 6.08
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hjqw4")
@@ -20,7 +20,7 @@ ignore_rotation = false
 [node name="CrabManager" type="Node2D" parent="."]
 
 [node name="PlaceholderCrab" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(12, 0)
+position = Vector2(24, 0)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_hgpx8")
@@ -32,7 +32,8 @@ texture = ExtResource("3_j4mev")
 shape = SubResource("CircleShape2D_1m4ya")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab"]
-path_desired_distance = 5.0
+path_desired_distance = 3.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 7.0
@@ -42,7 +43,7 @@ debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="PlaceholderCrab2" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(-11, 0)
+position = Vector2(-24, 0)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_hgpx8")
@@ -54,7 +55,8 @@ texture = ExtResource("3_j4mev")
 shape = SubResource("CircleShape2D_1m4ya")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab2"]
-path_desired_distance = 5.0
+path_desired_distance = 3.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 7.0
@@ -64,7 +66,7 @@ debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="PlaceholderCrab3" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(0, -14)
+position = Vector2(0, -19)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_hgpx8")
@@ -76,7 +78,8 @@ texture = ExtResource("3_j4mev")
 shape = SubResource("CircleShape2D_1m4ya")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab3"]
-path_desired_distance = 5.0
+path_desired_distance = 3.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 7.0
@@ -86,7 +89,7 @@ debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="PlaceholderCrab4" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(0, 13)
+position = Vector2(0, 21)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_hgpx8")
@@ -98,7 +101,8 @@ texture = ExtResource("3_j4mev")
 shape = SubResource("CircleShape2D_1m4ya")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab4"]
-path_desired_distance = 5.0
+path_desired_distance = 3.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 7.0
@@ -108,14 +112,16 @@ debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
 [node name="RallyPoint" type="CharacterBody2D" parent="."]
-collision_layer = 4
+collision_layer = 2
 
 [node name="RallyPointGraphics" type="Sprite2D" parent="RallyPoint"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_t2eqf")
+texture = ExtResource("3_j4mev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RallyPoint"]
 shape = SubResource("CircleShape2D_syqll")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+texture = ExtResource("4_x17ct")
 
 [connection signal="velocity_computed" from="CrabManager/PlaceholderCrab/NavigationAgent2D" to="CrabManager/PlaceholderCrab" method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="velocity_computed" from="CrabManager/PlaceholderCrab2/NavigationAgent2D" to="CrabManager/PlaceholderCrab2" method="_on_navigation_agent_2d_velocity_computed"]

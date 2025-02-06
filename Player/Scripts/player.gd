@@ -1,15 +1,18 @@
 extends Node2D
 
 @export var rally_point_move_speed : float = 50.0
-@export var crab_moving_speed : float = 49.0
+@export var camera_distance : float = 35.0
+@export var crab_moving_speed : float = 50.0
 
 @onready var camera_2d = $Camera2D
 @onready var rally_point = $RallyPoint
 @onready var crab_manager = $CrabManager
+@onready var crosshair = $Crosshair
 
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
+var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
 
 func _ready():
@@ -23,9 +26,15 @@ func navigation_map_setup():
 	await get_tree().physics_frame
 	set_physics_process(true)
 
+func _input(event):
+	if event is InputEventMouse:
+		mouse_pos = Vector2(event.position.x - viewport_w/2.0, event.position.y - viewport_h/2.0)
+		crosshair.global_position = get_global_mouse_position()
+		print(mouse_pos)
+
 func _process(delta):
 	if move_dir != Vector2.ZERO:
-		camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * 35, 0.05)
+		camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * camera_distance, 0.05)
 	else:
 		camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position, 0.01)
 
@@ -45,6 +54,8 @@ func _physics_process(delta):
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
 			var new_crab_velocity = curr_crab_position.direction_to(next_path_position).normalized() * crab_moving_speed
 			
+			crab.global_rotation = crab.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
+			
 			if crab.navigation_agent_2d.is_navigation_finished():
 				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity * 0.9, 0.05)
 			
@@ -55,5 +66,7 @@ func _physics_process(delta):
 			
 			crab.move_and_slide()
 	
+	
+	rally_point.global_rotation = rally_point.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 	rally_point.velocity = move_dir * rally_point_move_speed
 	rally_point.move_and_slide()
