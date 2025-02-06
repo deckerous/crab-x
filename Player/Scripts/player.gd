@@ -1,8 +1,10 @@
 extends Node2D
 
 @export var rally_point_move_speed : float = 75.0
-@export var camera_distance : float = 35.0
 @export var crab_moving_speed : float = 75.0
+@export var crosshair_dist_min : float = 15.0
+@export var crosshair_dist_max : float = 100.0
+@export var camera_mid_point_constant : float = 2.0
 
 @onready var camera_2d = $RallyPoint/Camera2D
 @onready var rally_point = $RallyPoint
@@ -27,21 +29,12 @@ func navigation_map_setup():
 	set_physics_process(true)
 
 func _process(delta):
+	# Camera controls
 	var rally_dist_from_crosshair = rally_point.global_position.distance_to(crosshair.global_position)
-	
-	if rally_dist_from_crosshair > 15 and rally_dist_from_crosshair < 100:
-		camera_2d.global_position = rally_point.global_position + rally_point.global_position.direction_to(crosshair.global_position).normalized() * (rally_dist_from_crosshair / 2.0)
-	
-	#else:
-		#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position, 0.005)
-	
-	#if move_dir != Vector2.ZERO:
-		#if move_dir.y > 0.0 or move_dir.y < 0.0:
-			#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * camera_distance * 1.75, 0.05)
-		#elif move_dir.x > 0.0 or move_dir.x < 0.0:
-			#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * camera_distance * 3.5, 0.03)
-	#else:
-		#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position, 0.005)
+	if rally_dist_from_crosshair > crosshair_dist_min and rally_dist_from_crosshair < crosshair_dist_max:
+		# place camera about halfway from 
+		var mid_point_to_crosshair = rally_point.global_position.direction_to(crosshair.global_position).normalized() * (rally_dist_from_crosshair / camera_mid_point_constant)
+		camera_2d.global_position = rally_point.global_position + mid_point_to_crosshair
 	
 	mouse_pos = get_global_mouse_position()
 
@@ -64,7 +57,7 @@ func _physics_process(delta):
 			crab.global_rotation = crab.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 			
 			if crab.navigation_agent_2d.is_navigation_finished():
-				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity * 0.9, 0.05)
+				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity, 0.05)
 			
 			if crab.navigation_agent_2d.avoidance_enabled:
 				crab.navigation_agent_2d.set_velocity(new_crab_velocity)
