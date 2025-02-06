@@ -22,6 +22,11 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 
+[layer_names]
+
+2d_physics/layer_1="environment"
+2d_physics/layer_2="entities"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

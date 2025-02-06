@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds0sf2yjn8xqu"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_f7tdr"]
+[ext_resource type="Script" path="res://Prefabs/EntityCharacterBody.gd" id="2_8p2xw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh1xd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_os0pl"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[node name="Entity" type="Node2D"]
+script = ExtResource("1_f7tdr")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_8p2xw")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_wh1xd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_os0pl")
+animation = &"fire"
+
+[node name="StateMachine" type="Node2D" parent="."]
+
+[node name="Default" type="Node2D" parent="StateMachine"]
+
+[node name="Fire" type="Node2D" parent="StateMachine"]
+
+[connection signal="change_velocity" from="." to="CharacterBody2D" method="_on_entity_change_velocity"]
