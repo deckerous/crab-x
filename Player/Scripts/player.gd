@@ -1,10 +1,10 @@
 extends Node2D
 
-@export var rally_point_move_speed : float = 50.0
+@export var rally_point_move_speed : float = 75.0
 @export var camera_distance : float = 35.0
-@export var crab_moving_speed : float = 50.0
+@export var crab_moving_speed : float = 75.0
 
-@onready var camera_2d = $Camera2D
+@onready var camera_2d = $RallyPoint/Camera2D
 @onready var rally_point = $RallyPoint
 @onready var crab_manager = $CrabManager
 @onready var crosshair = $Crosshair
@@ -26,17 +26,24 @@ func navigation_map_setup():
 	await get_tree().physics_frame
 	set_physics_process(true)
 
-func _input(event):
-	if event is InputEventMouse:
-		mouse_pos = Vector2(event.position.x - viewport_w/2.0, event.position.y - viewport_h/2.0)
-		crosshair.global_position = get_global_mouse_position()
-		print(mouse_pos)
-
 func _process(delta):
-	if move_dir != Vector2.ZERO:
-		camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * camera_distance, 0.05)
-	else:
-		camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position, 0.01)
+	var rally_dist_from_crosshair = rally_point.global_position.distance_to(crosshair.global_position)
+	
+	if rally_dist_from_crosshair > 15 and rally_dist_from_crosshair < 100:
+		camera_2d.global_position = rally_point.global_position + rally_point.global_position.direction_to(crosshair.global_position).normalized() * (rally_dist_from_crosshair / 2.0)
+	
+	#else:
+		#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position, 0.005)
+	
+	#if move_dir != Vector2.ZERO:
+		#if move_dir.y > 0.0 or move_dir.y < 0.0:
+			#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * camera_distance * 1.75, 0.05)
+		#elif move_dir.x > 0.0 or move_dir.x < 0.0:
+			#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position + move_dir * camera_distance * 3.5, 0.03)
+	#else:
+		#camera_2d.global_position = lerp(camera_2d.global_position, rally_point.global_position, 0.005)
+	
+	mouse_pos = get_global_mouse_position()
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("exit"):
@@ -66,7 +73,10 @@ func _physics_process(delta):
 			
 			crab.move_and_slide()
 	
+	# Crosshair position update
+	crosshair.global_position = mouse_pos
 	
+	# Rally point movement
 	rally_point.global_rotation = rally_point.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 	rally_point.velocity = move_dir * rally_point_move_speed
 	rally_point.move_and_slide()
