@@ -10,9 +10,12 @@ extends Node2D
 @onready var rally_point = $RallyPoint
 @onready var crab_manager = $CrabManager
 @onready var crosshair = $Crosshair
+@onready var rich_text_label = $PlayerUI/Control/HBoxContainer/RichTextLabel
 
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
+
+@onready var coin_count : int = 0
 
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
@@ -29,6 +32,11 @@ func navigation_map_setup():
 	set_physics_process(true)
 
 func _process(delta):
+	# TODO: Temp coin incrementer
+	if Input.is_action_just_pressed("coin_up"):
+		coin_count += 1
+		rich_text_label.text = str(coin_count)
+	
 	# Camera controls
 	var rally_dist_from_crosshair = rally_point.global_position.distance_to(crosshair.global_position)
 	if rally_dist_from_crosshair > crosshair_dist_min and rally_dist_from_crosshair < crosshair_dist_max:
