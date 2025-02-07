@@ -1,3 +1,3 @@
 res://Prefabs/entity.tscn
-res://Prefabs/Scripts/entity.gd
-res://Prefabs/EntityCharacterBody.gd
+res://Prefabs/Scripts/state_machine.gd
+res://Prefabs/Scripts/base_state.gd
