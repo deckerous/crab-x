@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds0sf2yjn8xqu"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_f7tdr"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/entity_character_body.gd" id="2_8p2xw"]
+[ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="3_6b07f"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="3_gh15n"]
+[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="4_aq1kp"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/base_state.gd" id="4_p78il"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_os0pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6b07f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_aq1kp")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh1xd"]
+
+[node name="Entity" type="Node2D"]
+script = ExtResource("1_f7tdr")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_8p2xw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_os0pl")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_wh1xd")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_gh15n")
+
+[node name="Default" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_p78il")
+anim_name = "default"
+next_state = "Fire"
+duration = 5.0
+enter_use_control = true
+
+[node name="Fire" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_p78il")
+anim_name = "fire"
+next_state = "Default"
+duration = 5.0
+enter_use_control = true
+enter_vel_x = 1.0
+enter_vel_y = 1.0
+enter_speed = 0.1
+
+[connection signal="change_velocity" from="." to="CharacterBody2D" method="_on_entity_change_velocity"]
