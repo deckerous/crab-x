@@ -1,3 +1,4 @@
+res://Levels/Test/sprite_size_test.tscn
+res://Assets/Tilesets/resource/tut_wall_tileset.tres
 res://Prefabs/entity.tscn
-res://Prefabs/Scripts/state_machine.gd
-res://Prefabs/Scripts/base_state.gd
+res://Player/Scenes/navigation_test.tscn
