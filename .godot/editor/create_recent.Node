@@ -1,5 +1,9 @@
-TileMapLayer
 Node2D
+Label
+Sprite2D
+Button
+CanvasLayer
+TileMapLayer
 CollisionShape2D
 AnimatedSprite2D
 CharacterBody2D

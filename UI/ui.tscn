@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://bchgounswh1og"]
+
+[ext_resource type="Script" path="res://UI/ui.gd" id="1_disjy"]
+[ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="2_u2yvy"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_disjy")
+
+[node name="end_of_game_screen" type="Node2D" parent="."]
+
+[node name="restart_button" type="Button" parent="end_of_game_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 130.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 104.0
+
+[node name="Sprite2D" type="Sprite2D" parent="end_of_game_screen/restart_button"]
+position = Vector2(29.9, 16)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("2_u2yvy")
+
+[node name="restart" type="Label" parent="end_of_game_screen/restart_button"]
+offset_left = -2.0
+offset_right = 84.0
+offset_bottom = 43.0
+scale = Vector2(0.75, 0.75)
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="quit_button" type="Button" parent="end_of_game_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 128.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 144.0
+
+[node name="Sprite2D" type="Sprite2D" parent="end_of_game_screen/quit_button"]
+position = Vector2(31.45, 16)
+scale = Vector2(0.0559278, 0.054054)
+texture = ExtResource("2_u2yvy")
+
+[node name="quit" type="Label" parent="end_of_game_screen/quit_button"]
+offset_right = 85.0
+offset_bottom = 43.0
+scale = Vector2(0.75, 0.75)
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="end_of_game_score_display" type="Node2D" parent="end_of_game_screen"]
+
+[node name="Sprite2D" type="Sprite2D" parent="end_of_game_screen/end_of_game_score_display"]
+position = Vector2(160, 48)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("2_u2yvy")
+
+[node name="score_output" type="Label" parent="end_of_game_screen/end_of_game_score_display"]
+offset_left = 144.0
+offset_top = 48.0
+offset_right = 197.0
+offset_bottom = 71.0
+scale = Vector2(0.6, 0.6)
+text = "0
+"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="score" type="Label" parent="end_of_game_screen/end_of_game_score_display"]
+offset_left = 142.0
+offset_top = 34.0
+offset_right = 198.0
+offset_bottom = 57.0
+scale = Vector2(0.6, 0.6)
+text = "Score:"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="during_game_screen" type="Node2D" parent="."]
+
+[connection signal="pressed" from="end_of_game_screen/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_restart_button_pressed"]
