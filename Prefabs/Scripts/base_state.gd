@@ -12,8 +12,7 @@ extends Node2D
 # velocity control
 @export_group("Enter Velocity Control", "enter")
 @export var enter_use_control: bool
-@export var enter_vel_x: float
-@export var enter_vel_y: float
+@export var enter_dir: Vector2
 @export var enter_speed: float
 
 @onready var state_machine = $".."
@@ -30,7 +29,7 @@ func run() -> void:
 	
 	# check enter velocity
 	if enter_use_control:
-		var enter_vel = Vector2(enter_vel_x, enter_vel_y).normalized() * enter_speed
+		var enter_vel = enter_dir.normalized() * enter_speed
 		set_velocity(enter_vel)
 	
 	# check state timeout duration

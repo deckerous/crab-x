@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://csoh1kjl0218t"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_40vb5"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/base_state.gd" id="2_8fo1o"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/projectile_character_body_2d.gd" id="2_jrqbk"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="3_jjin8"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hurtbox_component.gd" id="4_mwu5q"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="5_r76c8"]
+
+[node name="ProjectileEntity" type="Node2D"]
+script = ExtResource("1_40vb5")
+hp = 0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 0
+script = ExtResource("2_jrqbk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="CharacterBody2D"]
+
+[node name="HitboxComponent" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_jjin8")
+
+[node name="HurtboxComponent" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_mwu5q")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("5_r76c8")
+curr_state = "Airborne"
+
+[node name="Airborne" type="Node2D" parent="StateMachine"]
+script = ExtResource("2_8fo1o")
+anim_name = "airborne"
+enter_use_control = true
+enter_speed = 2.0
+
+[connection signal="change_velocity" from="." to="CharacterBody2D" method="_on_entity_change_velocity"]
