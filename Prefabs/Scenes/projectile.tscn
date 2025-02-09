@@ -1,41 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://csoh1kjl0218t"]
+[gd_scene load_steps=6 format=3 uid="uid://n4yumd7dve4i"]
 
 [ext_resource type="Script" path="res://Prefabs/Scripts/projectile_entity.gd" id="1_bg03i"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/base_state.gd" id="2_8fo1o"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/projectile_character_body_2d.gd" id="2_jrqbk"]
-[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="3_jjin8"]
-[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hurtbox_component.gd" id="4_mwu5q"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="5_r76c8"]
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ckdr7"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_airborne_state.gd" id="3_uyj8o"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_destroy_state.gd" id="4_a88g2"]
 
-[node name="ProjectileEntity" type="Node2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xe1g"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"destroy",
+"speed": 5.0
+}]
+
+[node name="ProjectileEntity" instance=ExtResource("1_ckdr7")]
 script = ExtResource("1_bg03i")
-damage = null
+speed = 0.0
 hp = 0
-armor = null
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_layer = 0
-script = ExtResource("2_jrqbk")
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, 0)
+sprite_frames = SubResource("SpriteFrames_5xe1g")
+animation = &"destroy"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="CollisionBox" parent="." index="1"]
+shape = null
 
-[node name="CollisionBox" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="Airborne" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("destroy")]
+script = ExtResource("3_uyj8o")
+destroy = NodePath("../Destroy")
 
-[node name="HitboxComponent" type="Area2D" parent="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("3_jjin8")
-
-[node name="HurtboxComponent" type="Area2D" parent="CharacterBody2D"]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("4_mwu5q")
-
-[node name="StateMachine" type="Node2D" parent="CharacterBody2D"]
-script = ExtResource("5_r76c8")
-
-[node name="Airborne" type="Node2D" parent="CharacterBody2D/StateMachine"]
-script = ExtResource("2_8fo1o")
-anim_name = "airborne"
-enter_use_control = true
-enter_speed = 2.0
+[node name="Destroy" type="Node2D" parent="StateMachine" index="1"]
+script = ExtResource("4_a88g2")

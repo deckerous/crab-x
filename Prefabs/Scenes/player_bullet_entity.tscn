@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0773lon6v416"]
 
-[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile1.tscn" id="1_2tlln"]
+[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile.tscn" id="1_2tlln"]
 [ext_resource type="Texture2D" uid="uid://dxsm3bh52sxcq" path="res://Assets/Guns/png/bullet.png" id="2_c84q4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dag5l"]

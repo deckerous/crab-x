@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://ch11nk2ii4e54"]
 
-[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity1.tscn" id="1_4p3s6"]
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/crab_entity.gd" id="2_mcd1l"]
 [ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="3_uhfwv"]
