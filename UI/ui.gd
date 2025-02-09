@@ -3,6 +3,7 @@ extends CanvasLayer
 class_name ui
 signal game_started
 
+# TODO: Connect to actual values
 var total_coins = 0
 var crabs = 0  
 var equipped_item = "Empty"
@@ -11,7 +12,8 @@ var game_score = 0
 
 @onready var during_game_screen = $during_game_screen
 @onready var end_of_game_screen = $end_of_game_screen
-@onready var pause_menu_screen = $pause_menu_screen
+@onready var pause_menu_screen = $pause_menu
+@onready var pause_background = $pause_menu/pause_screen_background
 
 # Get references to individual labels
 @onready var crabs_label = $during_game_screen/crabs_label
@@ -31,24 +33,44 @@ func update_coins(coins: int):
 	total_coins = coins
 	update_during_game_ui()
 
-func update_item(item: String): # Type hint for item
+func update_item(item: String):
 	equipped_item = item
 	update_during_game_ui()
 
-func update_weapon(weapon: String): # Type hint for weapon
+func update_weapon(weapon: String):
 	equipped_weapon = weapon
 	update_during_game_ui()
 
 func update_during_game_ui():
 	crabs_label.text = "%d" % crabs
 	coins_label.text = "%d" % total_coins
-	item_label.text = equipped_item # No need for formatting here
-	weapon_label.text = equipped_weapon # No need for formatting here
+	item_label.text = equipped_item
+	weapon_label.text = equipped_weapon
 
 func _on_game_over():
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
 	$end_of_game_screen/end_of_game_score_display/score_output.text = "%d" % game_score
+	# TODO: Implement way to quit	
 
-func _on_restart_button_pressed() -> void:
-	get_tree().reload_current_scene()
+func _on_resume_button_pressed():
+	toggle_pause_menu() 
+
+func _on_restart_button_pressed():
+	get_tree().reload_current_scene()  # Restart the game
+	toggle_pause_menu() # Close the pause menu
+
+func _on_quit_button_pressed():
+	pass
+	# TODO: Implement main menu to return to
+	# TODO: Save progress as you leave?
+
+func toggle_pause_menu():
+	pause_menu_screen.visible = not pause_menu_screen.visible # toggle to opposite value
+	pause_background.visible = pause_menu_screen.visible
+	get_tree().set_pause(pause_menu_screen.visible) # change the pause state based on visibility
+	get_tree().paused = pause_menu_screen.visible
+
+func _on_settings_button_pressed():
+	pass
+	# TODO: Implement the settings we want

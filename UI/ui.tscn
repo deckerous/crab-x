@@ -29,6 +29,7 @@ scale = Vector2(0.0549828, 0.0540541)
 texture = ExtResource("2_u2yvy")
 
 [node name="restart_label" type="Label" parent="end_of_game_screen/restart_button"]
+layout_mode = 0
 offset_left = -2.0
 offset_right = 84.0
 offset_bottom = 43.0
@@ -51,6 +52,7 @@ scale = Vector2(0.0559278, 0.054054)
 texture = ExtResource("2_u2yvy")
 
 [node name="quit_label" type="Label" parent="end_of_game_screen/quit_button"]
+layout_mode = 0
 offset_right = 85.0
 offset_bottom = 43.0
 scale = Vector2(0.75, 0.75)
@@ -60,6 +62,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="end_of_game_score_display" type="Node2D" parent="end_of_game_screen"]
+visible = false
 
 [node name="score_box" type="Sprite2D" parent="end_of_game_screen/end_of_game_score_display"]
 position = Vector2(160, 48)
@@ -88,7 +91,6 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="during_game_screen" type="Node2D" parent="."]
-visible = false
 
 [node name="status_bar" type="Sprite2D" parent="during_game_screen"]
 position = Vector2(80, 24)
@@ -109,6 +111,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="coin_box" type="Sprite2D" parent="during_game_screen"]
 position = Vector2(63, 23)
@@ -134,6 +137,7 @@ scale = Vector2(0.5, 0.5)
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="item_label" type="Label" parent="during_game_screen"]
 offset_left = 83.0
@@ -144,6 +148,7 @@ scale = Vector2(0.5, 0.5)
 text = "empty"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="weapon_label" type="Label" parent="during_game_screen"]
 offset_left = 117.0
@@ -155,8 +160,10 @@ text = "empty
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
+visible = false
 script = SubResource("GDScript_xfpjr")
 
 [node name="pause_screen_background" type="ColorRect" parent="pause_menu"]
@@ -179,6 +186,7 @@ scale = Vector2(0.0549828, 0.0540541)
 texture = ExtResource("2_u2yvy")
 
 [node name="resume_label" type="Label" parent="pause_menu/pause_screen/resume_button"]
+layout_mode = 0
 offset_left = -2.0
 offset_right = 84.0
 offset_bottom = 43.0
@@ -201,6 +209,7 @@ scale = Vector2(0.0549828, 0.0540541)
 texture = ExtResource("2_u2yvy")
 
 [node name="settings_label" type="Label" parent="pause_menu/pause_screen/settings_button"]
+layout_mode = 0
 offset_left = -2.0
 offset_right = 84.0
 offset_bottom = 43.0
@@ -223,6 +232,7 @@ scale = Vector2(0.0559278, 0.054054)
 texture = ExtResource("2_u2yvy")
 
 [node name="quit_label" type="Label" parent="pause_menu/pause_screen/quit_button"]
+layout_mode = 0
 offset_right = 85.0
 offset_bottom = 43.0
 scale = Vector2(0.75, 0.75)
