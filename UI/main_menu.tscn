@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://jspwhjro5sxu"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_7v0na"]
+[ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="1_tkarn"]
+
+[node name="main_menu" type="CanvasLayer"]
+script = ExtResource("1_7v0na")
+
+[node name="main_menu_screen_background" type="ColorRect" parent="."]
+self_modulate = Color(0.203322, 0.203322, 0.203322, 1)
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="main_menu_screen" type="Node2D" parent="."]
+
+[node name="new_game_button" type="Button" parent="main_menu_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 129.0
+offset_top = 16.0
+offset_right = 191.0
+offset_bottom = 48.0
+
+[node name="new_game_button" type="Sprite2D" parent="main_menu_screen/new_game_button"]
+position = Vector2(29.9, 16)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("1_tkarn")
+
+[node name="new_game_label" type="Label" parent="main_menu_screen/new_game_button"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 89.0
+offset_bottom = 46.0
+scale = Vector2(0.7, 0.7)
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="continue_button" type="Button" parent="main_menu_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 129.0
+offset_top = 56.0
+offset_right = 191.0
+offset_bottom = 88.0
+
+[node name="continue_button" type="Sprite2D" parent="main_menu_screen/continue_button"]
+position = Vector2(29.9, 16)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("1_tkarn")
+
+[node name="continue_label" type="Label" parent="main_menu_screen/continue_button"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 89.0
+offset_bottom = 46.0
+scale = Vector2(0.7, 0.7)
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="settings_button" type="Button" parent="main_menu_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 129.0
+offset_top = 96.0
+offset_right = 191.0
+offset_bottom = 128.0
+
+[node name="settings_button" type="Sprite2D" parent="main_menu_screen/settings_button"]
+position = Vector2(29.9, 16)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("1_tkarn")
+
+[node name="settings_label" type="Label" parent="main_menu_screen/settings_button"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 89.0
+offset_bottom = 46.0
+scale = Vector2(0.7, 0.7)
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="quit_button" type="Button" parent="main_menu_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 127.0
+offset_top = 136.0
+offset_right = 191.0
+offset_bottom = 168.0
+
+[node name="quit_button" type="Sprite2D" parent="main_menu_screen/quit_button"]
+position = Vector2(31.45, 16)
+scale = Vector2(0.0559278, 0.054054)
+texture = ExtResource("1_tkarn")
+
+[node name="quit_label" type="Label" parent="main_menu_screen/quit_button"]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 46.0
+scale = Vector2(0.7, 0.7)
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
