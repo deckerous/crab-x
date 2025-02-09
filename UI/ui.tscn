@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bchgounswh1og"]
+[gd_scene load_steps=6 format=3 uid="uid://bchgounswh1og"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_disjy"]
 [ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="2_u2yvy"]
 [ext_resource type="Texture2D" uid="uid://xedb0ehcyxb2" path="res://Assets/UI/stats_bar.png" id="3_1rnps"]
 [ext_resource type="Texture2D" uid="uid://bgwyesutoji48" path="res://Assets/UI/stat_box.png" id="4_4snfw"]
+
+[sub_resource type="GDScript" id="GDScript_xfpjr"]
+script/source = "extends CanvasLayer
+
+"
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_disjy")
@@ -83,6 +88,7 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="during_game_screen" type="Node2D" parent="."]
+visible = false
 
 [node name="status_bar" type="Sprite2D" parent="during_game_screen"]
 position = Vector2(80, 24)
@@ -150,9 +156,83 @@ text = "empty
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="main_menu_screen" type="Node2D" parent="."]
+[node name="pause_menu" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_xfpjr")
 
-[node name="pause_menu_screen" type="Node2D" parent="."]
+[node name="pause_screen_background" type="ColorRect" parent="pause_menu"]
+self_modulate = Color(1, 1, 1, 0.196078)
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="pause_screen" type="Node2D" parent="pause_menu"]
+
+[node name="resume_button" type="Button" parent="pause_menu/pause_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 130.0
+offset_top = 34.0
+offset_right = 192.0
+offset_bottom = 66.0
+
+[node name="resume_button" type="Sprite2D" parent="pause_menu/pause_screen/resume_button"]
+position = Vector2(29.9, 16)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("2_u2yvy")
+
+[node name="resume_label" type="Label" parent="pause_menu/pause_screen/resume_button"]
+offset_left = -2.0
+offset_right = 84.0
+offset_bottom = 43.0
+scale = Vector2(0.75, 0.75)
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="settings_button" type="Button" parent="pause_menu/pause_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 130.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 104.0
+
+[node name="settings_button" type="Sprite2D" parent="pause_menu/pause_screen/settings_button"]
+position = Vector2(29.9, 16)
+scale = Vector2(0.0549828, 0.0540541)
+texture = ExtResource("2_u2yvy")
+
+[node name="settings_label" type="Label" parent="pause_menu/pause_screen/settings_button"]
+offset_left = -2.0
+offset_right = 84.0
+offset_bottom = 43.0
+scale = Vector2(0.75, 0.75)
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="quit_button" type="Button" parent="pause_menu/pause_screen"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 128.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 144.0
+
+[node name="quit_button" type="Sprite2D" parent="pause_menu/pause_screen/quit_button"]
+position = Vector2(31.45, 16)
+scale = Vector2(0.0559278, 0.054054)
+texture = ExtResource("2_u2yvy")
+
+[node name="quit_label" type="Label" parent="pause_menu/pause_screen/quit_button"]
+offset_right = 85.0
+offset_bottom = 43.0
+scale = Vector2(0.75, 0.75)
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [connection signal="pressed" from="end_of_game_screen/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="pause_menu/pause_screen/resume_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="pause_menu/pause_screen/settings_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="pause_menu/pause_screen/quit_button" to="." method="_on_restart_button_pressed"]
