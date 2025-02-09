@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://n4yumd7dve4i"]
 
-[ext_resource type="Script" path="res://Prefabs/Scripts/projectile_entity.gd" id="1_bg03i"]
-[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ckdr7"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_airborne_state.gd" id="3_uyj8o"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_destroy_state.gd" id="4_a88g2"]
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_m1p2t"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/projectile_entity.gd" id="2_4aqgj"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_airborne_state.gd" id="3_gc2tb"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_destroy_state.gd" id="4_y4mmf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5xe1g"]
 animations = [{
@@ -18,8 +18,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ProjectileEntity" instance=ExtResource("1_ckdr7")]
-script = ExtResource("1_bg03i")
+[node name="ProjectileEntity" instance=ExtResource("1_m1p2t")]
+collision_layer = 0
+script = ExtResource("2_4aqgj")
 speed = 0.0
 hp = 0
 
@@ -32,8 +33,8 @@ animation = &"destroy"
 shape = null
 
 [node name="Airborne" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("destroy")]
-script = ExtResource("3_uyj8o")
+script = ExtResource("3_gc2tb")
 destroy = NodePath("../Destroy")
 
 [node name="Destroy" type="Node2D" parent="StateMachine" index="1"]
-script = ExtResource("4_a88g2")
+script = ExtResource("4_y4mmf")

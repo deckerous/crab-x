@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0773lon6v416"]
 
-[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile.tscn" id="1_2tlln"]
+[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_2tlln"]
 [ext_resource type="Texture2D" uid="uid://dxsm3bh52sxcq" path="res://Assets/Guns/png/bullet.png" id="2_c84q4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dag5l"]
@@ -26,8 +26,7 @@ size = Vector2(4, 7)
 size = Vector2(4, 7)
 
 [node name="PlayerBulletEntity" instance=ExtResource("1_2tlln")]
-collision_layer = 0
-speed = 2.0
+speed = 3.0
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5.5)
@@ -40,6 +39,7 @@ shape = SubResource("RectangleShape2D_70x5a")
 
 [node name="HitboxComponent" parent="." index="2"]
 collision_mask = 4
+damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
 position = Vector2(0, -7.5)

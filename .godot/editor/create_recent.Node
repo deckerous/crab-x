@@ -1,5 +1,5 @@
-CollisionShape2D
 Timer
+CollisionShape2D
 Node2D
 NavigationAgent2D
 CharacterBody2D
