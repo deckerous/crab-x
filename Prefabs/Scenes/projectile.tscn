@@ -9,7 +9,9 @@
 
 [node name="ProjectileEntity" type="Node2D"]
 script = ExtResource("1_bg03i")
+damage = null
 hp = 0
+armor = null
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 0
@@ -31,12 +33,9 @@ script = ExtResource("4_mwu5q")
 
 [node name="StateMachine" type="Node2D" parent="CharacterBody2D"]
 script = ExtResource("5_r76c8")
-curr_state = "Airborne"
 
 [node name="Airborne" type="Node2D" parent="CharacterBody2D/StateMachine"]
 script = ExtResource("2_8fo1o")
 anim_name = "airborne"
 enter_use_control = true
 enter_speed = 2.0
-
-[connection signal="change_velocity" from="." to="CharacterBody2D" method="_on_entity_change_velocity"]

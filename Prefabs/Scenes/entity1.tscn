@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://bme5jecl7oi7e"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_asyge"]
+[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="1_jxusi"]
+[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="2_vcdrp"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="3_evwo1"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hurtbox_component.gd" id="4_k6bqs"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="5_ex6jm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_euvyh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jxusi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vcdrp")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mp23t"]
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_asyge")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_euvyh")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mp23t")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_evwo1")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_k6bqs")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("5_ex6jm")

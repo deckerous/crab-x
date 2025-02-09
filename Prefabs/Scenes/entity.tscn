@@ -56,6 +56,3 @@ script = ExtResource("6_atyba")
 
 [node name="StateMachine" type="Node2D" parent="CharacterBody2D"]
 script = ExtResource("7_ntd6r")
-run_on_spawn = true
-
-[connection signal="change_velocity" from="." to="CharacterBody2D" method="_on_entity_change_velocity"]

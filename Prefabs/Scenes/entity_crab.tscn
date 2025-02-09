@@ -72,9 +72,6 @@ debug_color = Color(0.970622, 0.0113263, 0.44607, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D" index="4"]
 
-[node name="StateMachine" parent="CharacterBody2D" index="5"]
-curr_state = "Empty"
-
 [node name="Empty" type="Node2D" parent="CharacterBody2D/StateMachine" index="0"]
 script = ExtResource("7_lc13k")
 anim_name = "empty"

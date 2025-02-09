@@ -1,5 +1,6 @@
-res://Prefabs/Scripts
 res://Prefabs/Scenes
+res://Prefabs/Scripts/states
+res://Prefabs/Scripts
 res://Assets/Tilesets/resource
 res://Player/Scenes
 res://Prefabs/Components/Scripts

@@ -56,7 +56,7 @@ func _physics_process(delta):
 	
 	# Update crab velocities to move toward rally point
 	for crab in crab_manager.get_children():
-		if crab is CharacterBody2D and crab is Crab:
+		if crab is CrabEntity:
 			crab.navigation_agent_2d.target_position = rally_point.global_position
 			var curr_crab_position = crab.global_position
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
