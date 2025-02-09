@@ -11,3 +11,12 @@ res://Prefabs/Scripts/entity_character_body.gd
 res://Prefabs/Scripts/entity.gd
 res://Prefabs/Scripts/projectile_character_body_2d.gd
 res://Prefabs/Scenes/player_bullet.tscn
+res://Prefabs/Scenes/player_crab.tscn
+res://Prefabs/Scripts/gun_state.gd
+res://Prefabs/Scenes/entity_crab.tscn
+res://Prefabs/Scenes/entity_crab_character_body_2d.gd
+res://Player/Scripts/player.gd
+res://Prefabs/Scripts/empty_state.gd
+res://Prefabs/Scripts/projectile_entity.gd
+res://Player/Scenes/player.tscn
+res://Prefabs/Scripts/state_machine.gd

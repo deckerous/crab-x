@@ -7,6 +7,7 @@ extends Node2D
 @onready var collision = $CharacterBody2D/CollisionBox
 @onready var hitbox_component = $CharacterBody2D/HitboxComponent
 @onready var hurtbox_component = $CharacterBody2D/HurtboxComponent
+@onready var state_machine = $CharacterBody2D/StateMachine
 
 var current_velocity: Vector2
 
@@ -22,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	
 func summon_projectile(proj: Node2D, pos: Vector2) -> void:
 	add_child(proj)
-	proj.position = position + pos
+	proj.global_position = pos
 	
 func set_velocity(vel: Vector2) -> void:
 	current_velocity = vel

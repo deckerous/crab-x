@@ -12,8 +12,6 @@ func _physics_process(delta: float) -> void:
 		var collider = collision_info.get_collider()
 		if collider is TileMapLayer:
 			queue_free()
-		
-
 
 func _on_entity_change_velocity(vel: Variant) -> void:
 	current_velocity = vel

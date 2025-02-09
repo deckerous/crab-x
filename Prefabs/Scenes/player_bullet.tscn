@@ -38,6 +38,5 @@ position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_vu2g0")
 debug_color = Color(0.625199, 0.526955, 0.208489, 0.42)
 
-[node name="Airborne" parent="StateMachine" index="0"]
-enter_dir = Vector2(0, -1)
-enter_speed = 0.5
+[node name="Airborne" parent="CharacterBody2D/StateMachine" index="0"]
+enter_speed = 5.0

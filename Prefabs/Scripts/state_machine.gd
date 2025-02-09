@@ -1,9 +1,11 @@
 extends Node2D
 
 @export var curr_state : String
+@export var run_on_spawn : bool
 
 func _ready() -> void:
-	get_node(curr_state).run()
+	if run_on_spawn:
+		get_node(curr_state).run()
 
 func change_state(name: String) -> void:
 	# free timer

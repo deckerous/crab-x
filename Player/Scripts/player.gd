@@ -62,8 +62,6 @@ func _physics_process(delta):
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
 			var new_crab_velocity = curr_crab_position.direction_to(next_path_position).normalized() * crab_moving_speed
 			
-			crab.global_rotation = crab.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
-			
 			if crab.navigation_agent_2d.is_navigation_finished():
 				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity, 0.05)
 			

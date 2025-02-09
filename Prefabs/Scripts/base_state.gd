@@ -1,5 +1,4 @@
 class_name BaseState
-
 extends Node2D
 
 # base properties
@@ -16,8 +15,8 @@ extends Node2D
 @export var enter_speed: float
 
 @onready var state_machine = $".."
-@onready var anims = $"../../CharacterBody2D/AnimatedSprite2D"
-@onready var entity = $"../.."
+@onready var anims = $"../../AnimatedSprite2D"
+@onready var entity = $"../../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,7 +40,7 @@ func run() -> void:
 		timer.autostart = true
 		timer.timeout.connect(state_machine.change_state.bind(next_state))
 		state_machine.add_child(timer)
-	
+
 func set_velocity(vel: Vector2) -> void:
 	entity.set_velocity(vel)
 	
