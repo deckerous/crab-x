@@ -1,9 +1,0 @@
-Label
-Sprite2D
-Node2D
-Button
-CanvasLayer
-TileMapLayer
-CollisionShape2D
-AnimatedSprite2D
-CharacterBody2D
