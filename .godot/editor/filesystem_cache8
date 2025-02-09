@@ -1,8 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1739046295
+::res://::1739054885
 icon.svg::CompressedTexture2D::2229613957324289879::1738790889::1739045706::1::::<><>::
 README.md::TextFile::-1::1739030001::0::1::::<><>::
-ui.gd::GDScript::-1::1739054885::0::1::::ui<>CanvasLayer<>::
 ::res://Assets/::1739047857
 ::res://Assets/Crabs/::1738790889
 ::res://Assets/Crabs/aseprite/::1738790889
@@ -33,8 +32,10 @@ tutorial-wall-placeholder.png::CompressedTexture2D::4657777566135138568::1739030
 underwater-sand-16x16.png::CompressedTexture2D::4091499323977485528::1738790889::1739045706::1::::<><>::
 ::res://Assets/Tilesets/resource/::1739041022
 tut_wall_tileset.tres::TileSet::1429125255351970939::1739041022::0::1::::<><>::uid://b7mi6e5vxrq6s::::res://Assets/Tilesets/pngs/tutorial-wall-placeholder.png
-::res://Assets/UI/::1739047867
+::res://Assets/UI/::1739063680
 button.png::CompressedTexture2D::4693210119076255294::1739047861::1739047867::1::::<><>::
+stats_bar.png::CompressedTexture2D::1622786171047850073::1739057984::1739057998::1::::<><>::
+stat_box.png::CompressedTexture2D::2854435384311361827::1739063680::1739063683::1::::<><>::
 ::res://Levels/::1738790889
 ::res://Levels/Test/::1739041131
 sprite_size_test.tscn::PackedScene::6614332847928297358::1739041131::0::1::::<><>::uid://egsqku8cqx1j::::res://Assets/Crabs/png/crab-16x16.png<>uid://byj7np463hg2s::::res://Assets/Tilesets/pngs/underwater-sand-16x16.png<>uid://dvafuwrwbdgqd::::res://Assets/Tilesets/pngs/beach-sand-16x16.png<>uid://dfwhjp66n3ta4::::res://Assets/Misc/png/drop-shadow-18x16.png<>uid://u53c6w683ut3::::res://Assets/Crabs/png/crab-glock.png<>uid://dqsq5i5hw4h31::::res://Assets/Crabs/png/crab-rpg.png<>uid://b0gd15qmhkdsu::::res://Assets/Crabs/png/crab-slingshot.png<>uid://g17fv4dci4b8::::res://Assets/Misc/png/coin.png<>uid://ba866d5mhxgj7::::res://Assets/Misc/png/drop-shadow-8x8.png<>uid://iktoga6ab2cw::::res://Assets/Guns/png/glock-16x16.png<>uid://bbdsa2xlexbcy::::res://Assets/Guns/png/grenade-16x16.png<>uid://t07nsyhgutoc::::res://Assets/Guns/png/rpg-16x32.png<>uid://wjar0tqie5od::::res://Assets/Guns/png/slingshot-16x16.png<>uid://umjqpxlsqcyd::::res://Assets/Tilesets/resource/tut_wall_tileset.tres
@@ -52,5 +53,6 @@ base_state.gd::GDScript::-1::1739030001::0::1::::BaseState<>Node2D<>::
 entity.gd::GDScript::-1::1739030001::0::1::::EntityBase<>Node2D<>::
 entity_character_body.gd::GDScript::-1::1739030001::0::1::::<>CharacterBody2D<>::
 state_machine.gd::GDScript::-1::1739030001::0::1::::<>Node2D<>::
-::res://UI/::1739046247
-ui.tscn::PackedScene::2541639389715854562::1739054885::0::1::::<><>::res://ui.gd<>uid://b74oqqvpa4ieo::::res://Assets/UI/button.png
+::res://UI/::1739057929
+ui.gd::GDScript::-1::1739057132::0::1::::ui<>CanvasLayer<>::
+ui.tscn::PackedScene::2541639389715854562::1739057929::0::1::::<><>::res://UI/ui.gd<>uid://b74oqqvpa4ieo::::res://Assets/UI/button.png

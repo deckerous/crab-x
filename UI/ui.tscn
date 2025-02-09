@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bchgounswh1og"]
+[gd_scene load_steps=5 format=3 uid="uid://bchgounswh1og"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_disjy"]
 [ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="2_u2yvy"]
+[ext_resource type="Texture2D" uid="uid://xedb0ehcyxb2" path="res://Assets/UI/stats_bar.png" id="3_1rnps"]
+[ext_resource type="Texture2D" uid="uid://bgwyesutoji48" path="res://Assets/UI/stat_box.png" id="4_4snfw"]
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_disjy")
 
 [node name="end_of_game_screen" type="Node2D" parent="."]
+visible = false
 
 [node name="restart_button" type="Button" parent="end_of_game_screen"]
 self_modulate = Color(1, 1, 1, 0)
@@ -15,12 +18,12 @@ offset_top = 72.0
 offset_right = 192.0
 offset_bottom = 104.0
 
-[node name="Sprite2D" type="Sprite2D" parent="end_of_game_screen/restart_button"]
+[node name="restart_button" type="Sprite2D" parent="end_of_game_screen/restart_button"]
 position = Vector2(29.9, 16)
 scale = Vector2(0.0549828, 0.0540541)
 texture = ExtResource("2_u2yvy")
 
-[node name="restart" type="Label" parent="end_of_game_screen/restart_button"]
+[node name="restart_label" type="Label" parent="end_of_game_screen/restart_button"]
 offset_left = -2.0
 offset_right = 84.0
 offset_bottom = 43.0
@@ -37,12 +40,12 @@ offset_top = 112.0
 offset_right = 192.0
 offset_bottom = 144.0
 
-[node name="Sprite2D" type="Sprite2D" parent="end_of_game_screen/quit_button"]
+[node name="quit_button" type="Sprite2D" parent="end_of_game_screen/quit_button"]
 position = Vector2(31.45, 16)
 scale = Vector2(0.0559278, 0.054054)
 texture = ExtResource("2_u2yvy")
 
-[node name="quit" type="Label" parent="end_of_game_screen/quit_button"]
+[node name="quit_label" type="Label" parent="end_of_game_screen/quit_button"]
 offset_right = 85.0
 offset_bottom = 43.0
 scale = Vector2(0.75, 0.75)
@@ -53,12 +56,12 @@ uppercase = true
 
 [node name="end_of_game_score_display" type="Node2D" parent="end_of_game_screen"]
 
-[node name="Sprite2D" type="Sprite2D" parent="end_of_game_screen/end_of_game_score_display"]
+[node name="score_box" type="Sprite2D" parent="end_of_game_screen/end_of_game_score_display"]
 position = Vector2(160, 48)
 scale = Vector2(0.0549828, 0.0540541)
 texture = ExtResource("2_u2yvy")
 
-[node name="score_output" type="Label" parent="end_of_game_screen/end_of_game_score_display"]
+[node name="score_label" type="Label" parent="end_of_game_screen/end_of_game_score_display"]
 offset_left = 144.0
 offset_top = 48.0
 offset_right = 197.0
@@ -69,7 +72,7 @@ text = "0
 horizontal_alignment = 1
 uppercase = true
 
-[node name="score" type="Label" parent="end_of_game_screen/end_of_game_score_display"]
+[node name="score_title_label" type="Label" parent="end_of_game_screen/end_of_game_score_display"]
 offset_left = 142.0
 offset_top = 34.0
 offset_right = 198.0
@@ -80,6 +83,76 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="during_game_screen" type="Node2D" parent="."]
+
+[node name="status_bar" type="Sprite2D" parent="during_game_screen"]
+position = Vector2(80, 24)
+scale = Vector2(0.0496667, 0.0499364)
+texture = ExtResource("3_1rnps")
+
+[node name="crabs_label" type="Label" parent="during_game_screen"]
+anchors_preset = -1
+anchor_left = -0.037
+anchor_top = -0.111
+anchor_right = -0.037
+anchor_bottom = -0.111
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 41.0
+offset_bottom = 40.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="coin_box" type="Sprite2D" parent="during_game_screen"]
+position = Vector2(63, 23)
+scale = Vector2(0.0277002, 0.0304542)
+texture = ExtResource("4_4snfw")
+
+[node name="item_box" type="Sprite2D" parent="during_game_screen"]
+position = Vector2(97, 23)
+scale = Vector2(0.0277002, 0.0304542)
+texture = ExtResource("4_4snfw")
+
+[node name="weapon_box" type="Sprite2D" parent="during_game_screen"]
+position = Vector2(131, 23)
+scale = Vector2(0.0277002, 0.0304542)
+texture = ExtResource("4_4snfw")
+
+[node name="coins_label" type="Label" parent="during_game_screen"]
+offset_left = 49.0
+offset_top = 15.0
+offset_right = 105.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="item_label" type="Label" parent="during_game_screen"]
+offset_left = 83.0
+offset_top = 15.0
+offset_right = 139.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+text = "empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weapon_label" type="Label" parent="during_game_screen"]
+offset_left = 117.0
+offset_top = 15.0
+offset_right = 173.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+text = "empty
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="main_menu_screen" type="Node2D" parent="."]
+
+[node name="pause_menu_screen" type="Node2D" parent="."]
 
 [connection signal="pressed" from="end_of_game_screen/restart_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_restart_button_pressed"]

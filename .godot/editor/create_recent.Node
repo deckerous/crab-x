@@ -1,6 +1,6 @@
-Node2D
 Label
 Sprite2D
+Node2D
 Button
 CanvasLayer
 TileMapLayer
