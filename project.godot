@@ -64,6 +64,8 @@ coin_up={
 
 2d_physics/layer_1="environment"
 2d_physics/layer_2="entities"
+2d_physics/layer_3="entity_hibox"
+2d_physics/layer_4="entity_hurtbox"
 
 [rendering]
 

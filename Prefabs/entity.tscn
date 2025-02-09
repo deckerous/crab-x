@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds0sf2yjn8xqu"]
+[gd_scene load_steps=10 format=3 uid="uid://ds0sf2yjn8xqu"]
 
 [ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_f7tdr"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/entity_character_body.gd" id="2_8p2xw"]
 [ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="3_6b07f"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="3_gh15n"]
 [ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="4_aq1kp"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/base_state.gd" id="4_p78il"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hurtbox_component.gd" id="6_3oj7t"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="6_46ham"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_os0pl"]
 animations = [{
@@ -40,24 +41,17 @@ sprite_frames = SubResource("SpriteFrames_os0pl")
 [node name="CollisionBox" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_wh1xd")
 
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("6_46ham")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("6_3oj7t")
+
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("3_gh15n")
-
-[node name="Default" type="Node2D" parent="StateMachine"]
-script = ExtResource("4_p78il")
-anim_name = "default"
-next_state = "Fire"
-duration = 5.0
-enter_use_control = true
-
-[node name="Fire" type="Node2D" parent="StateMachine"]
-script = ExtResource("4_p78il")
-anim_name = "fire"
-next_state = "Default"
-duration = 5.0
-enter_use_control = true
-enter_vel_x = 1.0
-enter_vel_y = 1.0
-enter_speed = 0.1
 
 [connection signal="change_velocity" from="." to="CharacterBody2D" method="_on_entity_change_velocity"]

@@ -6,6 +6,7 @@ extends Node2D
 @export_group("Base properties")
 @export var anim_name: String
 @export var next_state: String
+@export var using_timer: bool
 @export var duration: float
 
 # velocity control
@@ -32,14 +33,15 @@ func run() -> void:
 		var enter_vel = Vector2(enter_vel_x, enter_vel_y).normalized() * enter_speed
 		set_velocity(enter_vel)
 	
-	# set state timeout duration
-	var timer = Timer.new()
-	timer.name = "StateTimer"
-	timer.one_shot = true
-	timer.wait_time = duration
-	timer.autostart = true
-	timer.timeout.connect(state_machine.change_state.bind(next_state))
-	state_machine.add_child(timer)
+	# check state timeout duration
+	if using_timer:
+		var timer = Timer.new()
+		timer.name = "StateTimer"
+		timer.one_shot = true
+		timer.wait_time = duration
+		timer.autostart = true
+		timer.timeout.connect(state_machine.change_state.bind(next_state))
+		state_machine.add_child(timer)
 	
 func set_velocity(vel: Vector2) -> void:
 	entity.set_velocity(vel)

@@ -1,4 +1,8 @@
-res://Levels/Test/sprite_size_test.tscn
-res://Assets/Tilesets/resource/tut_wall_tileset.tres
 res://Prefabs/entity.tscn
+res://Assets/Tilesets/resource/tut_wall_tileset.tres
+res://Prefabs/Scripts/base_state.gd
+res://Prefabs/Scripts/state_machine.gd
 res://Player/Scenes/navigation_test.tscn
+res://Levels/Test/sprite_size_test.tscn
+res://Prefabs/Components/Scripts/hitbox_component.gd
+res://Prefabs/Components/Scripts/hurtbox_component.gd

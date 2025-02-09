@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var curr_state = "Default"
+@export var curr_state : String
 
 func _ready() -> void:
 	get_node(curr_state).run()
