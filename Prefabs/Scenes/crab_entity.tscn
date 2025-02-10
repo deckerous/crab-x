@@ -1,0 +1,143 @@
+[gd_scene load_steps=17 format=3 uid="uid://ch11nk2ii4e54"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
+[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/crab_entity.gd" id="2_mcd1l"]
+[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="3_uhfwv"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/empty_crab_state.gd" id="3_wy48v"]
+[ext_resource type="Texture2D" uid="uid://dqsq5i5hw4h31" path="res://Assets/Crabs/png/crab-rpg.png" id="4_hnvn5"]
+[ext_resource type="Texture2D" uid="uid://b0gd15qmhkdsu" path="res://Assets/Crabs/png/crab-slingshot.png" id="5_3f81r"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/slingshot_crab_state.gd" id="7_h3huy"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/glock_crab_state.gd" id="8_re2gt"]
+[ext_resource type="PackedScene" uid="uid://bmkmlsq3fsy6q" path="res://Prefabs/Scenes/player_rock_entity.tscn" id="9_nqi5o"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/rpg_crab_state.gd" id="9_ruqhs"]
+[ext_resource type="PackedScene" uid="uid://c0773lon6v416" path="res://Prefabs/Scenes/player_bullet_entity.tscn" id="10_b3vec"]
+[ext_resource type="PackedScene" uid="uid://clwmvhbjdrpld" path="res://Prefabs/Scenes/player_rpg_entity.tscn" id="13_chaxw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1tdqi")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uhfwv")
+}],
+"loop": true,
+"name": &"glock",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hnvn5")
+}],
+"loop": true,
+"name": &"rpg",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3f81r")
+}],
+"loop": true,
+"name": &"slingshot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bun2p"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bguln"]
+radius = 4.0
+
+[node name="CrabEntity" instance=ExtResource("1_4p3s6")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_mcd1l")
+is_rally = false
+
+[node name="Animations" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_7lf24")
+animation = &"empty"
+
+[node name="CollisionBox" parent="." index="1"]
+shape = SubResource("CircleShape2D_bun2p")
+
+[node name="HurtboxComponent" parent="." index="3"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_bguln")
+debug_color = Color(0.913828, 0.0663878, 0.692027, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+path_desired_distance = 3.0
+target_desired_distance = 12.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 7.0
+max_speed = 75.0
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Empty")
+
+[node name="Empty" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("slingshot", "glock", "rpg")]
+script = ExtResource("3_wy48v")
+slingshot = NodePath("../Slingshot")
+glock = NodePath("../Glock")
+rpg = NodePath("../RPG")
+animation_name = "empty"
+
+[node name="Slingshot" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("empty", "glock", "rpg")]
+script = ExtResource("7_h3huy")
+empty = NodePath("../Empty")
+glock = NodePath("../Glock")
+rpg = NodePath("../RPG")
+projectile = ExtResource("9_nqi5o")
+animation_name = "slingshot"
+
+[node name="BulletSpawnPosition" type="Node2D" parent="StateMachine/Slingshot" index="0"]
+position = Vector2(-3.5, -12.5)
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Slingshot" index="1"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Glock" type="Node2D" parent="StateMachine" index="2" node_paths=PackedStringArray("empty", "slingshot", "rpg")]
+script = ExtResource("8_re2gt")
+empty = NodePath("../Empty")
+slingshot = NodePath("../Slingshot")
+rpg = NodePath("../RPG")
+projectile = ExtResource("10_b3vec")
+animation_name = "glock"
+
+[node name="BulletSpawnPosition" type="Node2D" parent="StateMachine/Glock" index="0"]
+position = Vector2(-3.5, -14)
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Glock" index="1"]
+wait_time = 0.2
+one_shot = true
+
+[node name="RPG" type="Node2D" parent="StateMachine" index="3" node_paths=PackedStringArray("glock", "empty", "slingshot")]
+script = ExtResource("9_ruqhs")
+glock = NodePath("../Glock")
+empty = NodePath("../Empty")
+slingshot = NodePath("../Slingshot")
+projectile = ExtResource("13_chaxw")
+animation_name = "rpg"
+
+[node name="BulletSpawnPosition" type="Node2D" parent="StateMachine/RPG" index="0"]
+position = Vector2(-3.5, -18)
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/RPG" index="1"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

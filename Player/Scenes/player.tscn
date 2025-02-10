@@ -1,124 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1u7abh3kwaiv"]
+[gd_scene load_steps=5 format=3 uid="uid://c1u7abh3kwaiv"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hjqw4"]
-[ext_resource type="Script" path="res://Player/Scripts/placeholder_crab.gd" id="2_hgpx8"]
-[ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="3_j4mev"]
+[ext_resource type="PackedScene" uid="uid://ch11nk2ii4e54" path="res://Prefabs/Scenes/crab_entity.tscn" id="4_44bsy"]
 [ext_resource type="Texture2D" uid="uid://ba866d5mhxgj7" path="res://Assets/Misc/png/drop-shadow-8x8.png" id="4_x17ct"]
 [ext_resource type="Texture2D" uid="uid://g17fv4dci4b8" path="res://Assets/Misc/png/coin.png" id="5_ugxei"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1m4ya"]
-radius = 6.08276
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_syqll"]
-radius = 6.08
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hjqw4")
 
 [node name="CrabManager" type="Node2D" parent="."]
 
-[node name="PlaceholderCrab" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(24, 0)
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("2_hgpx8")
+[node name="CrabEntity" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(-21, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab"]
-texture = ExtResource("3_j4mev")
+[node name="CrabEntity2" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(21, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab"]
-shape = SubResource("CircleShape2D_1m4ya")
+[node name="CrabEntity3" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(10, -21)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab"]
-path_desired_distance = 3.0
-target_desired_distance = 5.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 7.0
-max_speed = 75.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0, 1, 1)
+[node name="CrabEntity4" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(-16, -21)
 
-[node name="PlaceholderCrab2" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(-24, 0)
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("2_hgpx8")
+[node name="CrabEntity5" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(-13, 22)
 
-[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab2"]
-texture = ExtResource("3_j4mev")
+[node name="CrabEntity6" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(16, 21)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab2"]
-shape = SubResource("CircleShape2D_1m4ya")
+[node name="RallyPointCrabEntity" parent="." instance=ExtResource("4_44bsy")]
+is_rally = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab2"]
-path_desired_distance = 3.0
-target_desired_distance = 5.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 7.0
-max_speed = 75.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0, 1, 1)
-
-[node name="PlaceholderCrab3" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(0, -19)
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("2_hgpx8")
-
-[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab3"]
-texture = ExtResource("3_j4mev")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab3"]
-shape = SubResource("CircleShape2D_1m4ya")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab3"]
-path_desired_distance = 3.0
-target_desired_distance = 5.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 7.0
-max_speed = 75.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0, 1, 1)
-
-[node name="PlaceholderCrab4" type="CharacterBody2D" parent="CrabManager"]
-position = Vector2(0, 21)
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("2_hgpx8")
-
-[node name="Sprite2D" type="Sprite2D" parent="CrabManager/PlaceholderCrab4"]
-texture = ExtResource("3_j4mev")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabManager/PlaceholderCrab4"]
-shape = SubResource("CircleShape2D_1m4ya")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CrabManager/PlaceholderCrab4"]
-path_desired_distance = 3.0
-target_desired_distance = 5.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 7.0
-max_speed = 75.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1, 0, 1, 1)
-
-[node name="RallyPoint" type="CharacterBody2D" parent="."]
-collision_layer = 2
-
-[node name="RallyPointGraphics" type="Sprite2D" parent="RallyPoint"]
-texture = ExtResource("3_j4mev")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RallyPoint"]
-shape = SubResource("CircleShape2D_syqll")
-
-[node name="Camera2D" type="Camera2D" parent="RallyPoint"]
+[node name="Camera2D" type="Camera2D" parent="RallyPointCrabEntity"]
 position_smoothing_enabled = true
 
 [node name="Crosshair" type="Sprite2D" parent="."]
@@ -133,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI/Control"]
 layout_mode = 1
@@ -156,8 +70,3 @@ bbcode_enabled = true
 text = "0"
 fit_content = true
 scroll_active = false
-
-[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab/NavigationAgent2D" to="CrabManager/PlaceholderCrab" method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab2/NavigationAgent2D" to="CrabManager/PlaceholderCrab2" method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab3/NavigationAgent2D" to="CrabManager/PlaceholderCrab3" method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="velocity_computed" from="CrabManager/PlaceholderCrab4/NavigationAgent2D" to="CrabManager/PlaceholderCrab4" method="_on_navigation_agent_2d_velocity_computed"]

@@ -6,8 +6,8 @@ extends Node2D
 @export var crosshair_dist_max : float = 100.0
 @export var camera_mid_point_constant : float = 2.0
 
-@onready var camera_2d = $RallyPoint/Camera2D
-@onready var rally_point = $RallyPoint
+@onready var camera_2d = $RallyPointCrabEntity/Camera2D
+@onready var rally_point_crab_entity = $RallyPointCrabEntity
 @onready var crab_manager = $CrabManager
 @onready var crosshair = $Crosshair
 @onready var rich_text_label = $PlayerUI/Control/HBoxContainer/RichTextLabel
@@ -38,11 +38,11 @@ func _process(delta):
 		rich_text_label.text = str(coin_count)
 	
 	# Camera controls
-	var rally_dist_from_crosshair = rally_point.global_position.distance_to(crosshair.global_position)
+	var rally_dist_from_crosshair = rally_point_crab_entity.global_position.distance_to(crosshair.global_position)
 	if rally_dist_from_crosshair > crosshair_dist_min and rally_dist_from_crosshair < crosshair_dist_max:
 		# place camera about halfway from 
-		var mid_point_to_crosshair = rally_point.global_position.direction_to(crosshair.global_position).normalized() * (rally_dist_from_crosshair / camera_mid_point_constant)
-		camera_2d.global_position = rally_point.global_position + mid_point_to_crosshair
+		var mid_point_to_crosshair = rally_point_crab_entity.global_position.direction_to(crosshair.global_position).normalized() * (rally_dist_from_crosshair / camera_mid_point_constant)
+		camera_2d.global_position = rally_point_crab_entity.global_position + mid_point_to_crosshair
 	
 	mouse_pos = get_global_mouse_position()
 
@@ -56,13 +56,11 @@ func _physics_process(delta):
 	
 	# Update crab velocities to move toward rally point
 	for crab in crab_manager.get_children():
-		if crab is CharacterBody2D and crab is Crab:
-			crab.navigation_agent_2d.target_position = rally_point.global_position
+		if crab is CrabEntity:
+			crab.navigation_agent_2d.target_position = rally_point_crab_entity.global_position
 			var curr_crab_position = crab.global_position
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
 			var new_crab_velocity = curr_crab_position.direction_to(next_path_position).normalized() * crab_moving_speed
-			
-			crab.global_rotation = crab.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 			
 			if crab.navigation_agent_2d.is_navigation_finished():
 				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity, 0.05)
@@ -78,6 +76,6 @@ func _physics_process(delta):
 	crosshair.global_position = mouse_pos
 	
 	# Rally point movement
-	rally_point.global_rotation = rally_point.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
-	rally_point.velocity = move_dir * rally_point_move_speed
-	rally_point.move_and_slide()
+	rally_point_crab_entity.global_rotation = rally_point_crab_entity.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
+	rally_point_crab_entity.velocity = move_dir * rally_point_move_speed
+	rally_point_crab_entity.move_and_slide()
