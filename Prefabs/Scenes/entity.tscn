@@ -50,3 +50,11 @@ script = ExtResource("6_atyba")
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("7_ntd6r")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 190.0
+offset_bottom = 12.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false

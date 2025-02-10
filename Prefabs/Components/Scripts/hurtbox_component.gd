@@ -3,7 +3,7 @@ extends Area2D
 
 # inline setter to disable and enable collision shapes on
 # the hurtbox when vulnerable is updated.
-var vulnerable = false :
+var vulnerable = true :
 	set(value):
 		vulnerable = value
 		# Disable hurtbox collision shape when it is invulnerable,
