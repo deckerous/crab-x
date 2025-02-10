@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://lf55ja7vsewi"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ufa3i"]
+[ext_resource type="Texture2D" uid="uid://s5oxa140mlx3" path="res://Assets/Enemies/png/dummy.png" id="2_xcurr"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/state.gd" id="3_tdl4g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v7tj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xcurr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlq4p"]
+size = Vector2(12, 31)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ftn2"]
+radius = 6.0
+height = 28.0
+
+[node name="DummyEntity" instance=ExtResource("1_ufa3i")]
+collision_layer = 2
+collision_mask = 3
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -22)
+sprite_frames = SubResource("SpriteFrames_v7tj0")
+animation = &"idle"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -15.5)
+shape = SubResource("RectangleShape2D_xlq4p")
+
+[node name="HurtboxComponent" parent="." index="3"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -18)
+shape = SubResource("CapsuleShape2D_3ftn2")
+debug_color = Color(0.906034, 0.216248, 0.539332, 0.42)
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" index="0"]
+script = ExtResource("3_tdl4g")
+animation_name = "idle"
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -49.0
+offset_bottom = -22.0
