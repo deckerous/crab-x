@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://cehoptbmihbjs"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ust1h"]
+[ext_resource type="Texture2D" uid="uid://cf1fxr058bt7g" path="res://Assets/Enemies/png/seagull.png" id="2_di0af"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_vg107"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_shoot_state.gd" id="4_xlgp7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3y7q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_di0af")
+}],
+"loop": true,
+"name": &"aggro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_di0af")
+}],
+"loop": true,
+"name": &"wander",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3lls"]
+radius = 3.93923
+height = 20.0435
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1sa7"]
+radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uyhy"]
+radius = 6.08249
+height = 22.3604
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s80jk"]
+radius = 148.003
+
+[node name="SeagullEntity" instance=ExtResource("1_ust1h")]
+max_hp = 20.0
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(-1.5, -10)
+sprite_frames = SubResource("SpriteFrames_w3y7q")
+animation = &"aggro"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -9)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_q3lls")
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 8
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_s1sa7")
+debug_color = Color(0.847851, 0.353801, 0.339831, 0.42)
+
+[node name="HurtboxComponent" parent="." index="3"]
+position = Vector2(0, 1)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-2.38419e-07, -10)
+rotation = 1.39626
+shape = SubResource("CapsuleShape2D_4uyhy")
+debug_color = Color(0.816467, 0.405416, 0.0528854, 0.42)
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Wander")
+
+[node name="Wander" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
+script = ExtResource("3_vg107")
+aggro = NodePath("../Aggro")
+animation_name = "wander"
+
+[node name="PlayerDetectionArea" type="Area2D" parent="StateMachine/Wander" index="0"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Wander/PlayerDetectionArea" index="0"]
+shape = SubResource("CircleShape2D_s80jk")
+debug_color = Color(0.541258, 0.561021, 0.245643, 0.0980392)
+
+[node name="RayCast2D" type="RayCast2D" parent="StateMachine/Wander" index="1"]
+collision_mask = 2
+
+[node name="Aggro" type="Node2D" parent="StateMachine" index="1"]
+script = ExtResource("4_xlgp7")
+animation_name = "aggro"
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="0"]
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -30.0
+offset_bottom = -3.0
