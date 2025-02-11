@@ -16,7 +16,7 @@ func _ready() -> void:
 # Override: Process player input for if they want to shoot
 func process_input(event: InputEvent) -> State:
 	super(event)
-
+	
 	if Input.is_action_just_pressed("shoot") and !cooldown:
 		var inst = projectile.instantiate()
 		inst.global_rotation = bullet_spawn_position.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
