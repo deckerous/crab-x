@@ -27,6 +27,19 @@ func change_state(new_state: State) -> void:
 	current_state.enter()
 	state_changed.emit()
 
+func change_state_str(new_state: String) -> void:
+	var state_wanted: State
+	for child in get_children():
+		if child.name == new_state:
+			state_wanted = child
+	
+	if current_state:
+		current_state.exit()
+	
+	current_state = state_wanted
+	current_state.enter()
+	state_changed.emit()
+
 # Pass through functions for the Entity to call,
 # handling state changes as needed.
 func process_physics(delta: float) -> void:

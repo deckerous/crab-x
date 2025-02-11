@@ -12,23 +12,37 @@ script = ExtResource("1_hjqw4")
 
 [node name="CrabEntity" parent="CrabManager" instance=ExtResource("4_44bsy")]
 position = Vector2(-21, 0)
+collision_layer = 6
+collision_mask = 7
 
 [node name="CrabEntity2" parent="CrabManager" instance=ExtResource("4_44bsy")]
 position = Vector2(21, 0)
+collision_layer = 6
+collision_mask = 7
 
 [node name="CrabEntity3" parent="CrabManager" instance=ExtResource("4_44bsy")]
 position = Vector2(10, -21)
+collision_layer = 6
+collision_mask = 7
 
 [node name="CrabEntity4" parent="CrabManager" instance=ExtResource("4_44bsy")]
 position = Vector2(-16, -21)
+collision_layer = 6
+collision_mask = 7
 
 [node name="CrabEntity5" parent="CrabManager" instance=ExtResource("4_44bsy")]
 position = Vector2(-13, 22)
+collision_layer = 6
+collision_mask = 7
 
 [node name="CrabEntity6" parent="CrabManager" instance=ExtResource("4_44bsy")]
 position = Vector2(16, 21)
+collision_layer = 6
+collision_mask = 7
 
 [node name="RallyPointCrabEntity" parent="." instance=ExtResource("4_44bsy")]
+collision_layer = 6
+collision_mask = 7
 is_rally = true
 
 [node name="Camera2D" type="Camera2D" parent="RallyPointCrabEntity"]

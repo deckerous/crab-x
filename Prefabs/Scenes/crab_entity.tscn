@@ -52,6 +52,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_bun2p"]
 radius = 5.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rqcn"]
+size = Vector2(16, 16)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_bguln"]
 radius = 4.0
 
@@ -68,14 +71,23 @@ animation = &"empty"
 [node name="CollisionBox" parent="." index="1"]
 shape = SubResource("CircleShape2D_bun2p")
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="CollectableComponent" type="Area2D" parent="." index="2"]
+collision_layer = 16
+collision_mask = 16
+collision_priority = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableComponent" index="0"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_3rqcn")
+
+[node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 shape = SubResource("CircleShape2D_bguln")
 debug_color = Color(0.913828, 0.0663878, 0.692027, 0.42)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="5"]
 path_desired_distance = 3.0
 target_desired_distance = 12.0
 path_postprocessing = 1
@@ -85,7 +97,7 @@ max_speed = 75.0
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
-[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Empty")
 
 [node name="Empty" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("slingshot", "glock", "rpg")]
