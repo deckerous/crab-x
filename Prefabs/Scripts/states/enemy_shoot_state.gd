@@ -7,11 +7,26 @@ extends State
 @export_group("Projectile")
 @export var projectile: PackedScene
 
+@onready var projectile_spawn_position = $ProjectileSpawnPosition
 @onready var cooldown_timer = $CooldownTimer
 
-func enter() -> void:
-	super()
-	animations.flip_h = true
+var cooldown = false
 
-func exit() -> void:
-	animations.flip_h = false
+func _ready() -> void:
+	cooldown_timer.timeout.connect(func(): cooldown = false)
+
+func process_physics(delta: float) -> State:
+	super(delta)
+	
+	if entity.targetting_component.targeted_crab.visible:
+		if !cooldown:
+			var inst = projectile.instantiate()
+			inst.global_rotation = projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position).angle() + PI/2.0
+			inst.init_projectile(projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position))
+			entity.summon_projectile(inst, projectile_spawn_position.global_position)
+			cooldown = true
+			cooldown_timer.start()
+	else:
+		return wander
+	
+	return null

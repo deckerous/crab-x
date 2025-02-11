@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cehoptbmihbjs"]
+[gd_scene load_steps=12 format=3 uid="uid://cehoptbmihbjs"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ust1h"]
 [ext_resource type="Texture2D" uid="uid://cf1fxr058bt7g" path="res://Assets/Enemies/png/seagull.png" id="2_di0af"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/seagull_entity.gd" id="2_tggm0"]
+[ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_um4iv"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_vg107"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_shoot_state.gd" id="4_xlgp7"]
+[ext_resource type="PackedScene" uid="uid://trxdycr3ktyr" path="res://Prefabs/Scenes/enemies/seagull_projectile_entity.tscn" id="7_pfjjh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w3y7q"]
 animations = [{
@@ -35,10 +38,10 @@ radius = 12.0
 radius = 6.08249
 height = 22.3604
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s80jk"]
-radius = 148.003
-
 [node name="SeagullEntity" instance=ExtResource("1_ust1h")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_tggm0")
 max_hp = 20.0
 
 [node name="Animations" parent="." index="0"]
@@ -70,7 +73,9 @@ rotation = 1.39626
 shape = SubResource("CapsuleShape2D_4uyhy")
 debug_color = Color(0.816467, 0.405416, 0.0528854, 0.42)
 
-[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_um4iv")]
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Wander")
 
 [node name="Wander" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
@@ -78,23 +83,19 @@ script = ExtResource("3_vg107")
 aggro = NodePath("../Aggro")
 animation_name = "wander"
 
-[node name="PlayerDetectionArea" type="Area2D" parent="StateMachine/Wander" index="0"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Wander/PlayerDetectionArea" index="0"]
-shape = SubResource("CircleShape2D_s80jk")
-debug_color = Color(0.541258, 0.561021, 0.245643, 0.0980392)
-
-[node name="RayCast2D" type="RayCast2D" parent="StateMachine/Wander" index="1"]
-collision_mask = 2
-
-[node name="Aggro" type="Node2D" parent="StateMachine" index="1"]
+[node name="Aggro" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("wander")]
 script = ExtResource("4_xlgp7")
+wander = NodePath("../Wander")
+projectile = ExtResource("7_pfjjh")
 animation_name = "aggro"
 
-[node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="0"]
+[node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/Aggro" index="0"]
+position = Vector2(13, -19)
 
-[node name="HealthBar" parent="." index="5"]
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
+
+[node name="HealthBar" parent="." index="6"]
 offset_top = -30.0
 offset_bottom = -3.0
+
+[editable path="TargettingComponent"]

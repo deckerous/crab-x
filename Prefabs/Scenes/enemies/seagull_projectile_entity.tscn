@@ -46,6 +46,9 @@ position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_lkk4f")
 debug_color = Color(0.894273, 0.319941, 0.00590661, 0.42)
 
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Airborne")
+
 [node name="Airborne" parent="StateMachine" index="0"]
 animation_name = "airborne"
 
