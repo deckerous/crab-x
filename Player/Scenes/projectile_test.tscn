@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://p48trvjelc0h"]
+[gd_scene load_steps=6 format=4 uid="uid://p48trvjelc0h"]
 
 [ext_resource type="TileSet" uid="uid://umjqpxlsqcyd" path="res://Assets/Tilesets/resource/tut_wall_tileset.tres" id="1_1vcn6"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="1_oh2up"]
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="3_j4087"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="4_pxm6p"]
+[ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="5_hef0h"]
 
 [node name="ProjectileTest" type="Node2D"]
 
@@ -26,5 +27,8 @@ position = Vector2(36, 107)
 
 [node name="DummyEntity3" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(23, 165)
+
+[node name="SeagullEntity" parent="." instance=ExtResource("5_hef0h")]
+position = Vector2(82, 105)
 
 [editable path="Player"]

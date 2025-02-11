@@ -45,7 +45,9 @@ func _damaged(hitbox: HitboxComponent) -> void:
 	_update_health_bar()
 	
 	if hp <= 0:
-		queue_free()
+		# TODO: have a proper shutdown procedure, not just queue_free()
+		#queue_free()
+		self.hide()
 
 func _update_health_bar() -> void:
 	if !health_bar_visible: return
