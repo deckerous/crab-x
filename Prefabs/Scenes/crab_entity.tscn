@@ -152,7 +152,7 @@ position = Vector2(-3.5, -18)
 wait_time = 2.0
 one_shot = true
 
-[node name="HealthBar" parent="." index="6"]
+[node name="HealthBar" parent="." index="7"]
 offset_top = 8.0
 offset_bottom = 35.0
 

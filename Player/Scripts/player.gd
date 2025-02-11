@@ -90,6 +90,6 @@ func handle_loot(array: Array) -> void:
 				var crab_instance = crab_component.instantiate()
 				crab_instance.position = rally_point_crab_entity.position
 				crab_manager.call_deferred("add_child", crab_instance)
-			"Glock":
+			"Slingshot":
 				for child in crab_manager.get_children():
-					child.external_state_change("Glock")
+					child.external_state_change("Slingshot")

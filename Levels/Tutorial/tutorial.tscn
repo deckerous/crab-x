@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://baipme2ijruby"]
+[gd_scene load_steps=8 format=4 uid="uid://baipme2ijruby"]
 
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="1_yhaok"]
 [ext_resource type="TileSet" uid="uid://umjqpxlsqcyd" path="res://Assets/Tilesets/resource/tut_wall_tileset.tres" id="2_lvcvs"]
 [ext_resource type="TileSet" uid="uid://dqfi8euh07tap" path="res://Assets/Tilesets/resource/coral.tres" id="3_prsnt"]
 [ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/tweasure_chest.tscn" id="4_hf533"]
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="4_x5nk7"]
+[ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="6_rxkwa"]
+[ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="7_tk4ar"]
 
 [node name="Tutorial" type="Node2D"]
 
@@ -57,6 +59,14 @@ loot = ["Crab", "Slingshot"]
 
 [node name="Player" parent="." instance=ExtResource("4_x5nk7")]
 position = Vector2(92, 111)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="DummyEntity" parent="Enemies" instance=ExtResource("6_rxkwa")]
+position = Vector2(67, -24)
+
+[node name="SeagullEntity" parent="Enemies" instance=ExtResource("7_tk4ar")]
+position = Vector2(233, -114)
 
 [connection signal="give_loot" from="Loot/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Loot/TweasureChest2" to="Player" method="handle_loot"]
