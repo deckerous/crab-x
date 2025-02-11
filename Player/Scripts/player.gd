@@ -70,7 +70,8 @@ func _physics_process(delta):
 			else:
 				crab._on_navigation_agent_2d_velocity_computed(crab.velocity)
 			
-			crab.move_and_slide()
+			if crab.process_mode == Node.PROCESS_MODE_INHERIT:
+				crab.move_and_slide()
 	
 	# Crosshair position update
 	crosshair.global_position = mouse_pos

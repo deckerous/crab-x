@@ -42,7 +42,7 @@ height = 22.3604
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_tggm0")
-max_hp = 20.0
+max_hp = 15.0
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(-1.5, -10)
