@@ -15,6 +15,8 @@ extends CharacterBody2D
 @onready var health_bar = $HealthBar
 var health_bar_initial_pos = Vector2.ZERO
 
+signal entity_died
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# State machine initialization
@@ -49,6 +51,7 @@ func _damaged(hitbox: HitboxComponent) -> void:
 		#queue_free()
 		self.hide()
 		self.process_mode = Node.PROCESS_MODE_DISABLED
+		entity_died.emit()
 
 func _update_health_bar() -> void:
 	if !health_bar_visible: return
