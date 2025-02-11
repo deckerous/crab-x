@@ -17,6 +17,8 @@ extends Node2D
 
 @onready var coin_count : int = 0
 
+@onready var crab_component = load("res://Prefabs/Scenes/crab_entity.tscn")
+
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
 
@@ -80,3 +82,14 @@ func _physics_process(delta):
 	rally_point_crab_entity.global_rotation = rally_point_crab_entity.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 	rally_point_crab_entity.velocity = move_dir * rally_point_move_speed
 	rally_point_crab_entity.move_and_slide()
+
+func handle_loot(array: Array) -> void:
+	for item in array:
+		match item:
+			"Crab":
+				var crab_instance = crab_component.instantiate()
+				crab_instance.position = rally_point_crab_entity.position
+				crab_manager.call_deferred("add_child", crab_instance)
+			"Slingshot":
+				for child in crab_manager.get_children():
+					child.external_state_change("Slingshot")

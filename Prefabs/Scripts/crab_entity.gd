@@ -13,3 +13,6 @@ func _physics_process(delta) -> void:
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	if !is_rally:
 		velocity = safe_velocity
+
+func external_state_change(state) -> void:
+	state_machine.change_state_str(state)

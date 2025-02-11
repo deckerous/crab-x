@@ -1,0 +1,14 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dqfi8euh07tap"]
+
+[ext_resource type="Texture2D" uid="uid://dqyrnem567k0h" path="res://Assets/Tilesets/pngs/coral-sheet.png" id="1_fc17j"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_us6pl"]
+texture = ExtResource("1_fc17j")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_us6pl")
