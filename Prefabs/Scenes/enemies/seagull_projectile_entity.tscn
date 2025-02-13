@@ -27,6 +27,7 @@ size = Vector2(4, 7)
 
 [node name="SeagullProjectileEntity" instance=ExtResource("1_v3ns6")]
 speed = 2.0
+collide_with_walls = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5.5)

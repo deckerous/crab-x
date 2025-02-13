@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 @onready var animations = $Animations
 @onready var collision_box = $CollisionBox
-@onready var hitbox_component = $HitboxComponent
+@onready var hitbox_component = $HitboxComponent as HitboxComponent
 @onready var hurtbox_component = $HurtboxComponent
 @onready var state_machine = $StateMachine
 @onready var health_bar = $HealthBar
@@ -26,6 +26,7 @@ func _ready() -> void:
 	health_bar.visible = health_bar_visible
 	_update_health_bar()
 	health_bar_initial_pos = health_bar.position
+	health_bar.global_position = global_position + health_bar_initial_pos
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event) # state machine input update
