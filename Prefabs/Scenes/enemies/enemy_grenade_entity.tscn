@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d323lm81ml0fd"]
+[gd_scene load_steps=7 format=3 uid="uid://dlv1borrlb14o"]
 
 [ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_2m07k"]
 [ext_resource type="Texture2D" uid="uid://bbdsa2xlexbcy" path="res://Assets/Guns/png/grenade-16x16.png" id="2_67tgo"]

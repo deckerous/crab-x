@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/tweasure_chest.tscn" id="4_hf533"]
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="4_x5nk7"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="6_rxkwa"]
-[ext_resource type="PackedScene" uid="uid://cxd8cou4q1lxd" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="7_6gaam"]
+[ext_resource type="PackedScene" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="7_6gaam"]
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="9_no833"]
 [ext_resource type="Script" path="res://Levels/Tutorial/temp.gd" id="10_ievap"]
 [ext_resource type="Script" path="res://Levels/Tutorial/temp2.gd" id="11_b5l4t"]
@@ -94,9 +94,7 @@ position = Vector2(87, 290)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="DummyBossEntity" parent="Enemies" instance=ExtResource("7_6gaam")]
-process_mode = 4
 position = Vector2(160, -87)
-max_hp = 50.0
 
 [node name="DummyEntity" parent="Enemies" instance=ExtResource("6_rxkwa")]
 position = Vector2(83, 91)
@@ -117,7 +115,7 @@ text = "TRIGGER TUTORIAL"
 script = ExtResource("10_ievap")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 3
+visible = false
 script = ExtResource("11_b5l4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -130,4 +128,4 @@ shape = SubResource("RectangleShape2D_fvc7q")
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="Player" method="handle_entity_death"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
-[connection signal="body_entered" from="Area2D" to="Area2D" method="pain_peko"]
+[connection signal="body_entered" from="Area2D" to="DialogueHandler" method="tutorial_time"]

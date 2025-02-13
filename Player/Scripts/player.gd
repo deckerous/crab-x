@@ -116,7 +116,7 @@ func handle_loot(array: Array) -> void:
 			"Slingshot":
 				for child in crab_manager.get_children():
 					child.external_state_change("Slingshot")
-				$RallyPointCrabEntity.external_state_change("Slingshot")
+				# $RallyPointCrabEntity.external_state_change("Slingshot")
 			"Sheckle":
 				coin_count += 1
 				rich_text_label.text = str(coin_count)

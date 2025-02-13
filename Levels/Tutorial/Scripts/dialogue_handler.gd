@@ -9,7 +9,7 @@ var interactable = false
 var curr_index = 0
 @export var text_array = ['Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!',
 						  'First comes you, then the sand, then the humans, then crabs, then our president, and then [shake rate=25level=10]ME![/shake] So listen to everything I say and you [i]might[/i] make it out alive.',
-						  'Use the arrow keys to move. Aim and click to shoot your guns. Run into chests to collect their loot!',
+						  'Use WASD to move. Aim and click to shoot your guns. Run into chests to collect their loot!',
 						  'Defeat all the enemies on the map to win the map!',
 						  'Make sure not to all die otherwise it is a [shake rate=25level=10]game over[/shake]!']
 
@@ -37,9 +37,18 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		text_box.visible_ratio = 0
 		if curr_index >= text_array.size():
 			canvas.visible = false
+			get_tree().paused = false
 			return
 		else:
 			text_box.text = text_array[curr_index]
 
 func trigger_visible() -> void:
+	canvas.visible = true
+
+func tutorial_time(array) -> void:
+	text_array = array
+	curr_index = 0
+	text_box.text = text_array[0]
+	get_tree().paused = true
+	PhysicsServer2D.set_active(true)
 	canvas.visible = true
