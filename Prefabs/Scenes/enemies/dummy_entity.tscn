@@ -16,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlq4p"]
-size = Vector2(12, 31)
+size = Vector2(12, 11)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ftn2"]
 radius = 6.0
@@ -32,7 +32,7 @@ sprite_frames = SubResource("SpriteFrames_v7tj0")
 animation = &"idle"
 
 [node name="CollisionBox" parent="." index="1"]
-position = Vector2(0, -15.5)
+position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_xlq4p")
 
 [node name="HurtboxComponent" parent="." index="3"]

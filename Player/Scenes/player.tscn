@@ -11,41 +11,18 @@ script = ExtResource("1_hjqw4")
 [node name="CrabManager" type="Node2D" parent="."]
 
 [node name="CrabEntity" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(-21, 0)
-collision_layer = 6
-collision_mask = 7
-
-[node name="CrabEntity2" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(21, 0)
-collision_layer = 6
-collision_mask = 7
-
-[node name="CrabEntity3" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(10, -21)
-collision_layer = 6
-collision_mask = 7
-
-[node name="CrabEntity4" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(-16, -21)
-collision_layer = 6
-collision_mask = 7
-
-[node name="CrabEntity5" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(-13, 22)
-collision_layer = 6
-collision_mask = 7
-
-[node name="CrabEntity6" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(16, 21)
-collision_layer = 6
-collision_mask = 7
-
-[node name="RallyPointCrabEntity" parent="." instance=ExtResource("4_44bsy")]
-collision_layer = 6
-collision_mask = 7
 is_rally = true
 
-[node name="Camera2D" type="Camera2D" parent="RallyPointCrabEntity"]
+[node name="CrabEntity2" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(-21, 0)
+
+[node name="CrabEntity3" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(0, -23)
+
+[node name="CrabEntity4" parent="CrabManager" instance=ExtResource("4_44bsy")]
+position = Vector2(21, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 
 [node name="Crosshair" type="Sprite2D" parent="."]
@@ -68,17 +45,20 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="PlayerUI/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("5_ugxei")
 stretch_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "0"

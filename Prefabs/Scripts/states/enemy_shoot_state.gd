@@ -18,7 +18,7 @@ func _ready() -> void:
 func process_physics(delta: float) -> State:
 	super(delta)
 	
-	if entity.targetting_component.targeted_crab.visible:
+	if entity.targetting_component.targeted_crab != null:
 		if !cooldown:
 			var inst = projectile.instantiate()
 			inst.global_rotation = projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position).angle() + PI/2.0

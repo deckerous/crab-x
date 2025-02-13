@@ -52,6 +52,7 @@ func _damaged(hitbox: HitboxComponent) -> void:
 		self.hide()
 		self.process_mode = Node.PROCESS_MODE_DISABLED
 		entity_died.emit()
+		queue_free()
 
 func _update_health_bar() -> void:
 	if !health_bar_visible: return
