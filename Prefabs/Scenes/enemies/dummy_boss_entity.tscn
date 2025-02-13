@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=3 uid="uid://bxvbahpbrkyqk"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_oel71"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/dummy_boss_entity.gd" id="2_e6igx"]
+[ext_resource type="Texture2D" uid="uid://bxisk6gv0j44t" path="res://Assets/Enemies/png/dummy-boss.png" id="2_fac2m"]
+[ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_mo7y7"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_telegraphed_attack.gd" id="4_h6q38"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/dummy_boss_idle_state.gd" id="5_0b1as"]
+[ext_resource type="PackedScene" uid="uid://e2nxbb0gylle" path="res://Prefabs/Scenes/misc/telegraph_marker.tscn" id="5_6sbrw"]
+[ext_resource type="PackedScene" uid="uid://d323lm81ml0fd" path="res://Prefabs/Scenes/enemies/enemy_grenade_entity.tscn" id="6_yv3h1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvk0v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fac2m")
+}],
+"loop": true,
+"name": &"aggro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fac2m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wfjl"]
+radius = 5.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pbnl7"]
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mgbpj"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awg1f"]
+radius = 332.122
+
+[node name="DummyBossEntity" instance=ExtResource("1_oel71")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_e6igx")
+max_hp = 200.0
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_dvk0v")
+animation = &"idle"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4wfjl")
+disabled = true
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 8
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pbnl7")
+debug_color = Color(0.829677, 0.393815, 0.000736786, 0.42)
+
+[node name="HurtboxComponent" parent="." index="3"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -32)
+shape = SubResource("CapsuleShape2D_mgbpj")
+debug_color = Color(0.913965, 0.234011, 0.447263, 0.42)
+
+[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_mo7y7")]
+
+[node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
+shape = SubResource("CircleShape2D_awg1f")
+
+[node name="RayCast2D" parent="TargettingComponent" index="1"]
+hit_from_inside = true
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("telegraph_attack")]
+script = ExtResource("5_0b1as")
+telegraph_attack = NodePath("../TelegraphedAttack")
+animation_name = "idle"
+
+[node name="TelegraphedAttack" type="Node2D" parent="StateMachine" index="1"]
+script = ExtResource("4_h6q38")
+telegraph_marker = ExtResource("5_6sbrw")
+telegraph_projectile = ExtResource("6_yv3h1")
+animation_name = "aggro"
+
+[node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/TelegraphedAttack" index="0"]
+position = Vector2(0, -32)
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="1"]
+wait_time = 2.0
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -51.0
+offset_top = -71.0
+offset_right = 969.0
+offset_bottom = -41.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HealthBar" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.176419, 0.176419, 0.176419, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_constants/line_separation = 85
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Dummy Mk II[/center]"
+fit_content = true
+scroll_active = false
+
+[editable path="TargettingComponent"]
