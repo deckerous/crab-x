@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://baipme2ijruby"]
+[gd_scene load_steps=11 format=4 uid="uid://baipme2ijruby"]
 
 [ext_resource type="Texture2D" uid="uid://dcxlpcuvk6qn8" path="res://Assets/Misc/png/scmovement.png" id="1_6s0sa"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="1_yhaok"]
@@ -8,12 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="4_x5nk7"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="6_rxkwa"]
 [ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="7_tk4ar"]
+[ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="9_no833"]
+[ext_resource type="Script" path="res://Levels/Tutorial/temp.gd" id="10_ievap"]
 
 [node name="Tutorial" type="Node2D"]
 
 [node name="schmovement" type="Sprite2D" parent="."]
+visible = false
 z_index = 1
-position = Vector2(87, 361)
+position = Vector2(87, 359)
 texture = ExtResource("1_6s0sa")
 
 [node name="Tutorial1" type="Node2D" parent="."]
@@ -95,8 +98,21 @@ position = Vector2(240, 167)
 [node name="SeagullEntity" parent="Enemies" instance=ExtResource("7_tk4ar")]
 position = Vector2(162, -107)
 
+[node name="DialogueHandler" parent="." instance=ExtResource("9_no833")]
+position = Vector2(0, 188)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 236.0
+offset_top = 346.0
+offset_right = 392.0
+offset_bottom = 377.0
+scale = Vector2(0.5, 0.5)
+text = "TRIGGER TUTORIAL"
+script = ExtResource("10_ievap")
+
 [connection signal="give_loot" from="Loot/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Loot/TweasureChest2" to="Player" method="handle_loot"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/SeagullEntity" to="Player" method="handle_entity_death"]
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

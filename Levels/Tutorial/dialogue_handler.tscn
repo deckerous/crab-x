@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://cob367saorgaw"]
+
+[ext_resource type="Texture2D" uid="uid://bory6el8j7t2n" path="res://Assets/Crabs/png/general-crusty-shawn.png" id="1_imceb"]
+[ext_resource type="Script" path="res://Levels/Tutorial/Scripts/dialogue_handler.gd" id="1_yu8nt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xp3c"]
+size = Vector2(341, 198)
+
+[node name="DialogueHandler" type="Node2D"]
+script = ExtResource("1_yu8nt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue Box" type="Node2D" parent="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Dialogue Box"]
+offset_left = 43.0
+offset_top = 125.0
+offset_right = 317.0
+offset_bottom = 177.0
+color = Color(0.236859, 0.231407, 0.243123, 0.501961)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Dialogue Box"]
+offset_left = 46.0
+offset_top = 127.0
+offset_right = 315.0
+offset_bottom = 174.0
+color = Color(1, 1, 1, 0.501961)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Dialogue Box"]
+offset_left = 49.0
+offset_top = 129.0
+offset_right = 575.0
+offset_bottom = 215.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!"
+
+[node name="NextArrow" type="Polygon2D" parent="CanvasLayer/Dialogue Box"]
+polygon = PackedVector2Array(309, 172, 305, 166, 313, 166)
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Area2D"]
+position = Vector2(160.5, 89)
+shape = SubResource("RectangleShape2D_8xp3c")
+disabled = true
+
+[node name="MyGoatGeneralCrustyShawn" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(21, 153)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_imceb")
+
+[connection signal="input_event" from="CanvasLayer/Area2D" to="." method="_on_area_2d_input_event"]
