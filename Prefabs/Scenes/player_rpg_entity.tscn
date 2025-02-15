@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://clwmvhbjdrpld"]
+[gd_scene load_steps=10 format=3 uid="uid://clwmvhbjdrpld"]
 
 [ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_5g18h"]
 [ext_resource type="Texture2D" uid="uid://bcydbiwnwj5li" path="res://Assets/Guns/png/rpg-rocket.png" id="2_dovka"]
+[ext_resource type="Texture2D" uid="uid://bodmews1bolnw" path="res://Assets/Misc/png/circle.png" id="3_0exgp"]
+[ext_resource type="PackedScene" uid="uid://cp4pc7saf6sk4" path="res://Prefabs/Scenes/bullets/explosion.tscn" id="3_2jnjs"]
+[ext_resource type="Script" path="res://Prefabs/Scenes/projectile_explosion_destroy_state.gd" id="3_xrpw5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tsgsy"]
 animations = [{
@@ -19,32 +22,45 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nttw"]
-size = Vector2(2, 13)
+[sub_resource type="Curve" id="Curve_m6krq"]
+max_value = 1.25
+_data = [Vector2(0, 0.739072), 0.0, 0.0, 0, 0, Vector2(1, 1.25), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ksj4"]
-size = Vector2(2, 13)
+[sub_resource type="Gradient" id="Gradient_vcond"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.103275, 0.372796, 0.879093, 1)
+colors = PackedColorArray(0.858824, 0.819608, 0.580392, 1, 0.968627, 0.462745, 0.133333, 1, 0.247059, 0.156863, 0.196078, 1, 0.247059, 0.156863, 0.196078, 0.717647, 0.247059, 0.156863, 0.196078, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nttw"]
+size = Vector2(4, 13)
 
 [node name="PlayerRPGEntity" instance=ExtResource("1_5g18h")]
+collision_mask = 3
 speed = 2.0
+collide_with_walls = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_tsgsy")
 animation = &"airborne"
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Animations" index="0"]
+position = Vector2(0, 7)
+amount = 10
+lifetime = 0.7
+lifetime_randomness = 0.3
+texture = ExtResource("3_0exgp")
+gravity = Vector2(0, 0)
+angle_max = 45.0
+scale_amount_min = 0.5
+scale_amount_max = 0.7
+scale_amount_curve = SubResource("Curve_m6krq")
+color_ramp = SubResource("Gradient_vcond")
+
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_5nttw")
-
-[node name="HitboxComponent" parent="." index="2"]
-collision_mask = 4
-damage = 7.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
-position = Vector2(0, -6.5)
-shape = SubResource("RectangleShape2D_0ksj4")
-debug_color = Color(0.666667, 0.509804, 0.129412, 0.419608)
 
 [node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Airborne")
@@ -53,4 +69,19 @@ starting_state = NodePath("Airborne")
 animation_name = "airborne"
 
 [node name="Destroy" parent="StateMachine" index="1"]
+script = ExtResource("3_xrpw5")
 animation_name = "destroy"
+
+[node name="Explosion" parent="StateMachine/Destroy" index="0" instance=ExtResource("3_2jnjs")]
+position = Vector2(0, -10)
+
+[node name="HitboxComponent" parent="StateMachine/Destroy/Explosion" index="1"]
+collision_mask = 12
+
+[node name="CollisionShape2D" parent="StateMachine/Destroy/Explosion/HitboxComponent" index="0"]
+visible = false
+
+[node name="HealthBar" parent="." index="5"]
+visible = false
+
+[editable path="StateMachine/Destroy/Explosion"]
