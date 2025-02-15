@@ -39,7 +39,7 @@ radius = 6.08249
 height = 22.3604
 
 [node name="SeagullEntity" instance=ExtResource("1_ust1h")]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 script = ExtResource("2_tggm0")
 max_hp = 15.0

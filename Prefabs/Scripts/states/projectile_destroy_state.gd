@@ -1,3 +1,4 @@
+class_name DestroyState
 extends State
 
 func enter() -> void:
