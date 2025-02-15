@@ -13,15 +13,6 @@ script = ExtResource("1_hjqw4")
 [node name="CrabEntity" parent="CrabManager" instance=ExtResource("4_44bsy")]
 is_rally = true
 
-[node name="CrabEntity2" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(-21, 0)
-
-[node name="CrabEntity3" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(0, -23)
-
-[node name="CrabEntity4" parent="CrabManager" instance=ExtResource("4_44bsy")]
-position = Vector2(21, 0)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 

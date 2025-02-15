@@ -1,7 +1,10 @@
 extends Node2D
 
+@export_group("Crab Movement Speeds")
 @export var rally_point_move_speed : float = 75.0
 @export var crab_moving_speed : float = 75.0
+
+@export_group("Camera Properties")
 @export var crosshair_dist_min : float = 15.0
 @export var crosshair_dist_max : float = 140.0
 @export var camera_mid_point_constant : float = 2.0
@@ -29,8 +32,6 @@ func _ready():
 	# should only take one physics frame.
 	set_physics_process(false)
 	call_deferred("navigation_map_setup")
-	
-	
 
 func navigation_map_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -128,3 +129,11 @@ func handle_entity_death() -> void:
 
 func _game_over() -> void:
 	crosshair.hide()
+
+func add_crabs(num: int) -> void:
+	if num < 2: return
+	
+	for x in num-1:
+		var crab_inst = crab_component.instantiate()
+		crab_inst.global_position = rally_point_crab_entity.global_position
+		crab_manager.add_child(crab_inst)
