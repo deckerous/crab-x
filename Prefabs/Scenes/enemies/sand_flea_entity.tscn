@@ -65,6 +65,7 @@ shape = SubResource("CircleShape2D_l25a6")
 debug_color = Color(0.898222, 0.279074, 0.382132, 0.42)
 
 [node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_su61h")]
+pathfind = true
 
 [node name="NavigationAgent2D" parent="TargettingComponent" index="2"]
 max_speed = 500.0

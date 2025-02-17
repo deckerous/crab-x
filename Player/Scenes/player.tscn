@@ -2,8 +2,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1u7abh3kwaiv"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hjqw4"]
+[ext_resource type="Texture2D" uid="uid://br0tw5dnbcxk" path="res://Assets/UI/crosshair.png" id="3_18x87"]
 [ext_resource type="PackedScene" uid="uid://ch11nk2ii4e54" path="res://Prefabs/Scenes/crab_entity.tscn" id="4_44bsy"]
-[ext_resource type="Texture2D" uid="uid://ba866d5mhxgj7" path="res://Assets/Misc/png/drop-shadow-8x8.png" id="4_x17ct"]
 [ext_resource type="Texture2D" uid="uid://g17fv4dci4b8" path="res://Assets/Misc/png/coin.png" id="5_ugxei"]
 [ext_resource type="PackedScene" uid="uid://bchgounswh1og" path="res://UI/ui.tscn" id="6_upbhe"]
 
@@ -23,7 +23,7 @@ is_rally = true
 position_smoothing_enabled = true
 
 [node name="Crosshair" type="Sprite2D" parent="."]
-texture = ExtResource("4_x17ct")
+texture = ExtResource("3_18x87")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 visible = false
