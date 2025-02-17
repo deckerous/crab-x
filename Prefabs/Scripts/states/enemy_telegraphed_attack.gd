@@ -4,16 +4,18 @@ extends State
 @export_group("Transition States")
 @export var roll_attack: State
 
-@export_group("Telegraphed Projectile Scenes")
+@export_group("Telegraphed Projectile Properties")
 @export var telegraph_marker: PackedScene
 @export var telegraph_projectile: PackedScene
+@export var num_attacks_min: int = 4
+@export var num_attacks_max: int = 8
 
 @export_group("Telegraphed Attack Patterns")
 @export var telegraphed_attack: Curve2D
 
 var telegraphed_attack_points
 var ta_index = 0
-var ta_count = 5
+var ta_count = randi_range(num_attacks_min, num_attacks_max)
 
 @onready var projectile_spawn_position = $ProjectileSpawnPosition
 @onready var cooldown_timer = $CooldownTimer
@@ -31,7 +33,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	super()
-	ta_count = 5
+	ta_count = randi_range(num_attacks_min, num_attacks_max)
 
 func process_physics(delta: float) -> State:
 	super(delta)
@@ -41,6 +43,7 @@ func process_physics(delta: float) -> State:
 	
 	# For when no attack pattern
 	if entity.targetting_component.targeted_crab != null:
+		
 		if !cooldown and !telegraphed_attack:
 			var marker_inst = telegraph_marker.instantiate()
 			get_tree().root.add_child(marker_inst)
@@ -62,7 +65,6 @@ func process_physics(delta: float) -> State:
 				
 				var point = telegraphed_attack_points[ta_index]
 				if int(roundf(point.y)) % 10 == 0:
-					print(point)
 					var marker_inst = telegraph_marker.instantiate()
 					get_tree().root.add_child(marker_inst)
 					marker_inst.global_position = entity.targetting_component.targeted_crab.global_position + point

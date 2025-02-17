@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ba82s08ina6nr"]
+[gd_scene load_steps=22 format=3 uid="uid://ba82s08ina6nr"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_llv68"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/breached_whale_entity.gd" id="2_cv6ka"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_telegraphed_attack.gd" id="6_ixdt4"]
 [ext_resource type="PackedScene" uid="uid://e2nxbb0gylle" path="res://Prefabs/Scenes/misc/telegraph_marker.tscn" id="8_47jfs"]
 [ext_resource type="PackedScene" uid="uid://bwf33aiqylh8w" path="res://Prefabs/Scenes/enemies/mortar_entity.tscn" id="9_imovr"]
+[ext_resource type="Curve2D" uid="uid://jqstn7mmcx3y" path="res://Prefabs/Resources/Attack Patterns/straight_line_curve.tres" id="10_dhuo3"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/roll_attack_state.gd" id="11_j1jvj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sf1ir"]
@@ -74,7 +75,7 @@ radius = 26.0
 height = 104.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xnhw"]
-radius = 248.652
+radius = 448.01
 
 [node name="BreachedWhaleEntity" instance=ExtResource("1_llv68")]
 collision_layer = 2
@@ -142,7 +143,6 @@ shape = SubResource("CapsuleShape2D_uhtvo")
 debug_color = Color(0.919403, 0.247321, 0.3578, 0.42)
 
 [node name="TargettingComponent" parent="." index="6" instance=ExtResource("4_nhe0t")]
-position = Vector2(0, 98)
 
 [node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
 shape = SubResource("CircleShape2D_3xnhw")
@@ -155,10 +155,12 @@ script = ExtResource("5_kcgaq")
 telegraph_attack = NodePath("../TelegraphedAttack")
 animation_name = "idle"
 
-[node name="TelegraphedAttack" type="Node2D" parent="StateMachine" index="1"]
+[node name="TelegraphedAttack" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("roll_attack")]
 script = ExtResource("6_ixdt4")
+roll_attack = NodePath("../RollAttack")
 telegraph_marker = ExtResource("8_47jfs")
 telegraph_projectile = ExtResource("9_imovr")
+telegraphed_attack = ExtResource("10_dhuo3")
 
 [node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/TelegraphedAttack" index="0"]
 position = Vector2(33, -146)
@@ -169,8 +171,11 @@ wait_time = 1.5
 [node name="TelegraphBufferTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="2"]
 wait_time = 0.1
 
-[node name="RollAttack" type="Node2D" parent="StateMachine" index="2"]
+[node name="RollAttack" type="Node2D" parent="StateMachine" index="2" node_paths=PackedStringArray("telegraphed_attack")]
 script = ExtResource("11_j1jvj")
+telegraphed_attack = NodePath("../TelegraphedAttack")
+
+[node name="RollTimer" type="Timer" parent="StateMachine/RollAttack" index="0"]
 
 [node name="HealthBar" parent="." index="8"]
 visible = true
