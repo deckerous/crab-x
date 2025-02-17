@@ -45,7 +45,6 @@ script = ExtResource("2_tggm0")
 max_hp = 15.0
 
 [node name="Animations" parent="." index="0"]
-position = Vector2(-1.5, -10)
 sprite_frames = SubResource("SpriteFrames_w3y7q")
 animation = &"aggro"
 
@@ -82,6 +81,13 @@ starting_state = NodePath("Wander")
 script = ExtResource("3_vg107")
 aggro = NodePath("../Aggro")
 animation_name = "wander"
+
+[node name="WanderTimer" type="Timer" parent="StateMachine/Wander" index="0"]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="StateMachine/Wander" index="1"]
+wait_time = 3.0
+one_shot = true
 
 [node name="Aggro" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("wander")]
 script = ExtResource("4_xlgp7")

@@ -3,6 +3,9 @@ extends Node2D
 @onready var player_detection_area = $PlayerDetectionArea
 @onready var collision_shape_2d = $PlayerDetectionArea/CollisionShape2D
 @onready var ray_cast_2d = $RayCast2D
+var navigation_agent_2d
+
+@onready var original_position = global_position
 
 var targeted_crab: CrabEntity = null
 
@@ -11,6 +14,8 @@ var entities_detected: Array[Node2D]
 func _ready() -> void:
 	player_detection_area.body_entered.connect(_get_visible_bodies_on_enter)
 	player_detection_area.body_exited.connect(_get_visible_bodies_on_exit)
+	
+	navigation_agent_2d = find_child("NavigationAgent2D")
 
 func _get_visible_bodies_on_enter(body: Node2D) -> void:
 	if body is CrabEntity and body.visible:
@@ -23,9 +28,13 @@ func _get_visible_bodies_on_exit(body: Node2D) -> void:
 func _physics_process(delta: float):
 	var distance_to_target = 0
 	if targeted_crab != null:
-		distance_to_target = ray_cast_2d.global_position.distance_to(targeted_crab.global_position)
+		distance_to_target = global_position.distance_to(targeted_crab.global_position)
 		if distance_to_target > collision_shape_2d.shape.radius:
 			targeted_crab = null
+			if navigation_agent_2d: navigation_agent_2d.target_position = original_position
+		else:
+			if navigation_agent_2d and navigation_agent_2d.target_position != targeted_crab.global_position:
+				navigation_agent_2d.target_position = targeted_crab.global_position
 	
 	if targeted_crab == null:
 		find_target()
@@ -44,3 +53,4 @@ func find_target() -> void:
 				# Check if the enemy can see this crab
 				if collider and collider is CrabEntity:
 					targeted_crab = collider
+					if navigation_agent_2d: navigation_agent_2d.target_position = collider.global_position

@@ -18,8 +18,6 @@ func _ready() -> void:
 func process_physics(delta: float) -> State:
 	super(delta)
 	
-	print(entity.targetting_component.targeted_crab)
-	
 	if entity.targetting_component.targeted_crab != null:
 		if !cooldown:
 			var inst = projectile.instantiate()
