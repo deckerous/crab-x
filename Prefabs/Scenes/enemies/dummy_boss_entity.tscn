@@ -51,7 +51,6 @@ max_hp = 200.0
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_dvk0v")
-animation = &"idle"
 
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -5)
@@ -106,6 +105,7 @@ position = Vector2(0, -32)
 wait_time = 2.0
 
 [node name="HealthBar" parent="." index="6"]
+visible = true
 offset_left = -51.0
 offset_top = -71.0
 offset_right = 969.0

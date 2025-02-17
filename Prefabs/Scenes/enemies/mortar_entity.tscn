@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwf33aiqylh8w"]
+
+[ext_resource type="PackedScene" uid="uid://d323lm81ml0fd" path="res://Prefabs/Scenes/enemies/enemy_grenade_entity.tscn" id="1_l6ggq"]
+[ext_resource type="Texture2D" uid="uid://w3kvktnemb5l" path="res://Assets/Guns/png/mortar.png" id="2_tpmyv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a7t1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tpmyv")
+}],
+"loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"destroy",
+"speed": 5.0
+}]
+
+[node name="MortarEntity" instance=ExtResource("1_l6ggq")]
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, 10)
+rotation = 0.0
+sprite_frames = SubResource("SpriteFrames_a7t1j")
+
+[node name="HitboxComponent" parent="StateMachine/Destroy/Explosion" index="1"]
+damage = 6.0
+
+[editable path="StateMachine/Destroy/Explosion"]

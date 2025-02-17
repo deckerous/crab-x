@@ -54,9 +54,6 @@ animation_name = "destroy"
 collision_mask = 8
 damage = 5.0
 
-[node name="HealthBar" parent="." index="5"]
-visible = false
-
 [node name="Area2D" type="Area2D" parent="." index="6"]
 collision_layer = 1073741824
 collision_mask = 2147483648
