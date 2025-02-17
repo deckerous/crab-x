@@ -32,6 +32,7 @@ func _ready():
 	# should only take one physics frame.
 	set_physics_process(false)
 	call_deferred("navigation_map_setup")
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func navigation_map_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -59,6 +60,12 @@ func _physics_process(delta):
 		get_tree().quit()
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("fullscreen"):
+		var fs = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+		if fs:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	
 	var crabs = crab_manager.get_children()
 	game_over = crabs.size() == 0
