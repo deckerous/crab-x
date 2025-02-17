@@ -1,0 +1,202 @@
+[gd_scene load_steps=21 format=3 uid="uid://ba82s08ina6nr"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_llv68"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/breached_whale_entity.gd" id="2_cv6ka"]
+[ext_resource type="Texture2D" uid="uid://bmqp6ue10v3n0" path="res://Assets/Enemies/png/breached_whale_disarmed.png" id="2_w4our"]
+[ext_resource type="Texture2D" uid="uid://cf2gs6p6t5bjd" path="res://Assets/Enemies/png/breached_whale_armed.png" id="3_orywi"]
+[ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="4_nhe0t"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/breached_whale_idle_state.gd" id="5_kcgaq"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_telegraphed_attack.gd" id="6_ixdt4"]
+[ext_resource type="PackedScene" uid="uid://e2nxbb0gylle" path="res://Prefabs/Scenes/misc/telegraph_marker.tscn" id="8_47jfs"]
+[ext_resource type="PackedScene" uid="uid://bwf33aiqylh8w" path="res://Prefabs/Scenes/enemies/mortar_entity.tscn" id="9_imovr"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/roll_attack_state.gd" id="11_j1jvj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sf1ir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w4our")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w4our")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_orywi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w4our")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73h0r"]
+radius = 27.0
+height = 140.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owejo"]
+radius = 12.9864
+height = 62.5448
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckx3n"]
+radius = 10.1692
+height = 56.5576
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1x3o3"]
+radius = 31.0
+height = 140.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xhqfq"]
+radius = 22.355
+height = 72.2736
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7aq6"]
+radius = 12.0324
+height = 62.7566
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qk6gc"]
+radius = 36.0
+height = 152.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhtvo"]
+radius = 26.0
+height = 104.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xnhw"]
+radius = 248.652
+
+[node name="BreachedWhaleEntity" instance=ExtResource("1_llv68")]
+collision_layer = 2
+script = ExtResource("2_cv6ka")
+max_hp = 500.0
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -54)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_sf1ir")
+animation = &"idle"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(18, -32)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_73h0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(-61, -43)
+rotation = -0.349066
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_owejo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-64, -85)
+rotation = 1.69297
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_ckx3n")
+
+[node name="HitboxComponent" parent="." index="4"]
+collision_mask = 8
+damage = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(23, -32)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1x3o3")
+debug_color = Color(0.781102, 0.434775, 0.09098, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" index="1"]
+position = Vector2(-57, -43)
+rotation = -0.349066
+shape = SubResource("CapsuleShape2D_xhqfq")
+debug_color = Color(0.781102, 0.434775, 0.09098, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="HitboxComponent" index="2"]
+position = Vector2(-64, -86)
+rotation = 1.69297
+shape = SubResource("CapsuleShape2D_y7aq6")
+debug_color = Color(0.781102, 0.434775, 0.09098, 0.42)
+
+[node name="HurtboxComponent" parent="." index="5"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(21, -32)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qk6gc")
+debug_color = Color(0.919403, 0.247321, 0.3578, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" index="1"]
+position = Vector2(-58, -57)
+rotation = -0.349066
+shape = SubResource("CapsuleShape2D_uhtvo")
+debug_color = Color(0.919403, 0.247321, 0.3578, 0.42)
+
+[node name="TargettingComponent" parent="." index="6" instance=ExtResource("4_nhe0t")]
+position = Vector2(0, 98)
+
+[node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
+shape = SubResource("CircleShape2D_3xnhw")
+
+[node name="StateMachine" parent="." index="7" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("telegraph_attack")]
+script = ExtResource("5_kcgaq")
+telegraph_attack = NodePath("../TelegraphedAttack")
+animation_name = "idle"
+
+[node name="TelegraphedAttack" type="Node2D" parent="StateMachine" index="1"]
+script = ExtResource("6_ixdt4")
+telegraph_marker = ExtResource("8_47jfs")
+telegraph_projectile = ExtResource("9_imovr")
+
+[node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/TelegraphedAttack" index="0"]
+position = Vector2(33, -146)
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="1"]
+wait_time = 1.5
+
+[node name="TelegraphBufferTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="2"]
+wait_time = 0.1
+
+[node name="RollAttack" type="Node2D" parent="StateMachine" index="2"]
+script = ExtResource("11_j1jvj")
+
+[node name="HealthBar" parent="." index="8"]
+visible = true
+offset_left = -88.0
+offset_top = 8.0
+offset_right = 1672.0
+offset_bottom = 35.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HealthBar" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.176419, 0.176419, 0.176419, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_constants/line_separation = 85
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Breached Whale[/center]"
+fit_content = true
+scroll_active = false
+
+[editable path="TargettingComponent"]
