@@ -7,8 +7,9 @@ signal game_started
 var total_coins = 0
 var crabs = 0  
 var equipped_item = "Empty"
-var equipped_weapon = "Sling Shot"
+var equipped_weapon = "Empty"
 var game_score = 0
+var is_paused = false # Keep track of pause state
 
 @onready var during_game_screen = $during_game_screen
 @onready var end_of_game_screen = $end_of_game_screen
@@ -47,6 +48,8 @@ func update_during_game_ui():
 	item_label.text = equipped_item
 	weapon_label.text = equipped_weapon
 
+
+
 func _on_game_over():
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
@@ -61,15 +64,15 @@ func _on_restart_button_pressed():
 	toggle_pause_menu() # Close the pause menu
 
 func _on_quit_button_pressed():
-	pass
-	# TODO: Implement main menu to return to
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 	# TODO: Save progress as you leave?
 
 func toggle_pause_menu():
-	pause_menu_screen.visible = not pause_menu_screen.visible # toggle to opposite value
-	pause_background.visible = pause_menu_screen.visible
-	get_tree().set_pause(pause_menu_screen.visible) # change the pause state based on visibility
-	get_tree().paused = pause_menu_screen.visible
+	get_tree().paused = not get_tree().paused
+	pause_menu_screen.visible = get_tree().paused
+	pause_background.visible = get_tree().paused
+	
 
 func _on_settings_button_pressed():
 	pass

@@ -17,6 +17,10 @@ extends Node2D
 
 @onready var coin_count : int = 0
 
+# For UI integration
+var is_paused = false # Keep track of pause state
+@onready var ui_instance = $ui
+
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
 
@@ -48,7 +52,12 @@ func _process(delta):
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+		toggle_pause() #for UI integration
+		# get_tree().quit()
+	
+	if is_paused: #for UI integration
+		return
+	
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	
@@ -81,3 +90,11 @@ func _physics_process(delta):
 	rally_point.global_rotation = rally_point.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 	rally_point.velocity = move_dir * rally_point_move_speed
 	rally_point.move_and_slide()
+
+# For UI integration
+func toggle_pause():
+	if ui_instance:
+		ui_instance.toggle_pause_menu()
+		is_paused = not is_paused
+	else:
+		print("Error: ui is null")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1u7abh3kwaiv"]
+[gd_scene load_steps=9 format=3 uid="uid://c1u7abh3kwaiv"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hjqw4"]
 [ext_resource type="Script" path="res://Player/Scripts/placeholder_crab.gd" id="2_hgpx8"]
 [ext_resource type="Texture2D" uid="uid://egsqku8cqx1j" path="res://Assets/Crabs/png/crab-16x16.png" id="3_j4mev"]
 [ext_resource type="Texture2D" uid="uid://ba866d5mhxgj7" path="res://Assets/Misc/png/drop-shadow-8x8.png" id="4_x17ct"]
 [ext_resource type="Texture2D" uid="uid://g17fv4dci4b8" path="res://Assets/Misc/png/coin.png" id="5_ugxei"]
+[ext_resource type="PackedScene" uid="uid://bchgounswh1og" path="res://UI/ui.tscn" id="6_upbhe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1m4ya"]
 radius = 6.08276
@@ -12,10 +13,13 @@ radius = 6.08276
 [sub_resource type="CircleShape2D" id="CircleShape2D_syqll"]
 radius = 6.08
 
-[node name="Player" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_hjqw4")
 
+[node name="ui" parent="." instance=ExtResource("6_upbhe")]
+
 [node name="CrabManager" type="Node2D" parent="."]
+process_mode = 1
 
 [node name="PlaceholderCrab" type="CharacterBody2D" parent="CrabManager"]
 position = Vector2(24, 0)
@@ -125,6 +129,7 @@ position_smoothing_enabled = true
 texture = ExtResource("4_x17ct")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="PlayerUI"]
 layout_mode = 3

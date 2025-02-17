@@ -11,15 +11,19 @@ func _ready():
 	pass
 
 func _on_new_game_button_pressed():
-	get_tree().change_scene_to_file("res://ThEgAmE.tscn") # TODO: replace with actual game scene
+	print("New game button pressed")
+	get_tree().change_scene_to_file("res://Player/Scenes/navigation_test.tscn") # TODO: replace with actual game scene
 
 func _on_continue_button_pressed():
+	print("Continue button pressed")
 	# TODO: implement save system
 	pass
 
 func _on_settings_button_pressed():
+	print("Settings button pressed")
 	# TODO: implement settings screen
 	pass
 
 func _on_quit_button_pressed():
+	print("Game was quit")
 	get_tree().quit()
