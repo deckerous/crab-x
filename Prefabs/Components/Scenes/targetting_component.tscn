@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddxlrro2x7yst"]
+
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/targetting_component.gd" id="1_q4tbg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_48ogt"]
+radius = 160.0
+
+[node name="TargettingComponent" type="Node2D"]
+script = ExtResource("1_q4tbg")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_48ogt")
+debug_color = Color(0.541258, 0.561021, 0.245643, 0.0980392)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 15.0
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 1, 0, 1)

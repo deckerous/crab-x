@@ -1,38 +1,60 @@
-class_name EntityBase
+class_name Entity
+extends CharacterBody2D
 
-extends Node2D
-
-@export var hp: int = 10
+@export_group("Entity stats")
+@export var max_hp: float = 10
+@onready var hp: float = max_hp
 @export var armor: int = 0
-@export var damage: int = 0
-@export var vulnerable: bool = true
+@export var health_bar_visible: bool = true
 
-@onready var collision = $CharacterBody2D/CollisionBox
+@onready var animations = $Animations
+@onready var collision_box = $CollisionBox
+@onready var hitbox_component = $HitboxComponent as HitboxComponent
+@onready var hurtbox_component = $HurtboxComponent
+@onready var state_machine = $StateMachine
+@onready var health_bar = $HealthBar
+var health_bar_initial_pos = Vector2.ZERO
 
-var current_velocity: Vector2
-
-signal change_velocity(velocity)
+signal entity_died
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_meta("CreatedEntity", true)
-	collision.set_meta("damage", damage)
-	current_velocity = Vector2(0, 0)
+	# State machine initialization
+	state_machine.init(self, animations)
+	
+	hurtbox_component.hurt.connect(_damaged)
+	health_bar.visible = false
+	
+	_update_health_bar()
+	health_bar_initial_pos = health_bar.position
+	health_bar.global_position = global_position + health_bar_initial_pos
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _unhandled_input(event: InputEvent) -> void:
+	state_machine.process_input(event) # state machine input update
+
 func _physics_process(delta: float) -> void:
-	change_velocity.emit(current_velocity)
+	state_machine.process_physics(delta) # state machine physics frame update
 	
-func summon_projectile(proj: Node2D, pos: Vector2) -> void:
-	add_child(proj)
-	proj.position = position + pos
-	
-func set_velocity(vel: Vector2) -> void:
-	current_velocity = vel
+	health_bar.global_position = lerp(health_bar.global_position, global_position + health_bar_initial_pos, 0.25)
 
-func _hit_by_projectile(proj: CollisionObject2D) -> void:
-	if !vulnerable:
-		return
+func _process(delta):
+	state_machine.process_frame(delta) # state machine physics frame update
+
+func summon_projectile(proj: Node2D, pos: Vector2) -> void:
+	get_tree().root.add_child(proj)
+	proj.global_position = pos
+
+func _damaged(hitbox: HitboxComponent) -> void:
+	hp = hp - max(0, hitbox.damage - armor)
+	_update_health_bar()
 	
-	var damage = proj.get_meta("damage")
-	hp = hp - max(0, damage - armor)
+	if hp <= 0:
+		self.hide()
+		self.process_mode = Node.PROCESS_MODE_DISABLED
+		entity_died.emit()
+		queue_free()
+
+func _update_health_bar() -> void:
+	if !health_bar_visible: return
+	if hp < max_hp: health_bar.visible = true
+	health_bar.value = (hp / max_hp) * health_bar.max_value

@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://bme5jecl7oi7e"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_vk1ki"]
+[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="3_igob8"]
+[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="4_p2bv5"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="5_hgjni"]
+[ext_resource type="Script" path="res://Prefabs/Components/Scripts/hurtbox_component.gd" id="6_atyba"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="7_ntd6r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_euvyh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_igob8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p2bv5")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mp23t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnx8d"]
+bg_color = Color(1, 0, 0.266667, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.619608, 0.156863, 0.207843, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lufw2"]
+bg_color = Color(0.388235, 0.780392, 0.301961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.243137, 0.537255, 0.282353, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_vk1ki")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_euvyh")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mp23t")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_hgjni")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("6_atyba")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("7_ntd6r")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+top_level = true
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 190.0
+offset_bottom = 12.0
+scale = Vector2(0.1, 0.1)
+theme_override_styles/background = SubResource("StyleBoxFlat_fnx8d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lufw2")
+value = 50.0
+show_percentage = false
