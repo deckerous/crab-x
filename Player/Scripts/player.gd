@@ -22,6 +22,10 @@ extends Node2D
 
 @onready var crab_component = load("res://Prefabs/Scenes/crab_entity.tscn")
 
+# For UI integration
+var is_paused = false # Keep track of pause state
+@onready var ui_instance = $ui
+
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
 
@@ -56,7 +60,12 @@ func _process(delta):
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+		toggle_pause() #for UI integration
+		# get_tree().quit()
+	
+	if is_paused: #for UI integration
+		return
+	
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	
@@ -133,7 +142,18 @@ func _game_over() -> void:
 func add_crabs(num: int) -> void:
 	if num < 2: return
 	
+
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
 		crab_inst.global_position = rally_point_crab_entity.global_position
 		crab_manager.add_child(crab_inst)
+
+
+# For UI integration
+func toggle_pause():
+	if ui_instance:
+		ui_instance.toggle_pause_menu()
+		is_paused = not is_paused
+	else:
+		print("Error: ui is null")
+
