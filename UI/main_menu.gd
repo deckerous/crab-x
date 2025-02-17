@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 
-@onready var background = $main_menu_scene_background
+@onready var background = $main_menu_screen_background
 @onready var new_game_button = $new_game_button
 @onready var continue_button = $continue_button
 @onready var settings_button = $settings_button
@@ -12,7 +12,7 @@ func _ready():
 
 func _on_new_game_button_pressed():
 	print("New game button pressed")
-	get_tree().change_scene_to_file("res://Player/Scenes/navigation_test.tscn") # TODO: replace with actual game scene
+	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial.tscn") # TODO: replace with actual game scene
 
 func _on_continue_button_pressed():
 	print("Continue button pressed")

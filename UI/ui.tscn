@@ -259,7 +259,6 @@ vertical_alignment = 1
 uppercase = true
 
 [connection signal="pressed" from="end_of_game_screen/restart_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="pause_menu/pause_screen/resume_button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="pause_menu/pause_screen/settings_button" to="." method="_on_settings_button_pressed"]

@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 class_name ui
-signal game_started
 
 # TODO: Connect to actual values
 var total_coins = 0
@@ -48,12 +47,10 @@ func update_during_game_ui():
 	item_label.text = equipped_item
 	weapon_label.text = equipped_weapon
 
-
-
 func _on_game_over():
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
-	$end_of_game_screen/end_of_game_score_display/score_output.text = "%d" % game_score
+	# $end_of_game_screen/end_of_game_score_display/score_output.text = "%d" % game_score
 	# TODO: Implement way to quit	
 
 func _on_resume_button_pressed():
@@ -61,7 +58,6 @@ func _on_resume_button_pressed():
 
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()  # Restart the game
-	toggle_pause_menu() # Close the pause menu
 
 func _on_quit_button_pressed():
 	get_tree().paused = false
@@ -70,6 +66,7 @@ func _on_quit_button_pressed():
 
 func toggle_pause_menu():
 	get_tree().paused = not get_tree().paused
+	during_game_screen.visible = not during_game_screen.visible
 	pause_menu_screen.visible = get_tree().paused
 	pause_background.visible = get_tree().paused
 	

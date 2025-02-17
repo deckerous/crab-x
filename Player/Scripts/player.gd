@@ -137,6 +137,7 @@ func handle_entity_death() -> void:
 	rich_text_label.text = str(coin_count)
 
 func _game_over() -> void:
+	ui_instance._on_game_over()
 	crosshair.hide()
 
 func add_crabs(num: int) -> void:
@@ -156,4 +157,3 @@ func toggle_pause():
 		is_paused = not is_paused
 	else:
 		print("Error: ui is null")
-
