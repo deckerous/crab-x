@@ -23,7 +23,8 @@ func _ready() -> void:
 	state_machine.init(self, animations)
 	
 	hurtbox_component.hurt.connect(_damaged)
-	health_bar.visible = health_bar_visible
+	health_bar.visible = false
+	
 	_update_health_bar()
 	health_bar_initial_pos = health_bar.position
 	health_bar.global_position = global_position + health_bar_initial_pos
@@ -48,8 +49,6 @@ func _damaged(hitbox: HitboxComponent) -> void:
 	_update_health_bar()
 	
 	if hp <= 0:
-		# TODO: have a proper shutdown procedure, not just queue_free()
-		#queue_free()
 		self.hide()
 		self.process_mode = Node.PROCESS_MODE_DISABLED
 		entity_died.emit()
@@ -57,4 +56,5 @@ func _damaged(hitbox: HitboxComponent) -> void:
 
 func _update_health_bar() -> void:
 	if !health_bar_visible: return
+	if hp < max_hp: health_bar.visible = true
 	health_bar.value = (hp / max_hp) * health_bar.max_value
