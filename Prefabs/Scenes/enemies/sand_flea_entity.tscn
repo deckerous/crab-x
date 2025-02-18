@@ -69,6 +69,7 @@ pathfind = true
 
 [node name="NavigationAgent2D" parent="TargettingComponent" index="2"]
 max_speed = 500.0
+debug_enabled = false
 
 [node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Wander")

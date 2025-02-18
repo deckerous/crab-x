@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b4aug6xgw82lc"]
+[gd_scene load_steps=15 format=4 uid="uid://b4aug6xgw82lc"]
 
 [ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_1b6df"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="2_ayxjy"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ba82s08ina6nr" path="res://Prefabs/Scenes/enemies/breached_whale_entity.tscn" id="8_tis8k"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="12_7sqb3"]
 [ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="13_2ermq"]
+[ext_resource type="PackedScene" uid="uid://by0x7801225v6" path="res://Prefabs/Scenes/enemies/porcupine_fish_entity.tscn" id="14_i00p3"]
 
 [node name="Level" instance=ExtResource("1_1b6df")]
 starting_crab_count = 3
@@ -229,6 +230,9 @@ visible = false
 
 [node name="ShopItem11" parent="Shop/Shop Interface/VBoxContainer" index="10"]
 visible = false
+
+[node name="PorcupineFishEntity" parent="." index="4" instance=ExtResource("14_i00p3")]
+position = Vector2(1199, -2937)
 
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest3" to="Player" method="handle_loot"]
