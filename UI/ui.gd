@@ -3,10 +3,10 @@ extends CanvasLayer
 class_name ui
 
 # TODO: Connect to actual values
-var total_coins = 0
-var crabs = 0  
-var equipped_item = "Empty"
-var equipped_weapon = "Empty"
+var total_coins = PlayerVariable.num_coins
+var crabs = PlayerVariable.num_crabs 
+var equipped_item = ":)"
+var equipped_weapon = PlayerVariable.cur_weapon
 var game_score = 0
 var is_paused = false # Keep track of pause state
 
@@ -15,7 +15,6 @@ var is_paused = false # Keep track of pause state
 @onready var pause_menu_screen = $pause_menu
 @onready var pause_background = $pause_menu/pause_screen_background
 
-# Get references to individual labels
 @onready var crabs_label = $during_game_screen/crabs_label
 @onready var coins_label = $during_game_screen/coins_label
 @onready var item_label = $during_game_screen/item_label
@@ -23,13 +22,17 @@ var is_paused = false # Keep track of pause state
 
 
 func _ready() -> void:
-	update_during_game_ui() # Initialize the UI
+	update_during_game_ui() 
+
+func _process(delta):
+	update_during_game_ui()
 
 func update_crabs(count: int):
-	crabs = count
+	
 	update_during_game_ui()
 
 func update_coins(coins: int):
+	print("ui coins added")
 	total_coins = coins
 	update_during_game_ui()
 
@@ -42,10 +45,10 @@ func update_weapon(weapon: String):
 	update_during_game_ui()
 
 func update_during_game_ui():
-	crabs_label.text = "%d" % crabs
-	coins_label.text = "%d" % total_coins
-	item_label.text = equipped_item
-	weapon_label.text = equipped_weapon
+	crabs_label.text = "%d" % PlayerVariable.num_crabs
+	coins_label.text = "%d" % PlayerVariable.num_coins
+	item_label.text = PlayerVariable.cur_item
+	weapon_label.text = PlayerVariable.cur_weapon
 
 func _on_game_over():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED

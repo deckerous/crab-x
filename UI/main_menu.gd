@@ -8,7 +8,7 @@ func _ready():
 
 func _on_new_game_button_pressed():
 	print("New game button pressed")
-	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial.tscn") # TODO: replace with actual game scene
+	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn") # TODO: replace with actual game scene
 
 func _on_continue_button_pressed():
 	print("Continue button pressed")
