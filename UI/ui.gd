@@ -48,6 +48,7 @@ func update_during_game_ui():
 	weapon_label.text = equipped_weapon
 
 func _on_game_over():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
 	$end_of_game_screen/end_of_game_score_display/score_label.text = "%d" % game_score
