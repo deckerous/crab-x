@@ -3,10 +3,6 @@ extends CanvasLayer
 class_name ui
 
 # TODO: Connect to actual values
-var total_coins = PlayerVariable.num_coins
-var crabs = PlayerVariable.num_crabs 
-var equipped_item = ":)"
-var equipped_weapon = PlayerVariable.cur_weapon
 var game_score = 0
 var is_paused = false # Keep track of pause state
 
@@ -25,23 +21,6 @@ func _ready() -> void:
 	update_during_game_ui() 
 
 func _process(delta):
-	update_during_game_ui()
-
-func update_crabs(count: int):
-	
-	update_during_game_ui()
-
-func update_coins(coins: int):
-	print("ui coins added")
-	total_coins = coins
-	update_during_game_ui()
-
-func update_item(item: String):
-	equipped_item = item
-	update_during_game_ui()
-
-func update_weapon(weapon: String):
-	equipped_weapon = weapon
 	update_during_game_ui()
 
 func update_during_game_ui():
