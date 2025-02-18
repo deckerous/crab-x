@@ -15,7 +15,7 @@ func _enter(coins_start) -> void:
 	coins_text.text = ": " + str(coins_start)
 	coins = coins_start
 	visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _leave() -> void:
 	shop_closed.emit(coins)

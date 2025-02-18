@@ -118,13 +118,11 @@ scroll_active = false
 scale = Vector2(0.75, 0.75)
 
 [node name="status_bar" type="Sprite2D" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(80, 24)
 scale = Vector2(0.0496667, 0.0499364)
 texture = ExtResource("3_1rnps")
 
 [node name="crabs_label" type="Label" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 anchors_preset = -1
 anchor_left = -0.037
 anchor_top = -0.111
@@ -141,25 +139,21 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="coin_box" type="Sprite2D" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(63, 23)
 scale = Vector2(0.0277002, 0.0304542)
 texture = ExtResource("4_4snfw")
 
 [node name="item_box" type="Sprite2D" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(97, 23)
 scale = Vector2(0.0277002, 0.0304542)
 texture = ExtResource("4_4snfw")
 
 [node name="weapon_box" type="Sprite2D" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(131, 23)
 scale = Vector2(0.0277002, 0.0304542)
 texture = ExtResource("4_4snfw")
 
 [node name="coins_label" type="Label" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 offset_left = 49.0
 offset_top = 15.0
 offset_right = 105.0
@@ -171,7 +165,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="item_label" type="Label" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 offset_left = 83.0
 offset_top = 15.0
 offset_right = 139.0
@@ -183,7 +176,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="weapon_label" type="Label" parent="during_game_screen"]
-modulate = Color(1, 1, 1, 0.305882)
 offset_left = 117.0
 offset_top = 15.0
 offset_right = 173.0

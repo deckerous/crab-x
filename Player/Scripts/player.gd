@@ -18,13 +18,15 @@ extends Node2D
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
-@onready var coin_count : int = 0
-
 @onready var crab_component = load("res://Prefabs/Scenes/crab_entity.tscn")
 
 # For UI integration
 var is_paused = false # Keep track of pause state
 @onready var ui_instance = $ui
+
+@onready var coin_count : int = 0
+@onready var crab_count : int = 0
+@onready var cur_weapon = "unarmed"
 
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
@@ -47,8 +49,9 @@ func navigation_map_setup():
 func _process(delta):
 	# TODO: Temp coin incrementer
 	if Input.is_action_just_pressed("coin_up"):
-		coin_count += 1
-		rich_text_label.text = str(coin_count)
+		#coin_count += 1
+		#rich_text_label.text = str(coin_count)
+		add_coin()
 	
 	# Camera controls
 	if rally_point_crab_entity != null:
@@ -61,12 +64,17 @@ func _process(delta):
 	mouse_pos = get_global_mouse_position()
 
 func _physics_process(delta):
+	PlayerVariable.num_coins = coin_count
+	PlayerVariable.num_crabs = crab_count
+
 	if Input.is_action_just_pressed("exit"):
 		toggle_pause() #for UI integration
 		# get_tree().quit()
 	
 	if is_paused: #for UI integration
 		return
+	var crabs = crab_manager.get_children()
+	crab_count = crabs.size() # Update crab count
 	
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
@@ -76,8 +84,8 @@ func _physics_process(delta):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	
-	var crabs = crab_manager.get_children()
+
+	PlayerVariable.num_crabs = crabs.size()
 	game_over = crabs.size() == 0
 	
 	if !game_over:
@@ -87,6 +95,7 @@ func _physics_process(delta):
 			rally_point_crab_entity.is_rally = true
 		
 		if crabs.size() > 1:
+			crab_count = crabs.size()
 			_update_crab_velocities(crabs)
 		
 		# Crosshair position update
@@ -135,20 +144,20 @@ func handle_loot(array: Array) -> void:
 			"Slingshot":
 				for child in crab_manager.get_children():
 					child.external_state_change("Slingshot")
-          
-				# $RallyPointCrabEntity.external_state_change("Slingshot")
-
+					rally_point_crab_entity.external_state_change("Slingshot")
 			"Sheckle":
-				coin_count += 1
-				rich_text_label.text = str(coin_count)
+				#coin_count += 1
+				#rich_text_label.text = str(coin_count)
+				add_coin()
 			"Glock":
 				for child in crab_manager.get_children():
 					child.external_state_change("Glock")
-				
+
 func handle_entity_death() -> void:
 	# TODO: Replace with more robust loot pools
-	coin_count += 1
-	rich_text_label.text = str(coin_count)
+	#coin_count += 1
+	#rich_text_label.text = str(coin_count)
+	add_coin()
 
 func _game_over() -> void:
 	ui_instance._on_game_over()
@@ -156,17 +165,15 @@ func _game_over() -> void:
 
 func add_crabs(num: int) -> void:
 	if num < 2: return
-	
-
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
 		crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
 		crab_manager.add_child(crab_inst)
-
-
+		PlayerVariable.num_crabs += 1
 
 func _on_shop_shop_closed(coins_left: Variant) -> void:
 	coin_count = coins_left
+	PlayerVariable.num_coins = coins_left
 	rich_text_label.text = str(coin_count)
 
 # For UI integration
@@ -174,3 +181,10 @@ func toggle_pause():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	ui_instance.toggle_pause_menu()
 
+func add_coin():
+	coin_count += 1
+	PlayerVariable.num_coins = coin_count
+	print(coin_count)
+
+func remove_coin():
+	coin_count -=1
