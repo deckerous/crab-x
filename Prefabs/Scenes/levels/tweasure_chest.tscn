@@ -20,8 +20,13 @@ collision_mask = 16
 shape = SubResource("RectangleShape2D_wmefo")
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
-offset_left = -8.0
-offset_top = -19.0
-offset_bottom = -11.0
+visible = false
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 180.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[center]+ Sheckles"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=4 uid="uid://baipme2ijruby"]
+[gd_scene load_steps=14 format=4 uid="uid://baipme2ijruby"]
 
 [ext_resource type="Texture2D" uid="uid://dcxlpcuvk6qn8" path="res://Assets/Misc/png/scmovement.png" id="1_6s0sa"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="1_yhaok"]
 [ext_resource type="TileSet" uid="uid://umjqpxlsqcyd" path="res://Assets/Tilesets/resource/tut_wall_tileset.tres" id="2_lvcvs"]
 [ext_resource type="TileSet" uid="uid://dqfi8euh07tap" path="res://Assets/Tilesets/resource/coral.tres" id="3_prsnt"]
-[ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/tweasure_chest.tscn" id="4_hf533"]
+[ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/levels/tweasure_chest.tscn" id="4_hf533"]
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="4_x5nk7"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="6_rxkwa"]
 [ext_resource type="PackedScene" uid="uid://cxd8cou4q1lxd" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="7_6gaam"]
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="9_no833"]
 [ext_resource type="Script" path="res://Levels/Tutorial/temp.gd" id="10_ievap"]
 [ext_resource type="Script" path="res://Levels/Tutorial/temp2.gd" id="11_b5l4t"]
+[ext_resource type="PackedScene" uid="uid://i0nmn2ypmpak" path="res://Prefabs/Scenes/levels/shop.tscn" id="12_2tl86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvc7q"]
 size = Vector2(369, 20)
@@ -134,6 +135,8 @@ offset_right = 338.0
 offset_bottom = 192.0
 mouse_filter = 2
 color = Color(0, 0.235294, 0.878431, 0.133333)
+
+[node name="Shop" parent="." instance=ExtResource("12_2tl86")]
 
 [connection signal="give_loot" from="Loot/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Loot/TweasureChest2" to="Player" method="handle_loot"]

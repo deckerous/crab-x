@@ -5,13 +5,13 @@ extends Node2D
 @onready var collision_shape = $"CanvasLayer/Area2D/CollisionShape2D"
 @onready var canvas = $CanvasLayer
 
+signal tutorial_closed()
+
 var interactable = false
 var curr_index = 0
 @export var text_array = ['Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!',
 						  'First comes you, then the sand, then the humans, then crabs, then our president, and then [shake rate=25level=10]ME![/shake] So listen to everything I say and you [i]might[/i] make it out alive.',
-						  'Use WASD to move. Aim and click to shoot your guns. Run into chests to collect their loot!',
-						  'Defeat all the enemies on the map to win the map!',
-						  'Make sure not to all die otherwise it is a [shake rate=25level=10]game over[/shake]!']
+						  'Lesson number one, [shake rate=25level=10]prawn[/shake]! Use the WASD keys to move! Now, move it!']
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,12 +37,15 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		text_box.visible_ratio = 0
 		if curr_index >= text_array.size():
 			canvas.visible = false
+			tutorial_closed.emit()
 			get_tree().paused = false
 			return
 		else:
 			text_box.text = text_array[curr_index]
 
 func trigger_visible() -> void:
+	get_tree().paused = true
+	PhysicsServer2D.set_active(true)
 	canvas.visible = true
 
 func tutorial_time(array) -> void:

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="3_j4087"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="4_pxm6p"]
 [ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="5_hef0h"]
-[ext_resource type="PackedScene" uid="uid://bxvbahpbrkyqk" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="6_f0bvb"]
+[ext_resource type="PackedScene" uid="uid://cxd8cou4q1lxd" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="6_f0bvb"]
 
 [node name="ProjectileTest" type="Node2D"]
 

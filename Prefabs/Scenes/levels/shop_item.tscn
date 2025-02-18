@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://f8o65gfojji2"]
+
+[ext_resource type="Script" path="res://Prefabs/Scenes/levels/shop_item.gd" id="1_sh10e"]
+[ext_resource type="Texture2D" uid="uid://dqsq5i5hw4h31" path="res://Assets/Crabs/png/crab-rpg.png" id="2_3nvsl"]
+
+[node name="ShopItem" type="HBoxContainer"]
+script = ExtResource("1_sh10e")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_3nvsl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[right]5 Sheckles  [/right]"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Buy"
+
+[connection signal="pressed" from="Button" to="." method="try_to_purchase"]

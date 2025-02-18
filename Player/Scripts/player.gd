@@ -108,6 +108,7 @@ func _update_crab_velocities(crabs) -> void:
 				crab.move_and_slide()
 
 func handle_loot(array: Array) -> void:
+	print_debug(array)
 	for item in array:
 		match item:
 			"Crab":
@@ -121,6 +122,9 @@ func handle_loot(array: Array) -> void:
 			"Sheckle":
 				coin_count += 1
 				rich_text_label.text = str(coin_count)
+			"Glock":
+				for child in crab_manager.get_children():
+					child.external_state_change("Glock")
 				
 func handle_entity_death() -> void:
 	# TODO: Replace with more robust loot pools
@@ -135,5 +139,10 @@ func add_crabs(num: int) -> void:
 	
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
-		crab_inst.global_position = rally_point_crab_entity.global_position
+		crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
 		crab_manager.add_child(crab_inst)
+
+
+func _on_shop_shop_closed(coins_left: Variant) -> void:
+	coin_count = coins_left
+	rich_text_label.text = str(coin_count)
