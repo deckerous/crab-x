@@ -103,3 +103,8 @@ text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[connection signal="pressed" from="main_menu_screen/new_game_button" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="main_menu_screen/continue_button" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="main_menu_screen/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="main_menu_screen/quit_button" to="." method="_on_quit_button_pressed"]
