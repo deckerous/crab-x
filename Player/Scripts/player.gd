@@ -128,7 +128,7 @@ func handle_loot(array: Array) -> void:
 			"Sheckle":
 				coin_count += 1
 				rich_text_label.text = str(coin_count)
-				
+
 func handle_entity_death() -> void:
 	# TODO: Replace with more robust loot pools
 	coin_count += 1
