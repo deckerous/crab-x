@@ -8,13 +8,24 @@
 [sub_resource type="GDScript" id="GDScript_xfpjr"]
 script/source = "extends CanvasLayer
 
+
+
+func _on_resume_button_pressed() -> void:
+	pass # Replace with function body.
 "
 
 [node name="ui" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_disjy")
 
 [node name="end_of_game_screen" type="Node2D" parent="."]
 visible = false
+
+[node name="pause_screen_background2" type="ColorRect" parent="end_of_game_screen"]
+self_modulate = Color(1, 1, 1, 0.196078)
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.0126459, 0.0126459, 0.0126459, 1)
 
 [node name="restart_button" type="Button" parent="end_of_game_screen"]
 self_modulate = Color(1, 1, 1, 0)
@@ -90,14 +101,30 @@ text = "Score:"
 horizontal_alignment = 1
 uppercase = true
 
+[node name="RichTextLabel" type="RichTextLabel" parent="end_of_game_screen"]
+modulate = Color(0.854622, 0.187628, 0.176296, 1)
+clip_contents = false
+layout_direction = 1
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 256.0
+offset_bottom = 112.0
+bbcode_enabled = true
+text = "[tornado radius=10.0 freq=1.0 connected=1] YOU'VE BEEN COOKED [/tornado]"
+fit_content = true
+scroll_active = false
+
 [node name="during_game_screen" type="Node2D" parent="."]
+scale = Vector2(0.75, 0.75)
 
 [node name="status_bar" type="Sprite2D" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(80, 24)
 scale = Vector2(0.0496667, 0.0499364)
 texture = ExtResource("3_1rnps")
 
 [node name="crabs_label" type="Label" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 anchors_preset = -1
 anchor_left = -0.037
 anchor_top = -0.111
@@ -114,21 +141,25 @@ autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="coin_box" type="Sprite2D" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(63, 23)
 scale = Vector2(0.0277002, 0.0304542)
 texture = ExtResource("4_4snfw")
 
 [node name="item_box" type="Sprite2D" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(97, 23)
 scale = Vector2(0.0277002, 0.0304542)
 texture = ExtResource("4_4snfw")
 
 [node name="weapon_box" type="Sprite2D" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 position = Vector2(131, 23)
 scale = Vector2(0.0277002, 0.0304542)
 texture = ExtResource("4_4snfw")
 
 [node name="coins_label" type="Label" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 offset_left = 49.0
 offset_top = 15.0
 offset_right = 105.0
@@ -140,6 +171,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="item_label" type="Label" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 offset_left = 83.0
 offset_top = 15.0
 offset_right = 139.0
@@ -151,18 +183,22 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="weapon_label" type="Label" parent="during_game_screen"]
+modulate = Color(1, 1, 1, 0.305882)
 offset_left = 117.0
 offset_top = 15.0
 offset_right = 173.0
 offset_bottom = 47.0
 scale = Vector2(0.5, 0.5)
-text = "empty
-"
+text = "empty"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+justification_flags = 131
+text_overrun_behavior = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="pause_menu" type="CanvasLayer" parent="."]
+process_mode = 3
 visible = false
 script = SubResource("GDScript_xfpjr")
 
@@ -242,7 +278,7 @@ vertical_alignment = 1
 uppercase = true
 
 [connection signal="pressed" from="end_of_game_screen/restart_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="pause_menu/pause_screen/resume_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="pause_menu/pause_screen/settings_button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="pause_menu/pause_screen/quit_button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="end_of_game_screen/quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="pause_menu/pause_screen/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="pause_menu/pause_screen/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="pause_menu/pause_screen/quit_button" to="." method="_on_quit_button_pressed"]

@@ -22,6 +22,10 @@ extends Node2D
 
 @onready var crab_component = load("res://Prefabs/Scenes/crab_entity.tscn")
 
+# For UI integration
+var is_paused = false # Keep track of pause state
+@onready var ui_instance = $ui
+
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
 
@@ -32,6 +36,7 @@ func _ready():
 	# should only take one physics frame.
 	set_physics_process(false)
 	call_deferred("navigation_map_setup")
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func navigation_map_setup():
@@ -57,7 +62,12 @@ func _process(delta):
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("exit"):
-		get_tree().quit()
+		toggle_pause() #for UI integration
+		# get_tree().quit()
+	
+	if is_paused: #for UI integration
+		return
+	
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("fullscreen"):
@@ -125,7 +135,9 @@ func handle_loot(array: Array) -> void:
 			"Slingshot":
 				for child in crab_manager.get_children():
 					child.external_state_change("Slingshot")
+          
 				# $RallyPointCrabEntity.external_state_change("Slingshot")
+
 			"Sheckle":
 				coin_count += 1
 				rich_text_label.text = str(coin_count)
@@ -139,17 +151,26 @@ func handle_entity_death() -> void:
 	rich_text_label.text = str(coin_count)
 
 func _game_over() -> void:
+	ui_instance._on_game_over()
 	crosshair.hide()
 
 func add_crabs(num: int) -> void:
 	if num < 2: return
 	
+
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
 		crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
 		crab_manager.add_child(crab_inst)
 
 
+
 func _on_shop_shop_closed(coins_left: Variant) -> void:
 	coin_count = coins_left
 	rich_text_label.text = str(coin_count)
+
+# For UI integration
+func toggle_pause():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	ui_instance.toggle_pause_menu()
+
