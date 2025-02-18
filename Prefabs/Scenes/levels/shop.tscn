@@ -46,6 +46,34 @@ price = 2
 layout_mode = 2
 price = 4
 
+[node name="ShopItem5" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
+[node name="ShopItem6" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
+[node name="ShopItem7" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
+[node name="ShopItem8" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
+[node name="ShopItem9" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
+[node name="ShopItem10" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
+[node name="ShopItem11" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
+layout_mode = 2
+price = 4
+
 [node name="Temp-shop" type="Sprite2D" parent="."]
 position = Vector2(101, 90)
 scale = Vector2(0.2, 0.2)
@@ -90,4 +118,11 @@ text = ": 10"
 [connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem2" to="." method="_on_shop_item_purchased"]
 [connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem3" to="." method="_on_shop_item_purchased"]
 [connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem4" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem5" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem6" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem7" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem8" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem9" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem10" to="." method="_on_shop_item_purchased"]
+[connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem11" to="." method="_on_shop_item_purchased"]
 [connection signal="pressed" from="Button" to="." method="_leave"]

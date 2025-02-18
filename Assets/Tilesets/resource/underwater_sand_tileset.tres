@@ -1,0 +1,10 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://rqptkqc5w6lp"]
+
+[ext_resource type="Texture2D" uid="uid://byj7np463hg2s" path="res://Assets/Tilesets/pngs/underwater-sand-16x16.png" id="1_7j22o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mmtfj"]
+texture = ExtResource("1_7j22o")
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_mmtfj")
