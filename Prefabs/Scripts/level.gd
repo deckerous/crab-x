@@ -15,3 +15,5 @@ enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG}
 
 func _ready() -> void:
 	player.add_crabs(starting_crab_count)
+	if starting_weapon != WEAPONS.EMPTY:
+		player.change_weapon(starting_weapon)

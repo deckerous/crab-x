@@ -9,6 +9,8 @@ extends Node2D
 @export var crosshair_dist_max : float = 140.0
 @export var camera_mid_point_constant : float = 2.0
 
+@onready var level: Node2D = $".."
+
 @onready var camera_2d = $Camera2D
 @onready var crab_manager = $CrabManager
 @onready var rally_point_crab_entity = crab_manager.get_child(0) # First crab = first rally point
@@ -26,7 +28,7 @@ var is_paused = false # Keep track of pause state
 
 @onready var coin_count : int = 0
 @onready var crab_count : int = 0
-@onready var cur_weapon = "unarmed"
+@onready var cur_weapon = "None"
 
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
@@ -138,20 +140,42 @@ func handle_loot(array: Array) -> void:
 	for item in array:
 		match item:
 			"Crab":
-				var crab_instance = crab_component.instantiate()
-				crab_instance.position = rally_point_crab_entity.position
-				crab_manager.call_deferred("add_child", crab_instance)
+				var crab_inst = crab_component.instantiate()
+				crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
+				crab_manager.add_child(crab_inst)
+				PlayerVariable.num_crabs += 1
+				
+				match cur_weapon:
+					"None":
+						change_weapon(level.WEAPONS.EMPTY)
+					"Slingshot":
+						change_weapon(level.WEAPONS.SLINGSHOT)
+					"Glock":
+						change_weapon(level.WEAPONS.GLOCK)
+					"RPG":
+						change_weapon(level.WEAPONS.RPG)
 			"Slingshot":
-				for child in crab_manager.get_children():
-					child.external_state_change("Slingshot")
-					rally_point_crab_entity.external_state_change("Slingshot")
+				change_weapon(level.WEAPONS.SLINGSHOT)
 			"Sheckle":
-				#coin_count += 1
-				#rich_text_label.text = str(coin_count)
 				add_coin()
 			"Glock":
-				for child in crab_manager.get_children():
-					child.external_state_change("Glock")
+				change_weapon(level.WEAPONS.GLOCK)
+			"RPG":
+				change_weapon(level.WEAPONS.RPG)
+
+func change_weapon(state) -> void:
+	var str = "None"
+	match state:
+		level.WEAPONS.SLINGSHOT:
+			str = "Slingshot"
+		level.WEAPONS.GLOCK:
+			str = "Glock"
+		level.WEAPONS.RPG:
+			str = "RPG"
+	
+	cur_weapon = str
+	for child in crab_manager.get_children():
+		child.external_state_change(str)
 
 func handle_entity_death() -> void:
 	# TODO: Replace with more robust loot pools
