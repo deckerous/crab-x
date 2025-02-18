@@ -1,11 +1,7 @@
 extends CanvasLayer
 
 
-@onready var background = $main_menu_screen_background
-@onready var new_game_button = $new_game_button
-@onready var continue_button = $continue_button
-@onready var settings_button = $settings_button
-@onready var quit_button = $quit_button
+
 
 func _ready():
 	pass

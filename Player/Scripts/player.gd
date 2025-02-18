@@ -36,7 +36,7 @@ func _ready():
 	# should only take one physics frame.
 	set_physics_process(false)
 	call_deferred("navigation_map_setup")
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func navigation_map_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -133,7 +133,6 @@ func handle_loot(array: Array) -> void:
 			"Slingshot":
 				for child in crab_manager.get_children():
 					child.external_state_change("Slingshot")
-				$RallyPointCrabEntity.external_state_change("Slingshot")
 			"Sheckle":
 				coin_count += 1
 				rich_text_label.text = str(coin_count)
@@ -159,8 +158,4 @@ func add_crabs(num: int) -> void:
 
 # For UI integration
 func toggle_pause():
-	if ui_instance:
-		ui_instance.toggle_pause_menu()
-		is_paused = not is_paused
-	else:
-		print("Error: ui is null")
+	ui_instance.toggle_pause_menu()
