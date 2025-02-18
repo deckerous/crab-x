@@ -81,8 +81,7 @@ wall = NodePath("../../Tilemaps/Walls/TempWall2")
 
 [node name="TutorialTrigger4" parent="Graphics/LootAndTriggers" instance=ExtResource("6_xd58g")]
 process_mode = 4
-visible = false
-position = Vector2(144, 194)
+position = Vector2(144, 191)
 dialogue = ["You've collected a decent amount of sheckles, [shake rate=25 level=10]prawn[/shake]. Now I'll show you where to spend them!", "Run into this yellow icon to enter the prawn shop! There you can spend your sheckles."]
 
 [node name="TutorialTrigger3" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
@@ -140,10 +139,10 @@ visible = false
 [connection signal="enter_shop" from="Graphics/LootAndTriggers/ShopIcon" to="Shop" method="_enter"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger" to="." method="_start_tutorial"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger2" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_enable_boss"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_start_tutorial"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="." method="_handle_kills"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="." method="_handle_kills"]

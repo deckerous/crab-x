@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_telegraphed_attack.gd" id="4_h6q38"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/dummy_boss_idle_state.gd" id="5_0b1as"]
 [ext_resource type="PackedScene" uid="uid://e2nxbb0gylle" path="res://Prefabs/Scenes/misc/telegraph_marker.tscn" id="5_6sbrw"]
-[ext_resource type="PackedScene" uid="uid://dlv1borrlb14o" path="res://Prefabs/Scenes/enemies/enemy_grenade_entity.tscn" id="6_yv3h1"]
+[ext_resource type="PackedScene" uid="uid://d323lm81ml0fd" path="res://Prefabs/Scenes/enemies/enemy_grenade_entity.tscn" id="6_yv3h1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dvk0v"]
 animations = [{
@@ -103,6 +103,9 @@ position = Vector2(0, -32)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="1"]
 wait_time = 2.0
+
+[node name="TelegraphBufferTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="2"]
+wait_time = 0.1
 
 [node name="HealthBar" parent="." index="6"]
 visible = true
