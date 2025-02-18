@@ -11,18 +11,18 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_igob8")
+"texture": ExtResource("4_p2bv5")
 }],
 "loop": true,
-"name": &"default",
+"name": &"aggro",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_p2bv5")
+"texture": ExtResource("3_igob8")
 }],
 "loop": true,
-"name": &"fire",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -59,6 +59,7 @@ script = ExtResource("1_vk1ki")
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_euvyh")
+animation = &"aggro"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mp23t")
@@ -77,6 +78,7 @@ script = ExtResource("6_atyba")
 script = ExtResource("7_ntd6r")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 top_level = true
 offset_left = -10.0
 offset_top = -15.0

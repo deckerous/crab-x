@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://jgyy6y1bjb44"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_hkygb"]
+[ext_resource type="Texture2D" uid="uid://dfp60johfsj6m" path="res://Assets/Enemies/png/sand-flea.png" id="2_337cd"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/sand_flea_entity.gd" id="2_wgjc8"]
+[ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_su61h"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_wcn2o"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_chase_state.gd" id="6_807iw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_labi2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_337cd")
+}],
+"loop": true,
+"name": &"aggro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_337cd")
+}],
+"loop": true,
+"name": &"wander",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kvf1f"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oveon"]
+radius = 18.0278
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l25a6"]
+radius = 17.0
+
+[node name="SandFleaEntity" instance=ExtResource("1_hkygb")]
+script = ExtResource("2_wgjc8")
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, 0)
+sprite_frames = SubResource("SpriteFrames_labi2")
+animation = &"wander"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_kvf1f")
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 8
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_oveon")
+debug_color = Color(0.73251, 0.468047, 0.159788, 0.42)
+
+[node name="HurtboxComponent" parent="." index="3"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_l25a6")
+debug_color = Color(0.898222, 0.279074, 0.382132, 0.42)
+
+[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_su61h")]
+pathfind = true
+
+[node name="NavigationAgent2D" parent="TargettingComponent" index="2"]
+max_speed = 500.0
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Wander")
+
+[node name="Wander" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
+script = ExtResource("3_wcn2o")
+aggro = NodePath("../Aggro")
+
+[node name="WanderTimer" type="Timer" parent="StateMachine/Wander" index="0"]
+one_shot = true
+
+[node name="WaitTimer" type="Timer" parent="StateMachine/Wander" index="1"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Aggro" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("wander")]
+script = ExtResource("6_807iw")
+wander = NodePath("../Wander")
+aggro_speed = 55.0
+
+[node name="HealthBar" parent="." index="6"]
+offset_top = -25.0
+offset_bottom = 2.0
+
+[connection signal="velocity_computed" from="TargettingComponent/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+
+[editable path="TargettingComponent"]
