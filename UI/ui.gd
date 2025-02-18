@@ -50,13 +50,15 @@ func update_during_game_ui():
 func _on_game_over():
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
-	# $end_of_game_screen/end_of_game_score_display/score_output.text = "%d" % game_score
+	$end_of_game_screen/end_of_game_score_display/score_label.text = "%d" % game_score
 	# TODO: Implement way to quit	
 
 func _on_resume_button_pressed():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	toggle_pause_menu() 
 
 func _on_restart_button_pressed():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	get_tree().reload_current_scene()  # Restart the game
 
 func _on_quit_button_pressed():
@@ -65,6 +67,7 @@ func _on_quit_button_pressed():
 	# TODO: Save progress as you leave?
 
 func toggle_pause_menu():
+	is_paused = not is_paused
 	get_tree().paused = not get_tree().paused
 	during_game_screen.visible = not during_game_screen.visible
 	pause_menu_screen.visible = get_tree().paused

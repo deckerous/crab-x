@@ -36,7 +36,8 @@ func _ready():
 	# should only take one physics frame.
 	set_physics_process(false)
 	call_deferred("navigation_map_setup")
-	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func navigation_map_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -158,4 +159,5 @@ func add_crabs(num: int) -> void:
 
 # For UI integration
 func toggle_pause():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	ui_instance.toggle_pause_menu()

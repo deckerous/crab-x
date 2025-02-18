@@ -21,6 +21,12 @@ script = ExtResource("1_disjy")
 [node name="end_of_game_screen" type="Node2D" parent="."]
 visible = false
 
+[node name="pause_screen_background2" type="ColorRect" parent="end_of_game_screen"]
+self_modulate = Color(1, 1, 1, 0.196078)
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.0126459, 0.0126459, 0.0126459, 1)
+
 [node name="restart_button" type="Button" parent="end_of_game_screen"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 130.0
@@ -94,6 +100,14 @@ scale = Vector2(0.6, 0.6)
 text = "Score:"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="end_of_game_screen"]
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 256.0
+offset_bottom = 65.0
+text = "  YOU'VE BEEN COOKED"
+fit_content = true
 
 [node name="during_game_screen" type="Node2D" parent="."]
 scale = Vector2(0.75, 0.75)
