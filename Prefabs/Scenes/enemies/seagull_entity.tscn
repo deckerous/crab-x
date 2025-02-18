@@ -46,7 +46,6 @@ max_hp = 15.0
 
 [node name="Animations" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_w3y7q")
-animation = &"aggro"
 
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -9)
