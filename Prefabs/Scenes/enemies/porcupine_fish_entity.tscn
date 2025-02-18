@@ -1,0 +1,173 @@
+[gd_scene load_steps=15 format=3 uid="uid://by0x7801225v6"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_e8wmg"]
+[ext_resource type="Texture2D" uid="uid://38ffb6662d3y" path="res://Assets/Enemies/png/deflated_puffer.png" id="2_0k02a"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/porcupine_fish_entity.gd" id="2_6bjwv"]
+[ext_resource type="Texture2D" uid="uid://d1mbr4nyr2mix" path="res://Assets/Enemies/png/inflated_armed_puffer.png" id="2_gjl0v"]
+[ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_4i38f"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/porcupine_fish_idle_state.gd" id="3_84w2n"]
+[ext_resource type="Texture2D" uid="uid://de7wr3rrc041q" path="res://Assets/Enemies/png/inflated_disarmed_puffer.png" id="4_i78k4"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/porcupine_fish_aggro_state.gd" id="5_l1qet"]
+[ext_resource type="PackedScene" uid="uid://b2740m8q18k6v" path="res://Prefabs/Scenes/enemies/porcupine_fish_projectile_entity.tscn" id="8_7axv0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsbso"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gjl0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i78k4")
+}],
+"loop": true,
+"name": &"aggro",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0k02a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3xfaw"]
+radius = 11.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sphrn"]
+radius = 24.0
+height = 50.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ynxhx"]
+radius = 17.0
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxc5e"]
+radius = 167.027
+
+[node name="PorcupineFishEntity" instance=ExtResource("1_e8wmg")]
+collision_mask = 3
+script = ExtResource("2_6bjwv")
+max_hp = 75.0
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(-4, 1)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_jsbso")
+frame_progress = 0.061628
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3xfaw")
+
+[node name="HitboxComponent" parent="." index="2"]
+position = Vector2(0, 1)
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sphrn")
+debug_color = Color(0.789192, 0.428971, 0.0577823, 0.42)
+
+[node name="HurtboxComponent" parent="." index="3"]
+position = Vector2(0, 1)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ynxhx")
+debug_color = Color(0.990406, 0, 0.278729, 0.42)
+
+[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_4i38f")]
+
+[node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
+shape = SubResource("CircleShape2D_rxc5e")
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
+script = ExtResource("3_84w2n")
+aggro = NodePath("../Aggro")
+animation_name = "idle"
+
+[node name="Aggro" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("idle")]
+script = ExtResource("5_l1qet")
+idle = NodePath("../Idle")
+projectile = ExtResource("8_7axv0")
+animation_name = "aggro"
+
+[node name="ProjectileSpawnPositionsRoot" type="Node2D" parent="StateMachine/Aggro" index="0"]
+scale = Vector2(1.2, 1.2)
+
+[node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="0"]
+position = Vector2(0, -22)
+
+[node name="ProjectileSpawnPosition3" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="1"]
+position = Vector2(6, -21)
+
+[node name="ProjectileSpawnPosition9" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="2"]
+position = Vector2(12, -18)
+
+[node name="ProjectileSpawnPosition10" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="3"]
+position = Vector2(17, -13)
+
+[node name="ProjectileSpawnPosition11" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="4"]
+position = Vector2(20, -7)
+
+[node name="ProjectileSpawnPosition12" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="5"]
+position = Vector2(22, 0)
+
+[node name="ProjectileSpawnPosition13" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="6"]
+position = Vector2(20, 7)
+
+[node name="ProjectileSpawnPosition14" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="7"]
+position = Vector2(17, 13)
+
+[node name="ProjectileSpawnPosition15" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="8"]
+position = Vector2(12, 18)
+
+[node name="ProjectileSpawnPosition16" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="9"]
+position = Vector2(6, 21)
+
+[node name="ProjectileSpawnPosition2" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="10"]
+position = Vector2(0, 22)
+
+[node name="ProjectileSpawnPosition17" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="11"]
+position = Vector2(-6, 21)
+
+[node name="ProjectileSpawnPosition18" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="12"]
+position = Vector2(-12, 18)
+
+[node name="ProjectileSpawnPosition19" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="13"]
+position = Vector2(-17, 13)
+
+[node name="ProjectileSpawnPosition20" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="14"]
+position = Vector2(-20, 7)
+
+[node name="ProjectileSpawnPosition8" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="15"]
+position = Vector2(-21, 0)
+
+[node name="ProjectileSpawnPosition7" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="16"]
+position = Vector2(-20, -7)
+
+[node name="ProjectileSpawnPosition6" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="17"]
+position = Vector2(-17, -13)
+
+[node name="ProjectileSpawnPosition5" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="18"]
+position = Vector2(-12, -18)
+
+[node name="ProjectileSpawnPosition4" type="Node2D" parent="StateMachine/Aggro/ProjectileSpawnPositionsRoot" index="19"]
+position = Vector2(-6, -21)
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
+one_shot = true
+
+[node name="PuffUpTimer" type="Timer" parent="StateMachine/Aggro" index="2"]
+wait_time = 0.5
+one_shot = true
+
+[editable path="TargettingComponent"]

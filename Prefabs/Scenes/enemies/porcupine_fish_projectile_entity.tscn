@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2740m8q18k6v"]
+
+[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_eokcb"]
+[ext_resource type="Texture2D" uid="uid://3q2wqlch4ngr" path="res://Assets/Enemies/png/puffer-projectile.png" id="2_1et3v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlw83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1et3v")
+}],
+"loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"destroy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ug8js"]
+size = Vector2(4, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_maruy"]
+size = Vector2(5, 6.66667)
+
+[node name="PorcupineFishProjectileEntity" instance=ExtResource("1_eokcb")]
+speed = 3.0
+collide_with_walls = true
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -4.5)
+sprite_frames = SubResource("SpriteFrames_rlw83")
+animation = &"airborne"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_ug8js")
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 8
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-1.19209e-07, -4)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("RectangleShape2D_maruy")
+debug_color = Color(0.778891, 0.438106, 9.62615e-07, 0.42)
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Airborne")
+
+[node name="Airborne" parent="StateMachine" index="0"]
+animation_name = "airborne"
+
+[node name="Destroy" parent="StateMachine" index="1"]
+animation_name = "destroy"

@@ -21,7 +21,10 @@ position = Vector2(227, -3)
 [node name="Player" parent="." index="2"]
 position = Vector2(261, 165)
 
-[node name="Camera2D" parent="Player" index="1"]
+[node name="Camera2D" parent="Player" index="2"]
 zoom = Vector2(0.75, 0.75)
+
+[node name="Shop" parent="." index="3"]
+visible = false
 
 [editable path="Player"]

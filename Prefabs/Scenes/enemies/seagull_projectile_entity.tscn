@@ -55,6 +55,3 @@ animation_name = "airborne"
 
 [node name="Destroy" parent="StateMachine" index="1"]
 animation_name = "destroy"
-
-[node name="HealthBar" parent="." index="5"]
-visible = false
