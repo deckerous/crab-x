@@ -81,14 +81,15 @@ wall = NodePath("../../Tilemaps/Walls/TempWall2")
 
 [node name="TutorialTrigger4" parent="Graphics/LootAndTriggers" instance=ExtResource("6_xd58g")]
 process_mode = 4
+visible = false
 position = Vector2(144, 191)
 dialogue = ["You've collected a decent amount of sheckles, [shake rate=25 level=10]prawn[/shake]. Now I'll show you where to spend them!", "Run into this yellow icon to enter the prawn shop! There you can spend your sheckles."]
 
 [node name="TutorialTrigger3" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
 process_mode = 4
 visible = false
-position = Vector2(144, 164)
-dialogue = ["Alright, now I've prepared you as much as I can, [shake rate=25 level=10]prawn[/shake]. Finally, we'll take on your graduation challenge!", "We got a completely autonomous dummy that is gonna shoot some grenades at you! Manage to survive and you'll finally become a [b]soldier[\\b]!", "Remember, if you lose all of your crabs you [shake rate=25 level=10]FAIL[/shake]! Now, move out!"]
+position = Vector2(145, 160)
+dialogue = ["Alright, now I've prepared you as much as I can, [shake rate=25 level=10]prawn[/shake]. Finally, we'll take on your graduation challenge!", "We got a completely autonomous dummy that is gonna shoot some grenades at you! Manage to survive and you'll finally become a [b]soldier[/b]!", "Remember, if you lose all of your crabs you [shake rate=25 level=10]FAIL[/shake]! Now, move out!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall3")
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -141,8 +142,8 @@ visible = false
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger2" to="." method="_start_tutorial"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_start_tutorial"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_shop_tutorial_trigger"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_enable_boss"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_enable_boss"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="." method="_handle_kills"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="." method="_handle_kills"]
