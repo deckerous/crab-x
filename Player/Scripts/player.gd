@@ -176,15 +176,18 @@ func change_weapon(state) -> void:
 	cur_weapon = str
 	for child in crab_manager.get_children():
 		child.external_state_change(str)
+	PlayerVariable.cur_weapon = str
 
 func handle_entity_death() -> void:
 	# TODO: Replace with more robust loot pools
 	#coin_count += 1
 	#rich_text_label.text = str(coin_count)
+	Analytics.add_event("Player killed enemy ")
 	add_coin()
 
 func _game_over() -> void:
 	ui_instance._on_game_over()
+	Analytics.add_event("Player died")
 	crosshair.hide()
 
 func add_crabs(num: int) -> void:
