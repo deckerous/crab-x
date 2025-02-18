@@ -12,8 +12,10 @@ enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG}
 @onready var graphics = $Graphics
 @onready var enemies = $Enemies
 @onready var player = $Player
+@onready var dialogue = $DialogueHandler
 
 func _ready() -> void:
 	player.add_crabs(starting_crab_count)
 	if starting_weapon != WEAPONS.EMPTY:
 		player.change_weapon(starting_weapon)
+	dialogue.trigger_visible()

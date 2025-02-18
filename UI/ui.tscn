@@ -109,6 +109,7 @@ offset_left = 64.0
 offset_top = 40.0
 offset_right = 256.0
 offset_bottom = 112.0
+mouse_filter = 2
 bbcode_enabled = true
 text = "[tornado radius=10.0 freq=1.0 connected=1] YOU'VE BEEN COOKED [/tornado]"
 fit_content = true

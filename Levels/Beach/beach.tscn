@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="12_7sqb3"]
 [ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="13_2ermq"]
 [ext_resource type="PackedScene" uid="uid://by0x7801225v6" path="res://Prefabs/Scenes/enemies/porcupine_fish_entity.tscn" id="14_i00p3"]
+[ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="15_wpc23"]
 
 [node name="Level" instance=ExtResource("1_1b6df")]
 starting_crab_count = 3
@@ -179,7 +180,10 @@ position = Vector2(323, -2025)
 [node name="SandFleaEntity8" parent="Enemies" index="18" instance=ExtResource("7_vsh77")]
 position = Vector2(188, -2041)
 
-[node name="BreachedWhaleEntity" parent="Enemies" index="19" instance=ExtResource("8_tis8k")]
+[node name="PorcupineFishEntity" parent="Enemies" index="19" instance=ExtResource("14_i00p3")]
+position = Vector2(1199, -2937)
+
+[node name="BreachedWhaleEntity" parent="Enemies" index="20" instance=ExtResource("8_tis8k")]
 position = Vector2(220, -3419)
 
 [node name="Player" parent="." index="2"]
@@ -231,8 +235,8 @@ visible = false
 [node name="ShopItem11" parent="Shop/Shop Interface/VBoxContainer" index="10"]
 visible = false
 
-[node name="PorcupineFishEntity" parent="." index="4" instance=ExtResource("14_i00p3")]
-position = Vector2(1199, -2937)
+[node name="DialogueHandler" parent="." index="4" instance=ExtResource("15_wpc23")]
+text_array = ["We've finally got a sighting on the mafia's weapon stash, soldier! This is our final push to get a foothold from which to invade the rest of the land.", "Your mission is to defeat the enemy guarding the stash so that our main forces can take over the whole island!", "Show our enemy the Crustnation army is [b]NOT[/b] to be trifled with, soldier!"]
 
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest3" to="Player" method="handle_loot"]
@@ -265,7 +269,11 @@ position = Vector2(1199, -2937)
 [connection signal="entity_died" from="Enemies/SandFleaEntity6" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/SandFleaEntity7" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/SandFleaEntity8" to="Player" method="handle_entity_death"]
+[connection signal="entity_died" from="Enemies/PorcupineFishEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/BreachedWhaleEntity" to="Player" method="handle_entity_death"]
 [connection signal="recieved_item" from="Shop" to="Player" method="handle_loot"]
+[connection signal="shop_closed" from="Shop" to="Player" method="_on_shop_shop_closed"]
+[connection signal="shop_closed" from="Shop" to="Graphics/LootAndTriggers/ShopIcon" method="_on_shop_exit"]
+[connection signal="shop_closed" from="Shop" to="Graphics/LootAndTriggers/ShopIcon2" method="_on_shop_exit"]
 
 [editable path="Shop"]

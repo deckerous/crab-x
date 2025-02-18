@@ -23,7 +23,7 @@ func _handle_chests(loot) -> void:
 		post_chest_dialogue.visible = true
 		post_chest_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 
-func _handle_kills() -> void:
+func _handle_kills(_unused) -> void:
 	dummies_killed += 1
 	if dummies_killed == 3:
 		post_dummy_dialogue.visible = true
@@ -40,7 +40,7 @@ func _enable_boss_tutorial(_unused) -> void:
 	post_shop_dialogue.visible = true
 	post_shop_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 
-func _boss_killed() -> void:
+func _boss_killed(_unused) -> void:
 	level_complete = true
 
 func _shop_tutorial_trigger(text: Variant) -> void:

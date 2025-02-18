@@ -134,6 +134,9 @@ func _update_crab_velocities(crabs) -> void:
 			
 			if crab.process_mode == Node.PROCESS_MODE_INHERIT:
 				crab.move_and_slide()
+			
+			if (crab.global_position - rally_point_crab_entity.global_position).length() > 200:
+				crab.global_position = rally_point_crab_entity.global_position
 
 func handle_loot(array: Array) -> void:
 	print_debug(array)
@@ -178,16 +181,18 @@ func change_weapon(state) -> void:
 		child.external_state_change(str)
 	PlayerVariable.cur_weapon = str
 
-func handle_entity_death() -> void:
+func handle_entity_death(name) -> void:
 	# TODO: Replace with more robust loot pools
 	#coin_count += 1
 	#rich_text_label.text = str(coin_count)
-	Analytics.add_event("Player killed enemy ")
+	if !PlayerVariable.debug:
+		Analytics.add_event("Player killed enemy " + name)
 	add_coin()
 
 func _game_over() -> void:
 	ui_instance._on_game_over()
-	Analytics.add_event("Player died")
+	if !PlayerVariable.debug:
+		Analytics.add_event("Player died")
 	crosshair.hide()
 
 func add_crabs(num: int) -> void:
@@ -214,4 +219,4 @@ func add_coin():
 	print(coin_count)
 
 func remove_coin():
-	coin_count -=1
+	coin_count -= 1
