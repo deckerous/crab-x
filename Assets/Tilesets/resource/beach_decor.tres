@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dacyctc1u2af2"]
+
+[ext_resource type="Texture2D" uid="uid://dd0bu1okvp2r3" path="res://Assets/Tilesets/pngs/sandcastle.png" id="1_ncrcj"]
+[ext_resource type="Texture2D" uid="uid://dn2w2xhsw66h1" path="res://Assets/Tilesets/pngs/rocks.png" id="2_khghs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nxchn"]
+texture = ExtResource("1_ncrcj")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m7dyi"]
+texture = ExtResource("2_khghs")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[resource]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_nxchn")
+sources/2 = SubResource("TileSetAtlasSource_m7dyi")

@@ -2,7 +2,7 @@ extends Node2D
 
 @export var player: Node2D
 
-@onready var collision_box = $Area2D/CollisionShape2D
+@onready var collision_box = $EnterCollision/CollisionShape2D
 @onready var hovered = 0
 
 signal enter_shop(sheckles)
