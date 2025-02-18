@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerVariable="*res://player_variables.gd"
+Analytics="*res://addons/quiver_analytics/analytics.tscn"
 
 [display]
 
@@ -26,6 +27,10 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quiver_analytics/plugin.cfg")
 
 [input]
 
@@ -103,6 +108,10 @@ fullscreen={
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="interactables"
 2d_physics/layer_6="heal"
+
+[quiver]
+
+general/auth_token="iWp2cFOGgzA8UQKrIXktvQUIB0LnQ2HR2g2Wc6hk"
 
 [rendering]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bxjdvkc1q6lyj"]
+[gd_scene load_steps=15 format=4 uid="uid://x24gdfgu2sh0"]
 
 [ext_resource type="Script" path="res://Levels/Tutorial/Scripts/tutorial_level.gd" id="1_dfnuy"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="2_di2iw"]
@@ -7,11 +7,11 @@
 [ext_resource type="TileSet" uid="uid://umjqpxlsqcyd" path="res://Assets/Tilesets/resource/tut_wall_tileset.tres" id="3_qip34"]
 [ext_resource type="TileSet" uid="uid://dqfi8euh07tap" path="res://Assets/Tilesets/resource/coral.tres" id="4_jcj2j"]
 [ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/levels/tweasure_chest.tscn" id="5_e7psq"]
-[ext_resource type="PackedScene" uid="uid://b6kgb2gvyrvcr" path="res://Levels/Tutorial/tutorial_trigger.tscn" id="6_xd58g"]
+[ext_resource type="PackedScene" path="res://Levels/Tutorial/tutorial_trigger.tscn" id="6_xd58g"]
 [ext_resource type="PackedScene" uid="uid://du8w3cqik704q" path="res://Prefabs/Scenes/levels/shop_icon.tscn" id="7_oyam4"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="7_wb5pt"]
-[ext_resource type="PackedScene" uid="uid://cxd8cou4q1lxd" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="8_2puqx"]
-[ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="8_an2om"]
+[ext_resource type="PackedScene" uid="uid://bxvbahpbrkyqk" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="8_2puqx"]
+[ext_resource type="PackedScene" path="res://Levels/Tutorial/dialogue_handler.tscn" id="8_an2om"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="12_6lnf5"]
 [ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="13_ikrhp"]
 
