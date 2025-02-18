@@ -98,6 +98,7 @@ fullscreen={
 2d_physics/layer_3="enemy_hurtbox"
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="interactables"
+2d_physics/layer_6="heal"
 
 [rendering]
 

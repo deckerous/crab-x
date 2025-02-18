@@ -57,4 +57,5 @@ func _damaged(hitbox: HitboxComponent) -> void:
 func _update_health_bar() -> void:
 	if !health_bar_visible: return
 	if hp < max_hp: health_bar.visible = true
+	else: health_bar.visible = false
 	health_bar.value = (hp / max_hp) * health_bar.max_value

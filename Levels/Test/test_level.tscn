@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://bq18q8so20f6i"]
 
-[ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/misc/level.tscn" id="1_tkwe1"]
+[ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_tkwe1"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="2_1r44i"]
 [ext_resource type="TileSet" uid="uid://umjqpxlsqcyd" path="res://Assets/Tilesets/resource/tut_wall_tileset.tres" id="3_5sovc"]
 [ext_resource type="PackedScene" uid="uid://ba82s08ina6nr" path="res://Prefabs/Scenes/enemies/breached_whale_entity.tscn" id="3_rplpy"]

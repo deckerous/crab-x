@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxvbahpbrkyqk"]
+[gd_scene load_steps=14 format=3 uid="uid://cxd8cou4q1lxd"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_oel71"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/dummy_boss_entity.gd" id="2_e6igx"]
@@ -103,6 +103,9 @@ position = Vector2(0, -32)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="1"]
 wait_time = 2.0
+
+[node name="TelegraphBufferTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="2"]
+wait_time = 0.1
 
 [node name="HealthBar" parent="." index="6"]
 visible = true
