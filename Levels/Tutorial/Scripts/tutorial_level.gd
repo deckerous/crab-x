@@ -41,7 +41,7 @@ func _enable_boss_tutorial(_unused) -> void:
 	post_shop_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _boss_killed(_unused) -> void:
-	level_complete = true
+	level_complete_func()
 
 func _shop_tutorial_trigger(text: Variant) -> void:
 	var shop_icon = $Graphics/LootAndTriggers/ShopIcon
