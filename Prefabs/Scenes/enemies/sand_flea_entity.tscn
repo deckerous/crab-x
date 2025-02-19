@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_hkygb"]
 [ext_resource type="Texture2D" uid="uid://dfp60johfsj6m" path="res://Assets/Enemies/png/sand-flea.png" id="2_337cd"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/sand_flea_entity.gd" id="2_wgjc8"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_m6bhk"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_su61h"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_wcn2o"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_chase_state.gd" id="6_807iw"]
@@ -27,16 +27,18 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kvf1f"]
-radius = 13.0
+radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oveon"]
-radius = 18.0278
+radius = 19.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l25a6"]
 radius = 17.0
 
 [node name="SandFleaEntity" instance=ExtResource("1_hkygb")]
-script = ExtResource("2_wgjc8")
+collision_layer = 128
+collision_mask = 193
+script = ExtResource("2_m6bhk")
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, 0)
@@ -52,7 +54,7 @@ collision_mask = 8
 damage = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
-position = Vector2(0, -3)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_oveon")
 debug_color = Color(0.73251, 0.468047, 0.159788, 0.42)
 

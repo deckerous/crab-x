@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmj3x7peni1iw"]
+
+[ext_resource type="PackedScene" uid="uid://cp4pc7saf6sk4" path="res://Prefabs/Scenes/bullets/explosion.tscn" id="1_ra7in"]
+
+[node name="EnemyGrenadeExplosion" instance=ExtResource("1_ra7in")]
+
+[node name="HitboxComponent" parent="." index="1"]
+damage = 5.0

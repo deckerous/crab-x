@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cehoptbmihbjs"]
+[gd_scene load_steps=14 format=3 uid="uid://cehoptbmihbjs"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ust1h"]
 [ext_resource type="Texture2D" uid="uid://cf1fxr058bt7g" path="res://Assets/Enemies/png/seagull.png" id="2_di0af"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/seagull_entity.gd" id="2_tggm0"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_ki7dx"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_um4iv"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_vg107"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_shoot_state.gd" id="4_xlgp7"]
@@ -27,21 +27,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3lls"]
-radius = 3.93923
-height = 20.0435
+[sub_resource type="CircleShape2D" id="CircleShape2D_nloff"]
+radius = 9.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d156n"]
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s1sa7"]
 radius = 12.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4uyhy"]
-radius = 6.08249
-height = 22.3604
+[sub_resource type="CircleShape2D" id="CircleShape2D_gibhn"]
+radius = 12.0
 
-[node name="SeagullEntity" instance=ExtResource("1_ust1h")]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("2_tggm0")
+[sub_resource type="CircleShape2D" id="CircleShape2D_rpkbm"]
+radius = 6.5
+
+[node name="SeagullEntity" groups=["enemy"] instance=ExtResource("1_ust1h")]
+collision_layer = 128
+collision_mask = 193
+script = ExtResource("2_ki7dx")
+flip_when_aiming = true
 max_hp = 15.0
 
 [node name="Animations" parent="." index="0"]
@@ -50,30 +55,39 @@ sprite_frames = SubResource("SpriteFrames_w3y7q")
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -9)
 rotation = 1.39626
-shape = SubResource("CapsuleShape2D_q3lls")
+shape = SubResource("CircleShape2D_nloff")
 
-[node name="HitboxComponent" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(7, -20)
+shape = SubResource("CircleShape2D_d156n")
+
+[node name="HitboxComponent" parent="." index="3"]
 collision_mask = 8
 damage = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
 position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_s1sa7")
-debug_color = Color(0.847851, 0.353801, 0.339831, 0.42)
+debug_color = Color(0.726348, 0.474754, 0.0710468, 0.42)
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="HurtboxComponent" parent="." index="4"]
 position = Vector2(0, 1)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 position = Vector2(-2.38419e-07, -10)
 rotation = 1.39626
-shape = SubResource("CapsuleShape2D_4uyhy")
-debug_color = Color(0.816467, 0.405416, 0.0528854, 0.42)
+shape = SubResource("CircleShape2D_gibhn")
+debug_color = Color(0.847059, 0.352941, 0.341176, 0.419608)
 
-[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_um4iv")]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" index="1"]
+position = Vector2(7, -21)
+shape = SubResource("CircleShape2D_rpkbm")
+debug_color = Color(0.847059, 0.352941, 0.341176, 0.419608)
 
-[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+[node name="TargettingComponent" parent="." index="5" instance=ExtResource("3_um4iv")]
+
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Wander")
 
 [node name="Wander" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
@@ -99,7 +113,7 @@ position = Vector2(13, -19)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
 
-[node name="HealthBar" parent="." index="6"]
+[node name="HealthBar" parent="." index="7"]
 offset_top = -30.0
 offset_bottom = -3.0
 

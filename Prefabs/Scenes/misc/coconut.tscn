@@ -9,8 +9,8 @@
 texture = ExtResource("1_uedmr")
 
 [node name="HealComponent" type="Area2D" parent="."]
-collision_layer = 34
-collision_mask = 2
+collision_layer = 32
+collision_mask = 66
 script = ExtResource("2_q4f23")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealComponent"]

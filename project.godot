@@ -32,6 +32,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/quiver_analytics/plugin.cfg")
 
+[global_group]
+
+enemy=""
+
 [input]
 
 move_up={
@@ -108,6 +112,8 @@ fullscreen={
 2d_physics/layer_4="player_hurtbox"
 2d_physics/layer_5="interactables"
 2d_physics/layer_6="heal"
+2d_physics/layer_7="player"
+2d_physics/layer_8="enemy"
 
 [quiver]
 

@@ -3,6 +3,8 @@ extends Node2D
 @export_group("Crab Movement Speeds")
 @export var rally_point_move_speed : float = 75.0
 @export var crab_moving_speed : float = 75.0
+@export var crab_speed_up_dist: float = 50.0
+@export var crab_speed_up_factor: float = 3.0
 
 @export_group("Camera Properties")
 @export var crosshair_dist_min : float = 15.0
@@ -123,6 +125,10 @@ func _update_crab_velocities(crabs) -> void:
 			var curr_crab_position = crab.global_position
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
 			var new_crab_velocity = curr_crab_position.direction_to(next_path_position).normalized() * crab_moving_speed
+			
+			var rally_distance = crab.global_position.distance_to(rally_point_crab_entity.global_position)
+			if rally_distance > crab_speed_up_dist:
+				new_crab_velocity * crab_speed_up_factor
 			
 			if crab.navigation_agent_2d.is_navigation_finished():
 				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity, 0.05)
