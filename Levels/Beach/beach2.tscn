@@ -142,12 +142,15 @@ player = NodePath("../../../Player")
 
 [node name="PorcupineFishEntity" parent="Enemies" index="0" instance=ExtResource("10_oj87t")]
 position = Vector2(338, -177)
+flip_when_aiming = false
 
 [node name="PorcupineFishEntity2" parent="Enemies" index="1" instance=ExtResource("10_oj87t")]
 position = Vector2(908, -825)
+flip_when_aiming = false
 
 [node name="PorcupineFishEntity3" parent="Enemies" index="2" instance=ExtResource("10_oj87t")]
 position = Vector2(1006, -587)
+flip_when_aiming = false
 
 [node name="SeagullEntity" parent="Enemies" index="3" instance=ExtResource("11_tekw3")]
 position = Vector2(542, 124)
@@ -199,30 +202,39 @@ position = Vector2(700, -492)
 
 [node name="SandFleaEntity" parent="Enemies" index="19" instance=ExtResource("12_egw0v")]
 position = Vector2(711, 281)
+flip_when_aiming = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="20" instance=ExtResource("12_egw0v")]
 position = Vector2(749, 284)
+flip_when_aiming = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="21" instance=ExtResource("12_egw0v")]
 position = Vector2(883, 412)
+flip_when_aiming = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="22" instance=ExtResource("12_egw0v")]
 position = Vector2(923, 215)
+flip_when_aiming = false
 
 [node name="SandFleaEntity6" parent="Enemies" index="23" instance=ExtResource("12_egw0v")]
 position = Vector2(960, 221)
+flip_when_aiming = false
 
 [node name="SandFleaEntity7" parent="Enemies" index="24" instance=ExtResource("12_egw0v")]
 position = Vector2(1030, -247)
+flip_when_aiming = false
 
 [node name="SandFleaEntity8" parent="Enemies" index="25" instance=ExtResource("12_egw0v")]
 position = Vector2(1065, -220)
+flip_when_aiming = false
 
 [node name="SandFleaEntity9" parent="Enemies" index="26" instance=ExtResource("12_egw0v")]
 position = Vector2(1022, -201)
+flip_when_aiming = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="27" instance=ExtResource("12_egw0v")]
 position = Vector2(920, 412)
+flip_when_aiming = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(59, 120)

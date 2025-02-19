@@ -211,14 +211,12 @@ position = Vector2(188, -2041)
 flip_when_aiming = false
 
 [node name="PorcupineFishEntity" parent="Enemies" index="19" instance=ExtResource("11_53hf2")]
-position = Vector2(1199, -2937)
+position = Vector2(1207, -2920)
+flip_when_aiming = false
 
 [node name="BreachedWhaleEntity" parent="Enemies" index="20" instance=ExtResource("12_7quic")]
-position = Vector2(220, -3419)
-
-[node name="PorcupineFishEntity" parent="Enemies" index="20" instance=ExtResource("14_i00p3")]
-position = Vector2(1199, -2937)
-flip_when_aiming = false
+position = Vector2(228, -3396)
+scale = Vector2(0.4, 0.4)
 
 [node name="Player" parent="." index="2"]
 position = Vector2(204, 534)
@@ -305,7 +303,6 @@ text_array = ["We've finally got a sighting on the mafia's weapon stash, soldier
 [connection signal="entity_died" from="Enemies/SandFleaEntity8" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/PorcupineFishEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/BreachedWhaleEntity" to="." method="boss_killed"]
-[connection signal="entity_died" from="Enemies/BreachedWhaleEntity" to="Player" method="handle_entity_death"]
 [connection signal="next_level" from="Player/ui" to="." method="next_level_func"]
 [connection signal="recieved_item" from="Shop" to="Player" method="handle_loot"]
 [connection signal="shop_closed" from="Shop" to="Player" method="_on_shop_shop_closed"]

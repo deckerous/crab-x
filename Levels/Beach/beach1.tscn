@@ -142,18 +142,23 @@ shape = SubResource("RectangleShape2D_fisgt")
 
 [node name="SandFleaEntity" parent="Enemies" index="0" instance=ExtResource("9_5gfvo")]
 position = Vector2(229, 89)
+flip_when_aiming = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="1" instance=ExtResource("9_5gfvo")]
 position = Vector2(229, 132)
+flip_when_aiming = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="2" instance=ExtResource("9_5gfvo")]
 position = Vector2(267, 116)
+flip_when_aiming = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="3" instance=ExtResource("9_5gfvo")]
 position = Vector2(406, 617)
+flip_when_aiming = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="4" instance=ExtResource("9_5gfvo")]
 position = Vector2(554, 379)
+flip_when_aiming = false
 
 [node name="SeagullEntity" parent="Enemies" index="5" instance=ExtResource("10_jow6t")]
 position = Vector2(166, 529)
@@ -170,6 +175,7 @@ position = Vector2(507, 672)
 [node name="PorcupineFishEntity" parent="Enemies" index="9" instance=ExtResource("11_mu1m5")]
 process_mode = 4
 position = Vector2(408, 456)
+flip_when_aiming = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(71, 760)
