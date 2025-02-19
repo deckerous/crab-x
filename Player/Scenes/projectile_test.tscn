@@ -36,6 +36,6 @@ flip_when_aiming = false
 position = Vector2(702, 117)
 
 [node name="SeagullEntity" parent="." instance=ExtResource("5_hef0h")]
-position = Vector2(211, 52)
+position = Vector2(326, 106)
 
 [editable path="Player"]
