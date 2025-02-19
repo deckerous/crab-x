@@ -8,5 +8,6 @@ func _ready() -> void:
 
 func _heal(body: Node2D) -> void:
 	if body is CrabEntity:
+		print(body)
 		if body.hp < body.max_hp:
 			get_parent().call_deferred("queue_free")

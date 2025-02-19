@@ -22,6 +22,9 @@ animations = [{
 collision_layer = 0
 script = ExtResource("2_4aqgj")
 speed = 0.0
+collide_with_walls = true
+collide_with_crabs = true
+collide_with_enemies = true
 max_hp = 0.0
 health_bar_visible = false
 

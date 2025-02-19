@@ -18,21 +18,24 @@ tile_map_data = PackedByteArray("AAAAAAsAAAAAAAMAAAABAAsAAAABAAMAAAACAAsAAAABAAM
 tile_set = ExtResource("1_1vcn6")
 
 [node name="Player" parent="." instance=ExtResource("3_j4087")]
-position = Vector2(321, 113)
+position = Vector2(138, 99)
 
 [node name="DummyEntity" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(24, 51)
+flip_when_aiming = false
 
 [node name="DummyEntity2" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(36, 107)
+flip_when_aiming = false
 
 [node name="DummyEntity3" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(23, 165)
-
-[node name="SeagullEntity" parent="." instance=ExtResource("5_hef0h")]
-position = Vector2(82, 105)
+flip_when_aiming = false
 
 [node name="DummyBossEntity" parent="." instance=ExtResource("6_f0bvb")]
-position = Vector2(703, 118)
+position = Vector2(702, 117)
+
+[node name="SeagullEntity" parent="." instance=ExtResource("5_hef0h")]
+position = Vector2(211, 52)
 
 [editable path="Player"]

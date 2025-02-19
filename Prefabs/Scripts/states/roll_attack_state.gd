@@ -5,7 +5,7 @@ extends State
 @export var telegraphed_attack: State
 
 @export_group("Roll Properties")
-@export var roll_speed: float = 85.0
+@export var roll_speed: float = 65.0
 @export var rolling_time_min: float = 3.0
 @export var rolling_time_max: float = 4.0
 @export var num_attacks_min: int = 3

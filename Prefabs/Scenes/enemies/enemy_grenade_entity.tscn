@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bbdsa2xlexbcy" path="res://Assets/Guns/png/grenade-16x16.png" id="2_67tgo"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/enemy_grenade_entity.gd" id="2_sab51"]
 [ext_resource type="Script" path="res://Prefabs/Scenes/projectile_explosion_destroy_state.gd" id="4_8fv5b"]
-[ext_resource type="PackedScene" uid="uid://cp4pc7saf6sk4" path="res://Prefabs/Scenes/bullets/explosion.tscn" id="4_82sqw"]
+[ext_resource type="PackedScene" uid="uid://dmj3x7peni1iw" path="res://Prefabs/Scenes/bullets/enemy_grenade_explosion.tscn" id="5_xb4xx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cd1q5"]
 animations = [{
@@ -46,13 +46,8 @@ animation_name = "airborne"
 
 [node name="Destroy" parent="StateMachine" index="1"]
 script = ExtResource("4_8fv5b")
+explosion_scene = ExtResource("5_xb4xx")
 animation_name = "destroy"
-
-[node name="Explosion" parent="StateMachine/Destroy" index="0" instance=ExtResource("4_82sqw")]
-
-[node name="HitboxComponent" parent="StateMachine/Destroy/Explosion" index="1"]
-collision_mask = 8
-damage = 5.0
 
 [node name="Area2D" type="Area2D" parent="." index="6"]
 collision_layer = 1073741824
@@ -60,5 +55,3 @@ collision_mask = 2147483648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_soxmq")
-
-[editable path="StateMachine/Destroy/Explosion"]
