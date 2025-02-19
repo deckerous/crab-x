@@ -10,7 +10,7 @@ script = ExtResource("1_q4tbg")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 rotation = 1.5708
@@ -18,7 +18,7 @@ shape = SubResource("CircleShape2D_48ogt")
 debug_color = Color(0.541258, 0.561021, 0.245643, 0.0980392)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 2
+collision_mask = 64
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0

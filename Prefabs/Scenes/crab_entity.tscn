@@ -56,13 +56,13 @@ radius = 5.0
 size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bguln"]
-radius = 4.0
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yxtw0"]
 
 [node name="CrabEntity" instance=ExtResource("1_4p3s6")]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 64
+collision_mask = 193
 script = ExtResource("2_mcd1l")
 is_rally = false
 
@@ -99,12 +99,11 @@ shape = SubResource("CircleShape2D_yxtw0")
 debug_color = Color(0, 0.65098, 0.133333, 0.101961)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="6"]
-path_desired_distance = 3.0
-target_desired_distance = 12.0
+path_desired_distance = 15.0
+target_desired_distance = 15.0
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 9.0
-max_speed = 75.0
+max_speed = 150.0
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 

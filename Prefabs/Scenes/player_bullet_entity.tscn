@@ -26,7 +26,9 @@ size = Vector2(4, 7)
 size = Vector2(4, 7)
 
 [node name="PlayerBulletEntity" instance=ExtResource("1_2tlln")]
+collision_mask = 129
 speed = 3.0
+collide_with_crabs = false
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5.5)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://ba82s08ina6nr"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_llv68"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/breached_whale_entity.gd" id="2_cv6ka"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_c2dih"]
 [ext_resource type="Texture2D" uid="uid://bmqp6ue10v3n0" path="res://Assets/Enemies/png/breached_whale_disarmed.png" id="2_w4our"]
 [ext_resource type="Texture2D" uid="uid://cf2gs6p6t5bjd" path="res://Assets/Enemies/png/breached_whale_armed.png" id="3_orywi"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="4_nhe0t"]
@@ -78,9 +78,11 @@ height = 104.0
 radius = 448.01
 
 [node name="BreachedWhaleEntity" instance=ExtResource("1_llv68")]
-collision_layer = 2
-script = ExtResource("2_cv6ka")
-max_hp = 500.0
+collision_layer = 128
+collision_mask = 193
+script = ExtResource("2_c2dih")
+flip_when_aiming = false
+max_hp = 750.0
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -54)
@@ -96,13 +98,11 @@ shape = SubResource("CapsuleShape2D_73h0r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 position = Vector2(-61, -43)
 rotation = -0.349066
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_owejo")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
 position = Vector2(-64, -85)
 rotation = 1.69297
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_ckx3n")
 
 [node name="HitboxComponent" parent="." index="4"]

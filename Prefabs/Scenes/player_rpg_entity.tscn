@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_5g18h"]
 [ext_resource type="Texture2D" uid="uid://bcydbiwnwj5li" path="res://Assets/Guns/png/rpg-rocket.png" id="2_dovka"]
 [ext_resource type="Texture2D" uid="uid://bodmews1bolnw" path="res://Assets/Misc/png/circle.png" id="3_0exgp"]
-[ext_resource type="PackedScene" uid="uid://cp4pc7saf6sk4" path="res://Prefabs/Scenes/bullets/explosion.tscn" id="3_2jnjs"]
 [ext_resource type="Script" path="res://Prefabs/Scenes/projectile_explosion_destroy_state.gd" id="3_xrpw5"]
+[ext_resource type="PackedScene" uid="uid://b8mqopotq7qv2" path="res://Prefabs/Scenes/bullets/rpg_explosion.tscn" id="5_pcigh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tsgsy"]
 animations = [{
@@ -36,9 +36,11 @@ colors = PackedColorArray(0.858824, 0.819608, 0.580392, 1, 0.968627, 0.462745, 0
 size = Vector2(4, 13)
 
 [node name="PlayerRPGEntity" instance=ExtResource("1_5g18h")]
-collision_mask = 3
+collision_mask = 129
 speed = 2.0
-collide_with_walls = true
+collide_with_crabs = false
+max_hp = 10.0
+health_bar_visible = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -7)
@@ -70,18 +72,5 @@ animation_name = "airborne"
 
 [node name="Destroy" parent="StateMachine" index="1"]
 script = ExtResource("3_xrpw5")
+explosion_scene = ExtResource("5_pcigh")
 animation_name = "destroy"
-
-[node name="Explosion" parent="StateMachine/Destroy" index="0" instance=ExtResource("3_2jnjs")]
-position = Vector2(0, -10)
-
-[node name="HitboxComponent" parent="StateMachine/Destroy/Explosion" index="1"]
-collision_mask = 12
-
-[node name="CollisionShape2D" parent="StateMachine/Destroy/Explosion/HitboxComponent" index="0"]
-visible = false
-
-[node name="HealthBar" parent="." index="5"]
-visible = false
-
-[editable path="StateMachine/Destroy/Explosion"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_e8wmg"]
 [ext_resource type="Texture2D" uid="uid://38ffb6662d3y" path="res://Assets/Enemies/png/deflated_puffer.png" id="2_0k02a"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/porcupine_fish_entity.gd" id="2_6bjwv"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_1fttj"]
 [ext_resource type="Texture2D" uid="uid://d1mbr4nyr2mix" path="res://Assets/Enemies/png/inflated_armed_puffer.png" id="2_gjl0v"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_4i38f"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/porcupine_fish_idle_state.gd" id="3_84w2n"]
@@ -33,30 +33,31 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3xfaw"]
-radius = 11.0
-height = 28.0
+radius = 19.0
+height = 42.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sphrn"]
 radius = 24.0
 height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ynxhx"]
-radius = 17.0
-height = 34.0
+radius = 22.0
+height = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxc5e"]
 radius = 167.027
 
 [node name="PorcupineFishEntity" instance=ExtResource("1_e8wmg")]
-collision_mask = 3
-script = ExtResource("2_6bjwv")
+collision_layer = 128
+collision_mask = 193
+script = ExtResource("2_1fttj")
 max_hp = 75.0
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(-4, 1)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_jsbso")
-frame_progress = 0.061628
+animation = &"idle"
 
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, 1)

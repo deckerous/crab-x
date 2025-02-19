@@ -1,9 +1,10 @@
-extends DestroyState
+extends State
 
-@onready var explosion = $Explosion
+@export var explosion_scene: PackedScene
 
 func enter() -> void:
-	explosion.start_explosion()
-	animations.hide()
-	await explosion.explosion_finished
 	super()
+	var inst : Explosion = explosion_scene.instantiate()
+	entity.summon_projectile(inst, entity.global_position)
+	animations.hide()
+	inst.explosion_finished.connect(func(): entity.call_deferred("queue_free"))
