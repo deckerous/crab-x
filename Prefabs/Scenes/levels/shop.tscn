@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://i0nmn2ypmpak"]
+[gd_scene load_steps=5 format=3 uid="uid://i0nmn2ypmpak"]
 
 [ext_resource type="Script" path="res://Prefabs/Scenes/levels/shop.gd" id="1_mo4ec"]
 [ext_resource type="PackedScene" uid="uid://f8o65gfojji2" path="res://Prefabs/Scenes/levels/shop_item.tscn" id="1_mvw8g"]
-[ext_resource type="Texture2D" uid="uid://dlllokcy8usu" path="res://Assets/Misc/png/temp-shop.jpg" id="2_qa0yy"]
-[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="3_wec1b"]
+[ext_resource type="Texture2D" uid="uid://bankkvlcvk25o" path="res://Assets/Misc/png/prawn-shop.png" id="2_heg1i"]
 [ext_resource type="Texture2D" uid="uid://g17fv4dci4b8" path="res://Assets/Misc/png/coin.png" id="5_2fefn"]
 
 [node name="Shop" type="CanvasLayer"]
@@ -15,21 +14,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="Shop Interface"]
-layout_mode = 0
-offset_left = -10.0
-offset_top = -7.0
-offset_right = 334.0
-offset_bottom = 191.0
-color = Color(1, 1, 0.133333, 1)
+[node name="Prawn-shop" type="Sprite2D" parent="Shop Interface"]
+position = Vector2(160, 90)
+texture = ExtResource("2_heg1i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop Interface"]
-layout_mode = 0
-offset_left = 209.0
-offset_top = 20.0
-offset_right = 464.0
-offset_bottom = 405.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.325
+anchor_top = 0.5
+anchor_right = 7.785
+anchor_bottom = 4.42
+offset_right = 147.6
+offset_bottom = 235.2
 scale = Vector2(0.4, 0.4)
+metadata/_edit_use_anchors_ = true
 
 [node name="ShopItem" parent="Shop Interface/VBoxContainer" instance=ExtResource("1_mvw8g")]
 layout_mode = 2
@@ -74,24 +73,6 @@ price = 4
 layout_mode = 2
 price = 4
 
-[node name="Temp-shop" type="Sprite2D" parent="."]
-position = Vector2(101, 90)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_qa0yy")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(104, 97)
-scale = Vector2(2, 2)
-texture = ExtResource("3_wec1b")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
-offset_top = -7.5
-offset_right = 125.0
-offset_bottom = 32.5
-scale = Vector2(0.25, 0.25)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "buy my stuff"
-
 [node name="Button" type="Button" parent="."]
 offset_left = 275.0
 offset_top = 3.0
@@ -101,7 +82,7 @@ scale = Vector2(0.4, 0.4)
 text = "Leave"
 
 [node name="Coin" type="Sprite2D" parent="."]
-position = Vector2(213, 9)
+position = Vector2(215, 9)
 texture = ExtResource("5_2fefn")
 
 [node name="CurrentCash" type="RichTextLabel" parent="Coin"]
@@ -113,6 +94,7 @@ scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = ": 10"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem" to="." method="_on_shop_item_purchased"]
 [connection signal="purchased" from="Shop Interface/VBoxContainer/ShopItem2" to="." method="_on_shop_item_purchased"]

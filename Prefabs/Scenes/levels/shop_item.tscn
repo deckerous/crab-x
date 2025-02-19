@@ -8,6 +8,7 @@ script = ExtResource("1_sh10e")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("2_3nvsl")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -18,9 +19,12 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
 text = "[right]5 Sheckles  [/right]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Buy"
 
 [connection signal="pressed" from="Button" to="." method="try_to_purchase"]
