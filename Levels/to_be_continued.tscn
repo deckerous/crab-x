@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://kqwn3nkjg4pq"]
+
+[ext_resource type="Script" path="res://Levels/to_be_continued.gd" id="1_ldsfg"]
+[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="1_um4wr"]
+[ext_resource type="PackedScene" uid="uid://tji6huju7eg8" path="res://Levels/Transition.tscn" id="3_offio"]
+
+[node name="ToBeContinued" type="Node2D"]
+script = ExtResource("1_ldsfg")
+level_id = "tbc"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 355.0
+offset_bottom = 88.0
+text = "TO BE CONTINUED"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 109.0
+offset_top = 88.0
+offset_right = 376.0
+offset_bottom = 128.0
+scale = Vector2(0.6, 0.6)
+text = "Stay tuned for more..."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(256, 56)
+texture = ExtResource("1_um4wr")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(64, 56)
+texture = ExtResource("1_um4wr")
+
+[node name="Transition" parent="." instance=ExtResource("3_offio")]

@@ -15,6 +15,7 @@ var curr_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	text_box.text = text_array[0]
 	text_box.visible_characters = 0
 	next_arrow.visible = false
 	canvas.visible = false

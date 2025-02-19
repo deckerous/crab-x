@@ -19,5 +19,8 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnterCollision"]
 shape = SubResource("RectangleShape2D_5f0jf")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="EnterCollision" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="EnterCollision" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -8,6 +8,7 @@ var is_paused = false # Keep track of pause state
 
 @onready var during_game_screen = $during_game_screen
 @onready var end_of_game_screen = $end_of_game_screen
+@onready var end_of_level_screen = $winning
 @onready var pause_menu_screen = $pause_menu
 @onready var pause_background = $pause_menu/pause_screen_background
 
@@ -16,6 +17,7 @@ var is_paused = false # Keep track of pause state
 @onready var item_label = $during_game_screen/item_label
 @onready var weapon_label = $during_game_screen/weapon_label
 
+signal next_level
 
 func _ready() -> void:
 	update_during_game_ui() 
@@ -36,19 +38,32 @@ func _on_game_over():
 	$end_of_game_screen/end_of_game_score_display/score_label.text = "%d" % game_score
 	# TODO: Implement way to quit	
 
+func _on_level_complete():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	get_tree().paused = true
+	during_game_screen.visible = false
+	end_of_level_screen.visible = true
+
 func _on_resume_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	toggle_pause_menu() 
 
 func _on_restart_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	get_tree().paused = false
 	get_tree().reload_current_scene()  # Restart the game
 
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
-	await Analytics.handle_exit()
+	if !PlayerVariable.debug:
+		await Analytics.handle_exit()
 	# TODO: Save progress as you leave?
+
+func _on_next_level_pressed():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	get_tree().paused = false
+	next_level.emit()
 
 func toggle_pause_menu():
 	is_paused = not is_paused
