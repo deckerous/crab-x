@@ -212,11 +212,9 @@ flip_when_aiming = false
 
 [node name="PorcupineFishEntity" parent="Enemies" index="19" instance=ExtResource("11_53hf2")]
 position = Vector2(1207, -2920)
-flip_when_aiming = false
 
 [node name="BreachedWhaleEntity" parent="Enemies" index="20" instance=ExtResource("12_7quic")]
 position = Vector2(228, -3396)
-scale = Vector2(0.4, 0.4)
 
 [node name="Player" parent="." index="2"]
 position = Vector2(204, 534)
