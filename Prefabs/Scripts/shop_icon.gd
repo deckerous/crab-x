@@ -25,7 +25,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 func _on_shop_exit(unused) -> void:
 	interactable = false
-	timer.start()
+	timer.start(2)
 
 func _on_timer_timeout() -> void:
 	interactable = true

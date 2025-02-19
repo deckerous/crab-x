@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=4 uid="uid://covkpsdjld7rr"]
+[gd_scene load_steps=18 format=4 uid="uid://covkpsdjld7rr"]
 
 [ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_7by8a"]
+[ext_resource type="PackedScene" uid="uid://cq155881j44wb" path="res://Levels/Beach/beach2.tscn" id="2_4674s"]
 [ext_resource type="TileSet" uid="uid://ccldp1h1oielx" path="res://Assets/Tilesets/resource/beach_wall.tres" id="2_iqnov"]
-[ext_resource type="PackedScene" uid="uid://b4aug6xgw82lc" path="res://Levels/Beach/beach3.tscn" id="2_ql1b0"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="3_djhxu"]
 [ext_resource type="TileSet" uid="uid://dacyctc1u2af2" path="res://Assets/Tilesets/resource/beach_decor.tres" id="4_d6uio"]
 [ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/levels/tweasure_chest.tscn" id="5_7j3jf"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bkr2aawxwumno" path="res://Prefabs/Scenes/misc/coconut.tscn" id="7_hhjue"]
 [ext_resource type="Script" path="res://Levels/Beach/activate_boss.gd" id="8_6kb2b"]
 [ext_resource type="PackedScene" uid="uid://jgyy6y1bjb44" path="res://Prefabs/Scenes/enemies/sand_flea_entity.tscn" id="9_5gfvo"]
+[ext_resource type="Texture2D" uid="uid://bory6el8j7t2n" path="res://Assets/Crabs/png/general-crusty-shawn.png" id="9_40xcj"]
 [ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="10_jow6t"]
 [ext_resource type="PackedScene" uid="uid://by0x7801225v6" path="res://Prefabs/Scenes/enemies/porcupine_fish_entity.tscn" id="11_mu1m5"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="12_b1cij"]
@@ -20,7 +21,7 @@
 size = Vector2(58, 20)
 
 [node name="Level" instance=ExtResource("1_7by8a")]
-next_level = ExtResource("2_ql1b0")
+next_level = ExtResource("2_4674s")
 starting_crab_count = 3
 starting_weapon = 1
 level_id = "beach1"
@@ -97,25 +98,39 @@ player = NodePath("../../../Player")
 [node name="Coconut" parent="Graphics/LootAndTriggers" index="12" instance=ExtResource("7_hhjue")]
 position = Vector2(127, 321)
 
-[node name="Coconut2" parent="Graphics/LootAndTriggers" index="13" instance=ExtResource("7_hhjue")]
+[node name="Sprite2D" type="Sprite2D" parent="Graphics/LootAndTriggers" index="13"]
+position = Vector2(296, 739)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_40xcj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Graphics/LootAndTriggers/Sprite2D" index="0"]
+offset_left = -150.0
+offset_top = -190.0
+offset_right = 65.0
+offset_bottom = -90.0
+scale = Vector2(1.5, 1.5)
+text = "General Crusty Shawn Tip:
+These heal damaged crabs"
+
+[node name="Coconut2" parent="Graphics/LootAndTriggers" index="14" instance=ExtResource("7_hhjue")]
 position = Vector2(121, 331)
 
-[node name="Coconut3" parent="Graphics/LootAndTriggers" index="14" instance=ExtResource("7_hhjue")]
+[node name="Coconut3" parent="Graphics/LootAndTriggers" index="15" instance=ExtResource("7_hhjue")]
 position = Vector2(306, 768)
 
-[node name="Coconut4" parent="Graphics/LootAndTriggers" index="15" instance=ExtResource("7_hhjue")]
+[node name="Coconut4" parent="Graphics/LootAndTriggers" index="16" instance=ExtResource("7_hhjue")]
 position = Vector2(313, 758)
 
-[node name="Coconut5" parent="Graphics/LootAndTriggers" index="16" instance=ExtResource("7_hhjue")]
+[node name="Coconut5" parent="Graphics/LootAndTriggers" index="17" instance=ExtResource("7_hhjue")]
 position = Vector2(445, 191)
 
-[node name="Coconut6" parent="Graphics/LootAndTriggers" index="17" instance=ExtResource("7_hhjue")]
+[node name="Coconut6" parent="Graphics/LootAndTriggers" index="18" instance=ExtResource("7_hhjue")]
 position = Vector2(450, 177)
 
-[node name="Coconut7" parent="Graphics/LootAndTriggers" index="18" instance=ExtResource("7_hhjue")]
+[node name="Coconut7" parent="Graphics/LootAndTriggers" index="19" instance=ExtResource("7_hhjue")]
 position = Vector2(458, 189)
 
-[node name="Area2D" type="Area2D" parent="Graphics/LootAndTriggers" index="19" node_paths=PackedStringArray("activatable")]
+[node name="Area2D" type="Area2D" parent="Graphics/LootAndTriggers" index="20" node_paths=PackedStringArray("activatable")]
 collision_layer = 16
 collision_mask = 16
 script = ExtResource("8_6kb2b")
