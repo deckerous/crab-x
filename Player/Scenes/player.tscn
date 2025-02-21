@@ -15,7 +15,6 @@ script = ExtResource("1_hjqw4")
 process_mode = 1
 
 [node name="CrabEntity" parent="CrabManager" instance=ExtResource("4_44bsy")]
-is_rally = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true

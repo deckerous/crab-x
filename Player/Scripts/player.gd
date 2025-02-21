@@ -1,10 +1,12 @@
 extends Node2D
 
-@export_group("Crab Movement Speeds")
+@export_group("Crab Movement Properties")
 @export var rally_point_move_speed : float = 75.0
 @export var crab_moving_speed : float = 75.0
 @export var crab_speed_up_dist: float = 50.0
 @export var crab_speed_up_factor: float = 3.0
+@export var crab_pathfind_factor: float = 1.0
+@export var crab_move_dir_factor: float = 0.5
 
 @export_group("Camera Properties")
 @export var crosshair_dist_min : float = 15.0
@@ -44,6 +46,8 @@ func _ready():
 	call_deferred("navigation_map_setup")
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	
+	rally_point_crab_entity.is_rally = true
 
 func navigation_map_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -70,7 +74,7 @@ func _process(delta):
 func _physics_process(delta):
 	PlayerVariable.num_coins = coin_count
 	PlayerVariable.num_crabs = crab_count
-
+	
 	if Input.is_action_just_pressed("exit"):
 		toggle_pause() #for UI integration
 		# get_tree().quit()
@@ -98,15 +102,15 @@ func _physics_process(delta):
 			rally_point_crab_entity = crab_manager.get_child(0)
 			rally_point_crab_entity.is_rally = true
 		
+		# Rally point crab movement
+		_update_rally_crab_velocity()
+		
 		if crabs.size() > 1:
 			crab_count = crabs.size()
 			_update_crab_velocities(crabs)
 		
 		# Crosshair position update
 		crosshair.global_position = mouse_pos
-		
-		# Rally point crab movement
-		_update_rally_crab_velocity()
 	
 	else:
 		_game_over()
@@ -124,7 +128,7 @@ func _update_crab_velocities(crabs) -> void:
 			crab.navigation_agent_2d.target_position = rally_point_crab_entity.global_position
 			var curr_crab_position = crab.global_position
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
-			var new_crab_velocity = curr_crab_position.direction_to(next_path_position).normalized() * crab_moving_speed
+			var new_crab_velocity = (curr_crab_position.direction_to(next_path_position).normalized() * crab_pathfind_factor + move_dir * crab_move_dir_factor) * crab_moving_speed
 			
 			var rally_distance = crab.global_position.distance_to(rally_point_crab_entity.global_position)
 			if rally_distance > crab_speed_up_dist:

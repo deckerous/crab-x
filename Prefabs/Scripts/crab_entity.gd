@@ -1,10 +1,13 @@
 class_name CrabEntity
 extends Entity
 
-@export var is_rally: bool = false
-
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var healing_area_2d = $HealingArea2D
+@onready var star = $Star
+
+@onready var is_rally: bool = false : 
+	set(value):
+		star.visible = value
 
 func _ready() -> void:
 	super()

@@ -13,7 +13,9 @@ func _physics_process(delta) -> void:
 	super(delta)
 	if flip_when_aiming and targetting_component.targeted_crab:
 		
-		var dir_to_crab = self.global_position.direction_to(targetting_component.targeted_crab.global_position)
+		var dir_to_crab = Vector2.ZERO
+		if targetting_component.targeted_crab != null:
+			dir_to_crab = self.global_position.direction_to(targetting_component.targeted_crab.global_position)
 		if dir_to_crab.x < 0.0:
 			#self.scale.y = -1
 			#self.rotation_degrees = 180

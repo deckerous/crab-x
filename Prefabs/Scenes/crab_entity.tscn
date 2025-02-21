@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=21 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/rpg_crab_state.gd" id="9_ruqhs"]
 [ext_resource type="PackedScene" uid="uid://c0773lon6v416" path="res://Prefabs/Scenes/player_bullet_entity.tscn" id="10_b3vec"]
 [ext_resource type="PackedScene" uid="uid://clwmvhbjdrpld" path="res://Prefabs/Scenes/player_rpg_entity.tscn" id="13_chaxw"]
+[ext_resource type="Texture2D" uid="uid://ceoajh3yjs5uq" path="res://Assets/Misc/png/star.png" id="14_6dhip"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="15_q6qch"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
 animations = [{
@@ -64,16 +66,22 @@ radius = 7.0
 collision_layer = 64
 collision_mask = 193
 script = ExtResource("2_mcd1l")
-is_rally = false
 
-[node name="Animations" parent="." index="0"]
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.564706)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("15_q6qch")
+
+[node name="Animations" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_7lf24")
 animation = &"empty"
 
-[node name="CollisionBox" parent="." index="1"]
+[node name="CollisionBox" parent="." index="2"]
+visible = false
 shape = SubResource("CircleShape2D_bun2p")
 
-[node name="CollectableComponent" type="Area2D" parent="." index="2"]
+[node name="CollectableComponent" type="Area2D" parent="." index="3"]
+visible = false
 collision_layer = 16
 collision_mask = 16
 collision_priority = 0.0
@@ -82,14 +90,19 @@ collision_priority = 0.0
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_3rqcn")
 
-[node name="HurtboxComponent" parent="." index="4"]
+[node name="HitboxComponent" parent="." index="4"]
+visible = false
+
+[node name="HurtboxComponent" parent="." index="5"]
+visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 shape = SubResource("CircleShape2D_bguln")
 debug_color = Color(0.913828, 0.0663878, 0.692027, 0.42)
 
-[node name="HealingArea2D" type="Area2D" parent="." index="5"]
+[node name="HealingArea2D" type="Area2D" parent="." index="6"]
+visible = false
 collision_layer = 32
 collision_mask = 32
 
@@ -98,16 +111,18 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_yxtw0")
 debug_color = Color(0, 0.65098, 0.133333, 0.101961)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="6"]
-path_desired_distance = 15.0
-target_desired_distance = 15.0
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
+target_desired_distance = 20.0
+path_max_distance = 50.0
 path_postprocessing = 1
 avoidance_enabled = true
-max_speed = 150.0
+neighbor_distance = 100.0
+max_speed = 130.0
+debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 
-[node name="StateMachine" parent="." index="7" node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" parent="." index="8" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Empty")
 
 [node name="Empty" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("slingshot", "glock", "rpg")]
@@ -162,8 +177,12 @@ position = Vector2(-3.5, -18)
 wait_time = 2.0
 one_shot = true
 
-[node name="HealthBar" parent="." index="8"]
+[node name="HealthBar" parent="." index="9"]
 offset_top = 8.0
 offset_bottom = 35.0
+
+[node name="Star" type="Sprite2D" parent="." index="10"]
+visible = false
+texture = ExtResource("14_6dhip")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
