@@ -3,17 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dvafuwrwbdgqd" path="res://Assets/Tilesets/pngs/beach-sand-16x16.png" id="1_k6f2e"]
 [ext_resource type="Texture2D" uid="uid://byj7np463hg2s" path="res://Assets/Tilesets/pngs/underwater-sand-16x16.png" id="2_vdq2h"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_a34d2"]
-vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
-agent_radius = 0.0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_us6pl"]
-texture = ExtResource("1_k6f2e")
-0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_a34d2")
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5eoct"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -25,7 +14,18 @@ texture = ExtResource("2_vdq2h")
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5eoct")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dmsg6"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8t7ra"]
+texture = ExtResource("1_k6f2e")
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dmsg6")
+
 [resource]
 navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetAtlasSource_us6pl")
 sources/1 = SubResource("TileSetAtlasSource_vmkpa")
+sources/5 = SubResource("TileSetAtlasSource_8t7ra")

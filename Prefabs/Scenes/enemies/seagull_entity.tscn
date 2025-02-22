@@ -56,16 +56,15 @@ position = Vector2(0, 2)
 texture = ExtResource("3_3l1a5")
 
 [node name="Animations" parent="." index="1"]
-position = Vector2(-1.5, -10)
+position = Vector2(-0.75, -10)
 sprite_frames = SubResource("SpriteFrames_w3y7q")
 
 [node name="CollisionBox" parent="." index="2"]
 position = Vector2(-1.5, -9)
-rotation = 1.39626
 shape = SubResource("CircleShape2D_nloff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(5, -20)
+position = Vector2(6, -20)
 shape = SubResource("CircleShape2D_d156n")
 
 [node name="HitboxComponent" parent="." index="4"]

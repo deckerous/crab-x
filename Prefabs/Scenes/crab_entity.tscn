@@ -51,7 +51,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bun2p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uljcy"]
 radius = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rqcn"]
@@ -77,8 +77,7 @@ sprite_frames = SubResource("SpriteFrames_7lf24")
 animation = &"empty"
 
 [node name="CollisionBox" parent="." index="2"]
-visible = false
-shape = SubResource("CircleShape2D_bun2p")
+shape = SubResource("CircleShape2D_uljcy")
 
 [node name="CollectableComponent" type="Area2D" parent="." index="3"]
 visible = false
@@ -112,13 +111,13 @@ shape = SubResource("CircleShape2D_yxtw0")
 debug_color = Color(0, 0.65098, 0.133333, 0.101961)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
-target_desired_distance = 20.0
-path_max_distance = 50.0
+path_desired_distance = 10.0
+target_desired_distance = 25.0
+path_max_distance = 200.0
 path_postprocessing = 1
 avoidance_enabled = true
-neighbor_distance = 100.0
-max_speed = 130.0
-debug_enabled = true
+radius = 10.5
+max_speed = 120.0
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 1, 1)
 

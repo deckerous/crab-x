@@ -3,9 +3,9 @@ extends Node2D
 @export_group("Crab Movement Properties")
 @export var rally_point_move_speed : float = 75.0
 @export var crab_moving_speed : float = 75.0
-@export var crab_speed_up_dist: float = 50.0
+@export var crab_speed_up_dist: float = 35.0
 @export var crab_speed_up_factor: float = 3.0
-@export var crab_pathfind_factor: float = 1.0
+@export var crab_pathfind_factor: float = 0.75
 @export var crab_move_dir_factor: float = 0.5
 
 @export_group("Camera Properties")
@@ -125,24 +125,30 @@ func _update_rally_crab_velocity() -> void:
 func _update_crab_velocities(crabs) -> void:
 	for crab in crabs:
 		if crab is CrabEntity and crab != rally_point_crab_entity and rally_point_crab_entity != null:
+			
 			crab.navigation_agent_2d.target_position = rally_point_crab_entity.global_position
 			var curr_crab_position = crab.global_position
 			var next_path_position = crab.navigation_agent_2d.get_next_path_position()
-			var new_crab_velocity = (curr_crab_position.direction_to(next_path_position).normalized() * crab_pathfind_factor + move_dir * crab_move_dir_factor) * crab_moving_speed
 			
 			var rally_distance = crab.global_position.distance_to(rally_point_crab_entity.global_position)
+			var new_crab_velocity = (curr_crab_position.direction_to(next_path_position).normalized()) * crab_moving_speed
+			if move_dir != Vector2.ZERO and rally_distance < crab_speed_up_dist:
+				new_crab_velocity = (curr_crab_position.direction_to(next_path_position).normalized() * crab_pathfind_factor + move_dir * crab_move_dir_factor) * crab_moving_speed
+			
 			if rally_distance > crab_speed_up_dist:
-				new_crab_velocity * crab_speed_up_factor
+				new_crab_velocity *= crab_speed_up_factor
 			
 			if crab.navigation_agent_2d.is_navigation_finished():
-				new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity, 0.05)
+				#new_crab_velocity = lerp(new_crab_velocity, new_crab_velocity, 0.05)
+				new_crab_velocity = lerp(new_crab_velocity, crab.velocity, 0.05)
 			
 			if crab.navigation_agent_2d.avoidance_enabled:
 				crab.navigation_agent_2d.set_velocity(new_crab_velocity)
 			else:
-				crab._on_navigation_agent_2d_velocity_computed(crab.velocity)
+				crab._on_navigation_agent_2d_velocity_computed(new_crab_velocity)
 			
 			if crab.process_mode == Node.PROCESS_MODE_INHERIT:
+				
 				crab.move_and_slide()
 			
 			if (crab.global_position - rally_point_crab_entity.global_position).length() > 200:
@@ -207,11 +213,14 @@ func _game_over() -> void:
 
 func add_crabs(num: int) -> void:
 	if num < 2: return
+	var i = 1
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
-		crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
+		crab_inst.position = rally_point_crab_entity.position + Vector2(0, 15)
+		crab_inst.velocity = Vector2.DOWN
 		crab_manager.add_child(crab_inst)
 		PlayerVariable.num_crabs += 1
+		i += 1
 
 func _on_shop_shop_closed(coins_left: Variant) -> void:
 	coin_count = coins_left
