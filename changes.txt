@@ -1,7 +1,0 @@
-- Made the rally crab distinct from other crabs.
-- Added arrow keys for movement and 'space' for shoot as alternative controls.
-- Added drop shadows to crabs, sandfleas, and seagulls.
-- Stopped seagulls from being able to see you through walls.
-- Improved sandflea ability to pathfind around corners.
-- IN PROGRESS: Made crabs be influenced partially by the rally point's move input direction for better strafing.
-- 
