@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cehoptbmihbjs"]
+[gd_scene load_steps=15 format=3 uid="uid://cehoptbmihbjs"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ust1h"]
 [ext_resource type="Texture2D" uid="uid://cf1fxr058bt7g" path="res://Assets/Enemies/png/seagull.png" id="2_di0af"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_ki7dx"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="3_3l1a5"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_um4iv"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_vg107"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_shoot_state.gd" id="4_xlgp7"]
@@ -49,19 +50,25 @@ script = ExtResource("2_ki7dx")
 flip_when_aiming = true
 max_hp = 15.0
 
-[node name="Animations" parent="." index="0"]
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
+modulate = Color(0.0666667, 0.266667, 0.266667, 1)
+position = Vector2(0, 2)
+texture = ExtResource("3_3l1a5")
+
+[node name="Animations" parent="." index="1"]
+position = Vector2(-0.75, -10)
 sprite_frames = SubResource("SpriteFrames_w3y7q")
 
-[node name="CollisionBox" parent="." index="1"]
-position = Vector2(0, -9)
-rotation = 1.39626
+[node name="CollisionBox" parent="." index="2"]
+position = Vector2(-1.5, -9)
 shape = SubResource("CircleShape2D_nloff")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
-position = Vector2(7, -20)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(6, -20)
 shape = SubResource("CircleShape2D_d156n")
 
-[node name="HitboxComponent" parent="." index="3"]
+[node name="HitboxComponent" parent="." index="4"]
+position = Vector2(-1.5, 0)
 collision_mask = 8
 damage = 1.0
 
@@ -70,8 +77,8 @@ position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_s1sa7")
 debug_color = Color(0.726348, 0.474754, 0.0710468, 0.42)
 
-[node name="HurtboxComponent" parent="." index="4"]
-position = Vector2(0, 1)
+[node name="HurtboxComponent" parent="." index="5"]
+position = Vector2(-1.5, 1)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
@@ -85,9 +92,12 @@ position = Vector2(7, -21)
 shape = SubResource("CircleShape2D_rpkbm")
 debug_color = Color(0.847059, 0.352941, 0.341176, 0.419608)
 
-[node name="TargettingComponent" parent="." index="5" instance=ExtResource("3_um4iv")]
+[node name="TargettingComponent" parent="." index="6" instance=ExtResource("3_um4iv")]
 
-[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("starting_state")]
+[node name="RayCast2D" parent="TargettingComponent" index="1"]
+collision_mask = 65
+
+[node name="StateMachine" parent="." index="7" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Wander")
 
 [node name="Wander" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
@@ -109,11 +119,11 @@ projectile = ExtResource("7_pfjjh")
 animation_name = "aggro"
 
 [node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/Aggro" index="0"]
-position = Vector2(13, -19)
+position = Vector2(0, -16)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
 
-[node name="HealthBar" parent="." index="7"]
+[node name="HealthBar" parent="." index="8"]
 offset_top = -30.0
 offset_bottom = -3.0
 

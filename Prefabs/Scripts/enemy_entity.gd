@@ -13,22 +13,23 @@ func _physics_process(delta) -> void:
 	super(delta)
 	if flip_when_aiming and targetting_component.targeted_crab:
 		
-		var dir_to_crab = self.global_position.direction_to(targetting_component.targeted_crab.global_position)
-		if dir_to_crab.x < 0.0:
-			#self.scale.y = -1
-			#self.rotation_degrees = 180
-			var nodes = [$Animations, $CollisionBox, $CollisionShape2D, $HitboxComponent, $HurtboxComponent, $StateMachine/Aggro/ProjectileSpawnPosition]
-			for node in nodes:
-				node.scale.y = -1
-				node.rotation_degrees = 180
-		else:
-			#self.scale.y = 1
-			#self.rotation_degrees = 0
-			var nodes = [$Animations, $CollisionBox, $CollisionShape2D, $HitboxComponent, $HurtboxComponent, $StateMachine/Aggro/ProjectileSpawnPosition]
-			for node in nodes:
-				node.scale.y = 1
-				node.rotation_degrees = 0
+		var dir_to_crab = Vector2.ZERO
+		if targetting_component.targeted_crab != null:
+			dir_to_crab = self.global_position.direction_to(targetting_component.targeted_crab.global_position)
+		_flip_h(dir_to_crab)
 	
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
+
+func _flip_h(dir: Vector2) -> void:
+	if dir.x < 0.0:
+		var nodes = [$Animations, $CollisionBox, $CollisionShape2D, $HitboxComponent, $HurtboxComponent, $StateMachine/Aggro/ProjectileSpawnPosition]
+		for node in nodes:
+			node.scale.y = -1
+			node.rotation_degrees = 180
+	else:
+		var nodes = [$Animations, $CollisionBox, $CollisionShape2D, $HitboxComponent, $HurtboxComponent, $StateMachine/Aggro/ProjectileSpawnPosition]
+		for node in nodes:
+			node.scale.y = 1
+			node.rotation_degrees = 0

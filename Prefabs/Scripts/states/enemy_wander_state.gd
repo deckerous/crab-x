@@ -6,8 +6,8 @@ extends State
 
 @export_group("Wander Properties")
 @export var wander_speed: float = 15.0
-@export var wander_time_min: float = 1.0
-@export var wander_time_max: float = 3.0
+@export var wander_time_min: float = 0.5
+@export var wander_time_max: float = 2.0
 
 @onready var wander_timer = $WanderTimer
 @onready var wait_timer = $WaitTimer
@@ -46,6 +46,8 @@ func process_physics(delta: float) -> State:
 func _wander() -> void:
 	if at_origin and !is_waiting:
 		patrol_direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
+		if entity.flip_when_aiming:
+			entity._flip_h(patrol_direction)
 		wander_timer.start(randf_range(wander_time_min, wander_time_max))
 		patrolling = true
 		at_origin = false
@@ -61,6 +63,8 @@ func _wander() -> void:
 	if !at_origin and !patrolling and !is_waiting:
 		entity.velocity = -patrol_direction * wander_speed
 		entity.move_and_slide()
+		if entity.flip_when_aiming:
+			entity._flip_h(-patrol_direction)
 		
 		if entity.global_position.is_equal_approx(origin):
 			at_origin = true

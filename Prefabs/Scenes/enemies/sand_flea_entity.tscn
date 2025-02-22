@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://jgyy6y1bjb44"]
+[gd_scene load_steps=12 format=3 uid="uid://jgyy6y1bjb44"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_hkygb"]
 [ext_resource type="Texture2D" uid="uid://dfp60johfsj6m" path="res://Assets/Enemies/png/sand-flea.png" id="2_337cd"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_m6bhk"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="3_aldff"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_su61h"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_wander_state.gd" id="3_wcn2o"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_chase_state.gd" id="6_807iw"]
@@ -26,8 +27,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kvf1f"]
-radius = 14.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssy34"]
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oveon"]
 radius = 19.0
@@ -39,17 +40,23 @@ radius = 17.0
 collision_layer = 128
 collision_mask = 193
 script = ExtResource("2_m6bhk")
+flip_when_aiming = false
 
-[node name="Animations" parent="." index="0"]
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
+modulate = Color(0.0666667, 0.266667, 0.266667, 1)
+position = Vector2(0, 16)
+texture = ExtResource("3_aldff")
+
+[node name="Animations" parent="." index="1"]
 position = Vector2(0, 0)
 sprite_frames = SubResource("SpriteFrames_labi2")
 animation = &"wander"
 
-[node name="CollisionBox" parent="." index="1"]
+[node name="CollisionBox" parent="." index="2"]
 position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_kvf1f")
+shape = SubResource("CircleShape2D_ssy34")
 
-[node name="HitboxComponent" parent="." index="2"]
+[node name="HitboxComponent" parent="." index="3"]
 collision_mask = 8
 damage = 3.0
 
@@ -58,7 +65,7 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_oveon")
 debug_color = Color(0.73251, 0.468047, 0.159788, 0.42)
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
@@ -66,14 +73,18 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_l25a6")
 debug_color = Color(0.898222, 0.279074, 0.382132, 0.42)
 
-[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_su61h")]
+[node name="TargettingComponent" parent="." index="5" instance=ExtResource("3_su61h")]
 pathfind = true
 
 [node name="NavigationAgent2D" parent="TargettingComponent" index="2"]
-max_speed = 500.0
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_max_distance = 50.0
+path_postprocessing = 0
+neighbor_distance = 100.0
 debug_enabled = false
 
-[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Wander")
 
 [node name="Wander" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
@@ -92,7 +103,7 @@ script = ExtResource("6_807iw")
 wander = NodePath("../Wander")
 aggro_speed = 55.0
 
-[node name="HealthBar" parent="." index="6"]
+[node name="HealthBar" parent="." index="7"]
 offset_top = -25.0
 offset_bottom = 2.0
 
