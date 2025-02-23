@@ -46,7 +46,7 @@ texture = ExtResource("3_338aa")
 stretch_mode = 2
 
 [node name="main_menu_screen" type="Node2D" parent="."]
-position = Vector2(101, 0)
+position = Vector2(96, 16)
 
 [node name="new_game_button" type="Button" parent="main_menu_screen"]
 self_modulate = Color(1, 1, 1, 0)
@@ -100,39 +100,13 @@ vertical_alignment = 1
 uppercase = true
 metadata/_edit_use_anchors_ = true
 
-[node name="settings_button" type="Button" parent="main_menu_screen"]
-self_modulate = Color(1, 1, 1, 0)
-z_index = 1
-offset_left = 129.0
-offset_top = 96.0
-offset_right = 191.0
-offset_bottom = 128.0
-metadata/_edit_use_anchors_ = true
-
-[node name="settings_button" type="Sprite2D" parent="main_menu_screen/settings_button"]
-position = Vector2(29.9, 16)
-scale = Vector2(0.0549828, 0.0540541)
-texture = ExtResource("5_5yocx")
-
-[node name="settings_label" type="Label" parent="main_menu_screen/settings_button"]
-layout_mode = 0
-offset_left = -2.0
-offset_right = 89.0
-offset_bottom = 46.0
-scale = Vector2(0.7, 0.7)
-text = "Settings"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-metadata/_edit_use_anchors_ = true
-
 [node name="quit_button" type="Button" parent="main_menu_screen"]
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 offset_left = 127.0
-offset_top = 136.0
+offset_top = 96.0
 offset_right = 191.0
-offset_bottom = 168.0
+offset_bottom = 128.0
 metadata/_edit_use_anchors_ = true
 
 [node name="quit_button" type="Sprite2D" parent="main_menu_screen/quit_button"]
@@ -153,5 +127,4 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="main_menu_screen/new_game_button" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="main_menu_screen/continue_button" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="main_menu_screen/settings_button" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="main_menu_screen/quit_button" to="." method="_on_quit_button_pressed"]
