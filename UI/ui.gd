@@ -66,11 +66,12 @@ func _on_next_level_pressed():
 	next_level.emit()
 
 func toggle_pause_menu():
-	is_paused = not is_paused
-	get_tree().paused = not get_tree().paused
-	during_game_screen.visible = not during_game_screen.visible
-	pause_menu_screen.visible = get_tree().paused
-	pause_background.visible = get_tree().paused
+	if not PlayerVariable.in_shop:
+		is_paused = not is_paused
+		get_tree().paused = not get_tree().paused
+		during_game_screen.visible = not during_game_screen.visible
+		pause_menu_screen.visible = get_tree().paused
+		pause_background.visible = get_tree().paused
 	
 
 func _on_settings_button_pressed():
