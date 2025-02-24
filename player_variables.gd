@@ -1,6 +1,7 @@
 extends Node
 
 var debug = true
+var in_shop = false
 
 var num_crabs = 0
 var num_coins = 0

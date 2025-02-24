@@ -229,8 +229,10 @@ func _on_shop_shop_closed(coins_left: Variant) -> void:
 
 # For UI integration
 func toggle_pause():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	ui_instance.toggle_pause_menu()
+	if not PlayerVariable.in_shop:
+		print("toggle_pause in player.gd")
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		ui_instance.toggle_pause_menu()
 
 func add_coin():
 	coin_count += 1
