@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cob367saorgaw"]
 
-[ext_resource type="Texture2D" uid="uid://bory6el8j7t2n" path="res://Assets/Crabs/png/general-crusty-shawn.png" id="1_imceb"]
 [ext_resource type="Script" path="res://Levels/Tutorial/Scripts/dialogue_handler.gd" id="1_yu8nt"]
+[ext_resource type="Texture2D" uid="uid://dkga3otvvspwg" path="res://Assets/Crabs/png/crusty-shawn-portrait.png" id="2_d7efj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xp3c"]
 size = Vector2(341, 198)
@@ -52,8 +52,8 @@ shape = SubResource("RectangleShape2D_8xp3c")
 disabled = true
 
 [node name="MyGoatGeneralCrustyShawn" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(21, 153)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_imceb")
+position = Vector2(21, 151)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_d7efj")
 
 [connection signal="input_event" from="CanvasLayer/Area2D" to="." method="_on_area_2d_input_event"]

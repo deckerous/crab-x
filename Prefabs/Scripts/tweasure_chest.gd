@@ -20,6 +20,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	print_debug(area.name)
 	if area.name == "CollectableComponent":
 		give_loot.emit(loot)
+		print(loot)
 		sprite.hide()
 		collision_box.queue_free()
 		text_edit.show()

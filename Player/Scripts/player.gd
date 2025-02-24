@@ -161,7 +161,8 @@ func handle_loot(array: Array) -> void:
 			"Crab":
 				var crab_inst = crab_component.instantiate()
 				crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
-				crab_manager.add_child(crab_inst)
+				#crab_manager.add_child(crab_inst)
+				crab_manager.call_deferred("add_child", crab_inst)
 				PlayerVariable.num_crabs += 1
 				
 				match cur_weapon:
@@ -191,6 +192,8 @@ func change_weapon(state) -> void:
 			str = "Glock"
 		level.WEAPONS.RPG:
 			str = "RPG"
+		level.WEAPONS.EMPTY:
+			str = "Empty"
 	
 	cur_weapon = str
 	for child in crab_manager.get_children():
