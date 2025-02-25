@@ -41,6 +41,7 @@ speed = 2.0
 collide_with_crabs = false
 max_hp = 10.0
 health_bar_visible = true
+entity_id = "PlayerRPG"
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -7)

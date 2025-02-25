@@ -4,6 +4,7 @@ extends Area2D
 @export var damage : float
 
 @onready var collision_shape_2d
+@onready var entity_parent: Node2D = $".."
 
 signal hit_hurtbox(hurtbox)
 

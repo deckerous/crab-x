@@ -21,6 +21,7 @@ animations = [{
 }]
 
 [node name="MortarEntity" instance=ExtResource("1_l6ggq")]
+entity_id = "Mortar"
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, 10)

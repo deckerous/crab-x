@@ -29,6 +29,7 @@ size = Vector2(2, 2)
 collision_mask = 129
 speed = 2.0
 collide_with_crabs = false
+entity_id = "PlayerRock"
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -1.5)

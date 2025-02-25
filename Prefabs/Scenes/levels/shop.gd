@@ -12,6 +12,8 @@ func _on_shop_item_purchased(item: Variant) -> void:
 	items_purchased.append(item)
 
 func _enter(coins_start) -> void:
+	PlayerVariable.in_shop = true
+	print("shop.gd, in_shop =", PlayerVariable.in_shop)
 	coins_text.text = ": " + str(coins_start)
 	coins = coins_start
 	visible = true
@@ -22,3 +24,4 @@ func _leave() -> void:
 	recieved_item.emit(items_purchased)
 	items_purchased.clear()
 	visible = false
+	PlayerVariable.in_shop = false

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Player
 
 @export_group("Crab Movement Properties")
 @export var rally_point_move_speed : float = 75.0
@@ -30,13 +31,16 @@ extends Node2D
 var is_paused = false # Keep track of pause state
 @onready var ui_instance = $ui
 
-@onready var coin_count : int = 0
-@onready var crab_count : int = 0
-@onready var cur_weapon = "None"
+var coin_count : int = 0
+var crab_count : int = 0
+var cur_weapon = "None"
+var kill_count : int = 0
 
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
 
+var last_damage_instance_source: String
+var logged_player_death: bool = false
 var game_over = false
 
 func _ready():
@@ -97,6 +101,9 @@ func _physics_process(delta):
 	game_over = crabs.size() == 0
 	
 	if !game_over:
+		# Reset logging varaible
+		logged_player_death = false
+		
 		# If rally point crab dies, go to next available crab
 		if rally_point_crab_entity == null: 
 			rally_point_crab_entity = crab_manager.get_child(0)
@@ -203,14 +210,18 @@ func handle_entity_death(name) -> void:
 	# TODO: Replace with more robust loot pools
 	#coin_count += 1
 	#rich_text_label.text = str(coin_count)
-	if !PlayerVariable.debug:
-		Analytics.add_event("Player killed enemy " + name)
+	#if !PlayerVariable.debug:
+	#	Analytics.add_event("Player killed enemy " + name)
+	kill_count += 1
 	add_coin()
 
 func _game_over() -> void:
 	ui_instance._on_game_over()
-	if !PlayerVariable.debug:
-		Analytics.add_event("Player died")
+	# if !PlayerVariable.debug:
+	# 	Analytics.add_event("Player died")
+	if !logged_player_death:
+		logged_player_death = true
+		CrabLogs.log_player_death(last_damage_instance_source)
 	crosshair.hide()
 
 func add_crabs(num: int) -> void:
@@ -231,8 +242,10 @@ func _on_shop_shop_closed(coins_left: Variant) -> void:
 
 # For UI integration
 func toggle_pause():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	ui_instance.toggle_pause_menu()
+	if not PlayerVariable.in_shop:
+		print("toggle_pause in player.gd")
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+		ui_instance.toggle_pause_menu()
 
 func add_coin():
 	coin_count += 1
@@ -240,3 +253,7 @@ func add_coin():
 
 func remove_coin():
 	coin_count -= 1
+
+
+func _on_crab_entity_changed_last_damaged_by(entity: Node2D) -> void:
+	last_damage_instance_source = entity.entity_id if entity.entity_id != "" else "unknown"

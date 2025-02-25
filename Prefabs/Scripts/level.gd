@@ -13,7 +13,7 @@ enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG}
 
 @onready var graphics = $Graphics
 @onready var enemies = $Enemies
-@onready var player = $Player
+@onready var player: Player = $Player
 @onready var dialogue = $DialogueHandler
 @onready var transition_player = $Transition/AnimationPlayer
 
@@ -25,18 +25,23 @@ func _ready() -> void:
 	if starting_weapon != WEAPONS.EMPTY:
 		player.change_weapon(starting_weapon)
 	dialogue.trigger_visible()
-	
+
 func next_level_func() -> void:
+	PlayerVariable.cur_level += 1 # index level up
+	
 	if next_level != null:
 		var next_level_instance = next_level.instantiate()
-		if !PlayerVariable.debug:
-			Analytics.add_event("Player moved to " + next_level_instance.level_id)
+		print_debug(next_level_instance.level_id)
+		# if !PlayerVariable.debug:
+		#	 Analytics.add_event("Player moved to " + next_level_instance.level_id)
+		CrabLogs.log_stage_start(next_level_instance.level_id)
 		transition_player.play("fade_in")
 		get_tree().change_scene_to_packed(next_level)
 
 func level_complete_func() -> void:
-	if !PlayerVariable.debug:
-		Analytics.add_event("Player beat " + level_id)
+	# if !PlayerVariable.debug:
+	#	 Analytics.add_event("Player beat " + level_id)
+	CrabLogs.log_stage_complete(player.cur_weapon, player.crab_count, player.coin_count, player.kill_count)
 	level_complete = true
 	player.get_child(0)._on_level_complete()
 	
