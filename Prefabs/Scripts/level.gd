@@ -25,8 +25,10 @@ func _ready() -> void:
 	if starting_weapon != WEAPONS.EMPTY:
 		player.change_weapon(starting_weapon)
 	dialogue.trigger_visible()
-	
+
 func next_level_func() -> void:
+	PlayerVariable.cur_level += 1 # index level up
+	
 	if next_level != null:
 		var next_level_instance = next_level.instantiate()
 		print_debug(next_level_instance.level_id)
