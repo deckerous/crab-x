@@ -29,6 +29,7 @@ size = Vector2(4, 7)
 collision_mask = 65
 speed = 2.0
 collide_with_enemies = false
+entity_id = "SeagullProj"
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5.5)
