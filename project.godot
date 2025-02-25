@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerVariable="*res://player_variables.gd"
-Analytics="*res://addons/quiver_analytics/analytics.tscn"
+Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 
 [display]
 
@@ -30,7 +30,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/quiver_analytics/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [global_group]
 
