@@ -19,7 +19,6 @@ func _spawn_crabs() -> void:
 	var coords = Vector2(randi_range(8, viewport_w - 8), viewport_h)
 	
 	var num = randi_range(1, 8)
-	print(num)
 	for i in num:
 		var inst = crab.instantiate()
 		inst.global_position = Vector2(coords.x + randf_range(-16, 16), coords.y + i * 16)
@@ -27,11 +26,11 @@ func _spawn_crabs() -> void:
 		crabs.append(inst)
 
 func _update_crabs_pos() -> void:
-	for crab in crabs:
-		if crab != null:
-			crab.position.y -= 0.5
-			if crab.position.y <= -128:
-				crab.queue_free()
+	for c in crabs:
+		if c != null:
+			c.position.y -= 0.5
+			if c.position.y <= -128:
+				c.queue_free()
 		else:
 			crabs.remove_at(0)
 

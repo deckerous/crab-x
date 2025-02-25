@@ -29,7 +29,6 @@ func process_physics(delta: float) -> State:
 	if entity.targetting_component.targeted_crab != null:
 		if !cooldown:
 			for proj_pos in projectile_spawn_positions_root.get_children():
-				print(proj_pos.global_position)
 				var inst = projectile.instantiate()
 				inst.global_rotation = proj_pos.global_position.direction_to(entity.global_position).angle() + -PI/2.0
 				inst.init_projectile(-proj_pos.global_position.direction_to(entity.global_position))

@@ -20,6 +20,7 @@ func init(entity: CharacterBody2D, animations: AnimatedSprite2D) -> void:
 
 # Change to the new state by first calling any exit logic on the current state.
 func change_state(new_state: State) -> void:
+	
 	if current_state:
 		current_state.exit()
 	

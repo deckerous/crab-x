@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do6xbfoc77fdp"
-path="res://.godot/imported/general-crusty-shawn-portrait.png-890bf79de70f8d1610e79ab1c855c6b2.ctex"
+uid="uid://dwbv6pgaemd3c"
+path="res://.godot/imported/mouse-controls.png-03f9ad29a2255e198a9fc9d6e9de52cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Crabs/png/general-crusty-shawn-portrait.png"
-dest_files=["res://.godot/imported/general-crusty-shawn-portrait.png-890bf79de70f8d1610e79ab1c855c6b2.ctex"]
+source_file="res://Assets/Tilesets/pngs/mouse-controls.png"
+dest_files=["res://.godot/imported/mouse-controls.png-03f9ad29a2255e198a9fc9d6e9de52cb.ctex"]
 
 [params]
 

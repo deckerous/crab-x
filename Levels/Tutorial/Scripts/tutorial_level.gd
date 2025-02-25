@@ -33,7 +33,7 @@ func _enable_boss(fuck_me) -> void:
 	enabled_boss_on_tutorial = true
 
 func _check_for_boss_enable() -> void:
-	if enabled_boss_on_tutorial:
+	if enabled_boss_on_tutorial and boss:
 		boss.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _enable_boss_tutorial(_unused) -> void:

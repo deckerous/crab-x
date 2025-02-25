@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxd8cou4q1lxd"]
+[gd_scene load_steps=15 format=3 uid="uid://cxd8cou4q1lxd"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_oel71"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_c70to"]
 [ext_resource type="Texture2D" uid="uid://bxisk6gv0j44t" path="res://Assets/Enemies/png/dummy-boss.png" id="2_fac2m"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="3_65pta"]
 [ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_mo7y7"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/enemy_telegraphed_attack.gd" id="4_h6q38"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/dummy_boss_idle_state.gd" id="5_0b1as"]
@@ -51,15 +52,20 @@ flip_when_aiming = false
 max_hp = 200.0
 entity_id = "DummyBoss"
 
-[node name="Animations" parent="." index="0"]
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -5)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("3_65pta")
+
+[node name="Animations" parent="." index="1"]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_dvk0v")
 
-[node name="CollisionBox" parent="." index="1"]
+[node name="CollisionBox" parent="." index="2"]
 position = Vector2(0, -32)
 shape = SubResource("CapsuleShape2D_4wfjl")
 
-[node name="HitboxComponent" parent="." index="2"]
+[node name="HitboxComponent" parent="." index="3"]
 collision_mask = 8
 damage = 1.0
 
@@ -68,7 +74,7 @@ position = Vector2(0, -32)
 shape = SubResource("CapsuleShape2D_pbnl7")
 debug_color = Color(0.829677, 0.393815, 0.000736786, 0.42)
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
@@ -76,7 +82,7 @@ position = Vector2(0, -32)
 shape = SubResource("CapsuleShape2D_mgbpj")
 debug_color = Color(0.913965, 0.234011, 0.447263, 0.42)
 
-[node name="TargettingComponent" parent="." index="4" instance=ExtResource("3_mo7y7")]
+[node name="TargettingComponent" parent="." index="5" instance=ExtResource("3_mo7y7")]
 
 [node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
 shape = SubResource("CircleShape2D_awg1f")
@@ -84,7 +90,7 @@ shape = SubResource("CircleShape2D_awg1f")
 [node name="RayCast2D" parent="TargettingComponent" index="1"]
 hit_from_inside = true
 
-[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("telegraph_attack")]
@@ -107,7 +113,7 @@ wait_time = 2.0
 [node name="TelegraphBufferTimer" type="Timer" parent="StateMachine/TelegraphedAttack" index="2"]
 wait_time = 0.1
 
-[node name="HealthBar" parent="." index="6"]
+[node name="HealthBar" parent="." index="7"]
 visible = true
 offset_left = -51.0
 offset_top = -71.0

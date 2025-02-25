@@ -162,7 +162,6 @@ func _update_crab_velocities(crabs) -> void:
 				crab.global_position = rally_point_crab_entity.global_position
 
 func handle_loot(array: Array) -> void:
-	print_debug(array)
 	for item in array:
 		match item:
 			"Crab":
@@ -180,6 +179,7 @@ func handle_loot(array: Array) -> void:
 						change_weapon(level.WEAPONS.GLOCK)
 					"RPG":
 						change_weapon(level.WEAPONS.RPG)
+					
 			"Slingshot":
 				change_weapon(level.WEAPONS.SLINGSHOT)
 			"Sheckle":
@@ -198,6 +198,8 @@ func change_weapon(state) -> void:
 			str = "Glock"
 		level.WEAPONS.RPG:
 			str = "RPG"
+		level.WEAPONS.EMPTY:
+			str = "Empty"
 	
 	cur_weapon = str
 	for child in crab_manager.get_children():
@@ -248,7 +250,6 @@ func toggle_pause():
 func add_coin():
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
-	print(coin_count)
 
 func remove_coin():
 	coin_count -= 1

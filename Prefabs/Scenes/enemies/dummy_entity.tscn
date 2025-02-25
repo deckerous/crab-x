@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://lf55ja7vsewi"]
+[gd_scene load_steps=9 format=3 uid="uid://lf55ja7vsewi"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_ufa3i"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_f3c5y"]
 [ext_resource type="Texture2D" uid="uid://s5oxa140mlx3" path="res://Assets/Enemies/png/dummy.png" id="2_xcurr"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="3_g7xui"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/state.gd" id="3_tdl4g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v7tj0"]
@@ -25,22 +26,27 @@ radius = 7.0
 height = 44.0
 
 [node name="DummyEntity" groups=["enemy"] instance=ExtResource("1_ufa3i")]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 128
+collision_mask = 193
 script = ExtResource("2_f3c5y")
 flip_when_aiming = false
 entity_id = "Dummy"
+flip_when_aiming = false
 
-[node name="Animations" parent="." index="0"]
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -3)
+texture = ExtResource("3_g7xui")
+
+[node name="Animations" parent="." index="1"]
 position = Vector2(0, -22)
 sprite_frames = SubResource("SpriteFrames_v7tj0")
 animation = &"idle"
 
-[node name="CollisionBox" parent="." index="1"]
+[node name="CollisionBox" parent="." index="2"]
 position = Vector2(0, -22)
 shape = SubResource("CapsuleShape2D_uhg55")
 
-[node name="HurtboxComponent" parent="." index="3"]
+[node name="HurtboxComponent" parent="." index="4"]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
@@ -48,13 +54,13 @@ position = Vector2(0, -22)
 shape = SubResource("CapsuleShape2D_3ftn2")
 debug_color = Color(0.906034, 0.216248, 0.539332, 0.42)
 
-[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node2D" parent="StateMachine" index="0"]
 script = ExtResource("3_tdl4g")
 animation_name = "idle"
 
-[node name="HealthBar" parent="." index="5"]
+[node name="HealthBar" parent="." index="6"]
 offset_top = -49.0
 offset_bottom = -22.0
