@@ -8,6 +8,10 @@ extends Entity
 @onready var is_rally: bool = false : 
 	set(value):
 		star.visible = value
+		
+var last_damaged_by: Node2D
+
+signal changed_last_damaged_by(entity: Node2D)
 
 func _ready() -> void:
 	super()
@@ -24,6 +28,19 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 func external_state_change(state) -> void:
 	state_machine.change_state_str(state)
+	
+func _damaged(hitbox: HitboxComponent) -> void:
+	last_damaged_by = hitbox.entity_parent
+	
+	hp = hp - max(0, hitbox.damage - armor)
+	_update_health_bar()
+	
+	if hp <= 0:
+		self.hide()
+		self.process_mode = Node.PROCESS_MODE_DISABLED
+		entity_died.emit(name)
+		changed_last_damaged_by.emit(last_damaged_by)
+		queue_free()
 
 func _heal(area: Area2D) -> void:
 	if not area is HealComponent: return

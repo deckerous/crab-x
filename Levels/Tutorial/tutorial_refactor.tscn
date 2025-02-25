@@ -135,15 +135,12 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAA
 
 [node name="DummyEntity" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(53, 217)
-flip_when_aiming = false
 
 [node name="DummyEntity2" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(265, 215)
-flip_when_aiming = false
 
 [node name="DummyEntity3" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(160, 228)
-flip_when_aiming = false
 
 [node name="DummyBossEntity" parent="Enemies" instance=ExtResource("8_2puqx")]
 process_mode = 4

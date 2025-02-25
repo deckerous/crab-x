@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerVariable="*res://player_variables.gd"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
+CrabLogs="*res://Logs/crab_logs.tscn"
 
 [display]
 

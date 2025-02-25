@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var hp: float = max_hp
 @export var armor: int = 0
 @export var health_bar_visible: bool = true
+@export var entity_id: String = "unknown"
 
 @onready var animations = $Animations
 @onready var collision_box = $CollisionBox

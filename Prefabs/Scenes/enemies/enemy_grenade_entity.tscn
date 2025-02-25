@@ -31,6 +31,7 @@ collision_mask = 0
 script = ExtResource("2_sab51")
 speed = 2.0
 collide_with_walls = false
+entity_id = "Grenade"
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -4)

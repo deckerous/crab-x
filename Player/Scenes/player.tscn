@@ -59,3 +59,5 @@ bbcode_enabled = true
 text = "0"
 fit_content = true
 scroll_active = false
+
+[connection signal="changed_last_damaged_by" from="CrabManager/CrabEntity" to="." method="_on_crab_entity_changed_last_damaged_by"]

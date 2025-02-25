@@ -2,6 +2,7 @@ class_name Explosion
 extends Node2D
 
 @export var explosion_lifetime_factor: float = 4.5
+@export var entity_id: String = "GrenadeExplosion"
 
 @onready var cpu_particles_2d = $CPUParticles2D
 @onready var collision_shape_2d = $HitboxComponent/CollisionShape2D

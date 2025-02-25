@@ -50,14 +50,16 @@ func _on_resume_button_pressed():
 
 func _on_restart_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	CrabLogs.log_stage_restart()
 	get_tree().paused = false
 	get_tree().reload_current_scene()  # Restart the game
 
 func _on_quit_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://UI/start_menu.tscn")
-	if !PlayerVariable.debug:
-		await Analytics.handle_exit()
+	# if !PlayerVariable.debug:
+	#	 await Analytics.handle_exit()
+	await CrabLogs.log_player_quit(false)
 	# TODO: Save progress as you leave?
 
 func _on_next_level_pressed():
