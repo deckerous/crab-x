@@ -31,7 +31,6 @@ collision_mask = 193
 script = ExtResource("2_f3c5y")
 flip_when_aiming = false
 entity_id = "Dummy"
-flip_when_aiming = false
 
 [node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
 position = Vector2(0, -3)

@@ -9,6 +9,8 @@ extends Level
 @onready var chests_opened = 0
 @onready var dummies_killed = 0
 @onready var enabled_boss_on_tutorial = false
+@onready var tut_boss_killed = false
+
 
 func _ready() -> void:
 	super()
@@ -33,7 +35,7 @@ func _enable_boss(fuck_me) -> void:
 	enabled_boss_on_tutorial = true
 
 func _check_for_boss_enable() -> void:
-	if enabled_boss_on_tutorial and boss:
+	if enabled_boss_on_tutorial and !tut_boss_killed:
 		boss.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _enable_boss_tutorial(_unused) -> void:
@@ -41,6 +43,7 @@ func _enable_boss_tutorial(_unused) -> void:
 	post_shop_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _boss_killed(_unused) -> void:
+	tut_boss_killed = true
 	level_complete_func()
 
 func _shop_tutorial_trigger(text: Variant) -> void:
