@@ -155,14 +155,12 @@ func _update_crab_velocities(crabs) -> void:
 				crab.global_position = rally_point_crab_entity.global_position
 
 func handle_loot(array: Array) -> void:
-	print_debug(array)
 	for item in array:
 		match item:
 			"Crab":
 				var crab_inst = crab_component.instantiate()
 				crab_inst.position = rally_point_crab_entity.position + Vector2(10, 10)
-				#crab_manager.add_child(crab_inst)
-				crab_manager.call_deferred("add_child", crab_inst)
+				crab_manager.add_child(crab_inst)
 				PlayerVariable.num_crabs += 1
 				
 				match cur_weapon:
@@ -174,6 +172,7 @@ func handle_loot(array: Array) -> void:
 						change_weapon(level.WEAPONS.GLOCK)
 					"RPG":
 						change_weapon(level.WEAPONS.RPG)
+					
 			"Slingshot":
 				change_weapon(level.WEAPONS.SLINGSHOT)
 			"Sheckle":
@@ -238,7 +237,6 @@ func toggle_pause():
 func add_coin():
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
-	print(coin_count)
 
 func remove_coin():
 	coin_count -= 1

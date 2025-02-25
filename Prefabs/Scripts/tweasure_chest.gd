@@ -17,14 +17,12 @@ func _ready() -> void:
 	text_pos = Vector2(position.x, position.y)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print_debug(area.name)
 	if area.name == "CollectableComponent":
 		give_loot.emit(loot)
-		print(loot)
 		sprite.hide()
 		collision_box.queue_free()
 		text_edit.show()
-		text_edit.text = "[center]+ " + loot[0]
+		text_edit.text = "[outline_size=6][center]+ " + loot[0]
 		looted = true
 	
 func _physics_process(delta: float) -> void:
@@ -37,7 +35,8 @@ func _physics_process(delta: float) -> void:
 				queue_free()
 				return
 			position = text_pos
-			text_edit.text = "[center]+ " + loot[text_pointer]
+			text_edit.text = "[outline_size=6][center]+ " + loot[text_pointer]
 			alpha = 1.0
 		text_edit.modulate = Color(1, 1, 1, alpha)
+		
 		
