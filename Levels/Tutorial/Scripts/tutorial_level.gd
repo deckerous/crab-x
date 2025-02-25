@@ -1,9 +1,9 @@
 extends Level
 
 @onready var dialogue_handler = $DialogueHandler
-@onready var post_chest_dialogue = $Graphics/LootAndTriggers/TutorialTrigger2
-@onready var post_dummy_dialogue = $Graphics/LootAndTriggers/TutorialTrigger4
-@onready var post_shop_dialogue = $Graphics/LootAndTriggers/TutorialTrigger3
+@onready var post_chest_dialogue = $Graphics/LootAndTriggers/KillDummies
+@onready var post_dummy_dialogue = $Graphics/LootAndTriggers/Shopping
+@onready var post_shop_dialogue = $Graphics/LootAndTriggers/KillBoss
 @onready var boss = $Enemies/DummyBossEntity
 
 @onready var chests_opened = 0
@@ -14,9 +14,11 @@ extends Level
 
 func _ready() -> void:
 	super()
+	CrabLogs.log_tutorial_step("StartTutorial")
 	dialogue_handler.trigger_visible()
 
-func _start_tutorial(text: Variant) -> void:
+func _start_tutorial(tutorial_part, text: Variant) -> void:
+	CrabLogs.log_tutorial_step(tutorial_part)
 	dialogue_handler.tutorial_time(text)
 
 func _handle_chests(loot) -> void:
@@ -31,7 +33,7 @@ func _handle_kills(_unused) -> void:
 		post_dummy_dialogue.visible = true
 		post_dummy_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 		
-func _enable_boss(fuck_me) -> void:
+func _enable_boss(node_name, text) -> void:
 	enabled_boss_on_tutorial = true
 
 func _check_for_boss_enable() -> void:
@@ -46,7 +48,7 @@ func _boss_killed(_unused) -> void:
 	tut_boss_killed = true
 	level_complete_func()
 
-func _shop_tutorial_trigger(text: Variant) -> void:
+func _shop_tutorial_trigger(node_name, text) -> void:
 	var shop_icon = $Graphics/LootAndTriggers/ShopIcon
 	shop_icon.process_mode = Node.PROCESS_MODE_INHERIT
 	shop_icon.visible = true

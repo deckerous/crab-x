@@ -8,7 +8,7 @@ extends Node2D
 @onready var arrow = $Arrow
 @onready var moving_down = true
 
-signal start_tutorial(text)
+signal start_tutorial(tutorial_part, text)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +19,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "CollectableComponent":
 		if wall != null:
 			wall.queue_free()
-		start_tutorial.emit(dialogue)
+		start_tutorial.emit(name, dialogue)
 		queue_free()
 
 func _physics_process(delta: float) -> void:

@@ -57,9 +57,9 @@ func _logged_in(auth_info: Dictionary):
 	if !developer_logs:
 		firestore_collection = Firebase.Firestore.collection('Logs')
 	logged_in = true
-	log_event({"logged_in": true})
+	log_event("game_start", {"logged_in": true})
 
-func log_event(details: Dictionary):
+func log_event(event_type: String, details: Dictionary):
 	# Check for login
 	if !logged_in:
 		print("[CrabLogs] >> User not logged in, log nullified")
@@ -70,7 +70,7 @@ func log_event(details: Dictionary):
 	var data: Dictionary = {
 		"UID": user_info["localid"],
 		"Timestamp": time_elapsed,
-		"Log Type": "miscellaneous",
+		"Log Type": event_type,
 	}
 	data.merge(details)
 	
@@ -224,6 +224,27 @@ func log_player_return():
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_return",
 		"Stage ID": curr_stage_id,
+	}
+	
+	# Push log to firestore
+	if !developer_logs:
+		await firestore_collection.add("", data)
+	print("[CrabLogs] >> Pushed data " + str(data) + " to logs")
+	
+func log_tutorial_step(tutorial_part: String):
+	# Check for login
+	if !logged_in:
+		print("[CrabLogs] >> User not logged in, log nullified")
+		push_warning("[CrabLogs] >> User not logged in, log nullified")
+		
+		return
+	
+	# Add player tutorial data to dictionary
+	var data: Dictionary = {
+		"UID": user_info["localid"],
+		"Timestamp" : time_elapsed,
+		"Log Type": "tutorial_step",
+		"Tutorial Part": tutorial_part
 	}
 	
 	# Push log to firestore

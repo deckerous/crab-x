@@ -95,40 +95,41 @@ visible = false
 position = Vector2(265, 280)
 player = NodePath("../../../Player")
 
-[node name="TutorialTrigger" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
+[node name="CollectChests" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
 position = Vector2(-80, 416)
 dialogue = ["It seems you are not completely useless! Good to see, [shake rate=25level=10]prawn[/shake]!", "Now the military is not about to supply a bunch of newbies with weapons ourselves! That would push our budget above what we can afford.", "Instead, you'll have to scavenge the battlefield for [b]chests[/b]. These can contain anything from coins to reinforcements to weapons!", "As an example, we have strewn a few across the training camp here. [b]Collect them and report back to me[/b], [shake rate=25level=10]prawn[/shake]!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall1")
 
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/TutorialTrigger" index="1"]
+[node name="TileMapLayer" parent="Graphics/LootAndTriggers/CollectChests" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
-[node name="TutorialTrigger2" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
+[node name="KillDummies" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
 process_mode = 4
+visible = false
 position = Vector2(256, 336)
 dialogue = ["Now that you've found yourself a weapon, I will introduce the basics of combat!", "Use the [b]mouse[/b] to aim your weapons, and then fire by using [b]Left Click[/b] or the [b]space bar[/b]!", "Go and rain hellfire upon these [b]dummies[/b], [shake rate=25level=10]prawn[/shake]!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall2")
 
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/TutorialTrigger2" index="1"]
+[node name="TileMapLayer" parent="Graphics/LootAndTriggers/KillDummies" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
-[node name="TutorialTrigger4" parent="Graphics/LootAndTriggers" instance=ExtResource("6_xd58g")]
+[node name="Shopping" parent="Graphics/LootAndTriggers" instance=ExtResource("6_xd58g")]
 process_mode = 4
 visible = false
 position = Vector2(144, 192)
 dialogue = ["You've collected a decent amount of [b]coins[/b], [shake rate=25 level=10]prawn[/shake]. Now I'll show you where to spend them!", "Run into this [b]yellow icon[/b] to enter the [b]prawn shop[/b]! There you can spend your [b]coins[/b]."]
 
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/TutorialTrigger4" index="1"]
+[node name="TileMapLayer" parent="Graphics/LootAndTriggers/Shopping" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
-[node name="TutorialTrigger3" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
+[node name="KillBoss" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
 process_mode = 4
 visible = false
 position = Vector2(144, 160)
 dialogue = ["Alright, now I've prepared you as much as I can, [shake rate=25 level=10]prawn[/shake]. Finally, we'll take on your graduation challenge!", "We got a completely autonomous dummy that is gonna shoot some grenades at you! Manage to [b]survive[/b] and you'll finally become a soldier!", "Remember, if you lose all of your crabs you [shake rate=25 level=10]FAIL[/shake]! Now, move out!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall3")
 
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/TutorialTrigger3" index="1"]
+[node name="TileMapLayer" parent="Graphics/LootAndTriggers/KillBoss" index="1"]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
 [node name="Mouse-controls" type="Sprite2D" parent="Graphics"]
@@ -210,12 +211,12 @@ visible = false
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest3" to="." method="_handle_chests"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest3" to="Player" method="handle_loot"]
 [connection signal="enter_shop" from="Graphics/LootAndTriggers/ShopIcon" to="Shop" method="_enter"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger2" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger4" to="." method="_shop_tutorial_trigger"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/TutorialTrigger3" to="." method="_enable_boss"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/CollectChests" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillDummies" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_enable_boss"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="." method="_handle_kills"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="." method="_handle_kills"]
@@ -229,9 +230,9 @@ visible = false
 [connection signal="shop_closed" from="Shop" to="Player" method="_on_shop_shop_closed"]
 [connection signal="tutorial_closed" from="DialogueHandler" to="." method="_check_for_boss_enable"]
 
-[editable path="Graphics/LootAndTriggers/TutorialTrigger"]
-[editable path="Graphics/LootAndTriggers/TutorialTrigger2"]
-[editable path="Graphics/LootAndTriggers/TutorialTrigger4"]
-[editable path="Graphics/LootAndTriggers/TutorialTrigger3"]
+[editable path="Graphics/LootAndTriggers/CollectChests"]
+[editable path="Graphics/LootAndTriggers/KillDummies"]
+[editable path="Graphics/LootAndTriggers/Shopping"]
+[editable path="Graphics/LootAndTriggers/KillBoss"]
 [editable path="Player"]
 [editable path="Shop"]
