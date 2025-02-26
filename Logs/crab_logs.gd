@@ -252,6 +252,27 @@ func log_tutorial_step(tutorial_part: String):
 		await firestore_collection.add("", data)
 	print("[CrabLogs] >> Pushed data " + str(data) + " to logs")
 
+func log_player_continue():
+	# Check for login
+	if !logged_in:
+		print("[CrabLogs] >> User not logged in, log nullified")
+		push_warning("[CrabLogs] >> User not logged in, log nullified")
+		
+		return
+	
+	# Add player continue data to dictionary
+	var data: Dictionary = {
+		"UID": user_info["localid"],
+		"Timestamp" : time_elapsed,
+		"Log Type": "player_continue",
+		"Stage ID": curr_stage_id,
+	}
+	
+	# Push log to firestore
+	if !developer_logs:
+		await firestore_collection.add("", data)
+	print("[CrabLogs] >> Pushed data " + str(data) + " to logs")
+
 func _reset_stage():
 	in_stage = false
 	stage_deaths = 0

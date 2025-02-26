@@ -21,6 +21,7 @@ animations = [{
 }]
 
 [node name="MortarEntity" instance=ExtResource("1_l6ggq")]
+speed = 2.0
 entity_id = "Mortar"
 
 [node name="Animations" parent="." index="0"]

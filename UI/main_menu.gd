@@ -11,6 +11,8 @@ extends Control
 
 
 func _ready() -> void:
+	var level_num = PlayerVariable.load_values("Levels", "Current Level")
+	print(PlayerVariable.cur_level)
 	if PlayerVariable.cur_level == 0:
 		continue_button.disabled = true
 		continue_button.modulate = Color(1,1,1,0.5)
@@ -48,6 +50,7 @@ func _on_new_game_button_pressed():
 
 func _on_continue_button_pressed():
 	print("Continue button pressed")
+	CrabLogs.log_player_continue()
 	# TODO: implement save system
 	PlayerVariable.load_values("Levels", "Current Level")
 	if PlayerVariable.cur_level > 0:
