@@ -44,7 +44,6 @@ func _update_crabs_pos() -> void:
 			crabs.remove_at(0)
 
 func _on_new_game_button_pressed():
-	print("New game button pressed")
 	CrabLogs.log_stage_start("tutorial")
 	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn") # TODO: replace with actual game scene
 
