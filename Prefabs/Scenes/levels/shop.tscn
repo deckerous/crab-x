@@ -21,9 +21,9 @@ texture = ExtResource("2_heg1i")
 [node name="VBoxContainer" type="VBoxContainer" parent="Shop Interface"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 5.325
+anchor_left = 5.075
 anchor_top = 0.5
-anchor_right = 7.785
+anchor_right = 8.16
 anchor_bottom = 4.42
 offset_right = 147.6
 offset_bottom = 235.2
