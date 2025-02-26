@@ -312,9 +312,6 @@ visible = false
 [node name="ShopItem11" parent="Shop/Shop Interface/VBoxContainer" index="10"]
 visible = false
 
-[node name="Transition" parent="." index="4"]
-visible = false
-
 [node name="DialogueHandler" parent="." index="5" instance=ExtResource("10_oi84w")]
 position = Vector2(136.938, 156.821)
 text_array = ["You've proved your merit, soldier! We got a larger battlefield for you to tackle next on this mission.", "We heard rumors of a stash of secret supplies guarded by the mafia on this island. If we manage to get control of it, we'll be [wave]crabstoppable[/wave]!", "Your mission is to eradicate the mafia's bodyguards and clear a path for our scouts to find the stash. Move it, soldier!"]
