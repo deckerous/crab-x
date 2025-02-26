@@ -274,22 +274,23 @@ offset_bottom = 180.0
 
 [node name="resume_button" type="Button" parent="pause_menu/pause_screen"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 130.0
-offset_top = 34.0
-offset_right = 192.0
-offset_bottom = 66.0
+offset_right = 320.0
+offset_bottom = 184.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 action_mode = 0
 
 [node name="resume_button" type="Sprite2D" parent="pause_menu/pause_screen/resume_button"]
-position = Vector2(29.9, 16)
+position = Vector2(160, 72)
 scale = Vector2(0.0549828, 0.0540541)
 texture = ExtResource("2_u2yvy")
 
 [node name="resume_label" type="Label" parent="pause_menu/pause_screen/resume_button"]
 layout_mode = 0
-offset_left = -2.0
-offset_right = 84.0
-offset_bottom = 43.0
+offset_left = 128.0
+offset_top = 56.0
+offset_right = 214.0
+offset_bottom = 99.0
 scale = Vector2(0.75, 0.75)
 text = "Resume"
 horizontal_alignment = 1
@@ -297,6 +298,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="settings_button" type="Button" parent="pause_menu/pause_screen"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 130.0
 offset_top = 72.0
@@ -322,9 +324,9 @@ uppercase = true
 [node name="quit_button" type="Button" parent="pause_menu/pause_screen"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 128.0
-offset_top = 112.0
+offset_top = 104.0
 offset_right = 192.0
-offset_bottom = 144.0
+offset_bottom = 136.0
 
 [node name="quit_button" type="Sprite2D" parent="pause_menu/pause_screen/quit_button"]
 position = Vector2(31.45, 16)
