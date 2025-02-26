@@ -1,14 +1,10 @@
 extends Node
 
-#var config = ConfigFile.new()
-#config.set_value(cur_level)
-#config.save("user://save.cfg")
-
-@onready var num_coins = 0
-
 var debug = true
 var in_shop = false
+
 var num_crabs = 0
+var num_coins = 0
 var cur_weapon = "none"
 var cur_level = 0
 

@@ -45,8 +45,8 @@ func _on_level_complete():
 	end_of_level_screen.visible = true
 
 func _on_resume_button_pressed():
-	toggle_pause_menu() 
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	toggle_pause_menu() 
 
 func _on_restart_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN

@@ -10,7 +10,6 @@
 script = ExtResource("1_hjqw4")
 
 [node name="ui" parent="." instance=ExtResource("6_upbhe")]
-visible = false
 
 [node name="CrabManager" type="Node2D" parent="."]
 process_mode = 1
@@ -24,6 +23,7 @@ position_smoothing_enabled = true
 texture = ExtResource("3_18x87")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="PlayerUI"]
 layout_mode = 3

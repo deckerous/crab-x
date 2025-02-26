@@ -26,7 +26,9 @@ func _ready() -> void:
 		player.change_weapon(starting_weapon)
 	dialogue.trigger_visible()
 
-func next_level_func() -> void:	
+func next_level_func() -> void:
+	PlayerVariable.cur_level += 1 # index level up
+	
 	if next_level != null:
 		var next_level_instance = next_level.instantiate()
 		print_debug(next_level_instance.level_id)
@@ -37,7 +39,6 @@ func next_level_func() -> void:
 		get_tree().change_scene_to_packed(next_level)
 
 func level_complete_func() -> void:
-	PlayerVariable.cur_level += 1 # index level up
 	# if !PlayerVariable.debug:
 	#	 Analytics.add_event("Player beat " + level_id)
 	CrabLogs.log_stage_complete(player.cur_weapon, player.crab_count, player.coin_count, player.kill_count)
