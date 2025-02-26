@@ -2,6 +2,7 @@ extends Node
 
 # Dev mode: Set to true to eat logs
 @export var developer_logs: bool = true
+@export var version: String = "1.0.0"
 
 # Login Check
 @onready var logged_in = false
@@ -71,6 +72,7 @@ func log_event(event_type: String, details: Dictionary):
 		"UID": user_info["localid"],
 		"Timestamp": time_elapsed,
 		"Log Type": event_type,
+		"Version": version
 	}
 	data.merge(details)
 	
@@ -94,6 +96,7 @@ func log_stage_complete(weapon: String, crabs_remaining: int, sheckles_remaining
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_end",
+		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Duration": stage_time_elapsed,
 		"Weapon": weapon,
@@ -125,6 +128,7 @@ func log_stage_restart():
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_restart",
+		"Version": version,
 		"Stage ID": curr_stage_id
 	}
 	
@@ -149,6 +153,7 @@ func log_stage_start(stage_id: String):
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_start",
+		"Version": version,
 		"Stage ID": stage_id
 	}
 	
@@ -176,6 +181,7 @@ func log_player_death(enemy_id: String):
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_death",
+		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Killed By" : enemy_id,
 		"Duration": stage_time_elapsed
@@ -202,6 +208,7 @@ func log_player_quit(afk: bool):
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed - 300 if afk else time_elapsed,
 		"Log Type": "player_quit",
+		"Version": version,
 		"Stage ID": curr_stage_id,
 	}
 	
@@ -223,6 +230,7 @@ func log_player_return():
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_return",
+		"Version": version,
 		"Stage ID": curr_stage_id,
 	}
 	
@@ -244,6 +252,7 @@ func log_tutorial_step(tutorial_part: String):
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "tutorial_step",
+		"Version": version,
 		"Tutorial Part": tutorial_part
 	}
 	
@@ -265,6 +274,7 @@ func log_player_continue():
 		"UID": user_info["localid"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_continue",
+		"Version": version,
 		"Stage ID": curr_stage_id,
 	}
 	
