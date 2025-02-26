@@ -1,12 +1,19 @@
 extends Control
 
 @onready var crab_container = $CrabContainer
+@onready var continue_button = $main_menu_screen/continue_button
 
 @onready var crab = load("res://Prefabs/Scenes/crab_entity.tscn")
 @onready var crabs = []
 
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
+
+
+func _ready() -> void:
+	if PlayerVariable.cur_level == 0:
+		continue_button.disabled = true
+		continue_button.modulate = Color(1,1,1,0.5)
 
 func _physics_process(delta):
 	if crabs.size() == 0:
