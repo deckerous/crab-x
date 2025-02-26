@@ -277,6 +277,7 @@ offset_left = 130.0
 offset_top = 34.0
 offset_right = 192.0
 offset_bottom = 66.0
+action_mode = 0
 
 [node name="resume_button" type="Sprite2D" parent="pause_menu/pause_screen/resume_button"]
 position = Vector2(29.9, 16)
