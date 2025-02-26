@@ -14,7 +14,6 @@ func _ready() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	# print_debug(area.name)
-	PlayerVariable.in_shop = true
 	print("Shop_icon.gd, in_shop = ", PlayerVariable.in_shop)
 	if area.name == "CollectableComponent" and interactable:
 		if hovered == 0:
