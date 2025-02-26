@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="7_wb5pt"]
 [ext_resource type="PackedScene" uid="uid://cxd8cou4q1lxd" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="8_2puqx"]
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="8_an2om"]
-[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="12_6lnf5"]
-[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="13_ikrhp"]
+[ext_resource type="Texture2D" uid="uid://cbnjdwt2ftbjg" path="res://Assets/Crabs/png/crab-shop-icon.png" id="16_xfof8"]
+[ext_resource type="Texture2D" uid="uid://iktoga6ab2cw" path="res://Assets/Guns/png/glock-16x16.png" id="17_1t4cp"]
 [ext_resource type="PackedScene" uid="uid://tji6huju7eg8" path="res://Levels/Transition.tscn" id="17_51rcn"]
 [ext_resource type="Texture2D" uid="uid://dwbv6pgaemd3c" path="res://Assets/Tilesets/pngs/mouse-controls.png" id="18_edtld"]
 [ext_resource type="Texture2D" uid="uid://bfclmfi43s6p5" path="res://Assets/Tilesets/pngs/wasd.png" id="19_uy0sk"]
@@ -79,11 +79,11 @@ navigation_enabled = false
 
 [node name="TweasureChest" parent="Graphics/LootAndTriggers" instance=ExtResource("5_e7psq")]
 position = Vector2(80, 360)
-loot = ["Crab", "Sheckle", "Sheckle"]
+loot = ["Crab", "Coin", "Coin"]
 
 [node name="TweasureChest2" parent="Graphics/LootAndTriggers" instance=ExtResource("5_e7psq")]
 position = Vector2(224, 407)
-loot = ["Sheckle"]
+loot = ["Coin"]
 
 [node name="TweasureChest3" parent="Graphics/LootAndTriggers" instance=ExtResource("5_e7psq")]
 position = Vector2(128, 471)
@@ -162,12 +162,12 @@ position = Vector2(-272, 424)
 visible = false
 
 [node name="ShopItem" parent="Shop/Shop Interface/VBoxContainer" index="0"]
-item = ExtResource("12_6lnf5")
+item = ExtResource("16_xfof8")
 item_string = "Crab"
 price = 2
 
 [node name="ShopItem2" parent="Shop/Shop Interface/VBoxContainer" index="1"]
-item = ExtResource("13_ikrhp")
+item = ExtResource("17_1t4cp")
 item_string = "Glock"
 price = 4
 
@@ -212,8 +212,8 @@ text_array = ["Welcome to your first day in the Crustacean Army, [shake rate=25l
 [connection signal="enter_shop" from="Graphics/LootAndTriggers/ShopIcon" to="Shop" method="_enter"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/CollectChests" to="." method="_start_tutorial"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillDummies" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_enable_boss"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_start_tutorial"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="." method="_handle_kills"]

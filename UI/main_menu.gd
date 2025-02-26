@@ -1,12 +1,21 @@
 extends Control
 
 @onready var crab_container = $CrabContainer
+@onready var continue_button = $main_menu_screen/continue_button
 
 @onready var crab = load("res://Prefabs/Scenes/crab_entity.tscn")
 @onready var crabs = []
 
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
+
+
+func _ready() -> void:
+	var level_num = PlayerVariable.load_values("Levels", "Current Level")
+	print(PlayerVariable.cur_level)
+	if PlayerVariable.cur_level == 0:
+		continue_button.disabled = true
+		continue_button.modulate = Color(1,1,1,0.5)
 
 func _physics_process(delta):
 	if crabs.size() == 0:
@@ -41,6 +50,7 @@ func _on_new_game_button_pressed():
 
 func _on_continue_button_pressed():
 	print("Continue button pressed")
+	CrabLogs.log_player_continue()
 	# TODO: implement save system
 	PlayerVariable.load_values("Levels", "Current Level")
 	if PlayerVariable.cur_level > 0:

@@ -181,7 +181,7 @@ func handle_loot(array: Array) -> void:
 					
 			"Slingshot":
 				change_weapon(level.WEAPONS.SLINGSHOT)
-			"Sheckle":
+			"Coin":
 				add_coin()
 			"Glock":
 				change_weapon(level.WEAPONS.GLOCK)

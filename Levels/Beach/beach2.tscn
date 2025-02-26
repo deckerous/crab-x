@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://by0x7801225v6" path="res://Prefabs/Scenes/enemies/porcupine_fish_entity.tscn" id="10_oj87t"]
 [ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="11_tekw3"]
 [ext_resource type="PackedScene" uid="uid://jgyy6y1bjb44" path="res://Prefabs/Scenes/enemies/sand_flea_entity.tscn" id="12_egw0v"]
-[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="13_fc78u"]
+[ext_resource type="Texture2D" uid="uid://cbnjdwt2ftbjg" path="res://Assets/Crabs/png/crab-shop-icon.png" id="15_fr0v8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5eoct"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -90,11 +90,11 @@ loot = ["Crab"]
 
 [node name="TweasureChest2" parent="Graphics/LootAndTriggers" index="1" instance=ExtResource("6_b0cun")]
 position = Vector2(193, -47)
-loot = ["Sheckle"]
+loot = ["Coin"]
 
 [node name="TweasureChest4" parent="Graphics/LootAndTriggers" index="2" instance=ExtResource("6_b0cun")]
 position = Vector2(891, 215)
-loot = ["Sheckle"]
+loot = ["Coin"]
 
 [node name="TweasureChest5" parent="Graphics/LootAndTriggers" index="3" instance=ExtResource("6_b0cun")]
 position = Vector2(708, 351)
@@ -102,15 +102,15 @@ loot = ["Crab", "Crab"]
 
 [node name="TweasureChest6" parent="Graphics/LootAndTriggers" index="4" instance=ExtResource("6_b0cun")]
 position = Vector2(1066, -270)
-loot = ["Sheckle", "Sheckle"]
+loot = ["Coin", "Coin"]
 
 [node name="TweasureChest8" parent="Graphics/LootAndTriggers" index="5" instance=ExtResource("6_b0cun")]
 position = Vector2(231, -539)
-loot = ["Sheckle", "Sheckle", "Sheckle"]
+loot = ["Coin", "Coin", "Coin"]
 
 [node name="TweasureChest10" parent="Graphics/LootAndTriggers" index="6" instance=ExtResource("6_b0cun")]
 position = Vector2(719, -541)
-loot = ["Crab", "Sheckle", "Sheckle"]
+loot = ["Crab", "Coin", "Coin"]
 
 [node name="TweasureChest11" parent="Graphics/LootAndTriggers" index="7" instance=ExtResource("6_b0cun")]
 position = Vector2(765, -585)
@@ -118,7 +118,7 @@ loot = ["Crab"]
 
 [node name="TweasureChest9" parent="Graphics/LootAndTriggers" index="8" instance=ExtResource("6_b0cun")]
 position = Vector2(254, -518)
-loot = ["Crab", "Sheckle"]
+loot = ["Crab", "Coin"]
 
 [node name="TweasureChest7" parent="Graphics/LootAndTriggers" index="9" instance=ExtResource("6_b0cun")]
 position = Vector2(1091, -245)
@@ -179,6 +179,7 @@ player = NodePath("../../../Player")
 
 [node name="PorcupineFishEntity" parent="Enemies" index="0" instance=ExtResource("10_oj87t")]
 position = Vector2(338, -177)
+max_hp = 50.0
 
 [node name="PorcupineFishEntity2" parent="Enemies" index="1" instance=ExtResource("10_oj87t")]
 position = Vector2(908, -825)
@@ -268,42 +269,42 @@ position = Vector2(59, 120)
 visible = false
 
 [node name="ShopItem" parent="Shop/Shop Interface/VBoxContainer" index="0"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 price = 4
 
 [node name="ShopItem2" parent="Shop/Shop Interface/VBoxContainer" index="1"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 price = 4
 
 [node name="ShopItem3" parent="Shop/Shop Interface/VBoxContainer" index="2"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 price = 4
 
 [node name="ShopItem4" parent="Shop/Shop Interface/VBoxContainer" index="3"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 
 [node name="ShopItem5" parent="Shop/Shop Interface/VBoxContainer" index="4"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 
 [node name="ShopItem6" parent="Shop/Shop Interface/VBoxContainer" index="5"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 
 [node name="ShopItem7" parent="Shop/Shop Interface/VBoxContainer" index="6"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 
 [node name="ShopItem8" parent="Shop/Shop Interface/VBoxContainer" index="7"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 
 [node name="ShopItem9" parent="Shop/Shop Interface/VBoxContainer" index="8"]
-item = ExtResource("13_fc78u")
+item = ExtResource("15_fr0v8")
 item_string = "Crab"
 
 [node name="ShopItem10" parent="Shop/Shop Interface/VBoxContainer" index="9"]

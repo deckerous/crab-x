@@ -1,15 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://f8o65gfojji2"]
 
 [ext_resource type="Script" path="res://Prefabs/Scenes/levels/shop_item.gd" id="1_sh10e"]
-[ext_resource type="Texture2D" uid="uid://dqsq5i5hw4h31" path="res://Assets/Crabs/png/crab-rpg.png" id="2_3nvsl"]
+[ext_resource type="Texture2D" uid="uid://cbnjdwt2ftbjg" path="res://Assets/Crabs/png/crab-shop-icon.png" id="2_h54vk"]
 
 [node name="ShopItem" type="HBoxContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_sh10e")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("2_3nvsl")
+size_flags_horizontal = 4
+texture = ExtResource("2_h54vk")
+stretch_mode = 5
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
@@ -18,7 +22,8 @@ size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
-text = "[right]5 Sheckles  [/right]"
+text = "[right]5 Coins  [/right]"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 

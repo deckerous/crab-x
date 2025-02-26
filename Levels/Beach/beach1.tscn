@@ -15,9 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://bory6el8j7t2n" path="res://Assets/Crabs/png/general-crusty-shawn.png" id="9_40xcj"]
 [ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="10_jow6t"]
 [ext_resource type="PackedScene" uid="uid://by0x7801225v6" path="res://Prefabs/Scenes/enemies/porcupine_fish_entity.tscn" id="11_mu1m5"]
-[ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="12_b1cij"]
-[ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="13_0u1cw"]
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="14_iucbe"]
+[ext_resource type="Texture2D" uid="uid://cbnjdwt2ftbjg" path="res://Assets/Crabs/png/crab-shop-icon.png" id="16_tu1gh"]
+[ext_resource type="Texture2D" uid="uid://iktoga6ab2cw" path="res://Assets/Guns/png/glock-16x16.png" id="17_ixide"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5eoct"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -86,15 +86,15 @@ tile_set = ExtResource("4_d6uio")
 
 [node name="TweasureChest" parent="Graphics/LootAndTriggers" index="0" instance=ExtResource("5_7j3jf")]
 position = Vector2(120, 181)
-loot = ["Sheckle", "Crab"]
+loot = ["Coin", "Crab"]
 
 [node name="TweasureChest2" parent="Graphics/LootAndTriggers" index="1" instance=ExtResource("5_7j3jf")]
 position = Vector2(263, 422)
-loot = ["Sheckle"]
+loot = ["Coin"]
 
 [node name="TweasureChest3" parent="Graphics/LootAndTriggers" index="2" instance=ExtResource("5_7j3jf")]
 position = Vector2(120, 664)
-loot = ["Sheckle", "Sheckle"]
+loot = ["Coin", "Coin"]
 
 [node name="TweasureChest4" parent="Graphics/LootAndTriggers" index="3" instance=ExtResource("5_7j3jf")]
 position = Vector2(456, 568)
@@ -102,19 +102,19 @@ loot = ["Crab"]
 
 [node name="TweasureChest5" parent="Graphics/LootAndTriggers" index="4" instance=ExtResource("5_7j3jf")]
 position = Vector2(506, 618)
-loot = ["Sheckle", "Sheckle", "Sheckle", "Crab"]
+loot = ["Coin", "Coin", "Coin", "Crab"]
 
 [node name="TweasureChest6" parent="Graphics/LootAndTriggers" index="5" instance=ExtResource("5_7j3jf")]
 position = Vector2(263, 83)
-loot = ["Sheckle", "Crab", "Crab"]
+loot = ["Coin", "Crab", "Crab"]
 
 [node name="TweasureChest7" parent="Graphics/LootAndTriggers" index="6" instance=ExtResource("5_7j3jf")]
 position = Vector2(506, 279)
-loot = ["Sheckle"]
+loot = ["Coin"]
 
 [node name="TweasureChest8" parent="Graphics/LootAndTriggers" index="7" instance=ExtResource("5_7j3jf")]
 position = Vector2(695, 377)
-loot = ["Sheckle", "Sheckle"]
+loot = ["Coin", "Coin"]
 
 [node name="TweasureChest9" parent="Graphics/LootAndTriggers" index="8" instance=ExtResource("5_7j3jf")]
 position = Vector2(695, 185)
@@ -215,26 +215,26 @@ position = Vector2(71, 760)
 visible = false
 
 [node name="ShopItem" parent="Shop/Shop Interface/VBoxContainer" index="0"]
-item = ExtResource("12_b1cij")
+item = ExtResource("16_tu1gh")
 item_string = "Crab"
 price = 4
 
 [node name="ShopItem2" parent="Shop/Shop Interface/VBoxContainer" index="1"]
-item = ExtResource("12_b1cij")
+item = ExtResource("16_tu1gh")
 item_string = "Crab"
 price = 4
 
 [node name="ShopItem3" parent="Shop/Shop Interface/VBoxContainer" index="2"]
-item = ExtResource("12_b1cij")
+item = ExtResource("16_tu1gh")
 item_string = "Crab"
 price = 4
 
 [node name="ShopItem4" parent="Shop/Shop Interface/VBoxContainer" index="3"]
-item = ExtResource("12_b1cij")
+item = ExtResource("16_tu1gh")
 item_string = "Crab"
 
 [node name="ShopItem5" parent="Shop/Shop Interface/VBoxContainer" index="4"]
-item = ExtResource("13_0u1cw")
+item = ExtResource("17_ixide")
 item_string = "Glock"
 price = 20
 
@@ -258,9 +258,6 @@ visible = false
 
 [node name="DialogueHandler" parent="." index="4" instance=ExtResource("14_iucbe")]
 text_array = ["Welcome to your first missions, soldier! We got a covert operation set up for you.", "Our scouts show the existance of a small enemy base in this cave structure, preventing the advance of our main forces.", "Flush them out, soldier!"]
-
-[node name="Transition" parent="." index="5"]
-visible = false
 
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest2" to="Player" method="handle_loot"]

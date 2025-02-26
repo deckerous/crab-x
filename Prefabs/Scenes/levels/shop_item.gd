@@ -15,7 +15,7 @@ extends HBoxContainer
 signal purchased(item)
 
 func _ready() -> void:
-	label.text = "[right]" + str(price) + " sheckles   [/right]"
+	label.text = "[right]" + str(price) + " coins   [/right]"
 	item_sprite.texture = item
 	purchase_button.custom_minimum_size = Vector2(90, 32)
 
