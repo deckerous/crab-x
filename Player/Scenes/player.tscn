@@ -10,7 +10,6 @@
 script = ExtResource("1_hjqw4")
 
 [node name="ui" parent="." instance=ExtResource("6_upbhe")]
-visible = false
 
 [node name="CrabManager" type="Node2D" parent="."]
 process_mode = 1
