@@ -23,7 +23,6 @@ position_smoothing_enabled = true
 texture = ExtResource("3_18x87")
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="PlayerUI"]
 layout_mode = 3

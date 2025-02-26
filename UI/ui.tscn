@@ -185,6 +185,7 @@ fit_content = true
 scroll_active = false
 
 [node name="during_game_screen" type="Node2D" parent="."]
+visible = false
 scale = Vector2(0.75, 0.75)
 
 [node name="status_bar" type="Sprite2D" parent="during_game_screen"]
@@ -277,6 +278,7 @@ offset_left = 130.0
 offset_top = 34.0
 offset_right = 192.0
 offset_bottom = 66.0
+action_mode = 0
 
 [node name="resume_button" type="Sprite2D" parent="pause_menu/pause_screen/resume_button"]
 position = Vector2(29.9, 16)

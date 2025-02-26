@@ -45,8 +45,8 @@ func _on_level_complete():
 	end_of_level_screen.visible = true
 
 func _on_resume_button_pressed():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	toggle_pause_menu() 
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _on_restart_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
@@ -56,6 +56,7 @@ func _on_restart_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().paused = false
+	PlayerVariable.save_values("Levels", "Current Level")  # SAVE ON QUIT
 	get_tree().change_scene_to_file("res://UI/start_menu.tscn")
 	# if !PlayerVariable.debug:
 	#	 await Analytics.handle_exit()
@@ -69,9 +70,9 @@ func _on_next_level_pressed():
 
 func toggle_pause_menu():
 	if not PlayerVariable.in_shop:
-		is_paused = not is_paused
+		#is_paused = not is_paused
 		get_tree().paused = not get_tree().paused
-		during_game_screen.visible = not during_game_screen.visible
+		# during_game_screen.visible = not during_game_screen.visible
 		pause_menu_screen.visible = get_tree().paused
 		pause_background.visible = get_tree().paused
 	

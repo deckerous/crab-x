@@ -49,6 +49,7 @@ func _on_new_game_button_pressed():
 func _on_continue_button_pressed():
 	print("Continue button pressed")
 	# TODO: implement save system
+	PlayerVariable.load_values("Levels", "Current Level")
 	if PlayerVariable.cur_level > 0:
 		get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])
 
