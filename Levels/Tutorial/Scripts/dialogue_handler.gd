@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
 				text_box.visible_ratio = 0
 				canvas.visible = false
 				tutorial_closed.emit()
+				CrabLogs.log_dialogue_complete()
 				get_tree().paused = false
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:

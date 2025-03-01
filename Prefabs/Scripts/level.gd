@@ -20,6 +20,7 @@ enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG}
 @onready var bosses_killed = 0
 
 func _ready() -> void:
+	CrabLogs.log_stage_start(level_id)
 	transition_player.play("fade_out")
 	player.add_crabs(starting_crab_count)
 	if starting_weapon != WEAPONS.EMPTY:
@@ -32,7 +33,6 @@ func next_level_func() -> void:
 		print_debug(next_level_instance.level_id)
 		# if !PlayerVariable.debug:
 		#	 Analytics.add_event("Player moved to " + next_level_instance.level_id)
-		CrabLogs.log_stage_start(next_level_instance.level_id)
 		transition_player.play("fade_in")
 		get_tree().change_scene_to_packed(next_level)
 
