@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://g0366fl8bif8"]
+[gd_scene load_steps=4 format=3 uid="uid://g0366fl8bif8"]
 
 [ext_resource type="Script" path="res://Prefabs/Scripts/level.gd" id="1_n0wdl"]
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="2_hiis5"]
 [ext_resource type="PackedScene" uid="uid://i0nmn2ypmpak" path="res://Prefabs/Scenes/levels/shop.tscn" id="3_or20h"]
-[ext_resource type="PackedScene" uid="uid://tji6huju7eg8" path="res://Levels/Transition.tscn" id="4_g6s80"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_n0wdl")
@@ -15,5 +14,3 @@ script = ExtResource("1_n0wdl")
 [node name="Player" parent="." instance=ExtResource("2_hiis5")]
 
 [node name="Shop" parent="." instance=ExtResource("3_or20h")]
-
-[node name="Transition" parent="." instance=ExtResource("4_g6s80")]

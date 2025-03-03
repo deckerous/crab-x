@@ -29,8 +29,6 @@ class_name Player
 
 # For UI integration
 @onready var ui_instance = $ui
-@onready var transition = $Transition
-@onready var transition_animation_player = $Transition/AnimationPlayer
 @onready var player_ui = $PlayerUI
 
 var coin_count : int = 0
@@ -47,7 +45,6 @@ var game_over = false
 var game_over_state = false
 
 func _ready():
-	transition.visible = false
 	# Stop physics process until we see the navigation map sync,
 	# should only take one physics frame.
 	set_physics_process(false)
@@ -229,21 +226,16 @@ func _game_over() -> void:
 		CrabLogs.log_player_death(last_damage_instance_source)
 	crosshair.hide()
 	player_ui.hide()
-	
 	ui_instance._on_game_over() 
 	
-	# TODO: Change so player immediately restarts instead of being shown menu to quit
-	transition_animation_player.speed_scale = 0.5
-	transition_animation_player.play("fade_in")
-	transition.visible = true
-	await transition_animation_player.animation_finished
+	await get_tree().create_timer(1.0).timeout
+	
+	Transition.animation_player.speed_scale = 0.5
+	Transition.fade_in()
+	await Transition.animation_player.animation_finished
+	Transition.animation_player.speed_scale = 1.0
+	
 	get_tree().reload_current_scene()
-	
-	
-	#transition_animation_player.animation_finished.connect((func(): if get_tree(): ).unbind(1))
-	#
-	#if get_tree() != null:
-		#get_tree().reload_current_scene()
 
 func add_crabs(num: int) -> void:
 	if num < 2: return

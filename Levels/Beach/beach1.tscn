@@ -297,5 +297,4 @@ text_array = ["Welcome to your first missions, soldier! We got a covert operatio
 [connection signal="shop_closed" from="Shop" to="Graphics/LootAndTriggers/ShopIcon" method="_on_shop_exit"]
 
 [editable path="Player"]
-[editable path="Player/Transition"]
 [editable path="Shop"]

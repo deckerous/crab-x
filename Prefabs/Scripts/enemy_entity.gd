@@ -6,6 +6,8 @@ extends Entity
 
 @onready var targetting_component
 
+@onready var circle_explosion = load("res://Prefabs/Scenes/misc/explosion_circle.tscn")
+
 func _ready() -> void:
 	super()
 	targetting_component = find_child("TargettingComponent")
@@ -50,3 +52,9 @@ func _diff_flip_h(dir: Vector2) -> void:
 	
 	$TargettingComponent.scale.y = 1
 	$TargettingComponent.rotation_degrees = 0
+
+func _on_death() -> void:
+	if self.is_in_group("boss"):
+		var inst = circle_explosion.instantiate()
+		inst.global_position = global_position
+		get_parent().add_child(inst)

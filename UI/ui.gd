@@ -39,10 +39,11 @@ func _on_game_over():
 	# TODO: Implement way to quit	
 
 func _on_level_complete():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	get_tree().paused = true
 	during_game_screen.visible = false
 	end_of_level_screen.visible = true
+	
+	await get_tree().create_timer(5).timeout
+	next_level.emit()
 
 func _on_resume_button_pressed():
 	toggle_pause_menu() 

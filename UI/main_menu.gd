@@ -2,8 +2,6 @@ extends Control
 
 @onready var crab_container = $CrabContainer
 @onready var continue_button = $main_menu_screen/continue_button
-@onready var transition = $Transition
-@onready var transition_animation_player = $Transition/AnimationPlayer
 
 @onready var crab = load("res://Prefabs/Scenes/crab_entity.tscn")
 @onready var crabs = []
@@ -12,10 +10,12 @@ extends Control
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
 func _ready() -> void:
-	transition.visible = false
+	#transition.visible = false
+	Transition._hide()
 	var level_num = PlayerVariable.load_values("Levels", "Current Level")
 	if !PlayerVariable.config.has_section("Levels"):
-		transition.visible = true
+		#transition.visible = true
+		Transition._unhide()
 		var tree = get_tree()
 		tree.call_deferred("change_scene_to_file", "res://Levels/Tutorial/tutorial_refactor.tscn")
 
@@ -48,9 +48,9 @@ func _update_crabs_pos() -> void:
 func _on_new_game_button_pressed():
 	CrabLogs.log_stage_start("tutorial")
 	
-	transition_animation_player.play("fade_in")
-	transition.visible = true
-	await transition_animation_player.animation_finished
+	Transition.fade_in()
+	#transition.visible = true
+	await Transition.animation_player.animation_finished
 	
 	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
 
@@ -58,9 +58,9 @@ func _on_continue_button_pressed():
 	CrabLogs.log_player_continue()
 	PlayerVariable.load_values("Levels", "Current Level")
 	
-	transition_animation_player.play("fade_in")
-	transition.visible = true
-	await transition_animation_player.animation_finished
+	Transition.fade_in()
+	#transition.visible = true
+	await Transition.animation_player.animation_finished
 	
 	get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])
 
