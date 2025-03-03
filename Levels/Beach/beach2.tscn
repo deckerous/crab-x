@@ -179,13 +179,16 @@ player = NodePath("../../../Player")
 
 [node name="PorcupineFishEntity" parent="Enemies" index="0" instance=ExtResource("10_oj87t")]
 position = Vector2(338, -177)
+diff_flip = false
 max_hp = 50.0
 
 [node name="PorcupineFishEntity2" parent="Enemies" index="1" instance=ExtResource("10_oj87t")]
 position = Vector2(908, -825)
+diff_flip = false
 
 [node name="PorcupineFishEntity3" parent="Enemies" index="2" instance=ExtResource("10_oj87t")]
 position = Vector2(1006, -587)
+diff_flip = false
 
 [node name="SeagullEntity" parent="Enemies" index="3" instance=ExtResource("11_tekw3")]
 position = Vector2(542, 124)
@@ -237,30 +240,39 @@ position = Vector2(700, -492)
 
 [node name="SandFleaEntity" parent="Enemies" index="19" instance=ExtResource("12_egw0v")]
 position = Vector2(711, 281)
+diff_flip = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="20" instance=ExtResource("12_egw0v")]
 position = Vector2(749, 284)
+diff_flip = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="21" instance=ExtResource("12_egw0v")]
 position = Vector2(883, 412)
+diff_flip = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="22" instance=ExtResource("12_egw0v")]
 position = Vector2(923, 215)
+diff_flip = false
 
 [node name="SandFleaEntity6" parent="Enemies" index="23" instance=ExtResource("12_egw0v")]
 position = Vector2(960, 221)
+diff_flip = false
 
 [node name="SandFleaEntity7" parent="Enemies" index="24" instance=ExtResource("12_egw0v")]
 position = Vector2(1030, -247)
+diff_flip = false
 
 [node name="SandFleaEntity8" parent="Enemies" index="25" instance=ExtResource("12_egw0v")]
 position = Vector2(1065, -220)
+diff_flip = false
 
 [node name="SandFleaEntity9" parent="Enemies" index="26" instance=ExtResource("12_egw0v")]
 position = Vector2(1022, -201)
+diff_flip = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="27" instance=ExtResource("12_egw0v")]
 position = Vector2(920, 412)
+diff_flip = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(59, 120)
@@ -313,7 +325,7 @@ visible = false
 [node name="ShopItem11" parent="Shop/Shop Interface/VBoxContainer" index="10"]
 visible = false
 
-[node name="DialogueHandler" parent="." index="5" instance=ExtResource("10_oi84w")]
+[node name="DialogueHandler" parent="." index="4" instance=ExtResource("10_oi84w")]
 position = Vector2(136.938, 156.821)
 text_array = ["You've proved your merit, soldier! We got a larger battlefield for you to tackle next on this mission.", "We heard rumors of a stash of secret supplies guarded by the mafia on this island. If we manage to get control of it, we'll be [wave]crabstoppable[/wave]!", "Your mission is to eradicate the mafia's bodyguards and clear a path for our scouts to find the stash. Move it, soldier!"]
 

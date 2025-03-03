@@ -15,25 +15,24 @@ enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG}
 @onready var enemies = $Enemies
 @onready var player: Player = $Player
 @onready var dialogue = $DialogueHandler
-@onready var transition_player = $Transition/AnimationPlayer
 
 @onready var bosses_killed = 0
 
 func _ready() -> void:
-	transition_player.play("fade_out")
 	player.add_crabs(starting_crab_count)
 	if starting_weapon != WEAPONS.EMPTY:
 		player.change_weapon(starting_weapon)
 	dialogue.trigger_visible()
+	Transition.fade_out()
 
-func next_level_func() -> void:	
+func next_level_func() -> void:
 	if next_level != null:
 		var next_level_instance = next_level.instantiate()
 		print_debug(next_level_instance.level_id)
 		# if !PlayerVariable.debug:
 		#	 Analytics.add_event("Player moved to " + next_level_instance.level_id)
 		CrabLogs.log_stage_start(next_level_instance.level_id)
-		transition_player.play("fade_in")
+		#Transition.fade_in()
 		get_tree().change_scene_to_packed(next_level)
 
 func level_complete_func() -> void:
@@ -42,8 +41,10 @@ func level_complete_func() -> void:
 	#	 Analytics.add_event("Player beat " + level_id)
 	CrabLogs.log_stage_complete(player.cur_weapon, player.crab_count, player.coin_count, player.kill_count)
 	level_complete = true
-	player.get_child(0)._on_level_complete()
-	
+	player.ui_instance._on_level_complete()
+	await get_tree().create_timer(3.5).timeout
+	Transition.fade_in()
+
 func boss_killed(unused) -> void:
 	bosses_killed += 1
 	if bosses_killed == num_bosses:

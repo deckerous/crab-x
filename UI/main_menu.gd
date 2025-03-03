@@ -9,13 +9,15 @@ extends Control
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
-
 func _ready() -> void:
+	#transition.visible = false
+	Transition._hide()
 	var level_num = PlayerVariable.load_values("Levels", "Current Level")
-	print(PlayerVariable.cur_level)
-	if PlayerVariable.cur_level == 0:
-		continue_button.disabled = true
-		continue_button.modulate = Color(1,1,1,0.5)
+	if !PlayerVariable.config.has_section("Levels"):
+		#transition.visible = true
+		Transition._unhide()
+		var tree = get_tree()
+		tree.call_deferred("change_scene_to_file", "res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _physics_process(delta):
 	if crabs.size() == 0:
@@ -45,21 +47,26 @@ func _update_crabs_pos() -> void:
 
 func _on_new_game_button_pressed():
 	CrabLogs.log_stage_start("tutorial")
-	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn") # TODO: replace with actual game scene
+	
+	Transition.fade_in()
+	#transition.visible = true
+	await Transition.animation_player.animation_finished
+	
+	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _on_continue_button_pressed():
-	print("Continue button pressed")
 	CrabLogs.log_player_continue()
-	# TODO: implement save system
 	PlayerVariable.load_values("Levels", "Current Level")
-	if PlayerVariable.cur_level > 0:
-		get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])
+	
+	Transition.fade_in()
+	#transition.visible = true
+	await Transition.animation_player.animation_finished
+	
+	get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])
 
 func _on_settings_button_pressed():
-	print("Settings button pressed")
 	# TODO: implement settings screen
 	pass
 
 func _on_quit_button_pressed():
-	print("Game was quit")
 	get_tree().quit()
