@@ -181,18 +181,23 @@ shape = SubResource("RectangleShape2D_fisgt")
 
 [node name="SandFleaEntity" parent="Enemies" index="0" instance=ExtResource("9_5gfvo")]
 position = Vector2(229, 89)
+diff_flip = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="1" instance=ExtResource("9_5gfvo")]
 position = Vector2(229, 132)
+diff_flip = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="2" instance=ExtResource("9_5gfvo")]
 position = Vector2(267, 116)
+diff_flip = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="3" instance=ExtResource("9_5gfvo")]
 position = Vector2(406, 617)
+diff_flip = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="4" instance=ExtResource("9_5gfvo")]
 position = Vector2(554, 379)
+diff_flip = false
 
 [node name="SeagullEntity" parent="Enemies" index="5" instance=ExtResource("10_jow6t")]
 position = Vector2(166, 529)
@@ -209,6 +214,7 @@ position = Vector2(507, 672)
 [node name="PorcupineFishEntity" parent="Enemies" index="9" instance=ExtResource("11_mu1m5")]
 process_mode = 4
 position = Vector2(408, 456)
+diff_flip = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(71, 760)
@@ -291,4 +297,5 @@ text_array = ["Welcome to your first missions, soldier! We got a covert operatio
 [connection signal="shop_closed" from="Shop" to="Graphics/LootAndTriggers/ShopIcon" method="_on_shop_exit"]
 
 [editable path="Player"]
+[editable path="Player/Transition"]
 [editable path="Shop"]

@@ -35,7 +35,7 @@ func _on_game_over():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
-	$end_of_game_screen/end_of_game_score_display/score_label.text = "%d" % game_score
+	#$end_of_game_screen/end_of_game_score_display/score_label.text = "%d" % game_score
 	# TODO: Implement way to quit	
 
 func _on_level_complete():
@@ -75,8 +75,6 @@ func toggle_pause_menu():
 		pause_menu_screen.visible = get_tree().paused
 		#pause_background.visible = get_tree().paused
 		# during_game_screen.visible = not during_game_screen.visible
-
-	
 
 func _on_settings_button_pressed():
 	pass
