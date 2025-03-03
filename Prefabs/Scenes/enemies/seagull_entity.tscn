@@ -48,6 +48,7 @@ collision_layer = 128
 collision_mask = 193
 script = ExtResource("2_ki7dx")
 flip_when_aiming = true
+diff_flip = false
 max_hp = 15.0
 entity_id = "Seagull"
 
