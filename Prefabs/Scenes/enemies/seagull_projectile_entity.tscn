@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://trxdycr3ktyr"]
 
 [ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_v3ns6"]
-[ext_resource type="Texture2D" uid="uid://dxsm3bh52sxcq" path="res://Assets/Guns/png/bullet.png" id="2_mkh4l"]
+[ext_resource type="Texture2D" uid="uid://grwynw3qukcn" path="res://Assets/Enemies/png/seagull-projectile.png" id="2_mdxxo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6jamt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mkh4l")
+"texture": ExtResource("2_mdxxo")
 }],
 "loop": true,
 "name": &"airborne",
@@ -32,12 +32,12 @@ collide_with_enemies = false
 entity_id = "SeagullProj"
 
 [node name="Animations" parent="." index="0"]
-position = Vector2(0, -5.5)
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_6jamt")
 animation = &"airborne"
 
 [node name="CollisionBox" parent="." index="1"]
-position = Vector2(0, -7)
+position = Vector2(0, -5.5)
 scale = Vector2(1.3, 1.115)
 shape = SubResource("RectangleShape2D_mubxm")
 
@@ -46,7 +46,7 @@ collision_mask = 8
 damage = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
-position = Vector2(0, -7.5)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_lkk4f")
 debug_color = Color(0.894273, 0.319941, 0.00590661, 0.42)
 

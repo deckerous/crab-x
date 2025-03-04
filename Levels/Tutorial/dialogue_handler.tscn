@@ -34,6 +34,9 @@ offset_right = 575.0
 offset_bottom = 215.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!"

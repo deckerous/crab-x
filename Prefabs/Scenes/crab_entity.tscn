@@ -102,7 +102,6 @@ shape = SubResource("CircleShape2D_bguln")
 debug_color = Color(0.913828, 0.0663878, 0.692027, 0.42)
 
 [node name="HealingArea2D" type="Area2D" parent="." index="6"]
-visible = false
 collision_layer = 32
 collision_mask = 32
 
@@ -113,7 +112,7 @@ debug_color = Color(0, 0.65098, 0.133333, 0.101961)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
 path_desired_distance = 10.0
-target_desired_distance = 25.0
+target_desired_distance = 20.0
 path_max_distance = 200.0
 path_postprocessing = 1
 avoidance_enabled = true
