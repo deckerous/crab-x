@@ -242,7 +242,7 @@ func add_crabs(num: int) -> void:
 	var i = 1
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
-		crab_inst.position = rally_point_crab_entity.position + Vector2(0, 15)
+		crab_inst.position = rally_point_crab_entity.position + Vector2(-10 + 20 * x, 20)
 		crab_inst.velocity = Vector2.DOWN
 		crab_manager.add_child(crab_inst)
 		PlayerVariable.num_crabs += 1
@@ -263,7 +263,7 @@ func toggle_pause():
 func add_coin():
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
-	rich_text_label.text = str(coin_count)
+	rich_text_label.text = " " + str(coin_count)
 
 func _on_crab_entity_changed_last_damaged_by(entity: Node2D) -> void:
 	last_damage_instance_source = entity.entity_id if entity.entity_id != "" else "unknown"

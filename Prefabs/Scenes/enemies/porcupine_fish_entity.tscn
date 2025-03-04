@@ -52,6 +52,7 @@ collision_layer = 128
 collision_mask = 193
 script = ExtResource("2_1fttj")
 flip_when_aiming = false
+diff_flip = false
 max_hp = 75.0
 entity_id = "PorcupineFish"
 
@@ -167,10 +168,11 @@ position = Vector2(-12, -18)
 position = Vector2(-6, -21)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
+wait_time = 0.7
 one_shot = true
 
 [node name="PuffUpTimer" type="Timer" parent="StateMachine/Aggro" index="2"]
-wait_time = 0.5
+wait_time = 0.35
 one_shot = true
 
 [editable path="TargettingComponent"]

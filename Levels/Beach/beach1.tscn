@@ -214,7 +214,6 @@ position = Vector2(507, 672)
 [node name="PorcupineFishEntity" parent="Enemies" index="9" instance=ExtResource("11_mu1m5")]
 process_mode = 4
 position = Vector2(408, 456)
-diff_flip = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(71, 760)

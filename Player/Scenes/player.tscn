@@ -37,9 +37,13 @@ mouse_filter = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 8.0
+offset_top = 2.0
+offset_bottom = 14.0
 grow_horizontal = 2
 mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayerUI/Control/HBoxContainer"]
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PlayerUI/Control/HBoxContainer"]
 layout_mode = 2
@@ -50,12 +54,14 @@ texture = ExtResource("5_ugxei")
 stretch_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Control/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "0"
+text = " 0"
 fit_content = true
 scroll_active = false
 
