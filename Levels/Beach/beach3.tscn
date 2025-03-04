@@ -242,7 +242,6 @@ diff_flip = false
 
 [node name="PorcupineFishEntity" parent="Enemies" index="19" instance=ExtResource("11_53hf2")]
 position = Vector2(1207, -2920)
-diff_flip = false
 
 [node name="BreachedWhaleEntity" parent="Enemies" index="20" instance=ExtResource("12_7quic")]
 position = Vector2(228, -3396)

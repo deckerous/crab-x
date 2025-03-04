@@ -10,6 +10,9 @@ extends Node2D
 
 @onready var original_position = global_position
 
+@onready var viewport_w = get_viewport().get_visible_rect().size.x
+@onready var viewport_h = get_viewport().get_visible_rect().size.y
+
 var targeted_crab: CrabEntity = null
 
 var entities_detected: Array[Node2D]
@@ -44,7 +47,6 @@ func _physics_process(delta: float):
 
 func find_target() -> void:
 	if entities_detected.size() > 0:
-		
 		# check line of sight with raycast for every crab that enters
 		# until enemy has line of sight with one of othem
 		for entity in entities_detected:

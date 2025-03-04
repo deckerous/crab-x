@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://kqwn3nkjg4pq"]
+[gd_scene load_steps=3 format=3 uid="uid://kqwn3nkjg4pq"]
 
 [ext_resource type="Script" path="res://Levels/to_be_continued.gd" id="1_ldsfg"]
 [ext_resource type="Texture2D" uid="uid://u53c6w683ut3" path="res://Assets/Crabs/png/crab-glock.png" id="1_um4wr"]
-[ext_resource type="PackedScene" uid="uid://tji6huju7eg8" path="res://Levels/Transition.tscn" id="3_offio"]
 
 [node name="ToBeContinued" type="Node2D"]
 script = ExtResource("1_ldsfg")
@@ -31,5 +30,3 @@ flip_h = true
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(64, 56)
 texture = ExtResource("1_um4wr")
-
-[node name="Transition" parent="." instance=ExtResource("3_offio")]

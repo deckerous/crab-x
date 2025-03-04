@@ -124,7 +124,7 @@ animation_name = "aggro"
 position = Vector2(0, -16)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
-wait_time = 1.5
+wait_time = 1.25
 
 [node name="HealthBar" parent="." index="8"]
 offset_top = -30.0
