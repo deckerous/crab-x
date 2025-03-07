@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://x24gdfgu2sh0"]
+[gd_scene load_steps=21 format=4 uid="uid://x24gdfgu2sh0"]
 
 [ext_resource type="Script" path="res://Levels/Tutorial/Scripts/tutorial_level.gd" id="1_dfnuy"]
 [ext_resource type="PackedScene" uid="uid://covkpsdjld7rr" path="res://Levels/Beach/beach1.tscn" id="2_76hx8"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="8_an2om"]
 [ext_resource type="Texture2D" uid="uid://cbnjdwt2ftbjg" path="res://Assets/Crabs/png/crab-shop-icon.png" id="16_xfof8"]
 [ext_resource type="Texture2D" uid="uid://iktoga6ab2cw" path="res://Assets/Guns/png/glock-16x16.png" id="17_1t4cp"]
-[ext_resource type="PackedScene" uid="uid://tji6huju7eg8" path="res://Levels/Transition.tscn" id="17_51rcn"]
 [ext_resource type="Texture2D" uid="uid://dwbv6pgaemd3c" path="res://Assets/Tilesets/pngs/mouse-controls.png" id="18_edtld"]
 [ext_resource type="Texture2D" uid="uid://bfclmfi43s6p5" path="res://Assets/Tilesets/pngs/wasd.png" id="19_uy0sk"]
 
@@ -144,12 +143,15 @@ texture = ExtResource("19_uy0sk")
 
 [node name="DummyEntity" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(53, 217)
+diff_flip = false
 
 [node name="DummyEntity2" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(265, 215)
+diff_flip = false
 
 [node name="DummyEntity3" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(160, 228)
+diff_flip = false
 
 [node name="DummyBossEntity" parent="Enemies" instance=ExtResource("8_2puqx")]
 process_mode = 4
@@ -200,8 +202,6 @@ visible = false
 
 [node name="DialogueHandler" parent="." instance=ExtResource("8_an2om")]
 text_array = ["Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!", "First comes you, then the sand, then the humans, then crabs, then our president, and then [shake rate=25level=10]ME![/shake] So listen to everything I say and you [i]might[/i] make it out alive.", "Lesson number one, [shake rate=25level=10]prawn[/shake]! Use the [b]WASD[/b] or [b]arrow keys[/b] to move! Then use the [b]mouse[/b] to move the camera! Now, move it!"]
-
-[node name="Transition" parent="." instance=ExtResource("17_51rcn")]
 
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="." method="_handle_chests"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]

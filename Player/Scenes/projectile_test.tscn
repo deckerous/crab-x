@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1u7abh3kwaiv" path="res://Player/Scenes/player.tscn" id="3_j4087"]
 [ext_resource type="PackedScene" uid="uid://lf55ja7vsewi" path="res://Prefabs/Scenes/enemies/dummy_entity.tscn" id="4_pxm6p"]
 [ext_resource type="PackedScene" uid="uid://ch11nk2ii4e54" path="res://Prefabs/Scenes/crab_entity.tscn" id="4_qk8ca"]
-[ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="5_hef0h"]
+[ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="5_fun0j"]
 [ext_resource type="PackedScene" uid="uid://cxd8cou4q1lxd" path="res://Prefabs/Scenes/enemies/dummy_boss_entity.tscn" id="6_f0bvb"]
 
 [node name="ProjectileTest" type="Node2D"]
@@ -21,37 +21,49 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_map_data = PackedByteArray("AAAAAAsAAAAAAAMAAAABAAsAAAABAAMAAAACAAsAAAABAAMAAAADAAsAAAABAAMAAAAEAAsAAAABAAMAAAAFAAsAAAABAAMAAAAGAAsAAAABAAMAAAAHAAsAAAABAAMAAAAIAAsAAAABAAMAAAAJAAsAAAABAAMAAAAKAAsAAAABAAMAAAALAAsAAAABAAMAAAAMAAsAAAABAAMAAAANAAsAAAABAAMAAAAOAAsAAAABAAMAAAAPAAsAAAABAAMAAAAQAAsAAAABAAMAAAARAAsAAAABAAMAAAASAAsAAAABAAMAAAATAAsAAAABAAMAAAATAAAAAAABAAMAAAASAAAAAAABAAMAAAARAAAAAAABAAMAAAAQAAAAAAABAAMAAAAPAAAAAAABAAMAAAAOAAAAAAABAAMAAAANAAAAAAABAAMAAAAMAAAAAAABAAMAAAALAAAAAAABAAMAAAAKAAAAAAABAAMAAAAJAAAAAAABAAMAAAAIAAAAAAABAAMAAAAHAAAAAAABAAMAAAAGAAAAAAABAAMAAAAFAAAAAAABAAMAAAAEAAAAAAABAAMAAAADAAAAAAABAAMAAAACAAAAAAABAAMAAAABAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAUAAAADAAAAAAAAAAYAAAADAAIAAAAUAAAAAAABAAMAAAAVAAAAAAABAAMAAAAWAAAAAAABAAMAAAAXAAAAAAABAAMAAAAYAAAAAAABAAMAAAAZAAAAAAABAAMAAAAaAAAAAAABAAMAAAAbAAAAAAABAAMAAAAcAAAAAAABAAMAAAAdAAAAAAABAAMAAAAeAAAAAAABAAMAAAAfAAAAAAABAAMAAAAgAAAAAAABAAMAAAAhAAAAAAABAAMAAAAiAAAAAAABAAMAAAAjAAAAAAABAAMAAAAkAAAAAAABAAMAAAAlAAAAAAABAAMAAAAmAAAAAAABAAMAAAAnAAAAAAABAAMAAAAoAAAAAAABAAMAAAApAAAAAAABAAMAAAAqAAAAAAABAAMAAAArAAAAAAABAAMAAAAsAAAAAAABAAMAAAAtAAAAAAAHAAAAAAAtAAEAAAADAAEAAAAtAAIAAAADAAEAAAAtAAMAAAADAAEAAAAtAAQAAAADAAEAAAAtAAUAAAADAAEAAAAtAAYAAAADAAEAAAAtAAcAAAADAAEAAAAtAAgAAAADAAEAAAAtAAkAAAADAAEAAAAtAAoAAAADAAEAAAAtAAsAAAAHAAMAAAAsAAsAAAABAAMAAAArAAsAAAABAAMAAAAqAAsAAAABAAMAAAApAAsAAAABAAMAAAAoAAsAAAABAAMAAAAnAAsAAAABAAMAAAAmAAsAAAABAAMAAAAlAAsAAAABAAMAAAAkAAsAAAABAAMAAAAjAAsAAAABAAMAAAAiAAsAAAABAAMAAAAhAAsAAAABAAMAAAAgAAsAAAABAAMAAAAfAAsAAAABAAMAAAAeAAsAAAABAAMAAAAdAAsAAAABAAMAAAAcAAsAAAABAAMAAAAbAAsAAAABAAMAAAAaAAsAAAABAAMAAAAZAAsAAAABAAMAAAAYAAsAAAABAAMAAAAXAAsAAAABAAMAAAAWAAsAAAABAAMAAAAVAAsAAAABAAMAAAAUAAsAAAABAAMAAAA=")
 tile_set = ExtResource("1_1vcn6")
 
+[node name="SeagullEntity" parent="." instance=ExtResource("5_fun0j")]
+position = Vector2(58, 92)
+
 [node name="Player" parent="." instance=ExtResource("3_j4087")]
-position = Vector2(138, 99)
+position = Vector2(294, 97)
 
 [node name="CrabEntity2" parent="Player/CrabManager" index="1" instance=ExtResource("4_qk8ca")]
+position = Vector2(-14, 19)
 
 [node name="CrabEntity3" parent="Player/CrabManager" index="2" instance=ExtResource("4_qk8ca")]
+position = Vector2(16, 20)
 
 [node name="CrabEntity4" parent="Player/CrabManager" index="3" instance=ExtResource("4_qk8ca")]
+position = Vector2(17, -16)
 
 [node name="CrabEntity5" parent="Player/CrabManager" index="4" instance=ExtResource("4_qk8ca")]
+position = Vector2(-15, -19)
 
 [node name="CrabEntity6" parent="Player/CrabManager" index="5" instance=ExtResource("4_qk8ca")]
+position = Vector2(1, -39)
 
 [node name="CrabEntity7" parent="Player/CrabManager" index="6" instance=ExtResource("4_qk8ca")]
+position = Vector2(1, 43)
+
+[node name="CrabEntity8" parent="Player/CrabManager" index="7" instance=ExtResource("4_qk8ca")]
+position = Vector2(-35, -2)
+
+[node name="CrabEntity9" parent="Player/CrabManager" index="8" instance=ExtResource("4_qk8ca")]
+position = Vector2(38, 2)
 
 [node name="DummyEntity" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(24, 51)
-flip_when_aiming = false
+diff_flip = false
 
 [node name="DummyEntity2" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(36, 107)
-flip_when_aiming = false
+diff_flip = false
 
 [node name="DummyEntity3" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(23, 165)
-flip_when_aiming = false
+diff_flip = false
 
 [node name="DummyBossEntity" parent="." instance=ExtResource("6_f0bvb")]
 position = Vector2(701, 120)
-
-[node name="SeagullEntity" parent="." instance=ExtResource("5_hef0h")]
-position = Vector2(313, 70)
 
 [editable path="Player"]

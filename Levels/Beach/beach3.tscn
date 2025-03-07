@@ -210,27 +210,35 @@ flip_when_aiming = false
 
 [node name="SandFleaEntity" parent="Enemies" index="11" instance=ExtResource("10_ceujx")]
 position = Vector2(79, 217)
+diff_flip = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="12" instance=ExtResource("10_ceujx")]
 position = Vector2(-92, -1293)
+diff_flip = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="13" instance=ExtResource("10_ceujx")]
 position = Vector2(-196, -1215)
+diff_flip = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="14" instance=ExtResource("10_ceujx")]
 position = Vector2(-212, -1339)
+diff_flip = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="15" instance=ExtResource("10_ceujx")]
 position = Vector2(989, -2830)
+diff_flip = false
 
 [node name="SandFleaEntity6" parent="Enemies" index="16" instance=ExtResource("10_ceujx")]
 position = Vector2(1124, -2698)
+diff_flip = false
 
 [node name="SandFleaEntity7" parent="Enemies" index="17" instance=ExtResource("10_ceujx")]
 position = Vector2(323, -2025)
+diff_flip = false
 
 [node name="SandFleaEntity8" parent="Enemies" index="18" instance=ExtResource("10_ceujx")]
 position = Vector2(188, -2041)
+diff_flip = false
 
 [node name="PorcupineFishEntity" parent="Enemies" index="19" instance=ExtResource("11_53hf2")]
 position = Vector2(1207, -2920)
@@ -239,7 +247,7 @@ position = Vector2(1207, -2920)
 position = Vector2(228, -3396)
 
 [node name="Player" parent="." index="2"]
-position = Vector2(204, 534)
+position = Vector2(200, 536)
 
 [node name="Shop" parent="." index="3"]
 visible = false

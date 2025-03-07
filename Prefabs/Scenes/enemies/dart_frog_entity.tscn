@@ -1,0 +1,197 @@
+[gd_scene load_steps=17 format=3 uid="uid://cvkoeqim0x0rx"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_sh6w8"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_4878n"]
+[ext_resource type="Texture2D" uid="uid://cd7u2epcgadh5" path="res://Assets/Enemies/png/dart-sheet.png" id="2_scffu"]
+[ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="3_hi541"]
+[ext_resource type="PackedScene" uid="uid://ddxlrro2x7yst" path="res://Prefabs/Components/Scenes/targetting_component.tscn" id="3_m6jot"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/dart_frog_idle_state.gd" id="4_3cvss"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/dart_frog_aggro_state.gd" id="5_8ko0y"]
+[ext_resource type="PackedScene" uid="uid://nkl0um4ods7" path="res://Prefabs/Scenes/enemies/dart_frog_projectile_entity.tscn" id="8_pykb0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cwxtt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_scffu")
+}],
+"loop": true,
+"name": &"aggro",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuufu"]
+radius = 9.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iiesd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jpdnx"]
+
+[sub_resource type="Animation" id="Animation_gkexl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../HealthBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dlmcj"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../HealthBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v5ovm"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../HealthBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxvqq"]
+_data = {
+"RESET": SubResource("Animation_gkexl"),
+"fade_in": SubResource("Animation_dlmcj"),
+"fade_out": SubResource("Animation_v5ovm")
+}
+
+[node name="DartFrogEntity" instance=ExtResource("1_sh6w8")]
+collision_layer = 128
+collision_mask = 193
+script = ExtResource("2_4878n")
+flip_when_aiming = false
+diff_flip = true
+max_hp = 20.0
+
+[node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
+modulate = Color(0.0666667, 0.266667, 0.266667, 1)
+position = Vector2(-5, 4)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("3_hi541")
+
+[node name="Animations" parent="." index="1"]
+position = Vector2(2, -8)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_cwxtt")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionBox" parent="." index="2"]
+position = Vector2(-3, -8)
+shape = SubResource("CapsuleShape2D_xuufu")
+
+[node name="HitboxComponent" parent="." index="3"]
+collision_layer = 8
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-3, -8)
+shape = SubResource("CapsuleShape2D_iiesd")
+debug_color = Color(0.755016, 0.456086, 0, 0.42)
+
+[node name="HurtboxComponent" parent="." index="4"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-3, -8)
+shape = SubResource("CapsuleShape2D_jpdnx")
+debug_color = Color(0.938219, 0.145116, 0.508151, 0.42)
+
+[node name="TargettingComponent" parent="." index="5" instance=ExtResource("3_m6jot")]
+
+[node name="StateMachine" parent="." index="6" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("aggro")]
+script = ExtResource("4_3cvss")
+aggro = NodePath("../Aggro")
+animation_name = "idle"
+
+[node name="Aggro" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("idle")]
+script = ExtResource("5_8ko0y")
+idle = NodePath("../Idle")
+projectile = ExtResource("8_pykb0")
+time_before_invisible_min = 2.0
+time_before_invisible_max = 2.5
+animation_name = "aggro"
+
+[node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/Aggro" index="0"]
+position = Vector2(18, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine/Aggro" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_mxvqq")
+}
+
+[node name="HealthBar" parent="." index="7"]
+visible = true
+offset_top = -28.0
+offset_bottom = -1.0
+
+[editable path="TargettingComponent"]

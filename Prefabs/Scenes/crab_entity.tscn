@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=23 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/rpg_crab_state.gd" id="9_ruqhs"]
 [ext_resource type="PackedScene" uid="uid://c0773lon6v416" path="res://Prefabs/Scenes/player_bullet_entity.tscn" id="10_b3vec"]
 [ext_resource type="PackedScene" uid="uid://clwmvhbjdrpld" path="res://Prefabs/Scenes/player_rpg_entity.tscn" id="13_chaxw"]
+[ext_resource type="Texture2D" uid="uid://bodmews1bolnw" path="res://Assets/Misc/png/circle.png" id="13_ugkh2"]
 [ext_resource type="Texture2D" uid="uid://ceoajh3yjs5uq" path="res://Assets/Misc/png/star.png" id="14_6dhip"]
 [ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="15_q6qch"]
 
@@ -62,6 +63,11 @@ radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yxtw0"]
 
+[sub_resource type="Gradient" id="Gradient_lmww8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.213904, 0.721925, 0.887701, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.996078, 0.905882, 0.380392, 1, 0.996078, 0.403922, 0.203922, 1, 0.745098, 0.290196, 0.184314, 1, 0.247059, 0.156863, 0.196078, 0)
+
 [node name="CrabEntity" instance=ExtResource("1_4p3s6")]
 collision_layer = 64
 collision_mask = 193
@@ -75,7 +81,7 @@ texture = ExtResource("15_q6qch")
 
 [node name="Animations" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_7lf24")
-animation = &"empty"
+animation = &"glock"
 
 [node name="CollisionBox" parent="." index="2"]
 shape = SubResource("CircleShape2D_uljcy")
@@ -102,7 +108,6 @@ shape = SubResource("CircleShape2D_bguln")
 debug_color = Color(0.913828, 0.0663878, 0.692027, 0.42)
 
 [node name="HealingArea2D" type="Area2D" parent="." index="6"]
-visible = false
 collision_layer = 32
 collision_mask = 32
 
@@ -113,7 +118,7 @@ debug_color = Color(0, 0.65098, 0.133333, 0.101961)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
 path_desired_distance = 10.0
-target_desired_distance = 25.0
+target_desired_distance = 20.0
 path_max_distance = 200.0
 path_postprocessing = 1
 avoidance_enabled = true
@@ -158,7 +163,29 @@ animation_name = "glock"
 [node name="BulletSpawnPosition" type="Node2D" parent="StateMachine/Glock" index="0"]
 position = Vector2(-3.5, -14)
 
-[node name="CooldownTimer" type="Timer" parent="StateMachine/Glock" index="1"]
+[node name="GlockParticles" type="CPUParticles2D" parent="StateMachine/Glock" index="1"]
+z_index = 1
+position = Vector2(-3.5, -15)
+emitting = false
+amount = 4
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.45
+local_coords = true
+texture = ExtResource("13_ugkh2")
+direction = Vector2(0, -1)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+linear_accel_max = 1.0
+tangential_accel_max = 27.64
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_lmww8")
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Glock" index="2"]
 wait_time = 0.2
 one_shot = true
 

@@ -16,10 +16,12 @@ func _on_resume_button_pressed() -> void:
 
 [node name="ui" type="CanvasLayer"]
 process_mode = 3
+layer = 5
 script = ExtResource("1_disjy")
 
 [node name="end_of_game_screen" type="Node2D" parent="."]
 visible = false
+z_index = 5
 
 [node name="pause_screen_background2" type="ColorRect" parent="end_of_game_screen"]
 self_modulate = Color(1, 1, 1, 0.196078)
@@ -28,6 +30,7 @@ offset_bottom = 180.0
 color = Color(0.0126459, 0.0126459, 0.0126459, 1)
 
 [node name="restart_button" type="Button" parent="end_of_game_screen"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 130.0
 offset_top = 72.0
@@ -51,6 +54,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="quit_button" type="Button" parent="end_of_game_screen"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 128.0
 offset_top = 112.0
@@ -103,6 +107,7 @@ uppercase = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="end_of_game_screen"]
 modulate = Color(0.854622, 0.187628, 0.176296, 1)
+z_index = 6
 clip_contents = false
 layout_direction = 1
 offset_left = 64.0
@@ -119,6 +124,7 @@ scroll_active = false
 visible = false
 
 [node name="pause_screen_background2" type="ColorRect" parent="winning"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.196078)
 offset_right = 320.0
 offset_bottom = 180.0
@@ -126,6 +132,7 @@ mouse_filter = 2
 color = Color(0.0126459, 0.0126459, 0.0126459, 1)
 
 [node name="restart_button" type="Button" parent="winning"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 130.0
 offset_top = 72.0
@@ -149,6 +156,7 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="quit_button" type="Button" parent="winning"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 128.0
 offset_top = 112.0

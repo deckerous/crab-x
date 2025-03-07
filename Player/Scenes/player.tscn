@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1u7abh3kwaiv"]
+[gd_scene load_steps=8 format=3 uid="uid://c1u7abh3kwaiv"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_hjqw4"]
 [ext_resource type="Texture2D" uid="uid://br0tw5dnbcxk" path="res://Assets/UI/crosshair.png" id="3_18x87"]
 [ext_resource type="PackedScene" uid="uid://ch11nk2ii4e54" path="res://Prefabs/Scenes/crab_entity.tscn" id="4_44bsy"]
+[ext_resource type="Script" path="res://Player/Scripts/player_camera.gd" id="4_ndu54"]
 [ext_resource type="Texture2D" uid="uid://g17fv4dci4b8" path="res://Assets/Misc/png/coin.png" id="5_ugxei"]
 [ext_resource type="PackedScene" uid="uid://bchgounswh1og" path="res://UI/ui.tscn" id="6_upbhe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3a8l8"]
+size = Vector2(336, 256)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hjqw4")
@@ -18,6 +22,15 @@ process_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+script = ExtResource("4_ndu54")
+
+[node name="EnemyDetectedArea" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/EnemyDetectedArea"]
+shape = SubResource("RectangleShape2D_3a8l8")
+debug_color = Color(0.66, 0.627, 0, 0)
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 texture = ExtResource("3_18x87")
@@ -37,9 +50,13 @@ mouse_filter = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 8.0
+offset_top = 2.0
+offset_bottom = 14.0
 grow_horizontal = 2
 mouse_filter = 2
+
+[node name="Control" type="Control" parent="PlayerUI/Control/HBoxContainer"]
+layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PlayerUI/Control/HBoxContainer"]
 layout_mode = 2
@@ -50,12 +67,14 @@ texture = ExtResource("5_ugxei")
 stretch_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/Control/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
-text = "0"
+text = " 0"
 fit_content = true
 scroll_active = false
 

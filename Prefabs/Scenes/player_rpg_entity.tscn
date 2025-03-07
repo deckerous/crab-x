@@ -38,6 +38,10 @@ size = Vector2(4, 13)
 [node name="PlayerRPGEntity" instance=ExtResource("1_5g18h")]
 collision_mask = 129
 speed = 2.0
+max_distance = 300.0
+fall_off_ratio = 0.0
+fall_off_constant = 0.0
+speed_before_destroy = 0.0
 collide_with_crabs = false
 max_hp = 10.0
 health_bar_visible = true

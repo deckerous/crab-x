@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://nkl0um4ods7"]
+
+[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_ypi7e"]
+[ext_resource type="Texture2D" uid="uid://d2gvnb7x8sfx3" path="res://Assets/Enemies/png/dart.png" id="2_i3nvm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcv16"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3nvm")
+}],
+"loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"destroy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvfur"]
+size = Vector2(2.35294, 8.46561)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdsic"]
+size = Vector2(4, 12)
+
+[node name="DartFrogProjectileEntity" instance=ExtResource("1_ypi7e")]
+collision_mask = 65
+speed = 3.0
+max_distance = 300.0
+fall_off_ratio = 0.8
+fall_off_constant = 0.03
+speed_before_destroy = 1.0
+collide_with_enemies = false
+entity_id = "DartProj"
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_gcv16")
+animation = &"airborne"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(5.96046e-08, -6)
+scale = Vector2(0.85, 0.945)
+shape = SubResource("RectangleShape2D_nvfur")
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 8
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_rdsic")
+debug_color = Color(0.783148, 0.434074, 0.0459705, 0.42)
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Airborne")
+
+[node name="Airborne" parent="StateMachine" index="0"]
+animation_name = "airborne"
+
+[node name="Destroy" parent="StateMachine" index="1"]
+animation_name = "destroy"

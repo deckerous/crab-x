@@ -1,0 +1,18 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://qdsyewnphcr2"]
+
+[ext_resource type="Texture2D" uid="uid://cv3pqjqjkp777" path="res://Assets/Tilesets/pngs/grass-16x16.png" id="1_yt7oq"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3cpxd"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tae75"]
+texture = ExtResource("1_yt7oq")
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3cpxd")
+
+[resource]
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_tae75")

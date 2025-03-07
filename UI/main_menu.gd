@@ -17,11 +17,14 @@ func _ready() -> void:
 	if os == "Web Mobile":
 		main_menu_screen.visible = false
 		mobile_warning.visible = true
+	#transition.visible = false
+	Transition._hide()
 	var level_num = PlayerVariable.load_values("Levels", "Current Level")
-	print(PlayerVariable.cur_level)
-	if PlayerVariable.cur_level == 0:
-		continue_button.disabled = true
-		continue_button.modulate = Color(1,1,1,0.5)
+	if !PlayerVariable.config.has_section("Levels"):
+		#transition.visible = true
+		Transition._unhide()
+		var tree = get_tree()
+		tree.call_deferred("change_scene_to_file", "res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _physics_process(delta):
 	if crabs.size() == 0:
@@ -51,17 +54,26 @@ func _update_crabs_pos() -> void:
 
 func _on_new_game_button_pressed():
 	CrabLogs.log_stage_start("tutorial")
-	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn") # TODO: replace with actual game scene
+	
+	Transition.fade_in()
+	#transition.visible = true
+	await Transition.animation_player.animation_finished
+	
+	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _on_continue_button_pressed():
 	print("Continue button pressed")
 	# TODO: implement save system
+	CrabLogs.log_player_continue()
 	PlayerVariable.load_values("Levels", "Current Level")
-	if PlayerVariable.cur_level > 0:
-		get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])
+	
+	Transition.fade_in()
+	#transition.visible = true
+	await Transition.animation_player.animation_finished
+	
+	get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])
 
 func _on_settings_button_pressed():
-	print("Settings button pressed")
 	# TODO: implement settings screen
 	pass
 

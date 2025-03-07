@@ -48,6 +48,7 @@ collision_layer = 128
 collision_mask = 193
 script = ExtResource("2_ki7dx")
 flip_when_aiming = true
+diff_flip = false
 max_hp = 15.0
 entity_id = "Seagull"
 
@@ -123,6 +124,7 @@ animation_name = "aggro"
 position = Vector2(0, -16)
 
 [node name="CooldownTimer" type="Timer" parent="StateMachine/Aggro" index="1"]
+wait_time = 1.25
 
 [node name="HealthBar" parent="." index="8"]
 offset_top = -30.0

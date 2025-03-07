@@ -29,6 +29,7 @@ class_name Player
 
 # For UI integration
 @onready var ui_instance = $ui
+@onready var player_ui = $PlayerUI
 
 var coin_count : int = 0
 var crab_count : int = 0
@@ -41,6 +42,7 @@ var move_dir = Vector2.ZERO
 var last_damage_instance_source: String
 var logged_player_death: bool = false
 var game_over = false
+var game_over_state = false
 
 func _ready():
 	# Stop physics process until we see the navigation map sync,
@@ -118,7 +120,8 @@ func _physics_process(delta):
 		
 		# Crosshair position update
 		crosshair.global_position = mouse_pos
-	else:
+	elif game_over and !game_over_state:
+		game_over_state = true
 		_game_over()
 
 func _update_rally_crab_velocity() -> void:
@@ -216,20 +219,30 @@ func handle_entity_death(name) -> void:
 	print("Kill count: ", kill_count)
 
 func _game_over() -> void:
-	ui_instance._on_game_over()
 	# if !PlayerVariable.debug:
 	# 	Analytics.add_event("Player died")
 	if !logged_player_death:
 		logged_player_death = true
 		CrabLogs.log_player_death(last_damage_instance_source)
 	crosshair.hide()
+	player_ui.hide()
+	ui_instance._on_game_over() 
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	Transition.animation_player.speed_scale = 0.5
+	Transition.fade_in()
+	await Transition.animation_player.animation_finished
+	Transition.animation_player.speed_scale = 1.0
+	
+	get_tree().reload_current_scene()
 
 func add_crabs(num: int) -> void:
 	if num < 2: return
 	var i = 1
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
-		crab_inst.position = rally_point_crab_entity.position + Vector2(0, 15)
+		crab_inst.position = rally_point_crab_entity.position + Vector2(-10 + 20 * x, 20)
 		crab_inst.velocity = Vector2.DOWN
 		crab_manager.add_child(crab_inst)
 		PlayerVariable.num_crabs += 1
@@ -250,7 +263,7 @@ func toggle_pause():
 func add_coin():
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
-	rich_text_label.text = str(coin_count)
+	rich_text_label.text = " " + str(coin_count)
 
 func _on_crab_entity_changed_last_damaged_by(entity: Node2D) -> void:
 	last_damage_instance_source = entity.entity_id if entity.entity_id != "" else "unknown"
