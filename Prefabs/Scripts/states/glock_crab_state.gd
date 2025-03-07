@@ -6,6 +6,8 @@ extends GunState
 @export var slingshot: State
 @export var rpg: State
 
+@onready var glock_particles: CPUParticles2D = $GlockParticles
+
 # Override: Process player inputs that return a new state for the state machine to enter
 func process_input(event: InputEvent) -> State:
 	super(event)
@@ -16,5 +18,14 @@ func process_input(event: InputEvent) -> State:
 		return slingshot
 	if Input.is_action_just_pressed("rpg"):
 		return rpg
+	
+	return null
+
+func process_physics(delta: float) -> State:
+	super(delta)
+	
+	if projectile_fired:
+		glock_particles.restart()
+		projectile_fired = false
 	
 	return null

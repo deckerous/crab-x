@@ -28,6 +28,10 @@ size = Vector2(4, 12)
 [node name="DartFrogProjectileEntity" instance=ExtResource("1_ypi7e")]
 collision_mask = 65
 speed = 3.0
+max_distance = 300.0
+fall_off_ratio = 0.8
+fall_off_constant = 0.03
+speed_before_destroy = 1.0
 collide_with_enemies = false
 entity_id = "DartProj"
 

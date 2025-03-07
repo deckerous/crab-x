@@ -179,7 +179,6 @@ idle = NodePath("../Idle")
 projectile = ExtResource("8_pykb0")
 time_before_invisible_min = 2.0
 time_before_invisible_max = 2.5
-time_while_invisible_max = 2.0
 animation_name = "aggro"
 
 [node name="ProjectileSpawnPosition" type="Node2D" parent="StateMachine/Aggro" index="0"]

@@ -36,3 +36,4 @@ func _shoot() -> void:
 		inst.global_rotation = projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position).angle() + PI/2.0
 		inst.init_projectile(projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position))
 		entity.summon_projectile(inst, projectile_spawn_position.global_position)
+		inst.origin = projectile_spawn_position.global_position
