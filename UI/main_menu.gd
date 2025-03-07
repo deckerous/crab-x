@@ -53,7 +53,7 @@ func _update_crabs_pos() -> void:
 			crabs.remove_at(0)
 
 func _on_new_game_button_pressed():
-	CrabLogs.log_stage_start("tutorial")
+	# CrabLogs.log_stage_start("tutorial")
 	
 	Transition.fade_in()
 	#transition.visible = true
