@@ -9,6 +9,7 @@ extends State
 @onready var cooldown_timer: Timer = $CooldownTimer
 
 var cooldown = false
+var projectile_fired = false
 
 func _ready() -> void:
 	cooldown_timer.timeout.connect(func(): cooldown = false)
@@ -22,7 +23,9 @@ func process_physics(delta: float) -> State:
 		inst.global_rotation = bullet_spawn_position.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 		inst.init_projectile(bullet_spawn_position.global_position.direction_to(get_global_mouse_position()))
 		entity.summon_projectile(inst, bullet_spawn_position.global_position)
+		inst.origin = bullet_spawn_position.global_position
 		cooldown = true
+		projectile_fired = true
 		cooldown_timer.start()
 	
 	return null

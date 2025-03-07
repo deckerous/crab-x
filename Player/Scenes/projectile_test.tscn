@@ -33,6 +33,24 @@ position = Vector2(-14, 19)
 [node name="CrabEntity3" parent="Player/CrabManager" index="2" instance=ExtResource("4_qk8ca")]
 position = Vector2(16, 20)
 
+[node name="CrabEntity4" parent="Player/CrabManager" index="3" instance=ExtResource("4_qk8ca")]
+position = Vector2(17, -16)
+
+[node name="CrabEntity5" parent="Player/CrabManager" index="4" instance=ExtResource("4_qk8ca")]
+position = Vector2(-15, -19)
+
+[node name="CrabEntity6" parent="Player/CrabManager" index="5" instance=ExtResource("4_qk8ca")]
+position = Vector2(1, -39)
+
+[node name="CrabEntity7" parent="Player/CrabManager" index="6" instance=ExtResource("4_qk8ca")]
+position = Vector2(1, 43)
+
+[node name="CrabEntity8" parent="Player/CrabManager" index="7" instance=ExtResource("4_qk8ca")]
+position = Vector2(-35, -2)
+
+[node name="CrabEntity9" parent="Player/CrabManager" index="8" instance=ExtResource("4_qk8ca")]
+position = Vector2(38, 2)
+
 [node name="DummyEntity" parent="." instance=ExtResource("4_pxm6p")]
 position = Vector2(24, 51)
 diff_flip = false
