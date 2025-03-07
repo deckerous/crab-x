@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://o22vw27a28m0"]
+
+[ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_h4end"]
+[ext_resource type="Texture2D" uid="uid://cv5t0p1180fco" path="res://Assets/Enemies/png/truck-sheet.png" id="2_5m433"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/state.gd" id="3_qtlr8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ypoa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5m433")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_452dx"]
+size = Vector2(97, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tw3i"]
+size = Vector2(45, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d10t7"]
+size = Vector2(102, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gca0a"]
+size = Vector2(45, 41)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vess"]
+radius = 13.0384
+
+[node name="TruckKunEntity" instance=ExtResource("1_h4end")]
+collision_layer = 129
+collision_mask = 0
+
+[node name="Animations" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ypoa0")
+animation = &"default"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(-22.5, 0)
+shape = SubResource("RectangleShape2D_452dx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(48.5, 0)
+shape = SubResource("RectangleShape2D_3tw3i")
+
+[node name="HitboxComponent" parent="." index="3"]
+collision_mask = 8
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(-22, -0.5)
+shape = SubResource("RectangleShape2D_d10t7")
+debug_color = Color(0.762075, 0.450933, 5.77569e-07, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" index="1"]
+position = Vector2(51.5, -0.5)
+shape = SubResource("RectangleShape2D_gca0a")
+debug_color = Color(0.762075, 0.450933, 5.77569e-07, 0.42)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="HitboxComponent" index="2"]
+position = Vector2(-41, 18)
+shape = SubResource("CircleShape2D_7vess")
+debug_color = Color(0.762075, 0.450933, 5.77569e-07, 0.42)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="HitboxComponent" index="3"]
+position = Vector2(45, 18)
+shape = SubResource("CircleShape2D_7vess")
+debug_color = Color(0.762075, 0.450933, 5.77569e-07, 0.42)
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Default")
+
+[node name="Default" type="Node2D" parent="StateMachine" index="0"]
+script = ExtResource("3_qtlr8")
+animation_name = "default"
