@@ -6,7 +6,7 @@ extends Entity
 @export var max_distance : float = 300.0
 @export var fall_off_ratio : float = 0.8
 @export var fall_off_constant : float = 0.03
-@export var speed_before_destroy : float = 20.0
+@export var speed_before_destroy : float = 1.0
 @export var collide_with_walls : bool = true
 @export var collide_with_crabs: bool = true
 @export var collide_with_enemies: bool = true
@@ -35,7 +35,7 @@ func _physics_process(delta) -> void:
 		if elapsed_ratio >= fall_off_ratio:
 			velocity += -velocity * fall_off_constant
 		
-		if distance_elapsed > max_distance and !destroyed:
+		if ((distance_elapsed > max_distance) or (velocity.length() < speed_before_destroy)) and !destroyed:
 			state_machine.change_state(destroy)
 			destroyed = true
 	

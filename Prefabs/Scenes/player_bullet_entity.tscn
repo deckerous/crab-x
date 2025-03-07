@@ -31,7 +31,7 @@ speed = 3.0
 max_distance = 300.0
 fall_off_ratio = 0.8
 fall_off_constant = 0.01
-speed_before_destroy = 20.0
+speed_before_destroy = 1.25
 collide_with_crabs = false
 entity_id = "PlayerBullet"
 
