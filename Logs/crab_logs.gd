@@ -9,7 +9,7 @@ extends Node
 
 # Firestore Data
 var firestore_collection: FirestoreCollection
-var user_info: Dictionary
+var user_info: Dictionary = {}
 
 # Global Statistics
 var time_elapsed: float = 0.0
@@ -17,12 +17,26 @@ var last_input: float = 0.0
 var logged_AFK: bool = false
 
 # Stage Statistic Collection
-var curr_stage_id: String = ""
+var curr_tutorial_step: String = ""
+var curr_stage_id: String = "main_menu"
 var stage_time_elapsed: float = 0.0
 var stage_deaths: int = 0
 var in_stage = false
 
 func _ready() -> void:
+	get_tree().set_auto_accept_quit(false)
+	if OS.get_name() == "Web":
+		if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+			user_info["OS"] = "Web Mobile"
+		elif OS.has_feature("web_windows"):
+			user_info["OS"] = "Web Windows"
+		elif OS.has_feature("web_macos"):
+			user_info["OS"] = "Web Mac"
+		else:
+			user_info["OS"] = "Web Linux"
+	else:
+		user_info["OS"] = OS.get_name()
+	
 	if !developer_logs:
 		Firebase.Auth.signup_succeeded.connect(_logged_in)
 		Firebase.Auth.login_failed.connect(_login_failed)
@@ -53,12 +67,15 @@ func _login_failed(code, message: String):
 
 func _logged_in(auth_info: Dictionary):
 	print("[CrabLogs] >> Successful login for user " + auth_info["localid"])
-	user_info = auth_info
+	user_info.merge(auth_info)
 	
 	if !developer_logs:
 		firestore_collection = Firebase.Firestore.collection('Logs')
 	logged_in = true
 	log_event("game_start", {"logged_in": true})
+	
+func get_device_type() -> String:
+	return user_info["OS"]
 
 func log_event(event_type: String, details: Dictionary):
 	# Check for login
@@ -70,6 +87,7 @@ func log_event(event_type: String, details: Dictionary):
 	# Add details to dict
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp": time_elapsed,
 		"Log Type": event_type,
 		"Version": version
@@ -94,6 +112,7 @@ func log_stage_complete(weapon: String, crabs_remaining: int, sheckles_remaining
 	# Add stage completion data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_end",
 		"Version": version,
@@ -126,6 +145,7 @@ func log_stage_restart():
 	# Add stage start data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_restart",
 		"Version": version,
@@ -151,6 +171,7 @@ func log_stage_start(stage_id: String):
 	# Add stage start data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_start",
 		"Version": version,
@@ -160,6 +181,7 @@ func log_stage_start(stage_id: String):
 	# Start stage statistic collection
 	curr_stage_id = stage_id
 	in_stage = true
+	curr_tutorial_step = stage_id
 	
 	# Push log to firestore
 	if !developer_logs:
@@ -179,6 +201,7 @@ func log_player_death(enemy_id: String):
 	# Add player death data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_death",
 		"Version": version,
@@ -206,6 +229,7 @@ func log_player_quit(afk: bool):
 	# Add player quit data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed - 300 if afk else time_elapsed,
 		"Log Type": "player_quit",
 		"Version": version,
@@ -228,6 +252,7 @@ func log_player_return():
 	# Add player quit data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_return",
 		"Version": version,
@@ -245,15 +270,42 @@ func log_tutorial_step(tutorial_part: String):
 		print("[CrabLogs] >> User not logged in, log nullified")
 		push_warning("[CrabLogs] >> User not logged in, log nullified")
 		
+		curr_tutorial_step = tutorial_part
 		return
 	
 	# Add player tutorial data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "tutorial_step",
 		"Version": version,
 		"Tutorial Part": tutorial_part
+	}
+	
+	curr_tutorial_step = tutorial_part
+	
+	# Push log to firestore
+	if !developer_logs:
+		await firestore_collection.add("", data)
+	print("[CrabLogs] >> Pushed data " + str(data) + " to logs")
+	
+func log_dialogue_complete():
+	# Check for login
+	if !logged_in:
+		print("[CrabLogs] >> User not logged in, log nullified")
+		push_warning("[CrabLogs] >> User not logged in, log nullified")
+		
+		return
+	
+	# Add player tutorial data to dictionary
+	var data: Dictionary = {
+		"UID": user_info["localid"],
+		"OS": user_info["OS"],
+		"Timestamp" : time_elapsed,
+		"Log Type": "dialogue_complete",
+		"Version": version,
+		"Tutorial Part": curr_tutorial_step
 	}
 	
 	# Push log to firestore
@@ -272,8 +324,32 @@ func log_player_continue():
 	# Add player continue data to dictionary
 	var data: Dictionary = {
 		"UID": user_info["localid"],
+		"OS": user_info["OS"],
 		"Timestamp" : time_elapsed,
 		"Log Type": "player_continue",
+		"Version": version,
+		"Stage ID": curr_stage_id,
+	}
+	
+	# Push log to firestore
+	if !developer_logs:
+		await firestore_collection.add("", data)
+	print("[CrabLogs] >> Pushed data " + str(data) + " to logs")
+	
+func log_force_quit():
+	# Check for login
+	if !logged_in:
+		print("[CrabLogs] >> User not logged in, log nullified")
+		push_warning("[CrabLogs] >> User not logged in, log nullified")
+		
+		return
+	
+	# Add player force quit data to dictionary
+	var data: Dictionary = {
+		"UID": user_info["localid"],
+		"OS": user_info["OS"],
+		"Timestamp" : time_elapsed,
+		"Log Type": "player_force_quit",
 		"Version": version,
 		"Stage ID": curr_stage_id,
 	}
@@ -287,3 +363,8 @@ func _reset_stage():
 	in_stage = false
 	stage_deaths = 0
 	stage_time_elapsed = 0
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		await log_force_quit()
+		get_tree().quit() # default behavior

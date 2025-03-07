@@ -125,6 +125,20 @@ vertical_alignment = 1
 uppercase = true
 metadata/_edit_use_anchors_ = true
 
+[node name="mobile_warning" type="Node2D" parent="."]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="mobile_warning"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 200.0
+offset_top = 7.0
+offset_right = 327.0
+offset_bottom = 191.0
+scale = Vector2(0.9, 0.9)
+bbcode_enabled = true
+text = "[center]This game does not currently support mobile devices. If you wish to play, please use a desktop or laptop device."
+fit_content = true
+
 [connection signal="pressed" from="main_menu_screen/new_game_button" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="main_menu_screen/continue_button" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="main_menu_screen/quit_button" to="." method="_on_quit_button_pressed"]
