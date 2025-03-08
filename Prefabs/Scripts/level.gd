@@ -7,7 +7,7 @@ extends Node2D
 @export var starting_crab_count: int = 1
 @export var num_bosses: int = 1
 
-enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG} 
+enum WEAPONS {EMPTY, SLINGSHOT, GLOCK, RPG, SNIPER} 
 @export var starting_weapon = WEAPONS.EMPTY
 @export var level_id: String
 
