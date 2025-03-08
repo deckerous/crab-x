@@ -5,6 +5,7 @@ extends GunState
 @export var empty: State
 @export var slingshot: State
 @export var rpg: State
+@export var sniper: State
 
 @onready var glock_particles: CPUParticles2D = $GlockParticles
 
@@ -18,6 +19,8 @@ func process_input(event: InputEvent) -> State:
 		return slingshot
 	if Input.is_action_just_pressed("rpg"):
 		return rpg
+	if Input.is_action_just_pressed("sniper"):
+		return sniper
 	
 	return null
 

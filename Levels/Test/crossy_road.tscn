@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://by3a4xw4cbu2n"]
+[gd_scene load_steps=16 format=4 uid="uid://by3a4xw4cbu2n"]
 
 [ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_4uc87"]
 [ext_resource type="PackedScene" uid="uid://do7l6tct65s8l" path="res://Prefabs/Scenes/enemies/truck_kun.tscn" id="1_24b3k"]
@@ -8,21 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://c3dx6i1jm6uti" path="res://Assets/Tilesets/pngs/road-markings.png" id="5_eungw"]
 [ext_resource type="Texture2D" uid="uid://cvqnhfgaldxe7" path="res://Assets/Tilesets/pngs/overhang.png" id="6_wve6r"]
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="7_kuje3"]
+[ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/levels/tweasure_chest.tscn" id="9_ptqmp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7xa4"]
 texture = ExtResource("5_eungw")
 0:0/0 = 0
-0:0/0/terrain = 0
 1:0/0 = 0
-1:0/0/terrain = 0
 2:0/0 = 0
-2:0/0/terrain = 0
 0:1/0 = 0
-0:1/0/terrain = 0
 1:1/0 = 0
-1:1/0/terrain = 0
 2:1/0 = 0
-2:1/0/terrain = 0
 
 [sub_resource type="TileSet" id="TileSet_yomm8"]
 sources/0 = SubResource("TileSetAtlasSource_s7xa4")
@@ -176,6 +171,14 @@ visible = false
 
 [node name="DialogueHandler" parent="." index="4" instance=ExtResource("7_kuje3")]
 text_array = ["Welcome to your first missions, soldier! We got a covert operation set up for you.", "Our scouts show the existance of a small enemy base in this cave structure, preventing the advance of our main forces.", "Flush them out, soldier!"]
+
+[node name="LootAndTriggers" type="Node2D" parent="." index="5"]
+
+[node name="TweasureChest" parent="LootAndTriggers" index="0" instance=ExtResource("9_ptqmp")]
+position = Vector2(157, 241)
+loot = ["Sniper"]
+
+[connection signal="give_loot" from="LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]
 
 [editable path="Enemies/TruckKun2"]
 [editable path="Enemies/TruckKun"]
