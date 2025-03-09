@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://btvx8oprcrrtn"]
+[gd_scene load_steps=7 format=3 uid="uid://btvx8oprcrrtn"]
 
 [ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_mwe4r"]
 [ext_resource type="Texture2D" uid="uid://c1gbfvr1ayiyw" path="res://Assets/Guns/png/big-bullet.png" id="2_ermbt"]
+[ext_resource type="AudioStream" uid="uid://ct84vxsyk2yqh" path="res://Assets/SFX/8bit_impact.wav" id="3_uh3qx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pobr3"]
 animations = [{
@@ -52,3 +53,6 @@ debug_color = Color(0.781229, 0.436258, 5.77569e-07, 0.42)
 
 [node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Airborne")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("3_uh3qx")

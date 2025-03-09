@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=32 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="15_q6qch"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/sniper_player_state.gd" id="17_l2hmh"]
 [ext_resource type="PackedScene" uid="uid://btvx8oprcrrtn" path="res://Prefabs/Scenes/bullets/sniper_projectile_entity.tscn" id="18_ty7vj"]
+[ext_resource type="AudioStream" uid="uid://cvuqygxwxaev0" path="res://Assets/SFX/8bit_small_hit.wav" id="20_dhkvw"]
+[ext_resource type="AudioStream" uid="uid://ct84vxsyk2yqh" path="res://Assets/SFX/8bit_impact.wav" id="21_2qwfj"]
+[ext_resource type="AudioStream" uid="uid://cjln82t7hlkod" path="res://Assets/SFX/8bit_heal.wav" id="22_uis3m"]
+[ext_resource type="AudioStream" uid="uid://dvsmnjd3sufvl" path="res://Assets/SFX/8bit_glock.wav" id="23_1a3oh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
 animations = [{
@@ -278,5 +282,19 @@ offset_bottom = 35.0
 [node name="Star" type="Sprite2D" parent="." index="10"]
 visible = false
 texture = ExtResource("14_6dhip")
+
+[node name="DamageTakenSound" type="AudioStreamPlayer2D" parent="." index="11"]
+stream = ExtResource("20_dhkvw")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." index="12"]
+stream = ExtResource("21_2qwfj")
+
+[node name="HealSound" type="AudioStreamPlayer2D" parent="." index="13"]
+stream = ExtResource("22_uis3m")
+
+[node name="GlockSound" type="AudioStreamPlayer2D" parent="." index="14"]
+stream = ExtResource("23_1a3oh")
+volume_db = -9.008
+max_polyphony = 10
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
