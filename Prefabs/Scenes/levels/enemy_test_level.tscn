@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://bwbye1dfa458t"]
+[gd_scene load_steps=5 format=4 uid="uid://eaaroue6ifnm"]
 
 [ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_nbsd7"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="2_0jyds"]

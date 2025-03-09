@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=35 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://cjln82t7hlkod" path="res://Assets/SFX/8bit_heal.wav" id="22_uis3m"]
 [ext_resource type="AudioStream" uid="uid://dvsmnjd3sufvl" path="res://Assets/SFX/8bit_glock.wav" id="23_1a3oh"]
 [ext_resource type="AudioStream" uid="uid://cd44gpxed2gpx" path="res://Assets/SFX/8bit_rpg.wav" id="24_oy7ss"]
+[ext_resource type="AudioStream" uid="uid://bjljdhonmrq0i" path="res://Assets/SFX/sniper.wav" id="24_xdc1r"]
 [ext_resource type="AudioStream" uid="uid://crvluawdijaah" path="res://Assets/SFX/woosh.wav" id="25_lf0jl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
@@ -288,7 +289,7 @@ texture = ExtResource("14_6dhip")
 [node name="DamageTakenSound" type="AudioStreamPlayer2D" parent="." index="11"]
 stream = ExtResource("20_dhkvw")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="." index="12"]
+[node name="DeathSound2" type="AudioStreamPlayer2D" parent="." index="12"]
 stream = ExtResource("21_2qwfj")
 
 [node name="HealSound" type="AudioStreamPlayer2D" parent="." index="13"]
@@ -300,9 +301,8 @@ volume_db = -9.008
 max_polyphony = 10
 
 [node name="SniperSound" type="AudioStreamPlayer2D" parent="." index="15"]
-stream = ExtResource("23_1a3oh")
+stream = ExtResource("24_xdc1r")
 volume_db = -9.827
-pitch_scale = 0.55
 attenuation = 0.5
 max_polyphony = 10
 

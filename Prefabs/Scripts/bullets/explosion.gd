@@ -22,6 +22,7 @@ func _finished_explosion() -> void:
 
 # Call when rocket hits something
 func start_explosion():
+	$ExplosionSound.play()
 	cpu_particles_2d.emitting = true
 	var time = cpu_particles_2d.lifetime / explosion_lifetime_factor
 	#collision_shape_2d.set_deferred("disabled", false)

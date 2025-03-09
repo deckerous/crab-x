@@ -252,7 +252,6 @@ func add_crabs(num: int) -> void:
 		crab_inst.velocity = Vector2.DOWN
 		crab_manager.add_child(crab_inst)
 		PlayerVariable.num_crabs += 1
-		$AddCrabSound.play()
 		i += 1
 
 func _on_shop_shop_closed(coins_left: Variant) -> void:

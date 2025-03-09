@@ -207,9 +207,7 @@ text = "[center]Breached Whale[/center]"
 fit_content = true
 scroll_active = false
 
-[node name="BossDefeatSound" type="AudioStreamPlayer2D" parent="." index="9"]
-
-[node name="WhaleShotSound" type="AudioStreamPlayer2D" parent="." index="10"]
+[node name="WhaleShotSound" type="AudioStreamPlayer2D" parent="." index="9"]
 stream = ExtResource("12_7ceg8")
 
 [editable path="TargettingComponent"]

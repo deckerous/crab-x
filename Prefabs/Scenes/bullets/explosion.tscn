@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp4pc7saf6sk4"]
+[gd_scene load_steps=8 format=3 uid="uid://cp4pc7saf6sk4"]
 
 [ext_resource type="Texture2D" uid="uid://bodmews1bolnw" path="res://Assets/Misc/png/circle.png" id="1_45t4k"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/bullets/explosion.gd" id="1_ocyjx"]
 [ext_resource type="Gradient" uid="uid://cooc3cj4cnbss" path="res://Assets/Guns/resources/rpg_explosion.tres" id="2_ydv6t"]
 [ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="3_fbt0t"]
+[ext_resource type="AudioStream" uid="uid://bv4bx4xl8j5rc" path="res://Assets/SFX/short_explosion.wav" id="5_lcdo0"]
 
 [sub_resource type="Curve" id="Curve_7trfk"]
 max_value = 1.5
@@ -54,3 +55,11 @@ shape = SubResource("CircleShape2D_4jobw")
 [node name="CollisionTimer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_lcdo0")
+volume_db = -10.373
+pitch_scale = 1.17
+attenuation = 1.7411
+max_polyphony = 9
+panning_strength = 0.78
