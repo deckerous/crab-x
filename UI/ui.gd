@@ -32,6 +32,7 @@ func update_during_game_ui():
 	weapon_label.text = PlayerVariable.cur_weapon
 
 func _on_game_over():
+	AudioManager.stop_bgm()
 	AudioManager.play_sfx("failure")
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	during_game_screen.visible = false
@@ -41,7 +42,7 @@ func _on_game_over():
 
 func _on_level_complete():
 	AudioManager.stop_bgm()
-	AudioManager.play_sfx("victor")
+	AudioManager.play_bgm("fanfare")
 	during_game_screen.visible = false
 	end_of_level_screen.visible = true
 	

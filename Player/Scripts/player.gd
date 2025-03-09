@@ -163,6 +163,10 @@ func _update_crab_velocities(crabs) -> void:
 			if (crab.global_position - rally_point_crab_entity.global_position).length() > 200:
 				crab.global_position = rally_point_crab_entity.global_position
 
+func _unhandled_input(event):
+	if PlayerVariable.in_shop:
+		get_viewport().set_input_as_handled()
+
 func handle_loot(array: Array) -> void:
 	for item in array:
 		match item:

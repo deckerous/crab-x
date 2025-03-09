@@ -23,7 +23,7 @@ func _ready():
 	sfx["minus"] = preload("res://Assets/SFX/8bit_loss.wav")
 	sfx["unlock"] = preload("res://Assets/SFX/unlock1.wav")
 	sfx["plus"] = preload("res://Assets/SFX/unlock2.wav")
-	sfx["coin"] = preload("res://Assets/SFX/8bit_coin.wav")
+	sfx["coin"] = preload("res://Assets/SFX/coin2.wav")
 	sfx["truck"] = preload("res://Assets/SFX/engine.wav")
 	sfx["woosh"] = preload("res://Assets/SFX/woosh.wav")
 	sfx["victory"] = preload("res://Assets/SFX/fanfare.wav")
@@ -33,6 +33,7 @@ func _ready():
 	bgm["spagetti"] = preload("res://Assets/SFX/spagetti western.ogg")
 	bgm["race"] = preload("res://Assets/SFX/Winning the Race.ogg")
 	bgm["desert"] = preload("res://Assets/SFX/EasternArcticDubstep.MP3")
+	bgm["fanfare"] = preload("res://Assets/SFX/fanfare.ogg")
 
 	# Enable looping for BGM
 	# bgm_player.stream_loop = true

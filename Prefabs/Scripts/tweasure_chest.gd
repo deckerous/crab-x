@@ -18,10 +18,10 @@ func _ready() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "CollectableComponent":
+		AudioManager.play_sfx("unlock")
 		give_loot.emit(loot)
 		sprite.hide()
 		collision_box.queue_free()
-		$GetItemSound.play()
 		text_edit.show()
 		text_edit.text = "[outline_size=6][center]+ " + loot[0]
 		looted = true
