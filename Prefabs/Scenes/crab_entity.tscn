@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=30 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dqsq5i5hw4h31" path="res://Assets/Crabs/png/crab-rpg.png" id="4_hnvn5"]
 [ext_resource type="Texture2D" uid="uid://b0gd15qmhkdsu" path="res://Assets/Crabs/png/crab-slingshot.png" id="5_3f81r"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/slingshot_crab_state.gd" id="7_h3huy"]
+[ext_resource type="Texture2D" uid="uid://d0mnp1ih2g2mr" path="res://Assets/Crabs/png/crab-sniper-16x32.png" id="8_2fjj7"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/glock_crab_state.gd" id="8_re2gt"]
+[ext_resource type="Texture2D" uid="uid://cu2simfcbh1fo" path="res://Assets/Misc/png/plus.png" id="9_bh300"]
 [ext_resource type="PackedScene" uid="uid://bmkmlsq3fsy6q" path="res://Prefabs/Scenes/player_rock_entity.tscn" id="9_nqi5o"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/rpg_crab_state.gd" id="9_ruqhs"]
 [ext_resource type="PackedScene" uid="uid://c0773lon6v416" path="res://Prefabs/Scenes/player_bullet_entity.tscn" id="10_b3vec"]
@@ -16,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bodmews1bolnw" path="res://Assets/Misc/png/circle.png" id="13_ugkh2"]
 [ext_resource type="Texture2D" uid="uid://ceoajh3yjs5uq" path="res://Assets/Misc/png/star.png" id="14_6dhip"]
 [ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="15_q6qch"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/states/sniper_player_state.gd" id="17_l2hmh"]
+[ext_resource type="PackedScene" uid="uid://btvx8oprcrrtn" path="res://Prefabs/Scenes/bullets/sniper_projectile_entity.tscn" id="18_ty7vj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
 animations = [{
@@ -50,6 +54,14 @@ animations = [{
 "loop": true,
 "name": &"slingshot",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_2fjj7")
+}],
+"loop": true,
+"name": &"sniper",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uljcy"]
@@ -63,10 +75,23 @@ radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yxtw0"]
 
+[sub_resource type="Gradient" id="Gradient_rs2im"]
+colors = PackedColorArray(0.431373, 0.898039, 0.156863, 1, 0.431373, 0.898039, 0.156863, 0.541176)
+
 [sub_resource type="Gradient" id="Gradient_lmww8"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.213904, 0.721925, 0.887701, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.996078, 0.905882, 0.380392, 1, 0.996078, 0.403922, 0.203922, 1, 0.745098, 0.290196, 0.184314, 1, 0.247059, 0.156863, 0.196078, 0)
+
+[sub_resource type="Curve" id="Curve_2tjo1"]
+max_value = 2.0
+_data = [Vector2(0, 0.43956), 0.0, -0.866054, 0, 0, Vector2(1, 1.6044), 1.5259, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cbog7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.553488, 0.804651, 0.888372, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.996078, 0.905882, 0.380392, 1, 0.996078, 0.905882, 0.380392, 1, 0.996078, 0.403922, 0.203922, 1, 0.247059, 0.156863, 0.196078, 0)
 
 [node name="CrabEntity" instance=ExtResource("1_4p3s6")]
 collision_layer = 64
@@ -81,7 +106,7 @@ texture = ExtResource("15_q6qch")
 
 [node name="Animations" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_7lf24")
-animation = &"glock"
+animation = &"sniper"
 
 [node name="CollisionBox" parent="." index="2"]
 shape = SubResource("CircleShape2D_uljcy")
@@ -116,6 +141,21 @@ position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_yxtw0")
 debug_color = Color(0, 0.65098, 0.133333, 0.101961)
 
+[node name="HealingParticles" type="CPUParticles2D" parent="HealingArea2D" index="1"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+texture = ExtResource("9_bh300")
+emission_shape = 1
+emission_sphere_radius = 7.0
+direction = Vector2(0, -1)
+spread = 60.0
+gravity = Vector2(0, -1)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+color_initial_ramp = SubResource("Gradient_rs2im")
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
 path_desired_distance = 10.0
 target_desired_distance = 20.0
@@ -130,18 +170,20 @@ debug_path_custom_color = Color(1, 0, 1, 1)
 [node name="StateMachine" parent="." index="8" node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Empty")
 
-[node name="Empty" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("slingshot", "glock", "rpg")]
+[node name="Empty" type="Node2D" parent="StateMachine" index="0" node_paths=PackedStringArray("slingshot", "glock", "rpg", "sniper")]
 script = ExtResource("3_wy48v")
 slingshot = NodePath("../Slingshot")
 glock = NodePath("../Glock")
 rpg = NodePath("../RPG")
+sniper = NodePath("../Sniper")
 animation_name = "empty"
 
-[node name="Slingshot" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("empty", "glock", "rpg")]
+[node name="Slingshot" type="Node2D" parent="StateMachine" index="1" node_paths=PackedStringArray("empty", "glock", "rpg", "sniper")]
 script = ExtResource("7_h3huy")
 empty = NodePath("../Empty")
 glock = NodePath("../Glock")
 rpg = NodePath("../RPG")
+sniper = NodePath("../Sniper")
 projectile = ExtResource("9_nqi5o")
 animation_name = "slingshot"
 
@@ -152,11 +194,12 @@ position = Vector2(-3.5, -12.5)
 wait_time = 0.5
 one_shot = true
 
-[node name="Glock" type="Node2D" parent="StateMachine" index="2" node_paths=PackedStringArray("empty", "slingshot", "rpg")]
+[node name="Glock" type="Node2D" parent="StateMachine" index="2" node_paths=PackedStringArray("empty", "slingshot", "rpg", "sniper")]
 script = ExtResource("8_re2gt")
 empty = NodePath("../Empty")
 slingshot = NodePath("../Slingshot")
 rpg = NodePath("../RPG")
+sniper = NodePath("../Sniper")
 projectile = ExtResource("10_b3vec")
 animation_name = "glock"
 
@@ -189,11 +232,12 @@ color_ramp = SubResource("Gradient_lmww8")
 wait_time = 0.2
 one_shot = true
 
-[node name="RPG" type="Node2D" parent="StateMachine" index="3" node_paths=PackedStringArray("glock", "empty", "slingshot")]
+[node name="RPG" type="Node2D" parent="StateMachine" index="3" node_paths=PackedStringArray("glock", "empty", "slingshot", "sniper")]
 script = ExtResource("9_ruqhs")
 glock = NodePath("../Glock")
 empty = NodePath("../Empty")
 slingshot = NodePath("../Slingshot")
+sniper = NodePath("../Sniper")
 projectile = ExtResource("13_chaxw")
 animation_name = "rpg"
 
@@ -204,6 +248,48 @@ position = Vector2(-3.5, -18)
 wait_time = 2.0
 one_shot = true
 
+[node name="Sniper" type="Node2D" parent="StateMachine" index="4" node_paths=PackedStringArray("glock", "empty", "slingshot", "rpg")]
+script = ExtResource("17_l2hmh")
+glock = NodePath("../Glock")
+empty = NodePath("../Empty")
+slingshot = NodePath("../Slingshot")
+rpg = NodePath("../RPG")
+projectile = ExtResource("18_ty7vj")
+animation_name = "sniper"
+
+[node name="BulletSpawnPosition" type="Node2D" parent="StateMachine/Sniper" index="0"]
+position = Vector2(-4, -26)
+
+[node name="SniperParticles" type="CPUParticles2D" parent="StateMachine/Sniper" index="1"]
+z_index = 1
+position = Vector2(-4, -26)
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.45
+local_coords = true
+texture = ExtResource("13_ugkh2")
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+linear_accel_max = 1.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_2tjo1")
+color_ramp = SubResource("Gradient_cbog7")
+
+[node name="CooldownTimer" type="Timer" parent="StateMachine/Sniper" index="2"]
+wait_time = 2.0
+one_shot = true
+
 [node name="HealthBar" parent="." index="9"]
 offset_top = 8.0
 offset_bottom = 35.0
@@ -211,5 +297,8 @@ offset_bottom = 35.0
 [node name="Star" type="Sprite2D" parent="." index="10"]
 visible = false
 texture = ExtResource("14_6dhip")
+
+[node name="FlashTimer" parent="FlashComponent" index="0"]
+one_shot = true
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

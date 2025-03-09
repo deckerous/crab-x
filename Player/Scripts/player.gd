@@ -182,6 +182,8 @@ func handle_loot(array: Array) -> void:
 						change_weapon(level.WEAPONS.GLOCK)
 					"RPG":
 						change_weapon(level.WEAPONS.RPG)
+					"Sniper":
+						change_weapon(level.WEAPONS.SNIPER)
 					
 			"Slingshot":
 				change_weapon(level.WEAPONS.SLINGSHOT)
@@ -197,6 +199,8 @@ func handle_loot(array: Array) -> void:
 			"Shoes":
 				items.append("shoes")
 				update_items(items)
+			"Sniper":
+				change_weapon(level.WEAPONS.SNIPER)
 
 func update_items(item_array: Array) -> void:
 	if item_array.has("shoes"):
@@ -208,6 +212,7 @@ func update_items(item_array: Array) -> void:
 				crab.max_hp = 15
 				crab.hp += 5
 			crab._update_health_bar()
+			
 
 func change_weapon(state) -> void:
 	var str = "None"
@@ -218,6 +223,8 @@ func change_weapon(state) -> void:
 			str = "Glock"
 		level.WEAPONS.RPG:
 			str = "RPG"
+		level.WEAPONS.SNIPER:
+			str = "Sniper"
 		level.WEAPONS.EMPTY:
 			str = "Empty"
 	

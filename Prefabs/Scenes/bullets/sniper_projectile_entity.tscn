@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://btvx8oprcrrtn"]
+
+[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_mwe4r"]
+[ext_resource type="Texture2D" uid="uid://c1gbfvr1ayiyw" path="res://Assets/Guns/png/big-bullet.png" id="2_ermbt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pobr3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ermbt")
+}],
+"loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"destroy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp8sw"]
+size = Vector2(8, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evkn6"]
+size = Vector2(8, 12)
+
+[node name="SniperProjectileEntity" instance=ExtResource("1_mwe4r")]
+speed = 7.0
+max_distance = 500.0
+fall_off_ratio = 0.9
+fall_off_constant = 0.05
+speed_before_destroy = 3.0
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -11.5)
+sprite_frames = SubResource("SpriteFrames_pobr3")
+animation = &"airborne"
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_cp8sw")
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 4
+damage = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_evkn6")
+debug_color = Color(0.781229, 0.436258, 5.77569e-07, 0.42)
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Airborne")

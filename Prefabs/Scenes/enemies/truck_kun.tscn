@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://do7l6tct65s8l"]
+
+[ext_resource type="Script" path="res://Prefabs/Scripts/truck_kun.gd" id="1_pe5x0"]
+[ext_resource type="PackedScene" uid="uid://o22vw27a28m0" path="res://Prefabs/Scenes/enemies/truck_kun_entity.tscn" id="2_4cha5"]
+
+[node name="TruckKun" type="Node2D"]
+script = ExtResource("1_pe5x0")
+
+[node name="Path2D" type="Path2D" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -0.000768639
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../TruckKunEntity")
+update_rotation = false
+update_scale = false
+
+[node name="TruckKunEntity" parent="." instance=ExtResource("2_4cha5")]

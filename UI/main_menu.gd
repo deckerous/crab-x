@@ -3,6 +3,9 @@ extends Control
 @onready var crab_container = $CrabContainer
 @onready var continue_button = $main_menu_screen/continue_button
 
+@onready var main_menu_screen = $main_menu_screen
+@onready var mobile_warning = $mobile_warning
+
 @onready var crab = load("res://Prefabs/Scenes/crab_entity.tscn")
 @onready var crabs = []
 
@@ -10,6 +13,10 @@ extends Control
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
 func _ready() -> void:
+	var os = CrabLogs.get_device_type()
+	if os == "Web Mobile":
+		main_menu_screen.visible = false
+		mobile_warning.visible = true
 	#transition.visible = false
 	Transition._hide()
 	var level_num = PlayerVariable.load_values("Levels", "Current Level")
@@ -46,7 +53,7 @@ func _update_crabs_pos() -> void:
 			crabs.remove_at(0)
 
 func _on_new_game_button_pressed():
-	CrabLogs.log_stage_start("tutorial")
+	# CrabLogs.log_stage_start("tutorial")
 	
 	Transition.fade_in()
 	#transition.visible = true
@@ -55,6 +62,8 @@ func _on_new_game_button_pressed():
 	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _on_continue_button_pressed():
+	print("Continue button pressed")
+	# TODO: implement save system
 	CrabLogs.log_player_continue()
 	PlayerVariable.load_values("Levels", "Current Level")
 	
@@ -69,4 +78,5 @@ func _on_settings_button_pressed():
 	pass
 
 func _on_quit_button_pressed():
-	get_tree().quit()
+	print("Game was quit")
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

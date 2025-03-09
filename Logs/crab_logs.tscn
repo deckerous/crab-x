@@ -5,4 +5,4 @@
 [node name="CrabLogs" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_31r0l")
-version = "1.0.1"
+version = "dev"
