@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=34 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -24,6 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://cjln82t7hlkod" path="res://Assets/SFX/8bit_heal.wav" id="22_uis3m"]
 [ext_resource type="AudioStream" uid="uid://dvsmnjd3sufvl" path="res://Assets/SFX/8bit_glock.wav" id="23_1a3oh"]
 [ext_resource type="AudioStream" uid="uid://cd44gpxed2gpx" path="res://Assets/SFX/8bit_rpg.wav" id="24_oy7ss"]
+[ext_resource type="AudioStream" uid="uid://crvluawdijaah" path="res://Assets/SFX/woosh.wav" id="25_lf0jl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
 animations = [{
@@ -307,6 +308,12 @@ max_polyphony = 10
 [node name="RPGSound" type="AudioStreamPlayer2D" parent="." index="16"]
 stream = ExtResource("24_oy7ss")
 volume_db = -9.008
+max_polyphony = 10
+
+[node name="WooshSound" type="AudioStreamPlayer2D" parent="." index="17"]
+stream = ExtResource("25_lf0jl")
+volume_db = -17.743
+pitch_scale = 2.54
 max_polyphony = 10
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
