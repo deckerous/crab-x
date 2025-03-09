@@ -252,6 +252,7 @@ func add_crabs(num: int) -> void:
 		crab_inst.velocity = Vector2.DOWN
 		crab_manager.add_child(crab_inst)
 		PlayerVariable.num_crabs += 1
+		$AddCrabSound.play()
 		i += 1
 
 func _on_shop_shop_closed(coins_left: Variant) -> void:
@@ -267,6 +268,7 @@ func toggle_pause():
 		ui_instance.toggle_pause_menu()
 
 func add_coin():
+	$CoinSound.play()
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
 	rich_text_label.text = " " + str(coin_count)

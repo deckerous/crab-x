@@ -301,8 +301,9 @@ max_polyphony = 10
 
 [node name="SniperSound" type="AudioStreamPlayer2D" parent="." index="15"]
 stream = ExtResource("23_1a3oh")
-volume_db = 3.002
+volume_db = -9.827
 pitch_scale = 0.55
+attenuation = 0.5
 max_polyphony = 10
 
 [node name="RPGSound" type="AudioStreamPlayer2D" parent="." index="16"]
