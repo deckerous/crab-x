@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ch11nk2ii4e54"]
+[gd_scene load_steps=30 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/slingshot_crab_state.gd" id="7_h3huy"]
 [ext_resource type="Texture2D" uid="uid://d0mnp1ih2g2mr" path="res://Assets/Crabs/png/crab-sniper-16x32.png" id="8_2fjj7"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/glock_crab_state.gd" id="8_re2gt"]
+[ext_resource type="Texture2D" uid="uid://cu2simfcbh1fo" path="res://Assets/Misc/png/plus.png" id="9_bh300"]
 [ext_resource type="PackedScene" uid="uid://bmkmlsq3fsy6q" path="res://Prefabs/Scenes/player_rock_entity.tscn" id="9_nqi5o"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/rpg_crab_state.gd" id="9_ruqhs"]
 [ext_resource type="PackedScene" uid="uid://c0773lon6v416" path="res://Prefabs/Scenes/player_bullet_entity.tscn" id="10_b3vec"]
@@ -74,6 +75,9 @@ radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yxtw0"]
 
+[sub_resource type="Gradient" id="Gradient_rs2im"]
+colors = PackedColorArray(0.431373, 0.898039, 0.156863, 1, 0.431373, 0.898039, 0.156863, 0.541176)
+
 [sub_resource type="Gradient" id="Gradient_lmww8"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.213904, 0.721925, 0.887701, 1)
@@ -136,6 +140,21 @@ collision_mask = 32
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_yxtw0")
 debug_color = Color(0, 0.65098, 0.133333, 0.101961)
+
+[node name="HealingParticles" type="CPUParticles2D" parent="HealingArea2D" index="1"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+texture = ExtResource("9_bh300")
+emission_shape = 1
+emission_sphere_radius = 7.0
+direction = Vector2(0, -1)
+spread = 60.0
+gravity = Vector2(0, -1)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+color_initial_ramp = SubResource("Gradient_rs2im")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
 path_desired_distance = 10.0
@@ -278,5 +297,8 @@ offset_bottom = 35.0
 [node name="Star" type="Sprite2D" parent="." index="10"]
 visible = false
 texture = ExtResource("14_6dhip")
+
+[node name="FlashTimer" parent="FlashComponent" index="0"]
+one_shot = true
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
