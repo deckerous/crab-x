@@ -34,6 +34,8 @@ func _damaged(hitbox: HitboxComponent) -> void:
 	
 	hp = hp - max(0, hitbox.damage - armor)
 	_update_health_bar()
+	flash_component.flash()
+	shake_component.tween_shake()
 	
 	if hp <= 0:
 		self.hide()

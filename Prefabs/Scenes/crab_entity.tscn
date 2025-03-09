@@ -279,4 +279,7 @@ offset_bottom = 35.0
 visible = false
 texture = ExtResource("14_6dhip")
 
+[node name="FlashTimer" parent="FlashComponent" index="0"]
+one_shot = true
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
