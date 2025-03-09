@@ -55,7 +55,9 @@ func _diff_flip_h(dir: Vector2) -> void:
 
 func _on_death() -> void:
 	if self.is_in_group("boss"):
-		$WhaleShotSound.play()
+		AudioManager.play_sfx("bigDefeat")
 		var inst = circle_explosion.instantiate()
 		inst.global_position = global_position
 		get_parent().add_child(inst)
+	else:
+		AudioManager.play_sfx("smallDefeat")

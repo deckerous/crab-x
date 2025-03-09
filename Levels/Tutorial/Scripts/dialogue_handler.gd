@@ -54,7 +54,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			text_box.text = text_array[curr_index]
 
 func trigger_visible() -> void:
-	get_tree().paused = true
+	#get_tree().paused = true
 	PhysicsServer2D.set_active(true)
 	canvas.visible = true
 
@@ -62,6 +62,6 @@ func tutorial_time(array) -> void:
 	text_array = array
 	curr_index = 0
 	text_box.text = text_array[0]
-	get_tree().paused = true
+	#get_tree().paused = true
 	PhysicsServer2D.set_active(true)
 	canvas.visible = true

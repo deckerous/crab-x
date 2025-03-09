@@ -245,6 +245,7 @@ func _game_over() -> void:
 
 func add_crabs(num: int) -> void:
 	if num < 2: return
+	AudioManager.play_bgm("plus")
 	var i = 1
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
@@ -267,7 +268,7 @@ func toggle_pause():
 		ui_instance.toggle_pause_menu()
 
 func add_coin():
-	$CoinSound.play()
+	AudioManager.play_sfx("coin")
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
 	rich_text_label.text = " " + str(coin_count)

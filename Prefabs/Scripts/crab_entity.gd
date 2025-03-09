@@ -30,13 +30,14 @@ func external_state_change(state) -> void:
 	state_machine.change_state_str(state)
 	
 func _damaged(hitbox: HitboxComponent) -> void:
-	$DamageTakenSound.play()
+	AudioManager.play_sfx("damage")
 	last_damaged_by = hitbox.entity_parent
 	
 	hp = hp - max(0, hitbox.damage - armor)
 	_update_health_bar()
 	
 	if hp <= 0:
+		AudioManager.play_sfx("minus")
 		self.hide()
 		self.process_mode = Node.PROCESS_MODE_DISABLED
 		entity_died.emit(name)
@@ -46,6 +47,6 @@ func _damaged(hitbox: HitboxComponent) -> void:
 func _heal(area: Area2D) -> void:
 	if not area is HealComponent: return
 	if !(hp < max_hp): return
-	$HealSound.play()
+	AudioManager.play_sfx("heal")
 	hp += area.heal_amt
 	_update_health_bar()
