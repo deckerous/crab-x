@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="7_kuje3"]
 [ext_resource type="PackedScene" uid="uid://c6qosen1ysa6n" path="res://Prefabs/Scenes/levels/tweasure_chest.tscn" id="9_ptqmp"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7xa4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xic2c"]
 texture = ExtResource("5_eungw")
 0:0/0 = 0
 1:0/0 = 0
@@ -20,9 +20,9 @@ texture = ExtResource("5_eungw")
 2:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_yomm8"]
-sources/0 = SubResource("TileSetAtlasSource_s7xa4")
+sources/0 = SubResource("TileSetAtlasSource_xic2c")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gl0dy"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rs4ef"]
 texture = ExtResource("6_wve6r")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 5, -8, 2, 1, 2, 8, -8, 8)
@@ -40,7 +40,7 @@ texture = ExtResource("6_wve6r")
 [sub_resource type="TileSet" id="TileSet_6sbac"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_gl0dy")
+sources/0 = SubResource("TileSetAtlasSource_rs4ef")
 
 [sub_resource type="Curve2D" id="Curve2D_5ix8f"]
 _data = {
@@ -90,10 +90,10 @@ color = Color(0.0980392, 0.235294, 0.243137, 1)
 
 [node name="OverhangBackground4" type="ColorRect" parent="Graphics" index="4"]
 z_index = 1
-offset_left = 543.0
-offset_top = -418.0
-offset_right = 867.0
-offset_bottom = -235.0
+offset_left = 544.0
+offset_top = -421.0
+offset_right = 868.0
+offset_bottom = -238.0
 color = Color(0.0980392, 0.235294, 0.243137, 1)
 
 [node name="Grass" type="TileMapLayer" parent="Graphics" index="5"]
@@ -164,7 +164,7 @@ rotation = -3.14159
 scale = Vector2(1, -1)
 
 [node name="Player" parent="." index="2"]
-position = Vector2(162, 155)
+position = Vector2(79, -143)
 
 [node name="Shop" parent="." index="3"]
 visible = false
