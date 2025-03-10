@@ -35,6 +35,7 @@ var coin_count : int = 0
 var crab_count : int = 0
 var cur_weapon = "None"
 var kill_count : int = 0
+var items = []
 
 var mouse_pos = Vector2.ZERO
 var move_dir = Vector2.ZERO
@@ -192,8 +193,26 @@ func handle_loot(array: Array) -> void:
 				change_weapon(level.WEAPONS.GLOCK)
 			"RPG":
 				change_weapon(level.WEAPONS.RPG)
+			"Shellmet":
+				items.append("shellmet")
+				update_items(items)
+			"Shoes":
+				items.append("shoes")
+				update_items(items)
 			"Sniper":
 				change_weapon(level.WEAPONS.SNIPER)
+
+func update_items(item_array: Array) -> void:
+	if item_array.has("shoes"):
+		rally_point_move_speed = 100
+		crab_moving_speed = 100
+	if item_array.has("shellmet"):
+		for crab in crab_manager.get_children():
+			if crab.max_hp != 15:
+				crab.max_hp = 15
+				crab.hp += 5
+			crab._update_health_bar()
+			
 
 func change_weapon(state) -> void:
 	var str = "None"
@@ -253,6 +272,7 @@ func add_crabs(num: int) -> void:
 		crab_manager.add_child(crab_inst)
 		PlayerVariable.num_crabs += 1
 		i += 1
+	update_items(items)
 
 func _on_shop_shop_closed(coins_left: Variant) -> void:
 	coin_count = coins_left
