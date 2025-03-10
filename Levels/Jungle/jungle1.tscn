@@ -320,6 +320,8 @@ text_array = ["We found a secondary mafia base located deep in the jungle, soldi
 [connection signal="entity_died" from="Enemies/PorcupineFishEntity3" to="." method="boss_killed"]
 [connection signal="entity_died" from="Enemies/PorcupineFishEntity3" to="Player" method="handle_entity_death"]
 [connection signal="next_level" from="Player/ui" to="." method="next_level_func"]
+[connection signal="recieved_item" from="Shop" to="Player" method="handle_loot"]
+[connection signal="shop_closed" from="Shop" to="Player" method="_on_shop_shop_closed"]
 
 [editable path="Player"]
 [editable path="Shop"]
