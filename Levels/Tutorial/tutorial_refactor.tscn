@@ -200,20 +200,6 @@ visible = false
 [node name="DialogueHandler" parent="." instance=ExtResource("8_an2om")]
 text_array = ["Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!", "First comes you, then the sand, then the humans, then crabs, then our president, and then [shake rate=25level=10]ME![/shake] So listen to everything I say and you [i]might[/i] make it out alive.", "Lesson number one, [shake rate=25level=10]prawn[/shake]! Use the [b]WASD[/b] or [b]arrow keys[/b] to move! Then use the [b]mouse[/b] to move the camera! Now, move it!"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 98.0
-grow_vertical = 0
-size_flags_horizontal = 6
-size_flags_vertical = 6
-text = "meow"
-fit_content = true
-
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="." method="_handle_chests"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest2" to="." method="_handle_chests"]
@@ -223,10 +209,10 @@ fit_content = true
 [connection signal="enter_shop" from="Graphics/LootAndTriggers/ShopIcon" to="Shop" method="_enter"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/CollectChests" to="." method="_start_tutorial"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillDummies" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_enable_boss"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_enable_boss"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="." method="_handle_kills"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="." method="_handle_kills"]
