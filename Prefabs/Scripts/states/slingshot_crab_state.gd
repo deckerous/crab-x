@@ -26,7 +26,6 @@ func process_physics(delta: float) -> State:
 	super(delta)
 	
 	if projectile_fired:
-		$"../../WooshSound".play()
+		AudioManager.play_sfx("woosh")
 		projectile_fired = false
-	
 	return null

@@ -1,6 +1,4 @@
-
 [gd_scene load_steps=13 format=3 uid="uid://bme5jecl7oi7e"]
-
 
 [ext_resource type="Script" path="res://Prefabs/Scripts/entity.gd" id="1_vk1ki"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="3_igob8"]
@@ -8,7 +6,6 @@
 [ext_resource type="Script" path="res://Prefabs/Components/Scripts/hitbox_component.gd" id="5_hgjni"]
 [ext_resource type="Script" path="res://Prefabs/Components/Scripts/hurtbox_component.gd" id="6_atyba"]
 [ext_resource type="Script" path="res://Prefabs/Components/Scripts/flash_component.gd" id="7_k1gc6"]
-[ext_resource type="AudioStream" uid="uid://ct84vxsyk2yqh" path="res://Assets/SFX/8bit_impact.wav" id="7_21dda"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/state_machine.gd" id="7_ntd6r"]
 [ext_resource type="Script" path="res://Prefabs/Components/Scripts/shake_component.gd" id="8_vdu65"]
 
@@ -95,7 +92,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_lufw2")
 value = 50.0
 show_percentage = false
 
-
 [node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("7_k1gc6")
 sprite = NodePath("../Animations")
@@ -106,6 +102,3 @@ flash_duration = 0.15
 [node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("8_vdu65")
 node = NodePath("../Animations")
-
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_21dda")

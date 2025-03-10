@@ -62,7 +62,7 @@ func navigation_map_setup():
 
 func _process(delta):
 	# TODO: Temp coin incrementer
-	if Input.is_action_just_pressed("coin_up"):
+	if Input.is_action_just_pressed("coin_up") and PlayerVariable.debug:
 		#coin_count += 1
 		#rich_text_label.text = str(coin_count)
 		add_coin()

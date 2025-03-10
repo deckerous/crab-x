@@ -29,16 +29,13 @@ size = Vector2(4, 7)
 collision_mask = 65
 speed = 2.0
 max_distance = 275.0
-fall_off_ratio = 0.8
 fall_off_constant = 0.02
-speed_before_destroy = 1.0
 collide_with_enemies = false
 entity_id = "SeagullProj"
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_6jamt")
-animation = &"airborne"
 
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -5.5)
