@@ -21,6 +21,7 @@ PlayerVariable="*res://player_variables.gd"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
 CrabLogs="*res://Logs/crab_logs.tscn"
 Transition="*res://Levels/Transition.tscn"
+AudioManager="*res://AudioManager.gd"
 
 [display]
 

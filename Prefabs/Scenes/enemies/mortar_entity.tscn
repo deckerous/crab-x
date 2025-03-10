@@ -22,6 +22,10 @@ animations = [{
 
 [node name="MortarEntity" instance=ExtResource("1_l6ggq")]
 speed = 2.0
+max_distance = 300.0
+fall_off_ratio = 0.8
+fall_off_constant = 0.03
+speed_before_destroy = 1.0
 entity_id = "Mortar"
 
 [node name="Animations" parent="." index="0"]

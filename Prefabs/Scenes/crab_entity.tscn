@@ -1,5 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://ch11nk2ii4e54"]
 
+
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/crab_entity.gd" id="2_mcd1l"]
@@ -20,6 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="15_q6qch"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/sniper_player_state.gd" id="17_l2hmh"]
 [ext_resource type="PackedScene" uid="uid://btvx8oprcrrtn" path="res://Prefabs/Scenes/bullets/sniper_projectile_entity.tscn" id="18_ty7vj"]
+[ext_resource type="AudioStream" uid="uid://cvuqygxwxaev0" path="res://Assets/SFX/8bit_small_hit.wav" id="20_dhkvw"]
+[ext_resource type="AudioStream" uid="uid://ct84vxsyk2yqh" path="res://Assets/SFX/8bit_impact.wav" id="21_2qwfj"]
+[ext_resource type="AudioStream" uid="uid://cjln82t7hlkod" path="res://Assets/SFX/8bit_heal.wav" id="22_uis3m"]
+[ext_resource type="AudioStream" uid="uid://dvsmnjd3sufvl" path="res://Assets/SFX/8bit_glock.wav" id="23_1a3oh"]
+[ext_resource type="AudioStream" uid="uid://cd44gpxed2gpx" path="res://Assets/SFX/8bit_rpg.wav" id="24_oy7ss"]
+[ext_resource type="AudioStream" uid="uid://bjljdhonmrq0i" path="res://Assets/SFX/sniper.wav" id="24_xdc1r"]
+[ext_resource type="AudioStream" uid="uid://crvluawdijaah" path="res://Assets/SFX/woosh.wav" id="25_lf0jl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7lf24"]
 animations = [{
@@ -300,5 +308,36 @@ texture = ExtResource("14_6dhip")
 
 [node name="FlashTimer" parent="FlashComponent" index="0"]
 one_shot = true
+
+[node name="DamageTakenSound" type="AudioStreamPlayer2D" parent="." index="11"]
+stream = ExtResource("20_dhkvw")
+
+[node name="DeathSound2" type="AudioStreamPlayer2D" parent="." index="12"]
+stream = ExtResource("21_2qwfj")
+
+[node name="HealSound" type="AudioStreamPlayer2D" parent="." index="13"]
+stream = ExtResource("22_uis3m")
+
+[node name="GlockSound" type="AudioStreamPlayer2D" parent="." index="14"]
+stream = ExtResource("23_1a3oh")
+volume_db = -9.008
+max_polyphony = 10
+
+[node name="SniperSound" type="AudioStreamPlayer2D" parent="." index="15"]
+stream = ExtResource("24_xdc1r")
+volume_db = -9.827
+attenuation = 0.5
+max_polyphony = 10
+
+[node name="RPGSound" type="AudioStreamPlayer2D" parent="." index="16"]
+stream = ExtResource("24_oy7ss")
+volume_db = -9.008
+max_polyphony = 10
+
+[node name="WooshSound" type="AudioStreamPlayer2D" parent="." index="17"]
+stream = ExtResource("25_lf0jl")
+volume_db = -17.743
+pitch_scale = 2.54
+max_polyphony = 10
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

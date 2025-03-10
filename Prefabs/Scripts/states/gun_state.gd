@@ -18,7 +18,7 @@ func _ready() -> void:
 func process_physics(delta: float) -> State:
 	super(delta)
 	
-	if (Input.is_action_just_pressed("shoot") or Input.is_action_pressed("shoot")) and !cooldown:
+	if (Input.is_action_just_pressed("shoot") or Input.is_action_pressed("shoot")) and !cooldown and !PlayerVariable.in_shop:
 		var inst = projectile.instantiate()
 		inst.global_rotation = bullet_spawn_position.global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 		inst.init_projectile(bullet_spawn_position.global_position.direction_to(get_global_mouse_position()))

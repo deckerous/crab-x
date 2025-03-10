@@ -34,6 +34,7 @@ func _handle_kills(_unused) -> void:
 		post_dummy_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 		
 func _enable_boss(node_name, text) -> void:
+	AudioManager.play_bgm("beachBoss")
 	enabled_boss_on_tutorial = true
 
 func _check_for_boss_enable() -> void:

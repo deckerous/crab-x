@@ -66,6 +66,7 @@ func _damaged(hitbox: HitboxComponent) -> void:
 		queue_free()
 
 func _on_death() -> void:
+	
 	pass
 
 func _update_health_bar() -> void:
