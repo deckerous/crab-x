@@ -32,6 +32,7 @@ max_distance = 275.0
 fall_off_constant = 0.02
 collide_with_enemies = false
 entity_id = "SeagullProj"
+use_difficulty_scaling = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5)

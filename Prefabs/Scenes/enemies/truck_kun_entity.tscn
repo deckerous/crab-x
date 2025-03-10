@@ -35,7 +35,9 @@ radius = 13.0384
 [node name="TruckKunEntity" instance=ExtResource("1_h4end")]
 collision_layer = 129
 collision_mask = 0
-script = ExtResource("2_ro7wh")
+
+use_difficulty_scaling = true
+
 
 [node name="Animations" parent="." index="0"]
 scale = Vector2(0.5, 0.5)

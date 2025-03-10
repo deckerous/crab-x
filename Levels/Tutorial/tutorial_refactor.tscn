@@ -143,15 +143,12 @@ texture = ExtResource("19_uy0sk")
 
 [node name="DummyEntity" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(53, 217)
-diff_flip = false
 
 [node name="DummyEntity2" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(265, 215)
-diff_flip = false
 
 [node name="DummyEntity3" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(160, 228)
-diff_flip = false
 
 [node name="DummyBossEntity" parent="Enemies" instance=ExtResource("8_2puqx")]
 process_mode = 4
@@ -212,10 +209,10 @@ text_array = ["Welcome to your first day in the Crustacean Army, [shake rate=25l
 [connection signal="enter_shop" from="Graphics/LootAndTriggers/ShopIcon" to="Shop" method="_enter"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/CollectChests" to="." method="_start_tutorial"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillDummies" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_start_tutorial"]
-[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_enable_boss"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/Shopping" to="." method="_shop_tutorial_trigger"]
 [connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_start_tutorial"]
+[connection signal="start_tutorial" from="Graphics/LootAndTriggers/KillBoss" to="." method="_enable_boss"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="." method="_handle_kills"]
 [connection signal="entity_died" from="Enemies/DummyEntity" to="Player" method="handle_entity_death"]
 [connection signal="entity_died" from="Enemies/DummyEntity2" to="." method="_handle_kills"]
