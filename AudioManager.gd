@@ -81,7 +81,7 @@ func play_sfx(sound_name: String, volume_db: float = 0.0):
 				sfx_player.volume_db = -10.0
 				sfx_player.set_pitch_scale(randf_range(1.9, 2.1))
 			"sniper": 
-				sfx_player.volume_db = -10.0
+				sfx_player.volume_db = -20.0
 			"victory":
 				sfx_player.volume_db = 5
 			"rpg":
@@ -101,7 +101,7 @@ func play_bgm(music_name: String, volume_db: float = 0.0):
 			fade_music_out(func():
 				# Switch to the new track after fade-out
 				bgm_player.stream = bgm[music_name]
-				bgm_player.volume_db = default_music_db  # Start at muted volume
+				bgm_player.volume_db = default_music_db
 				bgm_player.play()
 			)
 		else:
@@ -133,21 +133,12 @@ func update_bgm():
 	for child in root_children:
 		if child is Level:
 			cur_level = child.level_id
-	match cur_level:
-		"tutorial":
-			AudioManager.play_bgm("spagetti")
-		"beach1":
-			AudioManager.play_bgm("beach")
-		"beach2":
-			AudioManager.play_bgm("beach")
-		"beach3":
-			AudioManager.play_bgm("beach")
-		4:
-			AudioManager.play_bgm("jungle")
-		5:
-			AudioManager.play_bgm("jungle")
-		6:
-			AudioManager.play_bgm("jungle")
+	if cur_level == "tutorial":
+		AudioManager.play_bgm("spagetti")
+	elif cur_level == "beach1" or cur_level == "beach2" or cur_level == "beach3":
+		AudioManager.play_bgm("beach")
+	elif cur_level == "jungle1" or cur_level == "jungle2" or cur_level == "jungle3":
+		AudioManager.play_bgm("jungle")
 
 func fade_music_out(callback: Callable = func(): pass):
 	if bgm_player.playing:

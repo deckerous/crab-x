@@ -2,6 +2,7 @@ extends Node2D
 
 @export_group("Targetting Settings")
 @export var pathfind: bool = false
+@export var boss_music = ""
 
 @onready var player_detection_area = $PlayerDetectionArea
 @onready var collision_shape_2d = $PlayerDetectionArea/CollisionShape2D
@@ -34,9 +35,9 @@ func _get_visible_bodies_on_exit(body: Node2D) -> void:
 func _physics_process(delta: float):
 	var distance_to_target = 0
 	if targeted_crab != null:
-		if !(AudioManager.bgm_player.stream == AudioManager.bgm["beachBoss"]) and entity.process_mode == Node.PROCESS_MODE_INHERIT and entity.is_in_group("boss"):
+		if entity.is_in_group("boss") and !(AudioManager.bgm_player.stream == AudioManager.bgm[boss_music]) and entity.process_mode == Node.PROCESS_MODE_INHERIT:
 			print(entity)
-			AudioManager.play_bgm("beachBoss")
+			AudioManager.play_bgm(boss_music)
 		distance_to_target = global_position.distance_to(targeted_crab.global_position)
 		if distance_to_target > collision_shape_2d.shape.radius:
 			targeted_crab = null
