@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx8e008k8xxb4"]
+
+[ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_bxlvl"]
+[ext_resource type="TileSet" uid="uid://qdsyewnphcr2" path="res://Assets/Tilesets/resource/jungle_grass_tilesettres.tres" id="2_48aqo"]
+[ext_resource type="TileSet" uid="uid://d3mbkmo2u0n33" path="res://Assets/Tilesets/resource/jungle_walls_tileset.tres" id="3_v8tm4"]
+[ext_resource type="TileSet" uid="uid://stw7plaoqtd6" path="res://Assets/Tilesets/resource/pavement.tres" id="4_dcnak"]
+[ext_resource type="TileSet" uid="uid://cxrxcl7f1lkil" path="res://Assets/Tilesets/resource/road_markings.tres" id="5_ftdr2"]
+[ext_resource type="TileSet" uid="uid://dawwudhyjfqko" path="res://Assets/Tilesets/resource/overhang.tres" id="6_y4q7d"]
+[ext_resource type="PackedScene" uid="uid://cob367saorgaw" path="res://Levels/Tutorial/dialogue_handler.tscn" id="7_3mgrl"]
+
+[node name="Level" instance=ExtResource("1_bxlvl")]
+starting_crab_count = 3
+starting_weapon = 1
+level_id = "jungle1"
+
+[node name="Tilemaps" type="Node2D" parent="Graphics" index="0"]
+
+[node name="BackgroundColor" type="ColorRect" parent="Graphics/Tilemaps" index="0"]
+offset_left = -62.0
+offset_top = -50.0
+offset_right = 780.0
+offset_bottom = 650.0
+color = Color(0.0980392, 0.235294, 0.243137, 1)
+
+[node name="Grass" type="TileMapLayer" parent="Graphics/Tilemaps" index="1"]
+tile_set = ExtResource("2_48aqo")
+
+[node name="Walls" type="TileMapLayer" parent="Graphics/Tilemaps" index="2"]
+tile_set = ExtResource("3_v8tm4")
+
+[node name="Roads" type="Node2D" parent="Graphics/Tilemaps" index="3"]
+
+[node name="RoadTiles" type="TileMapLayer" parent="Graphics/Tilemaps/Roads" index="0"]
+tile_set = ExtResource("4_dcnak")
+
+[node name="RoadMarkings" type="TileMapLayer" parent="Graphics/Tilemaps/Roads" index="1"]
+tile_set = ExtResource("5_ftdr2")
+
+[node name="Overhang" type="TileMapLayer" parent="Graphics/Tilemaps/Roads" index="2"]
+tile_set = ExtResource("6_y4q7d")
+
+[node name="LootAndTriggers" type="Node2D" parent="Graphics" index="1"]
+
+[node name="Shop" parent="." index="3"]
+visible = false
+
+[node name="DialogueHandler" parent="." index="4" instance=ExtResource("7_3mgrl")]

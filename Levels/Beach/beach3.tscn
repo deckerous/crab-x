@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=4 uid="uid://b4aug6xgw82lc"]
 
 [ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_niodc"]
-[ext_resource type="PackedScene" uid="uid://kqwn3nkjg4pq" path="res://Levels/to_be_continued.tscn" id="2_pp61p"]
+[ext_resource type="PackedScene" uid="uid://cia5adtrhhy2x" path="res://Levels/Jungle/jungle1.tscn" id="2_j3574"]
 [ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="2_qsabk"]
 [ext_resource type="TileSet" uid="uid://rqptkqc5w6lp" path="res://Assets/Tilesets/resource/underwater_sand_tileset.tres" id="3_pi5bm"]
 [ext_resource type="TileSet" uid="uid://ccldp1h1oielx" path="res://Assets/Tilesets/resource/beach_wall.tres" id="4_2x7e3"]
@@ -48,7 +48,7 @@ sources/1 = SubResource("TileSetAtlasSource_jdopj")
 sources/5 = SubResource("TileSetAtlasSource_41dbg")
 
 [node name="Level" instance=ExtResource("1_niodc")]
-next_level = ExtResource("2_pp61p")
+next_level = ExtResource("2_j3574")
 starting_crab_count = 3
 starting_weapon = 1
 level_id = "beach3"
