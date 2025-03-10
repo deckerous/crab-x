@@ -138,6 +138,7 @@ debug_color = Color(0.979859, 0.141346, 0, 0.42)
 
 [node name="TargettingComponent" parent="." index="5" instance=ExtResource("4_1rmxj")]
 top_level = true
+boss_music = "finalBoss"
 
 [node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
 shape = SubResource("CircleShape2D_frail")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://o22vw27a28m0"]
+[gd_scene load_steps=11 format=3 uid="uid://o22vw27a28m0"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_h4end"]
 [ext_resource type="Texture2D" uid="uid://cv5t0p1180fco" path="res://Assets/Enemies/png/truck-sheet.png" id="2_5m433"]
-[ext_resource type="Script" path="res://Prefabs/Scripts/truck_kun_entity.gd" id="2_ro7wh"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/state.gd" id="3_qtlr8"]
 [ext_resource type="AudioStream" uid="uid://ekyg82jys5wa" path="res://Assets/SFX/engine.wav" id="4_ec5am"]
 
@@ -35,9 +34,7 @@ radius = 13.0384
 [node name="TruckKunEntity" instance=ExtResource("1_h4end")]
 collision_layer = 129
 collision_mask = 0
-
 use_difficulty_scaling = true
-
 
 [node name="Animations" parent="." index="0"]
 scale = Vector2(0.5, 0.5)

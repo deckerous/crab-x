@@ -147,6 +147,7 @@ shape = SubResource("CapsuleShape2D_uhtvo")
 debug_color = Color(0.919403, 0.247321, 0.3578, 0.42)
 
 [node name="TargettingComponent" parent="." index="6" instance=ExtResource("4_nhe0t")]
+boss_music = "beachBoss"
 
 [node name="CollisionShape2D" parent="TargettingComponent/PlayerDetectionArea" index="0"]
 shape = SubResource("CircleShape2D_3xnhw")
