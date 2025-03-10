@@ -84,7 +84,7 @@ func _physics_process(delta):
 	
 	var crabs = crab_manager.get_children()
 	crab_count = crabs.size() # Update crab count
-			
+	
 	if Input.is_action_just_pressed("exit"):
 		toggle_pause()
 	if Input.is_action_just_pressed("reset"):
@@ -249,6 +249,9 @@ func _game_over() -> void:
 	if !logged_player_death:
 		logged_player_death = true
 		CrabLogs.log_player_death(last_damage_instance_source)
+	
+	PlayerVariable.difficulty_scale -= PlayerVariable.DIFFICULTY_SCALE_AMOUNT
+	
 	crosshair.hide()
 	player_ui.hide()
 	ui_instance._on_game_over() 

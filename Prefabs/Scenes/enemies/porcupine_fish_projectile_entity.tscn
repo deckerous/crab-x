@@ -29,11 +29,11 @@ size = Vector2(5, 6.66667)
 collision_mask = 65
 speed = 3.0
 entity_id = "PorcupineFishProj"
+use_difficulty_scaling = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -4.5)
 sprite_frames = SubResource("SpriteFrames_rlw83")
-animation = &"airborne"
 
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -3)

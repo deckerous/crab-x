@@ -143,15 +143,12 @@ texture = ExtResource("19_uy0sk")
 
 [node name="DummyEntity" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(53, 217)
-diff_flip = false
 
 [node name="DummyEntity2" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(265, 215)
-diff_flip = false
 
 [node name="DummyEntity3" parent="Enemies" instance=ExtResource("7_wb5pt")]
 position = Vector2(160, 228)
-diff_flip = false
 
 [node name="DummyBossEntity" parent="Enemies" instance=ExtResource("8_2puqx")]
 process_mode = 4
@@ -202,6 +199,20 @@ visible = false
 
 [node name="DialogueHandler" parent="." instance=ExtResource("8_an2om")]
 text_array = ["Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!", "First comes you, then the sand, then the humans, then crabs, then our president, and then [shake rate=25level=10]ME![/shake] So listen to everything I say and you [i]might[/i] make it out alive.", "Lesson number one, [shake rate=25level=10]prawn[/shake]! Use the [b]WASD[/b] or [b]arrow keys[/b] to move! Then use the [b]mouse[/b] to move the camera! Now, move it!"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 98.0
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "meow"
+fit_content = true
 
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="." method="_handle_chests"]
 [connection signal="give_loot" from="Graphics/LootAndTriggers/TweasureChest" to="Player" method="handle_loot"]
