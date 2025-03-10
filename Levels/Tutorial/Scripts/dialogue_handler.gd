@@ -7,6 +7,7 @@ extends Node2D
 signal tutorial_closed()
 
 var curr_index = 0
+var pushed_event = false
 @export var text_array = ['Welcome to your first day in the Crustacean Army, [shake rate=25level=10]prawn[/shake]! I am General Crusty Shawn, and I will be your drillmaster today! First things first, you must learn the pecking order!',
 						  'First comes you, then the sand, then the humans, then crabs, then our president, and then [shake rate=25level=10]ME![/shake] So listen to everything I say and you [i]might[/i] make it out alive.',
 						  'Lesson number one, [shake rate=25level=10]prawn[/shake]! Use the WASD keys to move! Now, move it!']
@@ -37,7 +38,9 @@ func _process(delta: float) -> void:
 				text_box.visible_ratio = 0
 				canvas.visible = false
 				tutorial_closed.emit()
-				CrabLogs.log_dialogue_complete()
+				if !pushed_event:
+					CrabLogs.log_dialogue_complete()
+					pushed_event = true
 				get_tree().paused = false
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
