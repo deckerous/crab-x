@@ -28,7 +28,7 @@ func process_physics(delta: float) -> State:
 	super(delta)
 	
 	if projectile_fired:
-		$"../../SniperSound".play()
+		AudioManager.play_sfx("sniper")
 		sniper_particles.restart()
 		projectile_fired = false
 	

@@ -11,6 +11,7 @@ extends Entity
 func _ready() -> void:
 	super()
 	targetting_component = find_child("TargettingComponent")
+	targetting_component.global_position = global_position
 
 func _physics_process(delta) -> void:
 	super(delta)

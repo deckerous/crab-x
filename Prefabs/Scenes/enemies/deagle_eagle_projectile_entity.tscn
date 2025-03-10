@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://btbf1yuhspoie"]
+
+[ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_hnpwi"]
+[ext_resource type="Texture2D" uid="uid://c1gbfvr1ayiyw" path="res://Assets/Guns/png/big-bullet.png" id="2_s8t40"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2f70b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_s8t40")
+}],
+"loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"destroy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkdpn"]
+size = Vector2(6, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4kp8"]
+size = Vector2(6, 10)
+
+[node name="DeagleEagleProjectileEntity" instance=ExtResource("1_hnpwi")]
+z_index = 2
+collision_mask = 64
+speed = 2.5
+max_distance = 340.0
+speed_before_destroy = 0.5
+
+[node name="Animations" parent="." index="0"]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_2f70b")
+
+[node name="CollisionBox" parent="." index="1"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_mkdpn")
+
+[node name="HitboxComponent" parent="." index="2"]
+collision_mask = 72
+damage = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_v4kp8")
+debug_color = Color(0.807335, 0.414444, 0, 0.42)
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Airborne")
+
+[node name="Airborne" parent="StateMachine" index="0"]
+animation_name = "airborne"
+
+[node name="Destroy" parent="StateMachine" index="1"]
+animation_name = "destroy"

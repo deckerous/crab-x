@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_airborne_state.gd" id="3_gc2tb"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/projectile_destroy_state.gd" id="4_y4mmf"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5xe1g"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_meuok"]
 animations = [{
 "frames": [],
 "loop": true,
@@ -22,6 +22,10 @@ animations = [{
 collision_layer = 0
 script = ExtResource("2_4aqgj")
 speed = 0.0
+max_distance = 300.0
+fall_off_ratio = 0.8
+fall_off_constant = 0.03
+speed_before_destroy = 1.0
 collide_with_walls = true
 collide_with_crabs = true
 collide_with_enemies = true
@@ -30,8 +34,8 @@ health_bar_visible = false
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, 0)
-sprite_frames = SubResource("SpriteFrames_5xe1g")
-animation = &"destroy"
+sprite_frames = SubResource("SpriteFrames_meuok")
+animation = &"airborne"
 
 [node name="CollisionBox" parent="." index="1"]
 shape = null

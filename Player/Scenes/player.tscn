@@ -11,10 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://wbeyjbsrconb" path="res://Assets/SFX/8bit_lose.wav" id="9_6xo7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a8l8"]
-size = Vector2(336, 256)
+size = Vector2(442, 300)
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_hjqw4")
+crosshair_dist_max = 200.0
 
 [node name="ui" parent="." instance=ExtResource("6_upbhe")]
 
@@ -24,6 +25,7 @@ process_mode = 1
 [node name="CrabEntity" parent="CrabManager" instance=ExtResource("4_44bsy")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 script = ExtResource("4_ndu54")
 

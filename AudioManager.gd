@@ -7,7 +7,7 @@ var bgm = {}
 var current_music_player : AudioStreamPlayer 
 
 const mute_db := -80.0 # To mute the audio player
-const default_music_db := 0.0 # This is for normal volume
+const default_music_db := -10.0 # This is for normal volume
 const fade_time := 2.0 # The time it takes to fade in/out in seconds
 
 # Audio Players
@@ -19,9 +19,11 @@ func _ready():
 	# Add the players to the scene
 	add_child(sfx_player)
 	add_child(bgm_player)
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	sfx["fireball"] = preload("res://Assets/SFX/fireball.wav")
-	sfx["hit"] = preload("res://Assets/SFX/hit1.wav")
+	sfx["hit"] = preload("res://Assets/SFX/realistic_gunshot.wav")
+	sfx["glock"] = preload("res://Assets/SFX/8bit_glock.wav")
 	sfx["heal"] = preload("res://Assets/SFX/8bit_heal.wav")
 	sfx["explosion"] = preload("res://Assets/SFX/short_explosion.wav")
 	sfx["damage"] = preload("res://Assets/SFX/8bit_big_hit.wav")
@@ -35,6 +37,8 @@ func _ready():
 	sfx["woosh"] = preload("res://Assets/SFX/woosh.wav")
 	sfx["victory"] = preload("res://Assets/SFX/fanfare.wav")
 	sfx["failure"] = preload("res://Assets/SFX/8bit_lose.wav")
+	sfx["rpg"] = preload("res://Assets/SFX/8bit_rpg.wav")
+	sfx["sniper"] = preload("res://Assets/SFX/sniper.wav")
 
 
 	bgm["spagetti"] = preload("res://Assets/SFX/spagetti western.ogg")
@@ -42,6 +46,7 @@ func _ready():
 	bgm["beach"] = preload("res://Assets/SFX/EasternArcticDubstep.MP3")
 	bgm["beachBoss"] = preload("res://Assets/SFX/dark_forces_loop.mp3")
 	bgm["fanfare"] = preload("res://Assets/SFX/fanfare.ogg")
+	bgm["finalBoss"] = preload("res://Assets/SFX/deagle_theme.mp3")
 
 	# Enable looping for BGM
 	# bgm_player.stream_loop = true
@@ -49,12 +54,41 @@ func _ready():
 func _physics_process(delta):
 	if !bgm_player.playing and PlayerVariable.level_complete == false :
 		update_bgm()
+	if !bgm_player.playing and PlayerVariable.level_complete == true:
+		await get_tree().create_timer(3).timeout
+		update_bgm()
 
 ### Play Sound Effect (SFX)
 func play_sfx(sound_name: String, volume_db: float = 0.0):
 	if sound_name in sfx:
+		var sfx_player = AudioStreamPlayer.new()
+		add_child(sfx_player)
+		
 		sfx_player.stream = sfx[sound_name]
 		sfx_player.volume_db = volume_db
+		match sound_name:
+			"damage": 
+				sfx_player.volume_db = -15.0
+				sfx_player.set_max_polyphony(3)
+				sfx_player.set_pitch_scale(randf_range(1, 1.1))
+			"fireball": 
+				sfx_player.volume_db = -10.0
+				sfx_player.set_pitch_scale(randf_range(0.9, 1.1))
+			"glock":
+				sfx_player.volume_db = -10.0
+				sfx_player.set_pitch_scale(randf_range(0.9, 1.1))
+			"woosh":
+				sfx_player.volume_db = -10.0
+				sfx_player.set_pitch_scale(randf_range(1.9, 2.1))
+			"sniper": 
+				sfx_player.volume_db = -10.0
+			"victory":
+				sfx_player.volume_db = 5
+			"rpg":
+				sfx_player.volume_db = 5
+			"coin": 
+				sfx_player.volume_db = -10.0
+		sfx_player.connect("finished", sfx_player.queue_free)
 		sfx_player.play()
 	else:
 		print("SFX not found:", sound_name)
@@ -94,16 +128,19 @@ func stop_bgm():
 	bgm_player.stop()
 
 func update_bgm():
-	match PlayerVariable.cur_level:
-		"main":
+	var cur_level
+	var root_children = get_tree().root.get_children()
+	for child in root_children:
+		if child is Level:
+			cur_level = child.level_id
+	match cur_level:
+		"tutorial":
 			AudioManager.play_bgm("spagetti")
-		0:
-			AudioManager.play_bgm("spagetti")
-		1:
+		"beach1":
 			AudioManager.play_bgm("beach")
-		2:
+		"beach2":
 			AudioManager.play_bgm("beach")
-		3:
+		"beach3":
 			AudioManager.play_bgm("beach")
 		4:
 			AudioManager.play_bgm("jungle")

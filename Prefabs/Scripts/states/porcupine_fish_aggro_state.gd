@@ -46,13 +46,10 @@ func process_physics(delta: float) -> State:
 					inst.init_projectile(-proj_pos.global_position.direction_to(entity.global_position))
 					entity.summon_projectile(inst, proj_pos.global_position)
 			
-			#even = !even
-			
 			cooldown = true
 			cooldown_timer.start()
 			puff_up_timer.start()
 			projectile_spawn_positions_root.rotation_degrees += rot_amt_around_pivot
-			#animations.frame = 1
 	else:
 		return idle
 	

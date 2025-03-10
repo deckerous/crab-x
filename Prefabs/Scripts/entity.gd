@@ -14,6 +14,9 @@ extends CharacterBody2D
 @onready var hurtbox_component = $HurtboxComponent
 @onready var state_machine = $StateMachine
 @onready var health_bar = $HealthBar
+@onready var flash_component = $FlashComponent
+@onready var shake_component = $ShakeComponent
+
 var health_bar_initial_pos = Vector2.ZERO
 
 signal entity_died(node_name)
@@ -48,6 +51,8 @@ func summon_projectile(proj: Node2D, pos: Vector2) -> void:
 func _damaged(hitbox: HitboxComponent) -> void:
 	hp = hp - max(0, hitbox.damage - armor)
 	_update_health_bar()
+	flash_component.flash()
+	shake_component.tween_shake()
 	
 	if hp <= 0:
 		_on_death()

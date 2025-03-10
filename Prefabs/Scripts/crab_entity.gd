@@ -3,6 +3,7 @@ extends Entity
 
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var healing_area_2d = $HealingArea2D
+@onready var healing_particles = $HealingArea2D/HealingParticles
 @onready var star = $Star
 
 @onready var is_rally: bool = false : 
@@ -35,6 +36,8 @@ func _damaged(hitbox: HitboxComponent) -> void:
 	
 	hp = hp - max(0, hitbox.damage - armor)
 	_update_health_bar()
+	flash_component.flash()
+	shake_component.tween_shake()
 	
 	if hp <= 0:
 		AudioManager.play_sfx("minus")
@@ -47,6 +50,7 @@ func _damaged(hitbox: HitboxComponent) -> void:
 func _heal(area: Area2D) -> void:
 	if not area is HealComponent: return
 	if !(hp < max_hp): return
+	healing_particles.restart()
 	AudioManager.play_sfx("heal")
 	hp += area.heal_amt
 	_update_health_bar()

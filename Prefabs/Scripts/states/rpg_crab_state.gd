@@ -26,7 +26,7 @@ func process_physics(delta: float) -> State:
 	super(delta)
 	
 	if projectile_fired:
-		$"../../RPGSound".play()
+		AudioManager.play_sfx("rpg")
 		projectile_fired = false
 	
 	return null

@@ -101,11 +101,9 @@ max_hp = 50.0
 
 [node name="DummyEntity" parent="Enemies" instance=ExtResource("6_rxkwa")]
 position = Vector2(83, 91)
-diff_flip = false
 
 [node name="DummyEntity2" parent="Enemies" instance=ExtResource("6_rxkwa")]
 position = Vector2(240, 167)
-diff_flip = false
 
 [node name="DialogueHandler" parent="." instance=ExtResource("9_no833")]
 position = Vector2(0, 188)
