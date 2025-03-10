@@ -80,7 +80,6 @@ func _physics_process(delta):
 	PlayerVariable.num_coins = coin_count
 	PlayerVariable.num_crabs = crab_count
 	
-	
 	var crabs = crab_manager.get_children()
 	crab_count = crabs.size() # Update crab count
 			

@@ -4,8 +4,15 @@ extends Node
 var sfx = {}
 var bgm = {}
 
+var current_music_player : AudioStreamPlayer 
+
+const mute_db := -80.0 # To mute the audio player
+const default_music_db := 0.0 # This is for normal volume
+const fade_time := 2.0 # The time it takes to fade in/out in seconds
+
 # Audio Players
 @onready var sfx_player = AudioStreamPlayer.new()
+
 @onready var bgm_player = AudioStreamPlayer.new()
 
 func _ready():
@@ -31,12 +38,17 @@ func _ready():
 
 
 	bgm["spagetti"] = preload("res://Assets/SFX/spagetti western.ogg")
-	bgm["race"] = preload("res://Assets/SFX/Winning the Race.ogg")
-	bgm["desert"] = preload("res://Assets/SFX/EasternArcticDubstep.MP3")
+	bgm["jungle"] = preload("res://Assets/SFX/Winning the Race.ogg")
+	bgm["beach"] = preload("res://Assets/SFX/EasternArcticDubstep.MP3")
+	bgm["beachBoss"] = preload("res://Assets/SFX/dark_forces_loop.mp3")
 	bgm["fanfare"] = preload("res://Assets/SFX/fanfare.ogg")
 
 	# Enable looping for BGM
 	# bgm_player.stream_loop = true
+
+func _physics_process(delta):
+	if !bgm_player.playing and PlayerVariable.level_complete == false :
+		update_bgm()
 
 ### Play Sound Effect (SFX)
 func play_sfx(sound_name: String, volume_db: float = 0.0):
@@ -50,9 +62,20 @@ func play_sfx(sound_name: String, volume_db: float = 0.0):
 ### Play Background Music (BGM)
 func play_bgm(music_name: String, volume_db: float = 0.0):
 	if music_name in bgm:
-		bgm_player.stream = bgm[music_name]
-		bgm_player.volume_db = volume_db
-		bgm_player.play()
+		# If music is already playing, fade it out first
+		if bgm_player.playing:
+			fade_music_out(func():
+				# Switch to the new track after fade-out
+				bgm_player.stream = bgm[music_name]
+				bgm_player.volume_db = default_music_db  # Start at muted volume
+				bgm_player.play()
+			)
+		else:
+			# No music playing, just start immediately
+			bgm_player.stream = bgm[music_name]
+			bgm_player.volume_db = default_music_db
+			bgm_player.play()
+
 	else:
 		print("BGM not found:", music_name)
 
@@ -69,3 +92,34 @@ func stop_sfx():
 
 func stop_bgm():
 	bgm_player.stop()
+
+func update_bgm():
+	match PlayerVariable.cur_level:
+		"main":
+			AudioManager.play_bgm("spagetti")
+		0:
+			AudioManager.play_bgm("spagetti")
+		1:
+			AudioManager.play_bgm("beach")
+		2:
+			AudioManager.play_bgm("beach")
+		3:
+			AudioManager.play_bgm("beach")
+		4:
+			AudioManager.play_bgm("jungle")
+		5:
+			AudioManager.play_bgm("jungle")
+		6:
+			AudioManager.play_bgm("jungle")
+
+func fade_music_out(callback: Callable = func(): pass):
+	if bgm_player.playing:
+		var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(bgm_player, "volume_db", mute_db, fade_time)
+		tween.tween_callback(callback)
+	else:
+		callback.call()
+
+func fade_music_in() -> void:
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(bgm_player, "volume_db", default_music_db, fade_time)
