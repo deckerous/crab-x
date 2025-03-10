@@ -40,6 +40,7 @@ func level_complete_func() -> void:
 	# if !PlayerVariable.debug:
 	#	 Analytics.add_event("Player beat " + level_id)
 	CrabLogs.log_stage_complete(player.cur_weapon, player.crab_count, player.coin_count, player.kill_count)
+	PlayerVariable.difficulty_scale += PlayerVariable.DIFFICULTY_SCALE_AMOUNT
 	level_complete = true
 	player.ui_instance._on_level_complete()
 	await get_tree().create_timer(3.5).timeout

@@ -55,6 +55,7 @@ flip_when_aiming = false
 diff_flip = false
 max_hp = 75.0
 entity_id = "PorcupineFish"
+use_difficulty_scaling = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(-4, 1)

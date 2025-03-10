@@ -90,7 +90,9 @@ func log_event(event_type: String, details: Dictionary):
 		"OS": user_info["OS"],
 		"Timestamp": time_elapsed,
 		"Log Type": event_type,
-		"Version": version
+		"Version": version,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	data.merge(details)
 	
@@ -122,7 +124,9 @@ func log_stage_complete(weapon: String, crabs_remaining: int, sheckles_remaining
 		"Crabs Remaining": crabs_remaining,
 		"Sheckles Remaining": sheckles_remaining,
 		"Kills": kills,
-		"Deaths": stage_deaths
+		"Deaths": stage_deaths,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Reset stage statistics
@@ -149,7 +153,9 @@ func log_stage_restart():
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_restart",
 		"Version": version,
-		"Stage ID": curr_stage_id
+		"Stage ID": curr_stage_id,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Push log to firestore
@@ -175,7 +181,9 @@ func log_stage_start(stage_id: String):
 		"Timestamp" : time_elapsed,
 		"Log Type": "stage_start",
 		"Version": version,
-		"Stage ID": stage_id
+		"Stage ID": stage_id,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Start stage statistic collection
@@ -207,7 +215,9 @@ func log_player_death(enemy_id: String):
 		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Killed By" : enemy_id,
-		"Duration": stage_time_elapsed
+		"Duration": stage_time_elapsed,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Start stage statistic collection
@@ -234,6 +244,8 @@ func log_player_quit(afk: bool):
 		"Log Type": "player_quit",
 		"Version": version,
 		"Stage ID": curr_stage_id,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Push log to firestore
@@ -257,6 +269,8 @@ func log_player_return():
 		"Log Type": "player_return",
 		"Version": version,
 		"Stage ID": curr_stage_id,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Push log to firestore
@@ -329,6 +343,8 @@ func log_player_continue():
 		"Log Type": "player_continue",
 		"Version": version,
 		"Stage ID": curr_stage_id,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Push log to firestore
@@ -352,6 +368,8 @@ func log_force_quit():
 		"Log Type": "player_force_quit",
 		"Version": version,
 		"Stage ID": curr_stage_id,
+		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale
 	}
 	
 	# Push log to firestore

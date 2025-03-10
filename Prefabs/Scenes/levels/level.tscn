@@ -14,3 +14,4 @@ script = ExtResource("1_n0wdl")
 [node name="Player" parent="." instance=ExtResource("2_hiis5")]
 
 [node name="Shop" parent="." instance=ExtResource("3_or20h")]
+visible = false
