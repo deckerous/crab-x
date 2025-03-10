@@ -81,7 +81,6 @@ func _physics_process(delta):
 	PlayerVariable.num_coins = coin_count
 	PlayerVariable.num_crabs = crab_count
 	
-	
 	var crabs = crab_manager.get_children()
 	crab_count = crabs.size() # Update crab count
 			
@@ -163,6 +162,10 @@ func _update_crab_velocities(crabs) -> void:
 			
 			if (crab.global_position - rally_point_crab_entity.global_position).length() > 200:
 				crab.global_position = rally_point_crab_entity.global_position
+
+func _unhandled_input(event):
+	if PlayerVariable.in_shop:
+		get_viewport().set_input_as_handled()
 
 func handle_loot(array: Array) -> void:
 	for item in array:
@@ -264,6 +267,7 @@ func _game_over() -> void:
 
 func add_crabs(num: int) -> void:
 	if num < 2: return
+	AudioManager.play_bgm("plus")
 	var i = 1
 	for x in num-1:
 		var crab_inst = crab_component.instantiate()
@@ -287,6 +291,7 @@ func toggle_pause():
 		ui_instance.toggle_pause_menu()
 
 func add_coin():
+	AudioManager.play_sfx("coin")
 	coin_count += 1
 	PlayerVariable.num_coins = coin_count
 	rich_text_label.text = " " + str(coin_count)

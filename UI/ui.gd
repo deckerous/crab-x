@@ -32,6 +32,8 @@ func update_during_game_ui():
 	weapon_label.text = PlayerVariable.cur_weapon
 
 func _on_game_over():
+	AudioManager.stop_bgm()
+	AudioManager.play_sfx("failure")
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	during_game_screen.visible = false
 	end_of_game_screen.visible = true
@@ -39,6 +41,8 @@ func _on_game_over():
 	# TODO: Implement way to quit	
 
 func _on_level_complete():
+	AudioManager.stop_bgm()
+	AudioManager.play_bgm("fanfare")
 	during_game_screen.visible = false
 	end_of_level_screen.visible = true
 	
@@ -50,12 +54,14 @@ func _on_resume_button_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _on_restart_button_pressed():
+	AudioManager.stop_bgm()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	CrabLogs.log_stage_restart()
 	get_tree().paused = false
 	get_tree().reload_current_scene()  # Restart the game
 
 func _on_quit_button_pressed():
+	AudioManager.stop_bgm()
 	get_tree().paused = false
 	PlayerVariable.save_values("Levels", "Current Level")  # SAVE ON QUIT
 	get_tree().change_scene_to_file("res://UI/start_menu.tscn")
