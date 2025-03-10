@@ -32,6 +32,7 @@ func process_physics(delta: float) -> State:
 
 func _shoot() -> void:
 	if entity.targetting_component.targeted_crab != null:
+		AudioManager.play_sfx("fireball")
 		var inst = projectile.instantiate()
 		inst.global_rotation = projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position).angle() + PI/2.0
 		inst.init_projectile(projectile_spawn_position.global_position.direction_to(entity.targetting_component.targeted_crab.global_position))

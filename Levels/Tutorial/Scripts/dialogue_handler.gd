@@ -49,7 +49,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		curr_index += 1
 		text_box.visible_ratio = 0
 		if curr_index >= text_array.size():
-			#canvas.visible = false
+			canvas.visible = false
 			tutorial_closed.emit()
 			get_tree().paused = false
 			return

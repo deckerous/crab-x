@@ -13,6 +13,7 @@ extends Control
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
 func _ready() -> void:
+	AudioManager.play_bgm("spagetti")
 	var os = CrabLogs.get_device_type()
 	if os == "Web Mobile":
 		main_menu_screen.visible = false
@@ -27,6 +28,7 @@ func _ready() -> void:
 		tree.call_deferred("change_scene_to_file", "res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _physics_process(delta):
+	
 	if crabs.size() == 0:
 		_spawn_crabs()
 	
@@ -54,7 +56,8 @@ func _update_crabs_pos() -> void:
 
 func _on_new_game_button_pressed():
 	# CrabLogs.log_stage_start("tutorial")
-	
+	AudioManager.stop_bgm()
+	AudioManager.play_sfx("plus")
 	Transition.fade_in()
 	#transition.visible = true
 	await Transition.animation_player.animation_finished
@@ -62,6 +65,8 @@ func _on_new_game_button_pressed():
 	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
 
 func _on_continue_button_pressed():
+	AudioManager.stop_bgm()
+	AudioManager.play_sfx("plus")
 	print("Continue button pressed")
 	# TODO: implement save system
 	CrabLogs.log_player_continue()
@@ -78,5 +83,6 @@ func _on_settings_button_pressed():
 	pass
 
 func _on_quit_button_pressed():
+	AudioManager.stop_bgm()
 	print("Game was quit")
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

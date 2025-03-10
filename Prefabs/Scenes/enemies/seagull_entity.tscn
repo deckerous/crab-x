@@ -51,6 +51,7 @@ flip_when_aiming = true
 diff_flip = false
 max_hp = 15.0
 entity_id = "Seagull"
+use_difficulty_scaling = true
 
 [node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
 modulate = Color(0.0666667, 0.266667, 0.266667, 1)

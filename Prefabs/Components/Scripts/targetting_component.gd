@@ -7,7 +7,7 @@ extends Node2D
 @onready var collision_shape_2d = $PlayerDetectionArea/CollisionShape2D
 @onready var ray_cast_2d = $RayCast2D
 @onready var navigation_agent_2d = $NavigationAgent2D
-
+@onready var entity = get_parent()
 @onready var original_position = global_position
 
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
@@ -34,6 +34,9 @@ func _get_visible_bodies_on_exit(body: Node2D) -> void:
 func _physics_process(delta: float):
 	var distance_to_target = 0
 	if targeted_crab != null:
+		if !(AudioManager.bgm_player.stream == AudioManager.bgm["beachBoss"]) and entity.process_mode == Node.PROCESS_MODE_INHERIT and entity.is_in_group("boss"):
+			print(entity)
+			AudioManager.play_bgm("beachBoss")
 		distance_to_target = global_position.distance_to(targeted_crab.global_position)
 		if distance_to_target > collision_shape_2d.shape.radius:
 			targeted_crab = null

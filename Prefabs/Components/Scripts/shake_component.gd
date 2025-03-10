@@ -10,6 +10,7 @@ func tween_shake():
 	shake = shake_amount
 	var tween = create_tween()
 	tween.tween_property(self, "shake", 0.0, shake_duration).from_current()
+	AudioManager.play_sfx("damage")
 
 func _physics_process(delta: float) -> void:
 	node.offset = Vector2(randf_range(-shake, shake), randf_range(-shake, shake))

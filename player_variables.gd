@@ -8,6 +8,16 @@ var num_crabs = 0
 var cur_weapon = "none"
 var cur_level = 0
 
+@onready var using_difficulty_scaling = randi_range(0,1)
+
+const MAX_DIFFICULTY_MULTIPLIER = 1.0
+const MIN_DIFFICULTY_MULTIPLIER = 0.7
+const DIFFICULTY_SCALE_AMOUNT = 0.1
+
+@onready var difficulty_scale = 1.0 :
+	set(value):
+		difficulty_scale = clampf(value, MIN_DIFFICULTY_MULTIPLIER, MAX_DIFFICULTY_MULTIPLIER)
+
 # TODO P1
 var cur_item = "none"
 var time_played = 0

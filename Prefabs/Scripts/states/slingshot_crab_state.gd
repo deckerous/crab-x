@@ -21,3 +21,11 @@ func process_input(event: InputEvent) -> State:
 		return sniper
 	
 	return null
+
+func process_physics(delta: float) -> State:
+	super(delta)
+	
+	if projectile_fired:
+		AudioManager.play_sfx("woosh")
+		projectile_fired = false
+	return null

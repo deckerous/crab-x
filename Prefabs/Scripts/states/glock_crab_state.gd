@@ -28,6 +28,7 @@ func process_physics(delta: float) -> State:
 	super(delta)
 	
 	if projectile_fired:
+		AudioManager.play_sfx("glock")
 		glock_particles.restart()
 		projectile_fired = false
 	

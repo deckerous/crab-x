@@ -128,6 +128,7 @@ script = ExtResource("2_4878n")
 flip_when_aiming = false
 diff_flip = true
 max_hp = 20.0
+use_difficulty_scaling = true
 
 [node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
 modulate = Color(0.0666667, 0.266667, 0.266667, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8mqopotq7qv2"]
+[gd_scene load_steps=2 format=3 uid="uid://dc5pnp3wgqi40"]
 
 [ext_resource type="PackedScene" uid="uid://cp4pc7saf6sk4" path="res://Prefabs/Scenes/bullets/explosion.tscn" id="1_rxpd5"]
 

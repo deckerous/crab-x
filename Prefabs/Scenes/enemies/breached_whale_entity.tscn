@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ba82s08ina6nr"]
+[gd_scene load_steps=23 format=3 uid="uid://ba82s08ina6nr"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_llv68"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/enemy_entity.gd" id="2_c2dih"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bwf33aiqylh8w" path="res://Prefabs/Scenes/enemies/mortar_entity.tscn" id="9_imovr"]
 [ext_resource type="Curve2D" uid="uid://jqstn7mmcx3y" path="res://Prefabs/Resources/Attack Patterns/straight_line_curve.tres" id="10_dhuo3"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/states/roll_attack_state.gd" id="11_j1jvj"]
+[ext_resource type="AudioStream" uid="uid://dcwv3erjbxjen" path="res://Assets/SFX/8bit_whale_shot.wav" id="12_7ceg8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sf1ir"]
 animations = [{
@@ -85,6 +86,7 @@ flip_when_aiming = false
 diff_flip = false
 max_hp = 750.0
 entity_id = "BreachedWhale"
+use_difficulty_scaling = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -54)
@@ -205,5 +207,8 @@ bbcode_enabled = true
 text = "[center]Breached Whale[/center]"
 fit_content = true
 scroll_active = false
+
+[node name="WhaleShotSound" type="AudioStreamPlayer2D" parent="." index="9"]
+stream = ExtResource("12_7ceg8")
 
 [editable path="TargettingComponent"]

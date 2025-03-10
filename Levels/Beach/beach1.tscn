@@ -226,9 +226,6 @@ position = Vector2(94, 743)
 [node name="CollisionShape2D" parent="Player/Camera2D/EnemyDetectedArea" index="0"]
 visible = false
 
-[node name="Shop" parent="." index="3"]
-visible = false
-
 [node name="ShopItem" parent="Shop/Shop Interface/VBoxContainer" index="0"]
 item = ExtResource("16_tu1gh")
 item_string = "Crab"

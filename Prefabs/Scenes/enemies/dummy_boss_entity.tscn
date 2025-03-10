@@ -52,6 +52,7 @@ flip_when_aiming = false
 diff_flip = false
 max_hp = 200.0
 entity_id = "DummyBoss"
+use_difficulty_scaling = true
 
 [node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
 position = Vector2(0, -5)

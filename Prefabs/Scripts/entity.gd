@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var armor: int = 0
 @export var health_bar_visible: bool = true
 @export var entity_id: String = "unknown"
+@export var use_difficulty_scaling: bool = false
 
 @onready var animations = $Animations
 @onready var collision_box = $CollisionBox
@@ -28,6 +29,9 @@ func _ready() -> void:
 	
 	hurtbox_component.hurt.connect(_damaged)
 	health_bar.visible = false
+	
+	if use_difficulty_scaling and PlayerVariable.using_difficulty_scaling and !CrabLogs.developer_logs:
+		_scale_entity_stats()
 	
 	_update_health_bar()
 	health_bar_initial_pos = health_bar.position
@@ -62,6 +66,7 @@ func _damaged(hitbox: HitboxComponent) -> void:
 		queue_free()
 
 func _on_death() -> void:
+	
 	pass
 
 func _update_health_bar() -> void:
@@ -69,3 +74,13 @@ func _update_health_bar() -> void:
 	if hp < max_hp: health_bar.visible = true
 	else: health_bar.visible = false
 	health_bar.value = (hp / max_hp) * health_bar.max_value
+
+func _scale_entity_stats() -> void:
+	var children = get_children(true)
+	
+	for child in children:
+		if child is HitboxComponent:
+			child.damage *= PlayerVariable.difficulty_scale
+	
+	max_hp *= PlayerVariable.difficulty_scale
+	hp = max_hp

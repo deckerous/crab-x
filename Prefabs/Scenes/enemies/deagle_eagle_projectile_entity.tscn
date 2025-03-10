@@ -31,6 +31,8 @@ collision_mask = 64
 speed = 2.5
 max_distance = 340.0
 speed_before_destroy = 0.5
+entity_id = "DeagleEagleProjectile"
+use_difficulty_scaling = true
 
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -11)
