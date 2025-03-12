@@ -2,7 +2,7 @@ extends Node
 
 # Dev mode: Set to true to eat logs
 @export var developer_logs: bool = true
-@export var version: String = "1.0.0"
+@export var version: String = "1.0.2"
 
 # Login Check
 @onready var logged_in = false

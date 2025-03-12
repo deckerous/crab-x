@@ -17,9 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://cehoptbmihbjs" path="res://Prefabs/Scenes/enemies/seagull_entity.tscn" id="10_64maf"]
 [ext_resource type="PackedScene" uid="uid://bkr2aawxwumno" path="res://Prefabs/Scenes/misc/coconut.tscn" id="10_lhrqc"]
 [ext_resource type="PackedScene" uid="uid://by0x7801225v6" path="res://Prefabs/Scenes/enemies/porcupine_fish_entity.tscn" id="12_e8jhe"]
-[ext_resource type="Texture2D" uid="uid://d0mnp1ih2g2mr" path="res://Assets/Crabs/png/crab-sniper-16x32.png" id="14_0oo00"]
-[ext_resource type="Texture2D" uid="uid://dqsq5i5hw4h31" path="res://Assets/Crabs/png/crab-rpg.png" id="14_p31nd"]
 [ext_resource type="Texture2D" uid="uid://cbnjdwt2ftbjg" path="res://Assets/Crabs/png/crab-shop-icon.png" id="16_xb680"]
+[ext_resource type="Texture2D" uid="uid://t07nsyhgutoc" path="res://Assets/Guns/png/rpg-16x32.png" id="18_acxpl"]
+[ext_resource type="Texture2D" uid="uid://c3c57v07fv11a" path="res://Assets/Guns/png/sniper.png" id="19_xp1pn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xba1c"]
 texture = ExtResource("3_l5sov")
@@ -239,7 +239,7 @@ position = Vector2(1854, 784)
 position = Vector2(782, -933)
 
 [node name="Player" parent="." index="2"]
-position = Vector2(70, 1135)
+position = Vector2(88, 1129)
 
 [node name="ShopItem" parent="Shop/Shop Interface/VBoxContainer" index="0"]
 item = ExtResource("16_xb680")
@@ -261,11 +261,11 @@ item_string = "Crab"
 price = 5
 
 [node name="ShopItem5" parent="Shop/Shop Interface/VBoxContainer" index="4"]
-item = ExtResource("14_p31nd")
+item = ExtResource("18_acxpl")
 price = 15
 
 [node name="ShopItem6" parent="Shop/Shop Interface/VBoxContainer" index="5"]
-item = ExtResource("14_0oo00")
+item = ExtResource("19_xp1pn")
 item_string = "Sniper"
 price = 25
 

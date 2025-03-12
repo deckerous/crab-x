@@ -239,7 +239,7 @@ position = Vector2(1207, -2920)
 position = Vector2(228, -3396)
 
 [node name="Player" parent="." index="2"]
-position = Vector2(200, 536)
+position = Vector2(190, 546)
 
 [node name="ShopItem" parent="Shop/Shop Interface/VBoxContainer" index="0"]
 item = ExtResource("16_wvj1c")

@@ -46,6 +46,9 @@ var game_over = false
 var game_over_state = false
 
 func _ready():
+	if !PlayerVariable.debug:
+		$PlayerUI/ToggleFullscreen/RichTextLabel.visible = true
+	
 	# Stop physics process until we see the navigation map sync,
 	# should only take one physics frame.
 	set_physics_process(false)
@@ -84,16 +87,20 @@ func _physics_process(delta):
 	var crabs = crab_manager.get_children()
 	crab_count = crabs.size() # Update crab count
 	
-	if Input.is_action_just_pressed("exit"):
+	if Input.is_action_just_pressed("exit") and PlayerVariable.debug:
 		toggle_pause()
-	if Input.is_action_just_pressed("reset"):
+	if Input.is_action_just_pressed("reset") and PlayerVariable.debug:
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("fullscreen"):
 		var fs = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 		if fs:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			if !PlayerVariable.debug:
+				$PlayerUI/ToggleFullscreen/RichTextLabel.visible = true
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			if !PlayerVariable.debug:
+				$PlayerUI/ToggleFullscreen/RichTextLabel.visible = false
 	if PlayerVariable.in_shop == true:
 		$PlayerUI.visible = false
 	else:

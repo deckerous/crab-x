@@ -186,23 +186,18 @@ shape = SubResource("RectangleShape2D_fisgt")
 
 [node name="SandFleaEntity" parent="Enemies" index="0" instance=ExtResource("9_5gfvo")]
 position = Vector2(353, -401)
-diff_flip = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="1" instance=ExtResource("9_5gfvo")]
 position = Vector2(370, -351)
-diff_flip = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="2" instance=ExtResource("9_5gfvo")]
 position = Vector2(424, -336)
-diff_flip = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="3" instance=ExtResource("9_5gfvo")]
 position = Vector2(639, 499)
-diff_flip = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="4" instance=ExtResource("9_5gfvo")]
 position = Vector2(894, 96)
-diff_flip = false
 
 [node name="SeagullEntity" parent="Enemies" index="5" instance=ExtResource("10_jow6t")]
 position = Vector2(248, 350)

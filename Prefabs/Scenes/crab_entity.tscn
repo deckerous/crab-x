@@ -1,5 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ch11nk2ii4e54"]
-
+[gd_scene load_steps=37 format=3 uid="uid://ch11nk2ii4e54"]
 
 [ext_resource type="PackedScene" uid="uid://bme5jecl7oi7e" path="res://Prefabs/Scenes/entity.tscn" id="1_4p3s6"]
 [ext_resource type="Texture2D" uid="uid://bhv6elbdw63ap" path="res://Assets/Crabs/png/crab-16x16.png" id="2_1tdqi"]
@@ -306,9 +305,6 @@ offset_bottom = 35.0
 visible = false
 texture = ExtResource("14_6dhip")
 
-[node name="FlashTimer" parent="FlashComponent" index="0"]
-one_shot = true
-
 [node name="DamageTakenSound" type="AudioStreamPlayer2D" parent="." index="11"]
 stream = ExtResource("20_dhkvw")
 
@@ -339,5 +335,8 @@ stream = ExtResource("25_lf0jl")
 volume_db = -17.743
 pitch_scale = 2.54
 max_polyphony = 10
+
+[node name="FlashTimer" parent="FlashComponent" index="0"]
+one_shot = true
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
