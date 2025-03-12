@@ -1,19 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://trxdycr3ktyr"]
 
 [ext_resource type="PackedScene" uid="uid://n4yumd7dve4i" path="res://Prefabs/Scenes/projectile_entity.tscn" id="1_v3ns6"]
-[ext_resource type="Texture2D" uid="uid://grwynw3qukcn" path="res://Assets/Enemies/png/seagull-projectile.png" id="2_mdxxo"]
+[ext_resource type="Texture2D" uid="uid://dxsm3bh52sxcq" path="res://Assets/Guns/png/bullet.png" id="2_bcreo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6jamt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_mdxxo")
+"texture": ExtResource("2_bcreo")
 }],
-"loop": true,
-"name": &"airborne",
-"speed": 5.0
-}, {
-"frames": [],
 "loop": true,
 "name": &"destroy",
 "speed": 5.0
@@ -37,6 +32,7 @@ use_difficulty_scaling = true
 [node name="Animations" parent="." index="0"]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_6jamt")
+animation = &"destroy"
 
 [node name="CollisionBox" parent="." index="1"]
 position = Vector2(0, -5.5)

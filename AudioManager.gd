@@ -41,12 +41,12 @@ func _ready():
 	sfx["sniper"] = preload("res://Assets/SFX/sniper.wav")
 
 
-	bgm["spagetti"] = preload("res://Assets/SFX/spagetti western.ogg")
-	bgm["jungle"] = preload("res://Assets/SFX/Winning the Race.ogg")
-	bgm["beach"] = preload("res://Assets/SFX/EasternArcticDubstep.MP3")
-	bgm["beachBoss"] = preload("res://Assets/SFX/dark_forces_loop.mp3")
-	bgm["fanfare"] = preload("res://Assets/SFX/fanfare.ogg")
-	bgm["finalBoss"] = preload("res://Assets/SFX/deagle_theme.mp3")
+	bgm["spagetti"] = load("res://Assets/SFX/spagetti western.ogg")
+	bgm["jungle"] = load("res://Assets/SFX/Winning the Race.ogg")
+	bgm["beach"] = load("res://Assets/SFX/EasternArcticDubstep.MP3")
+	bgm["beachBoss"] = load("res://Assets/SFX/dark_forces_loop.mp3")
+	bgm["fanfare"] = load("res://Assets/SFX/fanfare.ogg")
+	bgm["finalBoss"] = load("res://Assets/SFX/deagle_theme.mp3")
 
 	# Enable looping for BGM
 	# bgm_player.stream_loop = true
