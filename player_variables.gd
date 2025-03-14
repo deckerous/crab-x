@@ -4,6 +4,7 @@ extends Node
 
 var debug = true
 var in_shop = false
+var fullscreen = false
 var num_crabs = 0
 var cur_weapon = "none"
 var cur_level = 0
@@ -24,7 +25,6 @@ var time_played = 0
 var score = 0
 
 #### Save System Below ####
-
 var level_complete = false
 var SAVE_PATH = "user://save_file.cfg"
 var TEST_SAVE_PATH = "res://save_file.cfg"
@@ -40,6 +40,9 @@ var level = {
 	1: "res://Levels/Beach/beach1.tscn",
 	2: "res://Levels/Beach/beach2.tscn",
 	3: "res://Levels/Beach/beach3.tscn",
+	4: "res://Levels/Jungle/jungle1.tscn",
+	5: "res://Levels/Jungle/jungle2.tscn",
+	6: "res://Levels/Jungle/jungle3.tscn"
 }
 
 # Debug settings switcher. Add more here...

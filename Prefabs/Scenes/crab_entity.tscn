@@ -107,8 +107,8 @@ script = ExtResource("2_mcd1l")
 entity_id = "Crab"
 
 [node name="Drop-shadow-18x16" type="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 0.564706)
-scale = Vector2(0.8, 0.8)
+position = Vector2(0, 1)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("15_q6qch")
 
 [node name="Animations" parent="." index="1"]
@@ -116,6 +116,7 @@ sprite_frames = SubResource("SpriteFrames_7lf24")
 animation = &"sniper"
 
 [node name="CollisionBox" parent="." index="2"]
+visible = false
 shape = SubResource("CircleShape2D_uljcy")
 
 [node name="CollectableComponent" type="Area2D" parent="." index="3"]
@@ -140,6 +141,7 @@ shape = SubResource("CircleShape2D_bguln")
 debug_color = Color(0.913828, 0.0663878, 0.692027, 0.42)
 
 [node name="HealingArea2D" type="Area2D" parent="." index="6"]
+visible = false
 collision_layer = 32
 collision_mask = 32
 
