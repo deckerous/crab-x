@@ -177,66 +177,87 @@ position = Vector2(777, -1087)
 
 [node name="SandFleaEntity" parent="Enemies" index="0" groups=["enemy"] instance=ExtResource("10_2aj03")]
 position = Vector2(563, 195)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="1" groups=["enemy"] instance=ExtResource("10_2aj03")]
 position = Vector2(638, 216)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="2" groups=["enemy"] instance=ExtResource("10_2aj03")]
 position = Vector2(576, 269)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="3" groups=["enemy"] instance=ExtResource("10_2aj03")]
 position = Vector2(1394, -133)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="4" groups=["enemy"] instance=ExtResource("10_2aj03")]
 position = Vector2(669, -427)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity2" parent="Enemies" index="5" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(426, 830)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity3" parent="Enemies" index="6" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(1838, 932)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity4" parent="Enemies" index="7" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(1931, 676)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity7" parent="Enemies" index="8" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(2439, -164)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity8" parent="Enemies" index="9" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(2470, -434)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity9" parent="Enemies" index="10" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(954, -916)
+use_difficulty_scaling = false
 
 [node name="DartFrogEntity10" parent="Enemies" index="11" groups=["enemy"] instance=ExtResource("9_27aqd")]
 position = Vector2(602, -900)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity" parent="Enemies" index="12" instance=ExtResource("10_64maf")]
 position = Vector2(981, 456)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity4" parent="Enemies" index="13" instance=ExtResource("10_64maf")]
 position = Vector2(969, -234)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity5" parent="Enemies" index="14" instance=ExtResource("10_64maf")]
 position = Vector2(1435, 543)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity6" parent="Enemies" index="15" instance=ExtResource("10_64maf")]
 position = Vector2(1717, -524)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity2" parent="Enemies" index="16" instance=ExtResource("10_64maf")]
 position = Vector2(921, 606)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity3" parent="Enemies" index="17" instance=ExtResource("10_64maf")]
 position = Vector2(1259, 156)
+use_difficulty_scaling = false
 
 [node name="PorcupineFishEntity" parent="Enemies" index="18" groups=["boss"] instance=ExtResource("12_e8jhe")]
 position = Vector2(2462, -301)
+use_difficulty_scaling = false
 
 [node name="PorcupineFishEntity2" parent="Enemies" index="19" groups=["boss"] instance=ExtResource("12_e8jhe")]
 position = Vector2(1854, 784)
+use_difficulty_scaling = false
 
 [node name="PorcupineFishEntity3" parent="Enemies" index="20" groups=["boss"] instance=ExtResource("12_e8jhe")]
 position = Vector2(782, -933)
+use_difficulty_scaling = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(88, 1129)

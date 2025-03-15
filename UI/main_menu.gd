@@ -21,7 +21,7 @@ func start_game() -> void:
 	var level_num = PlayerVariable.load_values("Levels", "Current Level")
 	if !PlayerVariable.config.has_section("Levels"):
 		var tree = get_tree()
-		tree.call_deferred("change_scene_to_file", "res://Levels/Tutorial/tutorial_refactor.tscn")
+		tree.call_deferred("change_scene_to_file", PlayerVariable.tutorial_level)
 	else:
 		AudioManager.play_bgm("spagetti")
 		Transition.fade_out()
@@ -59,7 +59,7 @@ func _on_new_game_button_pressed():
 	Transition.fade_in()
 	await Transition.animation_player.animation_finished
 	
-	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
+	get_tree().change_scene_to_file(PlayerVariable.tutorial_level)
 
 func _on_continue_button_pressed():
 	AudioManager.stop_bgm()

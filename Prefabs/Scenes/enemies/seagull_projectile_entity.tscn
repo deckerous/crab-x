@@ -10,6 +10,11 @@ animations = [{
 "texture": ExtResource("2_bcreo")
 }],
 "loop": true,
+"name": &"airborne",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"destroy",
 "speed": 5.0
 }]

@@ -1,6 +1,5 @@
 extends Level
 
-@onready var dialogue_handler = $DialogueHandler
 @onready var post_chest_dialogue = $Graphics/LootAndTriggers/KillDummies
 @onready var post_dummy_dialogue = $Graphics/LootAndTriggers/Shopping
 @onready var post_shop_dialogue = $Graphics/LootAndTriggers/KillBoss
@@ -11,15 +10,14 @@ extends Level
 @onready var enabled_boss_on_tutorial = false
 @onready var tut_boss_killed = false
 
-
 func _ready() -> void:
 	super()
 	CrabLogs.log_tutorial_step("StartTutorial")
-	dialogue_handler.trigger_visible()
 
-func _start_tutorial(tutorial_part, text: Variant) -> void:
+func _start_tutorial(tutorial_part, text: Variant, hint: bool) -> void:
 	CrabLogs.log_tutorial_step(tutorial_part)
-	dialogue_handler.tutorial_time(text)
+	dialogue.skip = false
+	dialogue.tutorial_time(text, hint)
 
 func _handle_chests(loot) -> void:
 	chests_opened += 1
@@ -32,8 +30,8 @@ func _handle_kills(_unused) -> void:
 	if dummies_killed == 3:
 		post_dummy_dialogue.visible = true
 		post_dummy_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
-		
-func _enable_boss(node_name, text) -> void:
+
+func _enable_boss(node_name, text, hint) -> void:
 	#print("being played")
 	#AudioManager.play_bgm("beachBoss")
 	enabled_boss_on_tutorial = true
@@ -50,7 +48,7 @@ func _boss_killed(_unused) -> void:
 	tut_boss_killed = true
 	level_complete_func()
 
-func _shop_tutorial_trigger(node_name, text) -> void:
+func _shop_tutorial_trigger(node_name, text, hint) -> void:
 	var shop_icon = $Graphics/LootAndTriggers/ShopIcon
-	shop_icon.process_mode = Node.PROCESS_MODE_INHERIT
+	shop_icon.process_mode = Node.PROCESS_MODE_ALWAYS
 	shop_icon.visible = true

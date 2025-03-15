@@ -30,7 +30,7 @@ func _ready() -> void:
 	hurtbox_component.hurt.connect(_damaged)
 	health_bar.visible = false
 	
-	if use_difficulty_scaling and PlayerVariable.using_difficulty_scaling and !CrabLogs.developer_logs:
+	if use_difficulty_scaling:
 		_scale_entity_stats()
 	
 	_update_health_bar()

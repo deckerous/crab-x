@@ -46,10 +46,6 @@ var game_over = false
 var game_over_state = false
 
 func _ready():
-	#if !PlayerVariable.debug and !PlayerVariable.fullscreen:
-	if !PlayerVariable.fullscreen:
-		$PlayerUI/ToggleFullscreen/RichTextLabel.visible = true
-	
 	# Stop physics process until we see the navigation map sync,
 	# should only take one physics frame.
 	set_physics_process(false)
@@ -96,20 +92,13 @@ func _physics_process(delta):
 		var fs = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 		if fs:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			#if !PlayerVariable.debug and !PlayerVariable.fullscreen:
-			if PlayerVariable.fullscreen:
-				PlayerVariable.fullscreen = false
-				$PlayerUI/ToggleFullscreen/RichTextLabel.visible = true
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			if !PlayerVariable.fullscreen:
-				PlayerVariable.fullscreen = true
-				$PlayerUI/ToggleFullscreen/RichTextLabel.visible = false
 	if PlayerVariable.in_shop == true:
 		$PlayerUI.visible = false
 	else:
 		$PlayerUI.visible = true
-
+	
 	PlayerVariable.num_crabs = crabs.size()
 	game_over = crabs.size() == 0
 	

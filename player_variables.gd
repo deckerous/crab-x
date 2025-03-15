@@ -4,12 +4,15 @@ extends Node
 
 var debug = true
 var in_shop = false
-var fullscreen = false
 var num_crabs = 0
 var cur_weapon = "none"
 var cur_level = 0
 
-@onready var using_difficulty_scaling = randi_range(0,1)
+@onready var no_dialogue_bools = [false, true]
+@onready var tutorial_options = ["res://Levels/Tutorial/tutorial_refactor.tscn", "res://Levels/Tutorial/tutorial_refactor_b.tscn"]
+@onready var no_dialogue_index = randi_range(0,1)
+@onready var no_dialogue = no_dialogue_bools[no_dialogue_index]
+@onready var tutorial_level = tutorial_options[no_dialogue_index]
 
 const MAX_DIFFICULTY_MULTIPLIER = 1.0
 const MIN_DIFFICULTY_MULTIPLIER = 0.7
@@ -36,7 +39,7 @@ var test_load_response = config.load(TEST_SAVE_PATH)
 # Dictionary of current levels and their path
 var level = {
 	"main": "res://UI/start_menu.tscn",
-	0: "res://Levels/Tutorial/tutorial_refactor.tscn",
+	0: tutorial_level,
 	1: "res://Levels/Beach/beach1.tscn",
 	2: "res://Levels/Beach/beach2.tscn",
 	3: "res://Levels/Beach/beach3.tscn",

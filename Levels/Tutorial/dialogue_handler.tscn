@@ -1,7 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://cob367saorgaw"]
+[gd_scene load_steps=6 format=3 uid="uid://cob367saorgaw"]
 
 [ext_resource type="Script" path="res://Levels/Tutorial/Scripts/dialogue_handler.gd" id="1_yu8nt"]
 [ext_resource type="Texture2D" uid="uid://dkga3otvvspwg" path="res://Assets/Crabs/png/crusty-shawn-portrait.png" id="2_d7efj"]
+
+[sub_resource type="Animation" id="Animation_d66h4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p6txj"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.352941)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkjpj"]
+_data = {
+"RESET": SubResource("Animation_d66h4"),
+"new_animation": SubResource("Animation_p6txj")
+}
 
 [node name="DialogueHandler" type="Node2D"]
 process_mode = 3
@@ -48,3 +85,24 @@ polygon = PackedVector2Array(309, 172, 305, 166, 313, 166)
 position = Vector2(21, 151)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_d7efj")
+
+[node name="HintText" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+offset_left = 84.0
+offset_top = 111.0
+offset_right = 454.0
+offset_bottom = 151.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 3
+text = "Use 'Right click' or 'Space' to advance dialogue"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HintText"]
+libraries = {
+"": SubResource("AnimationLibrary_bkjpj")
+}
+autoplay = "new_animation"
