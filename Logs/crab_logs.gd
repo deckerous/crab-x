@@ -92,7 +92,8 @@ func log_event(event_type: String, details: Dictionary):
 		"Log Type": event_type,
 		"Version": version,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	data.merge(details)
 	
@@ -126,7 +127,8 @@ func log_stage_complete(weapon: String, crabs_remaining: int, sheckles_remaining
 		"Kills": kills,
 		"Deaths": stage_deaths,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Reset stage statistics
@@ -155,7 +157,8 @@ func log_stage_restart():
 		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Push log to firestore
@@ -183,7 +186,8 @@ func log_stage_start(stage_id: String):
 		"Version": version,
 		"Stage ID": stage_id,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Start stage statistic collection
@@ -217,7 +221,8 @@ func log_player_death(enemy_id: String):
 		"Killed By" : enemy_id,
 		"Duration": stage_time_elapsed,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Start stage statistic collection
@@ -245,7 +250,8 @@ func log_player_quit(afk: bool):
 		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Push log to firestore
@@ -270,7 +276,8 @@ func log_player_return():
 		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Push log to firestore
@@ -294,7 +301,8 @@ func log_tutorial_step(tutorial_part: String):
 		"Timestamp" : time_elapsed,
 		"Log Type": "tutorial_step",
 		"Version": version,
-		"Tutorial Part": tutorial_part
+		"Tutorial Part": tutorial_part,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	curr_tutorial_step = tutorial_part
@@ -319,7 +327,8 @@ func log_dialogue_complete():
 		"Timestamp" : time_elapsed,
 		"Log Type": "dialogue_complete",
 		"Version": version,
-		"Tutorial Part": curr_tutorial_step
+		"Tutorial Part": curr_tutorial_step,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Push log to firestore
@@ -344,7 +353,8 @@ func log_player_continue():
 		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Push log to firestore
@@ -369,7 +379,8 @@ func log_force_quit():
 		"Version": version,
 		"Stage ID": curr_stage_id,
 		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
-		"Difficulty Scaling": PlayerVariable.difficulty_scale
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
+		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
 	# Push log to firestore

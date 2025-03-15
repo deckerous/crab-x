@@ -1,6 +1,7 @@
 extends Level
 
-@onready var dialogue_handler = $DialogueHandler
+#@onready var dialogue_handler = $DialogueHandler
+#@onready var dialogue_handler = null
 @onready var post_chest_dialogue = $Graphics/LootAndTriggers/KillDummies
 @onready var post_dummy_dialogue = $Graphics/LootAndTriggers/Shopping
 @onready var post_shop_dialogue = $Graphics/LootAndTriggers/KillBoss
@@ -15,11 +16,10 @@ extends Level
 func _ready() -> void:
 	super()
 	CrabLogs.log_tutorial_step("StartTutorial")
-	dialogue_handler.trigger_visible()
 
 func _start_tutorial(tutorial_part, text: Variant) -> void:
 	CrabLogs.log_tutorial_step(tutorial_part)
-	dialogue_handler.tutorial_time(text)
+	dialogue.tutorial_time(text)
 
 func _handle_chests(loot) -> void:
 	chests_opened += 1
