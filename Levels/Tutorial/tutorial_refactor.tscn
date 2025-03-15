@@ -95,12 +95,9 @@ position = Vector2(265, 280)
 player = NodePath("../../../Player")
 
 [node name="CollectChests" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
-position = Vector2(-80, 416)
+position = Vector2(-118, 407)
 dialogue = ["It seems you are not completely useless! Good to see, [shake rate=25level=10]prawn[/shake]!", "Now the military is not about to supply a bunch of newbies with weapons ourselves! That would push our budget above what we can afford.", "Instead, you'll have to scavenge the battlefield for [b]chests[/b]. These can contain anything from coins to reinforcements to weapons!", "As an example, we have strewn a few across the training camp here. [b]Collect them and report back to me[/b], [shake rate=25level=10]prawn[/shake]!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall1")
-
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/CollectChests" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
 [node name="KillDummies" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
 process_mode = 4
@@ -109,17 +106,11 @@ position = Vector2(256, 336)
 dialogue = ["Now that you've found yourself a weapon, I will introduce the basics of combat!", "Use the [b]mouse[/b] to aim your weapons, and then fire by using [b]Left Click[/b] or the [b]space bar[/b]!", "Go and rain hellfire upon these [b]dummies[/b], [shake rate=25level=10]prawn[/shake]!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall2")
 
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/KillDummies" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
-
 [node name="Shopping" parent="Graphics/LootAndTriggers" instance=ExtResource("6_xd58g")]
 process_mode = 4
 visible = false
 position = Vector2(144, 192)
 dialogue = ["You've collected a decent amount of [b]coins[/b], [shake rate=25 level=10]prawn[/shake]. Now I'll show you where to spend them!", "Run into this [b]yellow icon[/b] to enter the [b]prawn shop[/b]! There you can spend your [b]coins[/b]."]
-
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/Shopping" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
 [node name="KillBoss" parent="Graphics/LootAndTriggers" node_paths=PackedStringArray("wall") instance=ExtResource("6_xd58g")]
 process_mode = 4
@@ -127,9 +118,6 @@ visible = false
 position = Vector2(144, 160)
 dialogue = ["Alright, now I've prepared you as much as I can, [shake rate=25 level=10]prawn[/shake]. Finally, we'll take on your graduation challenge!", "We got a completely autonomous dummy that is gonna shoot some grenades at you! Manage to [b]survive[/b] and you'll finally become a soldier!", "Remember, if you lose all of your crabs you [shake rate=25 level=10]FAIL[/shake]! Now, move out!"]
 wall = NodePath("../../Tilemaps/Walls/TempWall3")
-
-[node name="TileMapLayer" parent="Graphics/LootAndTriggers/KillBoss" index="1"]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAA=")
 
 [node name="Mouse-controls" type="Sprite2D" parent="Graphics"]
 position = Vector2(-176, 368)
@@ -153,6 +141,7 @@ position = Vector2(160, 228)
 [node name="DummyBossEntity" parent="Enemies" instance=ExtResource("8_2puqx")]
 process_mode = 4
 position = Vector2(160, 48)
+use_difficulty_scaling = false
 
 [node name="Player" parent="." instance=ExtResource("2_sg1dp")]
 position = Vector2(-272, 424)

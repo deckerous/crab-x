@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6kgb2gvyrvcr"]
+[gd_scene load_steps=6 format=3 uid="uid://b6kgb2gvyrvcr"]
 
 [ext_resource type="Texture2D" uid="uid://bory6el8j7t2n" path="res://Assets/Crabs/png/general-crusty-shawn.png" id="1_8afl0"]
 [ext_resource type="Script" path="res://Levels/Tutorial/Scripts/tutorial_trigger.gd" id="1_cpidk"]
-[ext_resource type="TileSet" uid="uid://dc6a4v4wygrlj" path="res://Assets/Tilesets/resource/sand_tileset.tres" id="2_o7o13"]
 [ext_resource type="Texture2D" uid="uid://dfwhjp66n3ta4" path="res://Assets/Misc/png/drop-shadow-18x16.png" id="2_ylu4s"]
 [ext_resource type="Texture2D" uid="uid://dmkpixytbwyji" path="res://Assets/Misc/png/arrow.png" id="4_wffri"]
 
@@ -17,10 +16,6 @@ z_index = 1
 position = Vector2(16, 21)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_ylu4s")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-tile_set = ExtResource("2_o7o13")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1

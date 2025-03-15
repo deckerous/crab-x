@@ -186,34 +186,44 @@ shape = SubResource("RectangleShape2D_fisgt")
 
 [node name="SandFleaEntity" parent="Enemies" index="0" instance=ExtResource("9_5gfvo")]
 position = Vector2(353, -401)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity2" parent="Enemies" index="1" instance=ExtResource("9_5gfvo")]
 position = Vector2(370, -351)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity3" parent="Enemies" index="2" instance=ExtResource("9_5gfvo")]
 position = Vector2(424, -336)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity4" parent="Enemies" index="3" instance=ExtResource("9_5gfvo")]
 position = Vector2(639, 499)
+use_difficulty_scaling = false
 
 [node name="SandFleaEntity5" parent="Enemies" index="4" instance=ExtResource("9_5gfvo")]
 position = Vector2(894, 96)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity" parent="Enemies" index="5" instance=ExtResource("10_jow6t")]
 position = Vector2(248, 350)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity4" parent="Enemies" index="6" instance=ExtResource("10_jow6t")]
 position = Vector2(975, -370)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity2" parent="Enemies" index="7" instance=ExtResource("10_jow6t")]
 position = Vector2(1049, 585)
+use_difficulty_scaling = false
 
 [node name="SeagullEntity3" parent="Enemies" index="8" instance=ExtResource("10_jow6t")]
 position = Vector2(804, 589)
+use_difficulty_scaling = false
 
 [node name="PorcupineFishEntity" parent="Enemies" index="9" instance=ExtResource("11_mu1m5")]
 process_mode = 4
 position = Vector2(651, 179)
+use_difficulty_scaling = false
 
 [node name="Player" parent="." index="2"]
 position = Vector2(94, 743)

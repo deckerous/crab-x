@@ -80,28 +80,4 @@ text = " 0"
 fit_content = true
 scroll_active = false
 
-[node name="ToggleFullscreen" type="Control" parent="PlayerUI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerUI/ToggleFullscreen"]
-visible = false
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = 480.0
-offset_bottom = 23.0
-grow_horizontal = 2
-scale = Vector2(0.4, 0.4)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/normal_font_size = 16
-bbcode_enabled = true
-text = "[center]Press 'F' to enter and exit fullscreen"
-fit_content = true
-
 [connection signal="changed_last_damaged_by" from="CrabManager/CrabEntity" to="." method="_on_crab_entity_changed_last_damaged_by"]

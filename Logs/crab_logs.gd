@@ -91,7 +91,6 @@ func log_event(event_type: String, details: Dictionary):
 		"Timestamp": time_elapsed,
 		"Log Type": event_type,
 		"Version": version,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -126,7 +125,6 @@ func log_stage_complete(weapon: String, crabs_remaining: int, sheckles_remaining
 		"Sheckles Remaining": sheckles_remaining,
 		"Kills": kills,
 		"Deaths": stage_deaths,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -156,7 +154,6 @@ func log_stage_restart():
 		"Log Type": "stage_restart",
 		"Version": version,
 		"Stage ID": curr_stage_id,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -185,7 +182,6 @@ func log_stage_start(stage_id: String):
 		"Log Type": "stage_start",
 		"Version": version,
 		"Stage ID": stage_id,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -220,7 +216,6 @@ func log_player_death(enemy_id: String):
 		"Stage ID": curr_stage_id,
 		"Killed By" : enemy_id,
 		"Duration": stage_time_elapsed,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -249,7 +244,6 @@ func log_player_quit(afk: bool):
 		"Log Type": "player_quit",
 		"Version": version,
 		"Stage ID": curr_stage_id,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -275,7 +269,6 @@ func log_player_return():
 		"Log Type": "player_return",
 		"Version": version,
 		"Stage ID": curr_stage_id,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -302,6 +295,7 @@ func log_tutorial_step(tutorial_part: String):
 		"Log Type": "tutorial_step",
 		"Version": version,
 		"Tutorial Part": tutorial_part,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
@@ -328,6 +322,7 @@ func log_dialogue_complete():
 		"Log Type": "dialogue_complete",
 		"Version": version,
 		"Tutorial Part": curr_tutorial_step,
+		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
 	
@@ -352,7 +347,6 @@ func log_player_continue():
 		"Log Type": "player_continue",
 		"Version": version,
 		"Stage ID": curr_stage_id,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}
@@ -378,7 +372,6 @@ func log_force_quit():
 		"Log Type": "player_force_quit",
 		"Version": version,
 		"Stage ID": curr_stage_id,
-		"Difficulty Scaled": PlayerVariable.using_difficulty_scaling,
 		"Difficulty Scaling": PlayerVariable.difficulty_scale,
 		"No Dialogue Tutorial": PlayerVariable.no_dialogue
 	}

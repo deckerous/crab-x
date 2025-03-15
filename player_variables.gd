@@ -4,7 +4,6 @@ extends Node
 
 var debug = true
 var in_shop = false
-var fullscreen = false
 var num_crabs = 0
 var cur_weapon = "none"
 var cur_level = 0
@@ -14,8 +13,6 @@ var cur_level = 0
 @onready var no_dialogue_index = randi_range(0,1)
 @onready var no_dialogue = no_dialogue_bools[no_dialogue_index]
 @onready var tutorial_level = tutorial_options[no_dialogue_index]
-
-@onready var using_difficulty_scaling = randi_range(0,1)
 
 const MAX_DIFFICULTY_MULTIPLIER = 1.0
 const MIN_DIFFICULTY_MULTIPLIER = 0.7

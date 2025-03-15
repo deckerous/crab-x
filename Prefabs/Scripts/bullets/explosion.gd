@@ -13,7 +13,7 @@ extends Node2D
 signal explosion_finished
 
 func _ready() -> void:
-	if use_difficulty_scaling and PlayerVariable.using_difficulty_scaling and !CrabLogs.developer_logs:
+	if use_difficulty_scaling:
 		hitbox_component.damage *= PlayerVariable.difficulty_scale
 	
 	#collision_shape_2d.set_deferred("disabled", true)
