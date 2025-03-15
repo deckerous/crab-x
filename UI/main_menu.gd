@@ -12,23 +12,21 @@ extends Control
 @onready var viewport_w = get_viewport().get_visible_rect().size.x
 @onready var viewport_h = get_viewport().get_visible_rect().size.y
 
+signal finished_loading_sounds
+
 func _ready() -> void:
-	AudioManager.play_bgm("spagetti")
-	var os = CrabLogs.get_device_type()
-	if os == "Web Mobile":
-		main_menu_screen.visible = false
-		mobile_warning.visible = true
-	#transition.visible = false
-	Transition._hide()
+	start_game()
+
+func start_game() -> void:
 	var level_num = PlayerVariable.load_values("Levels", "Current Level")
 	if !PlayerVariable.config.has_section("Levels"):
-		#transition.visible = true
-		Transition._unhide()
 		var tree = get_tree()
 		tree.call_deferred("change_scene_to_file", "res://Levels/Tutorial/tutorial_refactor.tscn")
+	else:
+		AudioManager.play_bgm("spagetti")
+		Transition.fade_out()
 
 func _physics_process(delta):
-	
 	if crabs.size() == 0:
 		_spawn_crabs()
 	
@@ -59,7 +57,6 @@ func _on_new_game_button_pressed():
 	AudioManager.stop_bgm()
 	AudioManager.play_sfx("plus")
 	Transition.fade_in()
-	#transition.visible = true
 	await Transition.animation_player.animation_finished
 	
 	get_tree().change_scene_to_file("res://Levels/Tutorial/tutorial_refactor.tscn")
@@ -73,7 +70,6 @@ func _on_continue_button_pressed():
 	PlayerVariable.load_values("Levels", "Current Level")
 	
 	Transition.fade_in()
-	#transition.visible = true
 	await Transition.animation_player.animation_finished
 	
 	get_tree().change_scene_to_file(PlayerVariable.level[PlayerVariable.cur_level])

@@ -1,9 +1,70 @@
-[gd_scene load_steps=6 format=3 uid="uid://bchgounswh1og"]
+[gd_scene load_steps=9 format=3 uid="uid://bchgounswh1og"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_disjy"]
 [ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="2_u2yvy"]
 [ext_resource type="Texture2D" uid="uid://xedb0ehcyxb2" path="res://Assets/UI/stats_bar.png" id="3_1rnps"]
 [ext_resource type="Texture2D" uid="uid://bgwyesutoji48" path="res://Assets/UI/stat_box.png" id="4_4snfw"]
+
+[sub_resource type="Animation" id="Animation_s7kgw"]
+resource_name = "type_in"
+length = 5.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_characters")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel2:text")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 2.3, 2.8, 3.3, 3.8, 4.3, 4.8, 5.3, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["   _", "     _", "       _", "         _", "           _", "             _", "              _", "                _", "                   _", "                     _", "                      _", "                        _", "                            _", "                              _", "                                _", "                                  _", "                                    _", "                                      _", "                                      ", "                                      _", "                                      ", "                                      _", "                                      ", "                                      _", "                                      ", "                                      _"]
+}
+
+[sub_resource type="Animation" id="Animation_yvah2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel2:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["   _"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eu1y7"]
+_data = {
+"RESET": SubResource("Animation_yvah2"),
+"type_in": SubResource("Animation_s7kgw")
+}
 
 [sub_resource type="GDScript" id="GDScript_xfpjr"]
 script/source = "extends CanvasLayer
@@ -179,18 +240,38 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="winning"]
-modulate = Color(0.854622, 0.187628, 0.176296, 1)
 clip_contents = false
 layout_direction = 1
 offset_left = 77.0
-offset_top = 39.0
+offset_top = 72.0
 offset_right = 269.0
-offset_bottom = 111.0
+offset_bottom = 144.0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[wave][rainbow freq=0.3 sat=1 val=5 speed=1.0]Operation Complete"
+text = "Operation Complete"
 fit_content = true
 scroll_active = false
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="winning"]
+clip_contents = false
+layout_direction = 1
+offset_left = 77.0
+offset_top = 72.0
+offset_right = 269.0
+offset_bottom = 144.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "   _"
+fit_content = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="winning"]
+libraries = {
+"": SubResource("AnimationLibrary_eu1y7")
+}
+speed_scale = 2.0
 
 [node name="during_game_screen" type="Node2D" parent="."]
 visible = false

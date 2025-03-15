@@ -140,19 +140,19 @@ player = NodePath("../../../Player")
 position = Vector2(157, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Graphics/LootAndTriggers" index="13"]
-position = Vector2(571, 722)
-scale = Vector2(0.1, 0.1)
+position = Vector2(565, 727)
+scale = Vector2(0.11, 0.11)
 texture = ExtResource("9_40xcj")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Graphics/LootAndTriggers/Sprite2D" index="0"]
-offset_left = -150.0
-offset_top = -190.0
-offset_right = 65.0
-offset_bottom = -90.0
-scale = Vector2(1.5, 1.5)
+offset_left = -363.636
+offset_top = -254.545
+offset_right = -139.636
+offset_bottom = -154.545
+scale = Vector2(3.5, 3.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[outline_size=6]General Crusty Shawn Tip:
+text = "[outline_size=6][center]General Crusty Shawn Tip:
 These heal damaged crabs"
 
 [node name="Coconut2" parent="Graphics/LootAndTriggers" index="14" instance=ExtResource("7_hhjue")]

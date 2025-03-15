@@ -16,6 +16,7 @@ var is_paused = false # Keep track of pause state
 @onready var coins_label = $during_game_screen/coins_label
 @onready var item_label = $during_game_screen/item_label
 @onready var weapon_label = $during_game_screen/weapon_label
+@onready var animation_player = $winning/AnimationPlayer
 
 signal next_level
 
@@ -45,7 +46,7 @@ func _on_level_complete():
 	AudioManager.play_bgm("fanfare")
 	during_game_screen.visible = false
 	end_of_level_screen.visible = true
-	
+	animation_player.play("type_in")
 	await get_tree().create_timer(5).timeout
 	next_level.emit()
 

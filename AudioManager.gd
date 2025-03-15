@@ -1,13 +1,39 @@
 extends Node
 
 # Dictionary to store loaded sounds
-var sfx = {}
-var bgm = {}
+@onready var sfx = {
+	"fireball": preload("res://Assets/SFX/fireball.wav"),
+	"hit": preload("res://Assets/SFX/realistic_gunshot.wav"),
+	"glock": preload("res://Assets/SFX/8bit_glock.wav"),
+	"heal": preload("res://Assets/SFX/8bit_heal.wav"),
+	"explosion": preload("res://Assets/SFX/short_explosion.wav"),
+	"damage": preload("res://Assets/SFX/8bit_big_hit.wav"),
+	"smallDefeat": preload("res://Assets/SFX/8bit_impact.wav"),
+	"bigDefeat": preload("res://Assets/SFX/8bit_whale_shot.wav"),
+	"minus": preload("res://Assets/SFX/8bit_loss.wav"),
+	"unlock": preload("res://Assets/SFX/unlock1.wav"),
+	"plus": preload("res://Assets/SFX/unlock2.wav"),
+	"coin": preload("res://Assets/SFX/coin2.wav"),
+	"truck": preload("res://Assets/SFX/engine.wav"),
+	"woosh": preload("res://Assets/SFX/woosh.wav"),
+	"victory": preload("res://Assets/SFX/fanfare.wav"),
+	"failure": preload("res://Assets/SFX/8bit_lose.wav"),
+	"rpg": preload("res://Assets/SFX/8bit_rpg.wav"),
+	"sniper": preload("res://Assets/SFX/sniper.wav")
+}
+@onready var bgm = {
+	"spagetti": preload("res://Assets/SFX/spagetti western.ogg"),
+	"jungle": preload("res://Assets/SFX/Winning the Race.ogg"),
+	"beach": preload("res://Assets/SFX/EasternArcticDubstep.MP3"),
+	"beachBoss": preload("res://Assets/SFX/dark_forces_loop.mp3"),
+	"fanfare": preload("res://Assets/SFX/fanfare.ogg"),
+	"finalBoss": preload("res://Assets/SFX/deagle_theme.mp3")
+}
 
 var current_music_player : AudioStreamPlayer 
 
 const mute_db := -80.0 # To mute the audio player
-const default_music_db := -10.0 # This is for normal volume
+const default_music_db := -20.0 # This is for normal volume
 const fade_time := 2.0 # The time it takes to fade in/out in seconds
 
 # Audio Players
@@ -20,46 +46,16 @@ func _ready():
 	add_child(sfx_player)
 	add_child(bgm_player)
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	sfx["fireball"] = preload("res://Assets/SFX/fireball.wav")
-	sfx["hit"] = preload("res://Assets/SFX/realistic_gunshot.wav")
-	sfx["glock"] = preload("res://Assets/SFX/8bit_glock.wav")
-	sfx["heal"] = preload("res://Assets/SFX/8bit_heal.wav")
-	sfx["explosion"] = preload("res://Assets/SFX/short_explosion.wav")
-	sfx["damage"] = preload("res://Assets/SFX/8bit_big_hit.wav")
-	sfx["smallDefeat"] = preload("res://Assets/SFX/8bit_impact.wav")
-	sfx["bigDefeat"] = preload("res://Assets/SFX/8bit_whale_shot.wav")
-	sfx["minus"] = preload("res://Assets/SFX/8bit_loss.wav")
-	sfx["unlock"] = preload("res://Assets/SFX/unlock1.wav")
-	sfx["plus"] = preload("res://Assets/SFX/unlock2.wav")
-	sfx["coin"] = preload("res://Assets/SFX/coin2.wav")
-	sfx["truck"] = preload("res://Assets/SFX/engine.wav")
-	sfx["woosh"] = preload("res://Assets/SFX/woosh.wav")
-	sfx["victory"] = preload("res://Assets/SFX/fanfare.wav")
-	sfx["failure"] = preload("res://Assets/SFX/8bit_lose.wav")
-	sfx["rpg"] = preload("res://Assets/SFX/8bit_rpg.wav")
-	sfx["sniper"] = preload("res://Assets/SFX/sniper.wav")
 
-
-	bgm["spagetti"] = load("res://Assets/SFX/spagetti western.ogg")
-	bgm["jungle"] = load("res://Assets/SFX/Winning the Race.ogg")
-	bgm["beach"] = load("res://Assets/SFX/EasternArcticDubstep.MP3")
-	bgm["beachBoss"] = load("res://Assets/SFX/dark_forces_loop.mp3")
-	bgm["fanfare"] = load("res://Assets/SFX/fanfare.ogg")
-	bgm["finalBoss"] = load("res://Assets/SFX/deagle_theme.mp3")
-
-	# Enable looping for BGM
-	# bgm_player.stream_loop = true
-
-func _physics_process(delta):
-	if !bgm_player.playing and PlayerVariable.level_complete == false :
+func _process(delta):
+	if !bgm_player.playing and PlayerVariable.level_complete == false:
 		update_bgm()
-	if !bgm_player.playing and PlayerVariable.level_complete == true:
+	elif !bgm_player.playing and PlayerVariable.level_complete == true:
 		await get_tree().create_timer(3).timeout
 		update_bgm()
 
 ### Play Sound Effect (SFX)
-func play_sfx(sound_name: String, volume_db: float = 0.0):
+func play_sfx(sound_name: String, volume_db: float = 0.0) -> void:
 	if sound_name in sfx:
 		var sfx_player = AudioStreamPlayer.new()
 		add_child(sfx_player)
@@ -78,7 +74,7 @@ func play_sfx(sound_name: String, volume_db: float = 0.0):
 				sfx_player.volume_db = -10.0
 				sfx_player.set_pitch_scale(randf_range(0.9, 1.1))
 			"woosh":
-				sfx_player.volume_db = -10.0
+				sfx_player.volume_db = -15.0
 				sfx_player.set_pitch_scale(randf_range(1.9, 2.1))
 			"sniper": 
 				sfx_player.volume_db = -20.0
@@ -87,7 +83,7 @@ func play_sfx(sound_name: String, volume_db: float = 0.0):
 			"rpg":
 				sfx_player.volume_db = 5
 			"coin": 
-				sfx_player.volume_db = -10.0
+				sfx_player.volume_db = -15.0
 		sfx_player.connect("finished", sfx_player.queue_free)
 		sfx_player.play()
 	else:
@@ -133,6 +129,7 @@ func update_bgm():
 	for child in root_children:
 		if child is Level:
 			cur_level = child.level_id
+	
 	if cur_level == "tutorial":
 		AudioManager.play_bgm("spagetti")
 	elif cur_level == "beach1" or cur_level == "beach2" or cur_level == "beach3":

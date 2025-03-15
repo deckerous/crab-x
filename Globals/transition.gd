@@ -5,6 +5,7 @@ extends CanvasLayer
 func fade_in() -> void:
 	_unhide()
 	animation_player.play("fade_in")
+	animation_player.get_animation("fade_in")
 
 func fade_out() -> void:
 	_unhide()
