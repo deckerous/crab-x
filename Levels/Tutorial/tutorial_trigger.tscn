@@ -12,13 +12,11 @@ size = Vector2(32, 32)
 script = ExtResource("1_cpidk")
 
 [node name="Drop-shadow-18x16" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(16, 21)
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_ylu4s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(16, 16)
 scale = Vector2(0.11, 0.11)
 texture = ExtResource("1_8afl0")

@@ -31,7 +31,7 @@ func _handle_kills(_unused) -> void:
 		post_dummy_dialogue.visible = true
 		post_dummy_dialogue.process_mode = Node.PROCESS_MODE_INHERIT
 
-func _enable_boss(node_name, text) -> void:
+func _enable_boss(node_name, text, hint) -> void:
 	#print("being played")
 	#AudioManager.play_bgm("beachBoss")
 	enabled_boss_on_tutorial = true
@@ -48,7 +48,7 @@ func _boss_killed(_unused) -> void:
 	tut_boss_killed = true
 	level_complete_func()
 
-func _shop_tutorial_trigger(node_name, text) -> void:
+func _shop_tutorial_trigger(node_name, text, hint) -> void:
 	var shop_icon = $Graphics/LootAndTriggers/ShopIcon
-	shop_icon.process_mode = Node.PROCESS_MODE_INHERIT
+	shop_icon.process_mode = Node.PROCESS_MODE_ALWAYS
 	shop_icon.visible = true

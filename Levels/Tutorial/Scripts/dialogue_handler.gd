@@ -18,6 +18,8 @@ var pushed_event = false
 		skip = value
 		$CanvasLayer.visible = true
 
+@export var show_hint: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	text_box.visible_characters = 0
@@ -25,7 +27,7 @@ func _ready() -> void:
 		text_box.text = text_array[0]
 		next_arrow.visible = false
 		canvas.visible = true
-		hint_text.visible = true
+	hint_text.visible = show_hint
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
