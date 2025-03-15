@@ -81,7 +81,6 @@ func toggle_pause_menu():
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 		get_tree().paused = not get_tree().paused
 		pause_menu_screen.visible = get_tree().paused
-		#pause_background.visible = get_tree().paused
 		# during_game_screen.visible = not during_game_screen.visible
 
 func _on_settings_button_pressed():
