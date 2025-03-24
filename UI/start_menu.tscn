@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://celt6gsdqfl7i"]
+[gd_scene load_steps=8 format=3 uid="uid://celt6gsdqfl7i"]
 
 [ext_resource type="Shader" path="res://Shaders/scrolling_background.gdshader" id="1_o5ctf"]
-[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_vfne4"]
+[ext_resource type="Script" path="res://UI/start_menu.gd" id="1_vfne4"]
 [ext_resource type="Texture2D" uid="uid://dvafuwrwbdgqd" path="res://Assets/Tilesets/pngs/beach-sand-16x16.png" id="2_4bq35"]
 [ext_resource type="Texture2D" uid="uid://cd620w5rvnk13" path="res://Assets/UI/CRAB-XING-bullet-holes.png" id="3_338aa"]
-[ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="5_5yocx"]
 [ext_resource type="Texture2D" uid="uid://bnydytjqng0n5" path="res://Assets/UI/new-game.png" id="5_bd6w0"]
 [ext_resource type="Texture2D" uid="uid://dbglobs486lcl" path="res://Assets/UI/continue.png" id="6_wue8j"]
 
@@ -12,18 +11,11 @@
 shader = ExtResource("1_o5ctf")
 shader_parameter/speed = 0.5
 
-[node name="StartMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_vfne4")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_gc6c0")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,11 +25,8 @@ mouse_filter = 2
 texture = ExtResource("2_4bq35")
 stretch_mode = 1
 
-[node name="CrabContainer" type="Node2D" parent="."]
-
 [node name="TextureRect2" type="TextureRect" parent="."]
 z_index = 1
-layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 32.0
@@ -53,10 +42,10 @@ position = Vector2(133, 13)
 [node name="new_game_button" type="Button" parent="main_menu_screen"]
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
-offset_left = 75.0
-offset_top = 27.0
-offset_right = 137.0
-offset_bottom = 59.0
+offset_left = 94.0
+offset_top = 22.0
+offset_right = 156.0
+offset_bottom = 54.0
 metadata/_edit_use_anchors_ = true
 
 [node name="new_game_button" type="Sprite2D" parent="main_menu_screen/new_game_button"]
@@ -86,10 +75,10 @@ metadata/_edit_use_anchors_ = true
 [node name="continue_button" type="Button" parent="main_menu_screen"]
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
-offset_left = 75.0
-offset_top = 103.0
-offset_right = 137.0
-offset_bottom = 135.0
+offset_left = 94.0
+offset_top = 98.0
+offset_right = 156.0
+offset_bottom = 130.0
 metadata/_edit_use_anchors_ = true
 
 [node name="continue_button" type="Sprite2D" parent="main_menu_screen/continue_button"]
@@ -114,49 +103,3 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 metadata/_edit_use_anchors_ = true
-
-[node name="quit_button" type="Button" parent="main_menu_screen"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-z_index = 1
-offset_left = 123.0
-offset_top = 117.0
-offset_right = 187.0
-offset_bottom = 149.0
-metadata/_edit_use_anchors_ = true
-
-[node name="quit_button" type="Sprite2D" parent="main_menu_screen/quit_button"]
-self_modulate = Color(1, 0.866667, 0.0823529, 0.686275)
-position = Vector2(31.45, 16)
-scale = Vector2(0.0559278, 0.054054)
-texture = ExtResource("5_5yocx")
-
-[node name="quit_label" type="Label" parent="main_menu_screen/quit_button"]
-self_modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_right = 91.0
-offset_bottom = 46.0
-scale = Vector2(0.7, 0.7)
-text = "Quit"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-metadata/_edit_use_anchors_ = true
-
-[node name="mobile_warning" type="Node2D" parent="."]
-visible = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="mobile_warning"]
-modulate = Color(0, 0, 0, 1)
-offset_left = 200.0
-offset_top = 7.0
-offset_right = 327.0
-offset_bottom = 191.0
-scale = Vector2(0.9, 0.9)
-bbcode_enabled = true
-text = "[center]This game does not currently support mobile devices. If you wish to play, please use a desktop or laptop device."
-fit_content = true
-
-[connection signal="pressed" from="main_menu_screen/new_game_button" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="main_menu_screen/continue_button" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="main_menu_screen/quit_button" to="." method="_on_quit_button_pressed"]

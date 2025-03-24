@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://g0366fl8bif8" path="res://Prefabs/Scenes/levels/level.tscn" id="1_bxlvl"]
 [ext_resource type="TileSet" uid="uid://qdsyewnphcr2" path="res://Assets/Tilesets/resource/jungle_grass_tilesettres.tres" id="2_48aqo"]
-[ext_resource type="PackedScene" uid="uid://kqwn3nkjg4pq" path="res://Levels/to_be_continued.tscn" id="2_pkikt"]
+[ext_resource type="PackedScene" uid="uid://bi605q50m4tr3" path="res://UI/credits.tscn" id="2_pj3jg"]
 [ext_resource type="TileSet" uid="uid://d3mbkmo2u0n33" path="res://Assets/Tilesets/resource/jungle_walls_tileset.tres" id="3_v8tm4"]
 [ext_resource type="TileSet" uid="uid://d4lwiul7kwcpn" path="res://Assets/Tilesets/resource/jungle_decor.tres" id="4_2njet"]
 [ext_resource type="TileSet" uid="uid://stw7plaoqtd6" path="res://Assets/Tilesets/resource/pavement.tres" id="4_dcnak"]
@@ -43,7 +43,7 @@ _data = {
 point_count = 2
 
 [node name="Level" instance=ExtResource("1_bxlvl")]
-next_level = ExtResource("2_pkikt")
+next_level = ExtResource("2_pj3jg")
 starting_crab_count = 3
 starting_weapon = 1
 level_id = "jungle3"
