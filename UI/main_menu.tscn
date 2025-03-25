@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://jspwhjro5sxu"]
+[gd_scene load_steps=3 format=3 uid="uid://daygfmdjngtup"]
 
-[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_7v0na"]
+[ext_resource type="Script" path="res://UI/start_menu.gd" id="1_lxnn5"]
 [ext_resource type="Texture2D" uid="uid://b74oqqvpa4ieo" path="res://Assets/UI/button.png" id="1_tkarn"]
 
 [node name="main_menu" type="CanvasLayer"]
-script = ExtResource("1_7v0na")
+script = ExtResource("1_lxnn5")
 
 [node name="main_menu_screen_background" type="ColorRect" parent="."]
 self_modulate = Color(0.203322, 0.203322, 0.203322, 1)

@@ -82,6 +82,7 @@ script = ExtResource("7_ntd6r")
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
 top_level = true
+z_index = 2
 offset_left = -10.0
 offset_top = -15.0
 offset_right = 190.0

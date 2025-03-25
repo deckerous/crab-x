@@ -1,0 +1,146 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi605q50m4tr3"]
+
+[ext_resource type="Script" path="res://UI/credits.gd" id="1_vseh3"]
+[ext_resource type="Shader" path="res://Shaders/scrolling_background.gdshader" id="2_galw2"]
+[ext_resource type="Texture2D" uid="uid://dvafuwrwbdgqd" path="res://Assets/Tilesets/pngs/beach-sand-16x16.png" id="3_jbd1d"]
+[ext_resource type="Texture2D" uid="uid://bnydytjqng0n5" path="res://Assets/UI/new-game.png" id="4_04nnm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo1w0"]
+shader = ExtResource("2_galw2")
+shader_parameter/speed = 0.5
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_vseh3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_wo1w0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_jbd1d")
+stretch_mode = 1
+
+[node name="CrabContainer" type="Node2D" parent="."]
+
+[node name="CreditsContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsContainer"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 180.0
+offset_bottom = 1091.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/line_separation = 2
+bbcode_enabled = true
+text = "[center]Player
+[font_size=10]Crabs:   Josh Chernetsky[/font_size][font_size=10]
+[font_size=10]Guns:   Josh Chernetsky[/font_size]
+ Items:   Matthew Brosnon[/font_size][/center]
+
+[center]Enemies
+[font_size=10]Josh Chernetsky[/font_size][/center]
+
+[center]Analytics
+[font_size=10]Matthew Brosnon[/font_size][/center]
+
+[center]Level Design
+[font_size=10]Matthew Brosnon[/font_size][/center]
+
+[center]SFX & Music Design
+[font_size=10]James Decker[/font_size][/center]
+
+[center]Save System
+[font_size=10]James Decker[/font_size][/center]
+
+[center]Art
+[font_size=10]Tilesets:   Josh Chernetsky[/font_size]
+[font_size=10]Enemies:   [table=1, center][cell] Josh Chernetsky[/cell] [cell]James Decker[/cell][/table][/font_size]
+[font_size=10]Bosses:    James Decker[/font_size]
+[font_size=10]     Shop:    Josh Chernetsky[/font_size]
+[font_size=10]The General:   James Decker[/font_size]
+[/center]
+[center]Music & SFX
+[font_size=10]Spaghetti Western:   Spring Spring
+[font_size=8]https://opengameart.org/content/spaghetti-western[/font_size][/font_size]
+[font_size=10]Eastern Arctic Dubstep:   VishwaJai
+[font_size=8]https://opengameart.org/content/eastern-arctic-dubstep[/font_size][/font_size]
+[font_size=10]Winning The Race:   section31
+[font_size=8]https://opengameart.org/content/winning-the-race[/font_size][/font_size]
+[font_size=10]Boss Battle Theme:   CleytonKauffman
+[font_size=8]https://opengameart.org/content/boss-battle-theme[/font_size][/font_size]
+[font_size=10]Dark Forces (Loop):   Pro Sensory
+[font_size=8]https://opengameart.org/content/dark-forcesloop[/font_size][/font_size]
+
+[font_size=10]Air Woosh Move:   Almitory
+[font_size=8]https://opengameart.org/content/air-woosh-move[/font_size][/font_size]
+[font_size=10]Classic fanfare lick:   fvcalderan
+[font_size=8]https://opengameart.org/content/classic-fanfare-lick[/font_size][/font_size]
+[/center]
+
+
+
+
+
+
+ 
+[center]Thanks for playing the demo of 
+[wave amp=50.0 freq=5.0]🦀[/wave] CRAB X-ING [wave amp=50.0 freq=5.0 ]🦀[/wave]"
+scroll_active = false
+
+[node name="MainMenuButton" type="Button" parent="CreditsContainer"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1625
+anchor_top = 7.01667
+anchor_right = 0.1625
+anchor_bottom = 7.01667
+offset_left = 75.0
+offset_top = 6.99939
+offset_right = 137.0
+offset_bottom = 38.9994
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite" type="Sprite2D" parent="CreditsContainer/MainMenuButton"]
+show_behind_parent = true
+position = Vector2(29.9, 16)
+scale = Vector2(1.018, 1)
+texture = ExtResource("4_04nnm")
+
+[node name="MainMenuLabel" type="Label" parent="CreditsContainer/MainMenuButton"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.129032
+anchor_top = -0.125
+anchor_right = 0.209677
+anchor_bottom = 0.78125
+offset_left = -2.0
+offset_right = 89.0
+offset_bottom = 46.0
+scale = Vector2(0.5, 0.5)
+text = "back
+to
+crab"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true

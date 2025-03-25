@@ -29,7 +29,6 @@ func _ready() -> void:
 func next_level_func() -> void:
 	if next_level != null:
 		var next_level_instance = next_level.instantiate()
-		print_debug(next_level_instance.level_id)
 		# if !PlayerVariable.debug:
 		#	 Analytics.add_event("Player moved to " + next_level_instance.level_id)
 		#Transition.fade_in()
