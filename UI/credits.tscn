@@ -40,7 +40,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 180.0
-offset_bottom = 1005.0
+offset_bottom = 1091.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -87,6 +87,11 @@ text = "[center]Player
 [font_size=8]https://opengameart.org/content/boss-battle-theme[/font_size][/font_size]
 [font_size=10]Dark Forces (Loop):   Pro Sensory
 [font_size=8]https://opengameart.org/content/dark-forcesloop[/font_size][/font_size]
+
+[font_size=10]Air Woosh Move:   Almitory
+[font_size=8]https://opengameart.org/content/air-woosh-move[/font_size][/font_size]
+[font_size=10]Classic fanfare lick:   fvcalderan
+[font_size=8]https://opengameart.org/content/classic-fanfare-lick[/font_size][/font_size]
 [/center]
 
 
@@ -104,14 +109,14 @@ self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.171875
-anchor_top = 6.52778
-anchor_right = 0.171875
-anchor_bottom = 6.52778
+anchor_left = 0.1625
+anchor_top = 7.01667
+anchor_right = 0.1625
+anchor_bottom = 7.01667
 offset_left = 75.0
-offset_top = 27.0
+offset_top = 6.99939
 offset_right = 137.0
-offset_bottom = 59.0
+offset_bottom = 38.9994
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite" type="Sprite2D" parent="CreditsContainer/MainMenuButton"]

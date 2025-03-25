@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var crab_container: Node2D = $CrabContainer
 @onready var credits_container: Control = $CreditsContainer
 @onready var main_menu_button: Button = $CreditsContainer/MainMenuButton
+@onready var rich_text_label: RichTextLabel = $CreditsContainer/RichTextLabel
 
 @onready var crab = load("res://Prefabs/Scenes/crab_entity.tscn")
 @onready var crabs = []
@@ -20,7 +21,7 @@ func _ready() -> void:
 	main_menu_button.pressed.connect(_on_main_menu_button_pressed)
 
 func _process(delta: float) -> void:
-	if credits_container.position.y > -1080:
+	if credits_container.position.y > -1175:
 		if Input.is_action_pressed("progress_dialogue"):
 			credits_container.position.y -= credits_scroll_speed_fast
 		else:
